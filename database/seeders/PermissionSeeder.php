@@ -23,10 +23,12 @@ class PermissionSeeder extends Seeder
         $arrayPremissionName = [
             // product
             "access product",
+            // order
+            "access bid",
             // admin
-            "access admin", "manage admin",
+            "access admin", "create admin",
             // owner
-            'access owner', 'manage owner',
+            'access owner', 'update owner',
         ];
 
         $premission = collect($arrayPremissionName)->map(function ($premission) {
@@ -37,7 +39,7 @@ class PermissionSeeder extends Seeder
 
         // create role
         Role::create(['name' => 'owner'])->givePermissionTo($arrayPremissionName);
-        Role::create(['name' => 'admin'])->givePermissionTo('access product', 'manage admin');
-        Role::create(['name' => 'customer'])->givePermissionTo('access product');
+        Role::create(['name' => 'admin'])->givePermissionTo('access product', 'access bid', 'access admin');
+        Role::create(['name' => 'customer'])->givePermissionTo('access product', 'access bid');
     }
 }

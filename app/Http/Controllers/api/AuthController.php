@@ -66,7 +66,7 @@ class AuthController extends Controller
         try {
             $request->user()->currentAccessToken()->delete();
             return response([
-                'message' => 'success'
+                'message' => 'succes'
             ]);
         } catch (\Exception $exception) {
             return response([
