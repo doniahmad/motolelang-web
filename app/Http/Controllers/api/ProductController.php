@@ -16,7 +16,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        $response = Product::all();
+        return response()->json($response, 200);
     }
 
     /**
@@ -43,10 +44,10 @@ class ProductController extends Controller
             'nomor_rangka' => 'string',
         ]);
 
-        $slug = SlugService::createSlug(Product::class, 'slug', $request->name);
+        $slug = SlugService::createSlug(Product::class, 'product_slug', $request->nama_product);
 
         try {
-            $validateData['slug'] = $slug;
+            $validateData['product_slug'] = $slug;
             $response = Product::create($validateData);
             return response()->json([
                 'succes' => true,
@@ -97,10 +98,7 @@ class ProductController extends Controller
             'nomor_rangka' => 'string',
         ]);
 
-        $slug = SlugService::createSlug(Product::class, 'slug', $request->name);
-
         try {
-            $validateData['slug'] = $slug;
             $product->update($validateData);
             return response()->json([
                 'succes' => true,

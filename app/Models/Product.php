@@ -12,11 +12,12 @@ class Product extends Model
     use HasFactory, Sluggable;
 
     protected $guarded = ['product_id'];
+    protected $primaryKey = 'product_id';
 
     public function sluggable(): array
     {
         return [
-            'slug' => [
+            'product_slug' => [
                 'source' => 'nama_product'
             ]
         ];
