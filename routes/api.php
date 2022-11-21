@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\api\AuthController;
+use App\Http\Controllers\api\CategoryController;
 use App\Http\Controllers\api\ProductController;
 use App\Http\Controllers\api\UserController;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -27,3 +29,4 @@ Route::get('/users', [UserController::class, 'users']);
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::apiResource('product', ProductController::class)->parameters(['product' => 'product:product_slug']);
+Route::apiResource('category', CategoryController::class)->except('update');

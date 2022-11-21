@@ -28,7 +28,6 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-
         $validateData = $request->validate([
             'nama_product' => 'string',
             'harga_awal' => 'integer',
@@ -42,6 +41,7 @@ class ProductController extends Controller
             'warna_tnkb' => 'string',
             'odometer' => 'integer',
             'nomor_rangka' => 'string',
+            'category_id' => 'integer'
         ]);
 
         $slug = SlugService::createSlug(Product::class, 'product_slug', $request->nama_product);
@@ -70,7 +70,8 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        return response()->json($product, 200);
+        $data = $product->load('categories');
+        return response()->json($data, 200);
     }
 
     /**
@@ -82,7 +83,6 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-
         $validateData = $request->validate([
             'nama_product' => 'string',
             'harga_awal' => 'integer',

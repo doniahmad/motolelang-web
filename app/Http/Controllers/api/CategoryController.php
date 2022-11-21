@@ -4,6 +4,7 @@ namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -15,7 +16,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $categories = Category::all();
+        return response()->json($categories, 200);
     }
 
     /**
@@ -26,7 +28,19 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validateData = $request->validate([
+            'category' => 'string|unique:categories'
+        ]);
+
+        $slug = SlugService::createSlug(Category::class, 'category_slug', $request->category);
+
+        try {
+            $validateData['category_slug'] = $slug;
+            $response = Category::create($validateData);
+            return response()->json($response);
+        } catch (\Exception $e) {
+            return response()->json($e->getMessage());
+        }
     }
 
     /**
@@ -37,7 +51,8 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        //
+        $data = Category::with('products')->where('category_id', $category->category_id)->latest()->paginate(12);
+        return response()->json($data);
     }
 
     /**
@@ -60,6 +75,13 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        try {
+            $category->delete();
+            response()->json([
+                "message" => "success"
+            ]);
+        } catch (\Exception $e) {
+            response()->json($e->getMessage());
+        }
     }
 }
