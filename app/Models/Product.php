@@ -27,4 +27,9 @@ class Product extends Model
     {
         return $this->belongsTo(Category::class, "category_id");
     }
+
+    public function document()
+    {
+        return $this->hasOne(Document::class, 'document_id');
+    }
 }

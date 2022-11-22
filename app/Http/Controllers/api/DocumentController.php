@@ -3,11 +3,10 @@
 namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Product;
-use Cviebrock\EloquentSluggable\Services\SlugService;
+use App\Models\Document;
 use Illuminate\Http\Request;
 
-class ProductController extends Controller
+class DocumentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +15,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $response = Product::all();
-        return response()->json($response, 200);
+        $data = Document::all();
+
+        return response()->json($data);
     }
 
     /**
@@ -29,27 +29,18 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $validateData = $request->validate([
-            'nama_product' => 'string',
-            'harga_awal' => 'integer',
-            'waktu_mulai' => 'string',
-            'waktu_selesai' => 'string',
-            'jenis' => 'string',
-            'merk' => 'string',
-            'kapasitas_cc' => 'integer',
-            'nomor_mesin' => 'string',
-            'bahan_bakar' => 'string',
-            'warna_tnkb' => 'string',
-            'odometer' => 'integer',
-            'nomor_rangka' => 'string',
-            'category_id' => 'integer',
-            'warna' => 'string'
+            'nomor_polisi' => 'string',
+            'stnk' => 'boolean',
+            'bpkb' => 'boolean',
+            'form_a' => 'boolean',
+            'faktur' => 'boolean',
+            'kwitansi_blanko' => 'boolean',
+            'masa_stnk' => 'string',
+            'product_id' => 'integer'
         ]);
 
-        $slug = SlugService::createSlug(Product::class, 'product_slug', $request->nama_product);
-
         try {
-            $validateData['product_slug'] = $slug;
-            $response = Product::create($validateData);
+            $response = Document::create($validateData);
             return response()->json([
                 'succes' => true,
                 'message' => 'Success',
@@ -66,47 +57,42 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Product  $product
+     * @param  \App\Models\Document  $document
      * @return \Illuminate\Http\Response
      */
-    public function show(Product $product)
+    public function show(Document $document)
     {
-        $data = $product->load(['categories', 'document']);
-        return response()->json($data, 200);
+        $data = $document->load('product');
+
+        return response()->json($data);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Product  $product
+     * @param  \App\Models\Document  $document
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(Request $request, Document $document)
     {
         $validateData = $request->validate([
-            'nama_product' => 'string',
-            'harga_awal' => 'integer',
-            'waktu_mulai' => 'string',
-            'waktu_selesai' => 'string',
-            'jenis' => 'string',
-            'merk' => 'string',
-            'kapasitas_cc' => 'integer',
-            'nomor_mesin' => 'string',
-            'bahan_bakar' => 'string',
-            'warna_tnkb' => 'string',
-            'odometer' => 'integer',
-            'nomor_rangka' => 'string',
-            'category_id' => 'integer',
-            'warna' => 'string'
+            'nomor_polisi' => 'string',
+            'stnk' => 'boolean',
+            'bpkb' => 'boolean',
+            'form_a' => 'boolean',
+            'faktur' => 'boolean',
+            'kwitansi_blanko' => 'boolean',
+            'masa_stnk' => 'string',
+            'product_id' => 'integer'
         ]);
 
         try {
-            $product->update($validateData);
+            $response = $document->update($validateData);
             return response()->json([
                 'succes' => true,
                 'message' => 'Success',
-                'data' => $product,
+                'data' => $response,
             ]);
         } catch (\Exception $e) {
             return response()->json([
@@ -119,13 +105,13 @@ class ProductController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Product  $product
+     * @param  \App\Models\Document  $document
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $product)
+    public function destroy(Document $document)
     {
         try {
-            $product->delete();
+            $document->delete();
             return response()->json([
                 'success' => true,
                 'message' => 'Success',
