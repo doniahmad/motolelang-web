@@ -3,6 +3,7 @@
 use App\Http\Controllers\api\AuthController;
 use App\Http\Controllers\api\CategoryController;
 use App\Http\Controllers\api\DocumentController;
+use App\Http\Controllers\api\OfferController;
 use App\Http\Controllers\api\ProductController;
 use App\Http\Controllers\api\UserController;
 use App\Models\Category;
@@ -32,3 +33,4 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::apiResource('product', ProductController::class)->parameters(['product' => 'product:product_slug']);
 Route::apiResource('category', CategoryController::class)->except('update');
 Route::apiResource('document', DocumentController::class);
+Route::apiResource('offer', OfferController::class);

@@ -19,6 +19,7 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+    protected $primaryKey = 'user_id';
     protected $fillable = [
         'name',
         'email',
@@ -30,6 +31,7 @@ class User extends Authenticatable
         'address',
         'profession',
         'photo',
+        'user_id'
     ];
 
     /**
@@ -49,4 +51,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function offer()
+    {
+        return $this->hasOne(Offer::class, 'offer_id');
+    }
 }

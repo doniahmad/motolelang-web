@@ -32,4 +32,9 @@ class Product extends Model
     {
         return $this->hasOne(Document::class, 'document_id');
     }
+
+    public function offers()
+    {
+        return $this->hasMany(Offer::class, 'offer_id');
+    }
 }
