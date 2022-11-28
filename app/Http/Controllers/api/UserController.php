@@ -5,6 +5,7 @@ namespace App\Http\Controllers\api;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
@@ -77,11 +78,10 @@ class UserController extends Controller
         try {
 
             if ($request->hasFile('photo')) {
-                $storage_path = public_path('image\user');
                 $image = $request->file('photo');
                 $image_name = date('dmys') . '-' . $user->id;
-                $request->photo->move($storage_path, $image_name . '.' . $image->extension());
-
+                Storage::delete('image/user/' . $user->photo);
+                $request->photo->storeAs('image/user', $image_name . '.' . $image->extension());
                 $validateData['photo'] = $image_name;
             }
 
@@ -100,6 +100,8 @@ class UserController extends Controller
     public function remove($id)
     {
         $user = User::find($id);
+
+        Storage::delete('image/user/' . $user->photo);
 
         try {
             $user->delete();

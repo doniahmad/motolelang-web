@@ -31,7 +31,7 @@ return new class extends Migration
             $table->string('waktu_selesai');
             $table->string('harga_awal');
             $table->string('warna');
-            // $table->foreignId('id_document')->constrained()->onUpdate('cascade')->onDelete('cascade');
+            $table->enum('status_pelelangan', ['berjalan', 'selesai'])->default('berjalan');
             $table->timestamps();
         });
     }
