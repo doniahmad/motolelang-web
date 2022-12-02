@@ -1,6 +1,13 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\api\AdminController;
+use App\Http\Controllers\api\AuthController;
+use App\Http\Controllers\api\CategoryController;
+use App\Http\Controllers\api\DocumentController;
+use App\Http\Controllers\api\OfferController;
+use App\Http\Controllers\api\PaymentController;
+use App\Http\Controllers\api\ProductController;
+use App\Http\Controllers\api\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,6 +21,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::group(['middleware' => ['auth:sanctum', 'role:customer']], function () {
+    Route::get('/user', [UserController::class, 'user']);
+    Route::post('/user/update', [UserController::class, 'update']);
+    Route::post('/logout', [AuthController::class, 'logout']);
+    Route::apiResource('offer', OfferController::class);
 });
+
+Route::group(['middleware' => ['auth:sanctum', 'role:admin']], function () {
+    Route::apiResource('admin', AdminController::class)->except('store');
+});
+
+Route::apiResource('admin', AdminController::class)->only('store');
+Route::get('/users', [UserController::class, 'users']);
+Route::post('/register', [AuthController::class, 'register']);
+Route::post('/login', [AuthController::class, 'login']);
+Route::apiResource('product', ProductController::class)->parameters(['product' => 'product:product_slug']);
+Route::apiResource('category', CategoryController::class)->except('update');
+Route::apiResource('document', DocumentController::class);
+Route::apiResource('payment', PaymentController::class);
