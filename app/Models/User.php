@@ -52,13 +52,13 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function offer()
+    public function offers()
     {
-        return $this->hasOne(Offer::class, 'offer_id');
+        return $this->hasMany(Offer::class, 'offer_id');
     }
 
     public function payments()
     {
-        return $this->hasMany(Payment::class);
+        return $this->hasMany(Payment::class, 'payment_id');
     }
 }
