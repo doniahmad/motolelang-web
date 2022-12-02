@@ -13,6 +13,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+
 Route::get('/', function () {
-    return view('welcome');
+    return view('pages.home');
+});
+
+
+Route::get('/lelang', function () {
+    return view('pages.lelang');
+});
+
+Route::get('/about', function () {
+    return view('pages.about');
+});
+
+Route::get('/signIn', function () {
+    return view('pages.signIn');
 });
