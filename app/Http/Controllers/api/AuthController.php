@@ -19,6 +19,8 @@ class AuthController extends Controller
             'role' => 'required|in:admin,customer,owner',
         ]);
 
+        $fields['role'] = 'customer';
+
         $fields['password'] = Hash::make($fields['password']);
 
         $user = User::create($fields);

@@ -23,7 +23,6 @@ return new class extends Migration
             $table->string('birth_place')->nullable();
             $table->string('gender')->nullable();
             $table->string('address')->nullable();
-            $table->string('profession')->nullable();
             $table->string('photo')->nullable();
             $table->string('photo_ktp')->nullable();
             $table->rememberToken();

@@ -17,6 +17,8 @@ class UserController extends Controller
         $response->role = $response->getRoleNames();
         $response->premission = $response->getPermissionsViaRoles()->pluck("name");
         $response->makeHidden('roles');
+
+
         return response($response, 200);
     }
 
@@ -27,7 +29,10 @@ class UserController extends Controller
      */
     public function users()
     {
-        $users = User::all();
+        $users = User::whereHas('roles', function ($role) {
+            $role->where('name', 'admin');
+        })->get();;
+
         return response()->json($users, 200);
     }
 
@@ -69,10 +74,9 @@ class UserController extends Controller
             'handphone' => 'string',
             'birth_place' => 'string',
             'birth_date' => 'string',
-            'gender' => 'string',
+            'gender' => 'in:perempuan,laki-laki',
             'address' => 'string',
-            'profession' => 'string',
-            'photo' => 'image|mimes:jpg,png,jpeg'
+            'photo' => 'image|mimes:jpg,png'
         ]);
 
         try {
