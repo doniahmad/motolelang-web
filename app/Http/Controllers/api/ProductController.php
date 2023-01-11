@@ -31,8 +31,6 @@ class ProductController extends Controller
         $validateData = $request->validate([
             'nama_product' => 'string',
             'harga_awal' => 'integer',
-            'waktu_mulai' => 'string',
-            'waktu_selesai' => 'string',
             'jenis' => 'string',
             'merk' => 'string',
             'kapasitas_cc' => 'integer',
@@ -87,8 +85,6 @@ class ProductController extends Controller
         $validateData = $request->validate([
             'nama_product' => 'string',
             'harga_awal' => 'integer',
-            'waktu_mulai' => 'string',
-            'waktu_selesai' => 'string',
             'jenis' => 'string',
             'merk' => 'string',
             'kapasitas_cc' => 'integer',
