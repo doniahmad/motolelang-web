@@ -31,3 +31,15 @@ Route::get('/about', function () {
 Route::get('/signIn', function () {
     return view('pages.signIn');
 });
+
+Route::get('/forgotpassword', function () {
+    return view('pages.forgotpassword');
+});
+
+Route::get('/detaillelang', function () {
+    return view('pages.detaillelang');
+});
+
+Route::get('/pelelangan', function () {
+    return view('pages.pelelangan');
+});
