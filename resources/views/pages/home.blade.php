@@ -29,20 +29,43 @@
                         aria-label="Slide 3"></button>
 
                 </div>
+
+
+
                 <div class="carousel-inner ps-5">
                     <div class="carousel-item active">
+                        <div class="banner-price ">
+                            <p>Harga Awal</p>
+                            <h5>Rp. 17.000.000</h5>
+                        </div>
                         <img src="/assets/img/beat-2019-blue_result.webp" class="d-block w-100" alt="beat 2021 biru">
                     </div>
                     <div class="carousel-item">
+                        <div class="banner-price ">
+                            <p>Harga Awal</p>
+                            <h5>Rp. 17.000.000</h5>
+                        </div>
                         <img src="/assets/img/beat-2019-blue_result.webp" class="d-block w-100" alt="beat 2021 biru">
                     </div>
                     <div class="carousel-item">
+                        <div class="banner-price ">
+                            <p>Harga Awal</p>
+                            <h5>Rp. 17.000.000</h5>
+                        </div>
                         <img src="/assets/img/beat-2019-blue_result.webp" class="d-block w-100" alt="beat 2021 biru">
                     </div>
                     <div class="carousel-item">
+                        <div class="banner-price ">
+                            <p>Harga Awal</p>
+                            <h5>Rp. 17.000.000</h5>
+                        </div>
                         <img src="/assets/img/beat-2019-blue_result.webp" class="d-block w-100" alt="beat 2021 biru">
                     </div>
                     <div class="carousel-item">
+                        <div class="banner-price ">
+                            <p>Harga Awal</p>
+                            <h5>Rp. 17.000.000</h5>
+                        </div>
                         <img src="/assets/img/beat-2019-blue_result.webp" class="d-block w-100" alt="beat 2021 biru">
                     </div>
                 </div>

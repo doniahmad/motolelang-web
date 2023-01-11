@@ -12,7 +12,7 @@
     <link rel="stylesheet" type="text/css" href="{!! 'assets/css/style.css' !!}">
     <link rel="stylesheet" type="text/css" href="{!! 'assets/css/footer.css' !!}">
     <link rel="stylesheet" type="text/css" href="{!! 'assets/css/login.css' !!}">
-
+    <link rel="stylesheet" type="text/css" href="{!! 'assets/js/togglepassword.js' !!}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
 
 
