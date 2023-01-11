@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\api\AdminController;
+use App\Http\Controllers\api\AuctionController;
 use App\Http\Controllers\api\AuthController;
 use App\Http\Controllers\api\CategoryController;
 use App\Http\Controllers\api\DocumentController;
@@ -36,6 +37,8 @@ Route::apiResource('admin', AdminController::class)->only('store');
 Route::get('/users', [UserController::class, 'users']);
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
+Route::apiResource('auction', AuctionController::class);
+Route::apiResource('auctioneer', AuctioneerController::class);
 Route::apiResource('product', ProductController::class)->parameters(['product' => 'product:product_slug']);
 Route::apiResource('category', CategoryController::class)->except('update');
 Route::apiResource('document', DocumentController::class);
