@@ -15,7 +15,7 @@
                     <a class="nav-link {{ request()->is('/') ? 'active' : '' }}" href="/">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->is('lelang') ? 'active' : '' }}" href="lelang">Lelang</a>
+                    <a class="nav-link {{ request()->is('lelang*') ? 'active' : '' }}" href="{{ route('lelang.index') }}">Lelang</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link {{ request()->is('about') ? 'active' : '' }}" href="about">About Us</a>

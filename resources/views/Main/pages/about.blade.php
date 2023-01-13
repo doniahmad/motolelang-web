@@ -1,5 +1,5 @@
-@extends('layouts.master')
-@section('title', 'About Us')
+@extends('Main.layouts.master')
+@section('title', 'Tentang Kami')
 
 <div class="container konten">
     <div class="container ps-5">
