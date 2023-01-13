@@ -1,5 +1,5 @@
-@extends('layouts.master')
-@section('title', 'Pelelangan')
+@extends('Main.layouts.master')
+@section('title', 'Ruang Lelang')
 
 <div class="konten-2">
     <div class="container">

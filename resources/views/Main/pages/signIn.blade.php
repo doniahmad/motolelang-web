@@ -1,5 +1,5 @@
-@extends('layouts.master')
-@section('title', 'Sign In')
+@extends('Main.layouts.master')
+@section('title', 'Masuk')
 
 <div class="bg-login">
     <div class="container">

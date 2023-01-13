@@ -1,8 +1,8 @@
-<?php
+.<?php
 
-use Illuminate\Support\Facades\Route;
+    use Illuminate\Support\Facades\Route;
 
-/*
+    /*
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
@@ -13,33 +13,36 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+    function mainPages($value)
+    {
+        return 'Main.pages.' . $value;
+    };
+
+    Route::get('/', function () {
+        return view(mainPages('home'));
+    });
 
 
-Route::get('/', function () {
-    return view('pages.home');
-});
+    Route::get('/about', function () {
+        return view(mainPages('about'));
+    });
 
+    Route::get('/login', function () {
+        return view(mainPages('signIn'));
+    });
 
-Route::get('/lelang', function () {
-    return view('pages.lelang');
-});
+    Route::get('/forgotpassword', function () {
+        return view(mainPages('forgotPassword'));
+    });
 
-Route::get('/about', function () {
-    return view('pages.about');
-});
-
-Route::get('/signIn', function () {
-    return view('pages.signIn');
-});
-
-Route::get('/forgotpassword', function () {
-    return view('pages.forgotpassword');
-});
-
-Route::get('/detaillelang', function () {
-    return view('pages.detaillelang');
-});
-
-Route::get('/pelelangan', function () {
-    return view('pages.pelelangan');
-});
+    Route::group(['prefix' => 'lelang'], function () {
+        Route::get('/', function () {
+            return view(mainPages('lelang'));
+        })->name('lelang.index');
+        Route::get('/detail', function () {
+            return view(mainPages('detail'));
+        });
+        Route::get('/room', function () {
+            return view(mainPages('roomLelang'));
+        });
+    });
