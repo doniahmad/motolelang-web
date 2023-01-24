@@ -83,7 +83,7 @@
 
             <div class="col-7">
                 <div class="d-flex flex-column">
-                    <img src="/assets/img/unitedemotor_result.webp" class="img-pelelangan" alt=""
+                    <img src="/assets/main/img/unitedemotor_result.webp" class="img-pelelangan" alt=""
                         srcset="">
                     <div class="bg-white text-center p-3 mx-5 penawaran-tertinggi box-shadow-santuy">
                         <p class="">Penawaran Tertinggi</p>

@@ -1,0 +1,183 @@
+#dashboard .card .card-body {
+    padding: 2rem 1rem;
+}
+
+#dashboard .card-brand {
+    font-size: 35px;
+    color: white;
+    width: 5rem;
+    height: 5rem;
+    border-radius: 10px;
+}
+
+#dashboard #i-1 {
+    background-color: #3985F6;
+}
+
+#dashboard #i-2 {
+    background-color: #FFBB34;
+}
+
+#dashboard #i-3 {
+    background-color: #148D35;
+}
+
+#dashboard #i-4 {
+    background-color: #E11A22;
+}
+
+#dashboard .card-brand i {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#dashboard .card-body .col {
+    margin: auto auto;
+}
+
+#dashboard .card-body .card-title {
+    font-weight: 600;
+}
+
+#dashboard .card-body .card-text {
+    font-size: 14px;
+    color: #80809C;
+}
+
+/* Riwayat */
+#riwayat {
+    background-color: #fff;
+    margin-top: 8rem;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
+}
+
+#riwayat .riwayat-title {
+    position: relative;
+    top: -50px;
+    background-color: #3985F6;
+    width: 70%;
+    height: fit-content;
+    padding: 2rem;
+    text-align: center;
+    font-weight: 700;
+    font-size: 24px;
+    color: #fff;
+    margin: auto;
+}
+
+/* Riwayat Table */
+
+#riwayat .table-riwayat {
+    padding: 20px;
+}
+
+/* #riwayat .flex {
+    -webkit-box-flex: 1;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto
+} */
+
+@media (max-width:991.98px) {
+    #riwayat .padding {
+        padding: 1.5rem
+    }
+}
+
+@media (max-width:767.98px) {
+    #riwayat .padding {
+        padding: 1rem
+    }
+}
+
+/* #riwayat .padding {
+    padding: 5rem
+} */
+
+#riwayat .card {
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    -ms-box-shadow: none
+}
+
+/* #riwayat .pl-3,
+#riwayat .px-3 {
+    padding-left: 1rem !important
+} */
+
+#riwayat .card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid #d2d2dc;
+    border-radius: 0
+}
+
+#riwayat .card .card-title {
+    color: #000000;
+    margin-bottom: 0.625rem;
+    text-transform: capitalize;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+#riwayat .card .card-description {
+    margin-bottom: .875rem;
+    font-weight: 400;
+    color: #76838f;
+}
+
+#riwayat p {
+    font-size: 0.875rem;
+    margin-bottom: .5rem;
+    line-height: 1.5rem;
+}
+
+#riwayat .table-responsive {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+}
+
+#riwayat .table,
+#riwayat .jsgrid .jsgrid-table {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 1rem;
+    background-color: transparent;
+}
+
+#riwayat .table thead th,
+#riwayat .jsgrid .jsgrid-table thead th {
+    border-top: 0;
+    border-bottom-width: 1px;
+    font-weight: 500;
+    font-size: .875rem;
+    text-transform: uppercase;
+}
+
+#riwayat .table td,
+#riwayat .jsgrid .jsgrid-table td {
+    font-size: 0.875rem;
+    padding: 0.875rem 0.565rem;
+    vertical-align: middle;
+}
+
+#riwayat .table tr {
+    line-height: 3rem;
+}
+
+#riwayat .badge {
+    border-radius: 10px;
+    font-size: 12px;
+    padding: .375rem .5625rem;
+    font-weight: normal;
+}

@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-color-primer fixed-top">
     <div class="container">
         <a class="navbar-brand" href="/">
-            <img src="/assets/img/logo_white.svg" alt="Logo Moto Lelang" width="100%">
+            <img src="/assets/main/img/logo_white.svg" alt="Logo Moto Lelang" width="100%">
         </a>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -15,7 +15,8 @@
                     <a class="nav-link {{ request()->is('/') ? 'active' : '' }}" href="/">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->is('lelang*') ? 'active' : '' }}" href="{{ route('lelang.index') }}">Lelang</a>
+                    <a class="nav-link {{ request()->is('lelang*') ? 'active' : '' }}"
+                        href="{{ route('lelang.index') }}">Lelang</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link {{ request()->is('about') ? 'active' : '' }}" href="about">About Us</a>
