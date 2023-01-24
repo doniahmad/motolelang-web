@@ -18,8 +18,8 @@
                         <div class="card">
                             <div class="">
                                 <div class="">
-                                    <img src="/assets/img/yamaha-xsr-155_result.webp" alt="Yamaha R15" width="100%"
-                                        srcset="">
+                                    <img src="/assets/main/img/yamaha-xsr-155_result.webp" alt="Yamaha R15"
+                                        width="100%" srcset="">
                                 </div>
                                 <div class="card-body">
                                     <div class="">
@@ -42,8 +42,8 @@
                         <div class="card">
                             <div class="">
                                 <div class="">
-                                    <img src="/assets/img/yamaha-xsr-155_result.webp" alt="Yamaha R15" width="100%"
-                                        srcset="">
+                                    <img src="/assets/main/img/yamaha-xsr-155_result.webp" alt="Yamaha R15"
+                                        width="100%" srcset="">
                                 </div>
                                 <div class="card-body">
                                     <div class="">
@@ -66,8 +66,8 @@
                         <div class="card">
                             <div class="">
                                 <div class="">
-                                    <img src="/assets/img/yamaha-xsr-155_result.webp" alt="Yamaha R15" width="100%"
-                                        srcset="">
+                                    <img src="/assets/main/img/yamaha-xsr-155_result.webp" alt="Yamaha R15"
+                                        width="100%" srcset="">
                                 </div>
                                 <div class="card-body">
                                     <div class="">
@@ -90,109 +90,8 @@
                         <div class="card">
                             <div class="">
                                 <div class="">
-                                    <img src="/assets/img/yamaha-xsr-155_result.webp" alt="Yamaha R15" width="100%"
-                                        srcset="">
-                                </div>
-                                <div class="card-body">
-                                    <div class="">
-                                        <h6>Yamaha XSR155</h6>
-                                    </div>
-                                    <div class="d-flex pt-2">
-                                        <h6>Rp. 30.251.000</h6>
-                                        <div class="ms-auto">
-                                            <i class="fa-regular fa-clock"></i>
-                                            <span>10 Hari</span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
-            <div class="container">
-                <div class="mt-5 d-flex justify-content-between">
-                    <div class="card" style="width: 15rem;">
-                        <div class="card">
-                            <div class="">
-                                <div class="">
-                                    <img src="/assets/img/yamaha-xsr-155_result.webp" alt="Yamaha R15" width="100%"
-                                        srcset="">
-                                </div>
-                                <div class="card-body">
-                                    <div class="">
-                                        <h6>Yamaha XSR155</h6>
-                                    </div>
-                                    <div class="d-flex pt-2">
-                                        <h6>Rp. 30.251.000</h6>
-                                        <div class="ms-auto">
-                                            <i class="fa-regular fa-clock"></i>
-                                            <span>10 Hari</span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card" style="width: 15rem;">
-                        <div class="card">
-                            <div class="">
-                                <div class="">
-                                    <img src="/assets/img/yamaha-xsr-155_result.webp" alt="Yamaha R15" width="100%"
-                                        srcset="">
-                                </div>
-                                <div class="card-body">
-                                    <div class="">
-                                        <h6>Yamaha XSR155</h6>
-                                    </div>
-                                    <div class="d-flex pt-2">
-                                        <h6>Rp. 30.251.000</h6>
-                                        <div class="ms-auto">
-                                            <i class="fa-regular fa-clock"></i>
-                                            <span>10 Hari</span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card" style="width: 15rem;">
-                        <div class="card">
-                            <div class="">
-                                <div class="">
-                                    <img src="/assets/img/yamaha-xsr-155_result.webp" alt="Yamaha R15" width="100%"
-                                        srcset="">
-                                </div>
-                                <div class="card-body">
-                                    <div class="">
-                                        <h6>Yamaha XSR155</h6>
-                                    </div>
-                                    <div class="d-flex pt-2">
-                                        <h6>Rp. 30.251.000</h6>
-                                        <div class="ms-auto">
-                                            <i class="fa-regular fa-clock"></i>
-                                            <span>10 Hari</span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card" style="width: 15rem;">
-                        <div class="card">
-                            <div class="">
-                                <div class="">
-                                    <img src="/assets/img/yamaha-xsr-155_result.webp" alt="Yamaha R15" width="100%"
-                                        srcset="">
+                                    <img src="/assets/main/img/yamaha-xsr-155_result.webp" alt="Yamaha R15"
+                                        width="100%" srcset="">
                                 </div>
                                 <div class="card-body">
                                     <div class="">
@@ -220,8 +119,8 @@
                         <div class="card">
                             <div class="">
                                 <div class="">
-                                    <img src="/assets/img/yamaha-xsr-155_result.webp" alt="Yamaha R15" width="100%"
-                                        srcset="">
+                                    <img src="/assets/main/img/yamaha-xsr-155_result.webp" alt="Yamaha R15"
+                                        width="100%" srcset="">
                                 </div>
                                 <div class="card-body">
                                     <div class="">
@@ -244,8 +143,8 @@
                         <div class="card">
                             <div class="">
                                 <div class="">
-                                    <img src="/assets/img/yamaha-xsr-155_result.webp" alt="Yamaha R15" width="100%"
-                                        srcset="">
+                                    <img src="/assets/main/img/yamaha-xsr-155_result.webp" alt="Yamaha R15"
+                                        width="100%" srcset="">
                                 </div>
                                 <div class="card-body">
                                     <div class="">
@@ -268,8 +167,8 @@
                         <div class="card">
                             <div class="">
                                 <div class="">
-                                    <img src="/assets/img/yamaha-xsr-155_result.webp" alt="Yamaha R15" width="100%"
-                                        srcset="">
+                                    <img src="/assets/main/img/yamaha-xsr-155_result.webp" alt="Yamaha R15"
+                                        width="100%" srcset="">
                                 </div>
                                 <div class="card-body">
                                     <div class="">
@@ -292,109 +191,8 @@
                         <div class="card">
                             <div class="">
                                 <div class="">
-                                    <img src="/assets/img/yamaha-xsr-155_result.webp" alt="Yamaha R15" width="100%"
-                                        srcset="">
-                                </div>
-                                <div class="card-body">
-                                    <div class="">
-                                        <h6>Yamaha XSR155</h6>
-                                    </div>
-                                    <div class="d-flex pt-2">
-                                        <h6>Rp. 30.251.000</h6>
-                                        <div class="ms-auto">
-                                            <i class="fa-regular fa-clock"></i>
-                                            <span>10 Hari</span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
-            <div class="container">
-                <div class="mt-5 d-flex justify-content-between">
-                    <div class="card" style="width: 15rem;">
-                        <div class="card">
-                            <div class="">
-                                <div class="">
-                                    <img src="/assets/img/yamaha-xsr-155_result.webp" alt="Yamaha R15" width="100%"
-                                        srcset="">
-                                </div>
-                                <div class="card-body">
-                                    <div class="">
-                                        <h6>Yamaha XSR155</h6>
-                                    </div>
-                                    <div class="d-flex pt-2">
-                                        <h6>Rp. 30.251.000</h6>
-                                        <div class="ms-auto">
-                                            <i class="fa-regular fa-clock"></i>
-                                            <span>10 Hari</span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card" style="width: 15rem;">
-                        <div class="card">
-                            <div class="">
-                                <div class="">
-                                    <img src="/assets/img/yamaha-xsr-155_result.webp" alt="Yamaha R15" width="100%"
-                                        srcset="">
-                                </div>
-                                <div class="card-body">
-                                    <div class="">
-                                        <h6>Yamaha XSR155</h6>
-                                    </div>
-                                    <div class="d-flex pt-2">
-                                        <h6>Rp. 30.251.000</h6>
-                                        <div class="ms-auto">
-                                            <i class="fa-regular fa-clock"></i>
-                                            <span>10 Hari</span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card" style="width: 15rem;">
-                        <div class="card">
-                            <div class="">
-                                <div class="">
-                                    <img src="/assets/img/yamaha-xsr-155_result.webp" alt="Yamaha R15" width="100%"
-                                        srcset="">
-                                </div>
-                                <div class="card-body">
-                                    <div class="">
-                                        <h6>Yamaha XSR155</h6>
-                                    </div>
-                                    <div class="d-flex pt-2">
-                                        <h6>Rp. 30.251.000</h6>
-                                        <div class="ms-auto">
-                                            <i class="fa-regular fa-clock"></i>
-                                            <span>10 Hari</span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card" style="width: 15rem;">
-                        <div class="card">
-                            <div class="">
-                                <div class="">
-                                    <img src="/assets/img/yamaha-xsr-155_result.webp" alt="Yamaha R15" width="100%"
-                                        srcset="">
+                                    <img src="/assets/main/img/yamaha-xsr-155_result.webp" alt="Yamaha R15"
+                                        width="100%" srcset="">
                                 </div>
                                 <div class="card-body">
                                     <div class="">
@@ -422,8 +220,8 @@
                         <div class="card">
                             <div class="">
                                 <div class="">
-                                    <img src="/assets/img/yamaha-xsr-155_result.webp" alt="Yamaha R15" width="100%"
-                                        srcset="">
+                                    <img src="/assets/main/img/yamaha-xsr-155_result.webp" alt="Yamaha R15"
+                                        width="100%" srcset="">
                                 </div>
                                 <div class="card-body">
                                     <div class="">
@@ -446,8 +244,8 @@
                         <div class="card">
                             <div class="">
                                 <div class="">
-                                    <img src="/assets/img/yamaha-xsr-155_result.webp" alt="Yamaha R15" width="100%"
-                                        srcset="">
+                                    <img src="/assets/main/img/yamaha-xsr-155_result.webp" alt="Yamaha R15"
+                                        width="100%" srcset="">
                                 </div>
                                 <div class="card-body">
                                     <div class="">
@@ -470,8 +268,8 @@
                         <div class="card">
                             <div class="">
                                 <div class="">
-                                    <img src="/assets/img/yamaha-xsr-155_result.webp" alt="Yamaha R15" width="100%"
-                                        srcset="">
+                                    <img src="/assets/main/img/yamaha-xsr-155_result.webp" alt="Yamaha R15"
+                                        width="100%" srcset="">
                                 </div>
                                 <div class="card-body">
                                     <div class="">
@@ -494,8 +292,210 @@
                         <div class="card">
                             <div class="">
                                 <div class="">
-                                    <img src="/assets/img/yamaha-xsr-155_result.webp" alt="Yamaha R15" width="100%"
-                                        srcset="">
+                                    <img src="/assets/main/img/yamaha-xsr-155_result.webp" alt="Yamaha R15"
+                                        width="100%" srcset="">
+                                </div>
+                                <div class="card-body">
+                                    <div class="">
+                                        <h6>Yamaha XSR155</h6>
+                                    </div>
+                                    <div class="d-flex pt-2">
+                                        <h6>Rp. 30.251.000</h6>
+                                        <div class="ms-auto">
+                                            <i class="fa-regular fa-clock"></i>
+                                            <span>10 Hari</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="mt-5 d-flex justify-content-between">
+                    <div class="card" style="width: 15rem;">
+                        <div class="card">
+                            <div class="">
+                                <div class="">
+                                    <img src="/assets/main/img/yamaha-xsr-155_result.webp" alt="Yamaha R15"
+                                        width="100%" srcset="">
+                                </div>
+                                <div class="card-body">
+                                    <div class="">
+                                        <h6>Yamaha XSR155</h6>
+                                    </div>
+                                    <div class="d-flex pt-2">
+                                        <h6>Rp. 30.251.000</h6>
+                                        <div class="ms-auto">
+                                            <i class="fa-regular fa-clock"></i>
+                                            <span>10 Hari</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card" style="width: 15rem;">
+                        <div class="card">
+                            <div class="">
+                                <div class="">
+                                    <img src="/assets/main/img/yamaha-xsr-155_result.webp" alt="Yamaha R15"
+                                        width="100%" srcset="">
+                                </div>
+                                <div class="card-body">
+                                    <div class="">
+                                        <h6>Yamaha XSR155</h6>
+                                    </div>
+                                    <div class="d-flex pt-2">
+                                        <h6>Rp. 30.251.000</h6>
+                                        <div class="ms-auto">
+                                            <i class="fa-regular fa-clock"></i>
+                                            <span>10 Hari</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card" style="width: 15rem;">
+                        <div class="card">
+                            <div class="">
+                                <div class="">
+                                    <img src="/assets/main/img/yamaha-xsr-155_result.webp" alt="Yamaha R15"
+                                        width="100%" srcset="">
+                                </div>
+                                <div class="card-body">
+                                    <div class="">
+                                        <h6>Yamaha XSR155</h6>
+                                    </div>
+                                    <div class="d-flex pt-2">
+                                        <h6>Rp. 30.251.000</h6>
+                                        <div class="ms-auto">
+                                            <i class="fa-regular fa-clock"></i>
+                                            <span>10 Hari</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card" style="width: 15rem;">
+                        <div class="card">
+                            <div class="">
+                                <div class="">
+                                    <img src="/assets/main/img/yamaha-xsr-155_result.webp" alt="Yamaha R15"
+                                        width="100%" srcset="">
+                                </div>
+                                <div class="card-body">
+                                    <div class="">
+                                        <h6>Yamaha XSR155</h6>
+                                    </div>
+                                    <div class="d-flex pt-2">
+                                        <h6>Rp. 30.251.000</h6>
+                                        <div class="ms-auto">
+                                            <i class="fa-regular fa-clock"></i>
+                                            <span>10 Hari</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="mt-5 d-flex justify-content-between">
+                    <div class="card" style="width: 15rem;">
+                        <div class="card">
+                            <div class="">
+                                <div class="">
+                                    <img src="/assets/main/img/yamaha-xsr-155_result.webp" alt="Yamaha R15"
+                                        width="100%" srcset="">
+                                </div>
+                                <div class="card-body">
+                                    <div class="">
+                                        <h6>Yamaha XSR155</h6>
+                                    </div>
+                                    <div class="d-flex pt-2">
+                                        <h6>Rp. 30.251.000</h6>
+                                        <div class="ms-auto">
+                                            <i class="fa-regular fa-clock"></i>
+                                            <span>10 Hari</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card" style="width: 15rem;">
+                        <div class="card">
+                            <div class="">
+                                <div class="">
+                                    <img src="/assets/main/img/yamaha-xsr-155_result.webp" alt="Yamaha R15"
+                                        width="100%" srcset="">
+                                </div>
+                                <div class="card-body">
+                                    <div class="">
+                                        <h6>Yamaha XSR155</h6>
+                                    </div>
+                                    <div class="d-flex pt-2">
+                                        <h6>Rp. 30.251.000</h6>
+                                        <div class="ms-auto">
+                                            <i class="fa-regular fa-clock"></i>
+                                            <span>10 Hari</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card" style="width: 15rem;">
+                        <div class="card">
+                            <div class="">
+                                <div class="">
+                                    <img src="/assets/main/img/yamaha-xsr-155_result.webp" alt="Yamaha R15"
+                                        width="100%" srcset="">
+                                </div>
+                                <div class="card-body">
+                                    <div class="">
+                                        <h6>Yamaha XSR155</h6>
+                                    </div>
+                                    <div class="d-flex pt-2">
+                                        <h6>Rp. 30.251.000</h6>
+                                        <div class="ms-auto">
+                                            <i class="fa-regular fa-clock"></i>
+                                            <span>10 Hari</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card" style="width: 15rem;">
+                        <div class="card">
+                            <div class="">
+                                <div class="">
+                                    <img src="/assets/main/img/yamaha-xsr-155_result.webp" alt="Yamaha R15"
+                                        width="100%" srcset="">
                                 </div>
                                 <div class="card-body">
                                     <div class="">

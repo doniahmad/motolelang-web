@@ -38,35 +38,40 @@
                             <p>Harga Awal</p>
                             <h5>Rp. 17.000.000</h5>
                         </div>
-                        <img src="/assets/img/beat-2019-blue_result.webp" class="d-block w-100" alt="beat 2021 biru">
+                        <img src="/assets/main/img/beat-2019-blue_result.webp" class="d-block w-100"
+                            alt="beat 2021 biru">
                     </div>
                     <div class="carousel-item">
                         <div class="banner-price ">
                             <p>Harga Awal</p>
                             <h5>Rp. 17.000.000</h5>
                         </div>
-                        <img src="/assets/img/beat-2019-blue_result.webp" class="d-block w-100" alt="beat 2021 biru">
+                        <img src="/assets/main/img/beat-2019-blue_result.webp" class="d-block w-100"
+                            alt="beat 2021 biru">
                     </div>
                     <div class="carousel-item">
                         <div class="banner-price ">
                             <p>Harga Awal</p>
                             <h5>Rp. 17.000.000</h5>
                         </div>
-                        <img src="/assets/img/beat-2019-blue_result.webp" class="d-block w-100" alt="beat 2021 biru">
+                        <img src="/assets/main/img/beat-2019-blue_result.webp" class="d-block w-100"
+                            alt="beat 2021 biru">
                     </div>
                     <div class="carousel-item">
                         <div class="banner-price ">
                             <p>Harga Awal</p>
                             <h5>Rp. 17.000.000</h5>
                         </div>
-                        <img src="/assets/img/beat-2019-blue_result.webp" class="d-block w-100" alt="beat 2021 biru">
+                        <img src="/assets/main/img/beat-2019-blue_result.webp" class="d-block w-100"
+                            alt="beat 2021 biru">
                     </div>
                     <div class="carousel-item">
                         <div class="banner-price ">
                             <p>Harga Awal</p>
                             <h5>Rp. 17.000.000</h5>
                         </div>
-                        <img src="/assets/img/beat-2019-blue_result.webp" class="d-block w-100" alt="beat 2021 biru">
+                        <img src="/assets/main/img/beat-2019-blue_result.webp" class="d-block w-100"
+                            alt="beat 2021 biru">
                     </div>
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
@@ -85,7 +90,7 @@
     <div class="container mt-5 mb-5">
         <div class="row">
             <div class="col-md-6">
-                <img src="/assets/img/tanya_result.webp" alt="why?" width="80%">
+                <img src="/assets/main/img/tanya_result.webp" alt="why?" width="80%">
             </div>
 
             <div class="col-md-6">
@@ -117,23 +122,23 @@
         <div class="container d-flex border my-5">
             <div class="row justify-content-md-center mt-5 img-center text-center py-5">
                 <div class="col-2">
-                    <img src="/assets/img/Dayflow-Sitting1.svg" alt="buat akun" width="100%">
+                    <img src="/assets/main/img/Dayflow-Sitting1.svg" alt="buat akun" width="100%">
                     <p class="mt-3">Buat Akun Terlebih Dahulu</p>
                 </div>
                 <div class="col-2">
-                    <img src="/assets/img/Croods-Chart1.svg" alt="Isi Profil" width="100%">
+                    <img src="/assets/main/img/Croods-Chart1.svg" alt="Isi Profil" width="100%">
                     <p class="mt-3">Isi Data Diri DI Menu Profil</p>
                 </div>
                 <div class="col-2">
-                    <img src="/assets/img/Hands-Point1.svg" alt="" width="100%">
+                    <img src="/assets/main/img/Hands-Point1.svg" alt="" width="100%">
                     <p class="mt-3">Pilih Pelelangan Yang ingin Anda Ikuti</p>
                 </div>
                 <div class="col-2">
-                    <img src="/assets/img/HappyBunch-Desk1.svg" alt="" width="100%">
+                    <img src="/assets/main/img/HappyBunch-Desk1.svg" alt="" width="100%">
                     <p class="mt-3">Tentukan Username Rahasia Untuk Masuk Lelang</p>
                 </div>
                 <div class="col-2">
-                    <img src="/assets/img/BigShoes-DynamicPose1.svg" alt="" width="100%">
+                    <img src="/assets/main/img/BigShoes-DynamicPose1.svg" alt="" width="100%">
                     <p class="mt-3">Selamat Anda Sudah Memasuki Pelelangan</p>
                 </div>
             </div>
@@ -167,7 +172,7 @@
                                         </div>
 
                                         <div class="">
-                                            <img src="/assets/img/yamaha-r15_result.webp" alt="Yamaha R15"
+                                            <img src="/assets/main/img/yamaha-r15_result.webp" alt="Yamaha R15"
                                                 width="100%" srcset="">
                                         </div>
 
@@ -206,7 +211,7 @@
                                         </div>
 
                                         <div class="">
-                                            <img src="/assets/img/yamaha-r15_result.webp" alt="Yamaha R15"
+                                            <img src="/assets/main/img/yamaha-r15_result.webp" alt="Yamaha R15"
                                                 width="100%" srcset="">
                                         </div>
 
@@ -245,7 +250,7 @@
                                         </div>
 
                                         <div class="">
-                                            <img src="/assets/img/yamaha-r15_result.webp" alt="Yamaha R15"
+                                            <img src="/assets/main/img/yamaha-r15_result.webp" alt="Yamaha R15"
                                                 width="100%" srcset="">
                                         </div>
 
