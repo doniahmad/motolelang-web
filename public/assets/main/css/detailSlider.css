@@ -1,0 +1,22 @@
+#carouselDetailSlider {}
+
+#carouselDetailSlider .carousel-indicators button[data-bs-target] {
+    width: 100px;
+}
+
+#carouselDetailSlider .carousel-indicators button[data-bs-target]:not(.active) {
+    opacity: 0.8;
+}
+
+#carouselDetailSlider .carousel-indicators {
+    position: static;
+}
+
+#carouselDetailSlider .carousel-indicators li {
+    width: 100px;
+    opacity: 0.8;
+}
+
+#carouselDetailSlider .carousel-inner {
+    height: 480px;
+}

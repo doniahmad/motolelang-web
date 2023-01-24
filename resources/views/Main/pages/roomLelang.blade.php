@@ -82,16 +82,12 @@
             </div>
 
             <div class="col-7">
-                <div class="d-flex flex-column">
-                    <img src="/assets/img/unitedemotor_result.webp" class="img-pelelangan" alt=""
+                <div class="d-flex ">
+                    <img src="/assets/main/img/unitedemotor_result.webp" class="img-pelelangan" alt=""
                         srcset="">
-                    <div class="bg-white text-center p-3 mx-5 penawaran-tertinggi box-shadow-santuy">
-                        <p class="">Penawaran Tertinggi</p>
-                        <h3>Rp. 13.130.001</h3>
-                    </div>
                 </div>
 
-                <div class="bg-white text-center p-3 my-5 box-shadow-santuy ">
+                <div class="bg-white text-center p-3 box-shadow-santuy ">
                     <p class="">Penawaran Saya</p>
                     <h3 class="">Rp. 0</h3>
                     <button type="button" class="btn btn-pelelangan bg-color-primer text-light mt-3 ">Kirim
