@@ -82,7 +82,7 @@
             </div>
 
             <div class="col-7">
-                <div class="d-flex ">
+                <div class="d-flex flex-column">
                     <img src="/assets/main/img/unitedemotor_result.webp" class="img-pelelangan" alt=""
                         srcset="">
                 </div>
