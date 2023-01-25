@@ -9,14 +9,14 @@
         </div>
     </div>
     <div class="container my-5">
-        <div class="row">
+        <div class="row ">
 
-            <div class="col-7">
-                gambar
+            <div class="col-7 mb-5">
+                @include('main.components.detailSlider')
             </div>
 
             <div class="col-5">
-                <div class="container bg-white box-shadow-santuy">
+                <div class="container bg-white box-shadow-santuy py-2">
                     <div class="p-3">
                         <div class="d-flex align-items-center">
                             <h6 class="color-primer mb-0 mt-3">INFOMASI KENDARAAN LELANG</h6>
@@ -61,14 +61,11 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <button type="button" class="btn btn-pelelangan bg-color-primer text-light mt-3">Kirim
-                            Penawaran</button>
+                        <a href="room" class="btn btn-pelelangan bg-color-primer text-light mt-3">Ikut Lelang</a>
+
                     </div>
                 </div>
             </div>
-
-
-
         </div>
 
         <div class="container my-5 bg-white box-shadow-santuy">

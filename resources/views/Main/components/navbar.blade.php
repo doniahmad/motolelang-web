@@ -12,17 +12,20 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->is('/') ? 'active' : '' }}" href="/">Home</a>
+                    <a class="nav-link {{ request()->is('/') ? 'active' : '' }}"
+                        href="{{ route('home.index') }}">Home</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link {{ request()->is('lelang*') ? 'active' : '' }}"
                         href="{{ route('lelang.index') }}">Lelang</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->is('about') ? 'active' : '' }}" href="about">About Us</a>
+                    <a class="nav-link {{ request()->is('about') ? 'active' : '' }}"
+                        href="{{ route('about.index') }}">About Us</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->is('signIn') ? 'active' : '' }}" href="signIn">Masuk</a>
+                    <a class="nav-link {{ request()->is('login*') ? 'active' : '' }}"
+                        href="{{ route('login.index') }}">Masuk</a>
                 </li>
             </ul>
         </div>

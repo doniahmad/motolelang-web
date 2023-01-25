@@ -9,7 +9,7 @@
                     <h1 class="mb-3 judul-banner">Temukan Berbagai Jenis Motor</h1>
                     {{-- <button type="button" class="btn-ikut">Ikut Lelang <span class="ms-1"><i
                                 class="fa-solid fa-arrow-right"></i></span></button> --}}
-                    <a href="lelang" class="btn-ikut text-decoration-none">Ikut Lelang <span class="ms-1"><i
+                    <a href="lelang" class="btn-ikut text-decoration-none">Galeri Lelang <span class="ms-1"><i
                                 class="fa-solid fa-arrow-right"></i></span></a>
                 </div>
             </div>
@@ -27,7 +27,6 @@
                         aria-label="Slide 3"></button>
                     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4"
                         aria-label="Slide 3"></button>
-
                 </div>
 
 
@@ -74,7 +73,7 @@
                             alt="beat 2021 biru">
                     </div>
                 </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+                {{-- <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
                     data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Previous</span>
@@ -83,7 +82,7 @@
                     data-bs-slide="next">
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Next</span>
-                </button>
+                </button> --}}
             </div>
         </div>
     </div>

@@ -13,7 +13,7 @@ body {
 }
 
 .bg-banner {
-    background: url('/assets/img/randomshape.svg');
+    background: url('/assets/main/img/randomshape.svg');
     width: 100%;
     height: 500px;
     background-repeat: no-repeat;
@@ -147,7 +147,9 @@ body {
 
 .img-pelelangan {
     width: 100%;
-    height: 408px;
+    height: 480px;
+    object-position: center;
+    object-fit: cover;
 }
 
 .penawaran-tertinggi {
@@ -159,6 +161,180 @@ body {
     background-color: #5394F4;
     color: #fff;
     border-radius: 5px;
+}
+
+#detail-carousel {}
+
+#detail-carousel .main-img {
+    width: 700px;
+    height: 480px;
+    object-position: top center;
+    object-fit: cover;
+}
+
+#filterLelang {
+    border-radius: 10px;
+    height: 80vh;
+}
+
+#filterLelang .btn-group {
+    width: 90%;
+}
+
+#lelangSaya hr {
+    border-top: 2px solid;
+    opacity: 1;
+}
+
+#toggleLelangSaya .btn-lelang {
+    width: 100%;
+}
+
+#toggleLelangSaya .col-6 {
+    padding: 0;
+}
+
+#togglelelangSaya .bg-primer {
+    background-color: #3B85F2;
+}
+
+#togglelelangSaya .border-lelangSaya {
+    border: 1px solid #3B85F2;
+}
+
+#togglelelangSaya .border-pembayaran {
+    border: 1px solid #3B85F2;
+}
+
+#togglelelangSaya .border-lelangSaya p {
+    margin-bottom: 0;
+}
+
+#togglelelangSaya .border-pembayaran p {
+    margin-bottom: 0;
+}
+
+/* pembayaran */
+
+#pembayaran hr {
+    border-top: 2px solid;
+    opacity: 1;
+}
+
+#btnPembayaran .btn-lelang {
+    width: 100%;
+}
+
+#btnPembayaran .col-6 {
+    padding: 0;
+}
+
+#btnPembayaran .bg-primer {
+    background-color: #3B85F2;
+}
+
+#btnPembayaran .border-lelangSaya {
+    border: 1px solid #3B85F2;
+}
+
+#btnPembayaran .border-pembayaran {
+    border: 1px solid #3B85F2;
+}
+
+#btnPembayaran .border-lelangSaya p {
+    margin-bottom: 0;
+}
+
+#btnPembayaran .border-pembayaran p {
+    margin-bottom: 0;
+}
+
+#kontenTitlePembayaran {
+    width: 100%;
+}
+
+#kontenLelangSaya img {
+    width: 200px;
+}
+
+#titleLelangSaya {
+    margin-right: 20px;
+    margin-left: 20px;
+    max-width: 220px;
+    min-width: 220px;
+}
+
+#titleLelangSaya p {
+    padding: 5px 50px 5px 50px;
+    text-align: center;
+}
+
+#infoLelangSaya {
+    margin-left: 20px;
+}
+
+#infoLelangSaya .table {
+    margin: 0;
+    padding: 0;
+}
+
+#kontenLelangSaya .selesai {
+    background-color: #00FF46;
+}
+
+#btnLelangSaya {}
+
+#btnLelangSaya .btn {
+    width: 70%;
+}
+
+#btnLelangSaya .detail {
+    border: 1px solid #3B85F2;
+}
+
+#btnLelangSaya .bayar {
+    background-color: #3B85F2;
+    border: 1px solid #3B85F2;
+}
+
+#kontenPembayaran img {
+    width: 200px;
+}
+
+#kontenPembayaran .col-7 {
+    padding: 0;
+}
+
+#kontenPembayaran .table {
+    margin: 0;
+    padding: 0;
+}
+
+#infoPembayaran {
+    padding-left: 25px;
+}
+
+#tagihan .btn {
+    width: 100%;
+}
+
+#tagihan .border {
+    border: 1px solid #3B85F2 !important;
+}
+
+#tagihan .dropdown-item {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+#tagihan .dropdown-item:focus, .dropdown-item:hover {
+    background-color: #fff;
+    color: #3B85F2;
+}
+
+#tagihan .btn-primer {
+    background-color: #3B85F2;
+    color: #fff;
 }
 
 /* * {

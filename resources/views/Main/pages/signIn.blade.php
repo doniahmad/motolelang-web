@@ -16,10 +16,10 @@
                         <div class="txt_field">
                             <input type="password" name="password" id="password" required>
                             <i class="eye-icon fa fa-eye-slash" id="eye"></i>
-
+                            <span></span>
                             <label>Kata Sandi</label>
                         </div>
-                        <div class="pass"><a href="forgotpassword">Lupa Kata Sandi</a></div>
+                        <div class="pass"><a href="login/lupa">Lupa Kata Sandi</a></div>
                         <input type="submit" value="Masuk">
                         <p class="text-center my-3">OR</p>
                         <div class="signup_link">
