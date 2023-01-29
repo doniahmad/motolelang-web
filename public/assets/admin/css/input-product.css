@@ -65,7 +65,7 @@
     max-height: 6rem;
 }
 
-#input-product input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+/* #input-product input[type="datetime-local"]::-webkit-calendar-picker-indicator {
     position: absolute;
     left: -100px;
-}
+} */

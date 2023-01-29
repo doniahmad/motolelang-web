@@ -15,6 +15,9 @@
     <link rel="stylesheet" href="/assets/admin/css/product.css">
     <link rel="stylesheet" href="/assets/admin/css/input-product.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/regular.min.css"
+        integrity="sha512-k2UAKyvfA7Xd/6FrOv5SG4Qr9h4p2oaeshXF99WO3zIpCsgTJ3YZELDK0gHdlJE5ls+Mbd5HL50b458z3meB/Q=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/@eonasdan/tempus-dominus@6.2.10/dist/css/tempus-dominus.min.css"
         crossorigin="anonymous">
@@ -45,8 +48,8 @@
     @yield('content')
 
     {{-- CUSTOM JS --}}
-    @stack('scripts')
 
+    @stack('scripts')
 </body>
 
 </html>

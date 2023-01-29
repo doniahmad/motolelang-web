@@ -19,9 +19,9 @@ return new class extends Migration
             $table->string('nama_samaran');
             $table->string('token_pelelangan');
             $table->unsignedBigInteger('id_product');
-            $table->foreign('id_product')->references('product_id')->on('product')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('id_product')->references('product_id')->on('products')->onUpdate('cascade')->onDelete('cascade');
             $table->unsignedBigInteger('id_user');
-            $table->foreign('id_user')->references('user_id')->on('user')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('id_user')->references('user_id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

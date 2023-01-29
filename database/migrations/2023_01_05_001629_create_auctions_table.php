@@ -21,7 +21,7 @@ return new class extends Migration
             $table->dateTime('exp_date');
             $table->softDeletes();
             $table->unsignedBigInteger('id_product');
-            $table->foreign('id_product')->references('product_id')->on('product')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('id_product')->references('product_id')->on('products')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }

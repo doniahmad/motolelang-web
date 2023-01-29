@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\ViewController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Request;
+use \GuzzleHttp\Client;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,10 +16,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
 function mainPages($value)
 {
     return 'Main.pages.' . $value;
 };
+
+Route::group(['middleware' => 'auth'], function () {
+});
 
 
 Route::get('/', function () {
@@ -34,6 +41,7 @@ Route::group(['prefix' => 'login'], function () {
     Route::get('/', function () {
         return view(mainPages('signIn'));
     })->name('login.index');
+    Route::post('/', [ViewController::class, 'loginAction'])->name('login.action');
     Route::get('/lupa', function () {
         return view(mainPages('forgotpassword'));
     });
@@ -42,7 +50,8 @@ Route::group(['prefix' => 'login'], function () {
 
 Route::group(['prefix' => 'lelang'], function () {
     Route::get('/', function () {
-        return view(mainPages('lelang'));
+        $data = ViewController::getProductsGallery();
+        return view(mainPages('lelang'), compact('data'));
     })->name('lelang.index');
     Route::get('/detail', function () {
         return view(mainPages('detail'));
@@ -71,13 +80,28 @@ Route::group(['prefix' => 'dashboard'], function () {
     })->name('dashboard.index');
     Route::group(['prefix' => 'product'], function () {
         Route::get('/', function () {
-            return view(adminPages('product'));
+            $data = ViewController::getProducts();
+            return view(adminPages('product'), compact('data'));
         })->name('dashboard.product');
+        Route::post('/add', [ViewController::class, 'postProduct'])->name('dashboard.postProduct');
         Route::get('/add', function () {
             return view(adminPages('inputProduct'));
         })->name('dashboard.inputProduct');
-        Route::get('/edit', function () {
+        Route::get('/edit/{id}', function () {
             return view(adminPages('editProduct'));
         })->name('dashboard.editProduct');
+    });
+    Route::group(['prefix' => 'customer'], function () {
+        Route::get('/', function () {
+            $data = ViewController::getCustomers();
+            return view(adminPages('customer'), compact('data'));
+        })->name('dashboard.customer');
+        Route::get('/{id}', [ViewController::class, 'getCustomer'])->name('dashboard.getCustomer');
+    });
+    Route::group(['prefix' => 'pembayaran'], function () {
+        Route::get('/', function () {
+            $data = ViewController::getPayments();
+            return view(adminPages('pembayaran'), compact('data'));
+        })->name('dashboard.pembayaran');
     });
 });

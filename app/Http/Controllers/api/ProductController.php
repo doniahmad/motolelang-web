@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Product;
 use Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -16,7 +17,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $response = Product::all();
+        $response = Product::with(['categories', 'document', 'offers', 'payment'])->get();
         return response()->json($response, 200);
     }
 
@@ -26,26 +27,44 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+    public function productPaginate8()
+    {
+        $response = Product::with(['categories', 'document', 'offers', 'payment'])->paginate(8);
+        return response()->json($response, 200);
+    }
+
     public function store(Request $request)
     {
         $validateData = $request->validate([
-            'nama_product' => 'string',
-            'harga_awal' => 'integer',
-            'jenis' => 'string',
-            'merk' => 'string',
-            'kapasitas_cc' => 'integer',
-            'nomor_mesin' => 'string',
-            'bahan_bakar' => 'string',
-            'warna_tnkb' => 'string',
-            'odometer' => 'integer',
-            'nomor_rangka' => 'string',
+            'nama_product' => 'string|required',
+            'harga_awal' => 'integer|required',
+            'jenis' => 'string|required',
+            'merk' => 'string|required',
+            'kapasitas_cc' => 'integer|required',
+            'nomor_mesin' => 'string|required',
+            'bahan_bakar' => 'string|required',
+            'odometer' => 'integer|required',
+            'nomor_rangka' => 'string|required',
             'category_id' => 'integer',
-            'warna' => 'string'
+            'warna' => 'string|required',
+            'img_url' => 'image|required',
+            'img_url.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
 
         $slug = SlugService::createSlug(Product::class, 'product_slug', $request->nama_product);
 
         try {
+
+            if ($request->hasFile('img_url')) {
+                $image = $request->file('img_url');
+                $image_name = 'product-' . date('dmys');
+                $request->img_url->storeAs('image/product', $image_name . '.' . $image->extension());
+                $data_img[] = $image_name .  '.' . $image->extension();
+            }
+
+            $validateData['img_url'] = $image_name .  '.' . $image->extension();
+
             $validateData['product_slug'] = $slug;
             $response = Product::create($validateData);
             return response()->json([

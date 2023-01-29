@@ -15,105 +15,32 @@
                 </div>
                 <div class="container">
                     <div class="mt-5 d-flex justify-content-between">
-                        <div class="card" style="width: 17rem;">
-                            <div class="card">
-                                <a class="text-reset text-decoration-none" href="lelang/detail">
-                                    <div class="">
+                        @foreach ($data->data as $product)
+                            <div class="card" style="width: 17rem;">
+                                <div class="card">
+                                    <a class="text-reset text-decoration-none" href="lelang/detail">
                                         <div class="">
-                                            <img src="/assets/main/img/unitedemotor_result.webp" alt="United-e-motor"
-                                                width="100%" srcset="">
-                                        </div>
-                                        <div class="card-body">
                                             <div class="">
-                                                <h6>United E-Motor T1800</h6>
+                                                <img src="{{ asset('storage/image/product/' . $product->img_url) }}"
+                                                    alt="United-e-motor" width="100%" srcset="">
                                             </div>
-                                            <div class="d-flex pt-2 align-items-center">
-                                                <h6 class="my-auto">Rp. 10.000.000</h6>
-                                                <div class="ms-auto ">
-                                                    <i class="fa-regular fa-clock"></i>
-                                                    <span>10 Hari</span>
+                                            <div class="card-body">
+                                                <div class="">
+                                                    <h6>{{ $product->nama_product }}</h6>
+                                                </div>
+                                                <div class="d-flex pt-2 align-items-center">
+                                                    <h6 class="my-auto">Rp. {{ $product->harga_awal }}</h6>
+                                                    <div class="ms-auto ">
+                                                        <i class="fa-regular fa-clock"></i>
+                                                        <span>10 Hari</span>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </a>
+                                    </a>
+                                </div>
                             </div>
-                        </div>
-
-                        <div class="card" style="width: 17rem;">
-                            <div class="card">
-                                <a class="text-reset text-decoration-none" href="lelang/detail">
-                                    <div class="">
-                                        <div class="">
-                                            <img src="/assets/main/img/unitedemotor_result.webp" alt="United-e-motor"
-                                                width="100%" srcset="">
-                                        </div>
-                                        <div class="card-body">
-                                            <div class="">
-                                                <h6>United E-Motor T1800</h6>
-                                            </div>
-                                            <div class="d-flex pt-2 align-items-center">
-                                                <h6 class="my-auto">Rp. 10.000.000</h6>
-                                                <div class="ms-auto ">
-                                                    <i class="fa-regular fa-clock"></i>
-                                                    <span>10 Hari</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="card" style="width: 17rem;">
-                            <div class="card">
-                                <a class="text-reset text-decoration-none" href="lelang/detail">
-                                    <div class="">
-                                        <div class="">
-                                            <img src="/assets/main/img/unitedemotor_result.webp" alt="United-e-motor"
-                                                width="100%" srcset="">
-                                        </div>
-                                        <div class="card-body">
-                                            <div class="">
-                                                <h6>United E-Motor T1800</h6>
-                                            </div>
-                                            <div class="d-flex pt-2 align-items-center">
-                                                <h6 class="my-auto">Rp. 10.000.000</h6>
-                                                <div class="ms-auto ">
-                                                    <i class="fa-regular fa-clock"></i>
-                                                    <span>10 Hari</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="card" style="width: 17rem;">
-                            <div class="card">
-                                <a class="text-reset text-decoration-none" href="lelang/detail">
-                                    <div class="">
-                                        <div class="">
-                                            <img src="/assets/main/img/unitedemotor_result.webp" alt="United-e-motor"
-                                                width="100%" srcset="">
-                                        </div>
-                                        <div class="card-body">
-                                            <div class="">
-                                                <h6>United E-Motor T1800</h6>
-                                            </div>
-                                            <div class="d-flex pt-2 align-items-center">
-                                                <h6 class="my-auto">Rp. 10.000.000</h6>
-                                                <div class="ms-auto ">
-                                                    <i class="fa-regular fa-clock"></i>
-                                                    <span>10 Hari</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
+                        @endforeach
 
                     </div>
                 </div>

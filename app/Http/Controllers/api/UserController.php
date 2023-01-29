@@ -31,6 +31,7 @@ class UserController extends Controller
     {
         $users = User::whereHas('roles', function ($role) {
             $role->where('name', 'admin');
+            $role->where('name', 'customer');
         })->get();;
 
         return response()->json($users, 200);
@@ -42,6 +43,23 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+    public function customers()
+    {
+        $customers = User::whereHas('roles', function ($role) {
+            $role->where('name', 'customer');
+        })->get();
+
+        return response()->json($customers, 200);
+    }
+
+    public function customer(User $user)
+    {
+        $customer = $user->load(['offers', 'payments']);
+
+        return response()->json($customer, 200);
+    }
+
     public function store(Request $request)
     {
         //

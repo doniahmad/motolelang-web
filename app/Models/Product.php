@@ -40,6 +40,6 @@ class Product extends Model
 
     public function payment()
     {
-        return $this->hasOne(Payment::class);
+        return $this->hasOne(Payment::class, 'id_product');
     }
 }
