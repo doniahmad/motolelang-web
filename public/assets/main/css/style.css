@@ -337,6 +337,25 @@ body {
     color: #fff;
 }
 
+#modalInputUsername .btn {
+    width: 20%;
+    background-color: #3B85F2;
+}
+
+#modalInputUsername .myModal {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    display: table;
+}
+
+#modalInputUsername .myModal .modal-content {
+    display: table-cell;
+}
+
 /* * {
     border: #000 1px solid;
 } */

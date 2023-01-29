@@ -99,10 +99,9 @@
                                 <h5 class="ms-auto">Rp. 0</h5>
                             </div>
                             <div class="my-3">
-                                <button type="button" class="btn btn-primer">Bayar</button>
+                                <a href="#" class="btn btn-primer" data-bs-toggle="modal"
+                                    data-bs-target="#modalPembayaran">Bayar</a>
                             </div>
-
-
                         </div>
                     </div>
                 </div>
@@ -111,3 +110,4 @@
     </div>
 </div>
 </div>
+@include('main.modal.modalPembayaran')

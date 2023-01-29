@@ -36,7 +36,10 @@ Route::group(['prefix' => 'login'], function () {
     })->name('login.index');
     Route::get('/lupa', function () {
         return view(mainPages('forgotpassword'));
-    });
+    })->name('login.lupa');
+    Route::get('/daftar', function () {
+        return view(mainPages('register'));
+    })->name('login.daftar');
 });
 
 
@@ -49,7 +52,7 @@ Route::group(['prefix' => 'lelang'], function () {
     })->name('lelang.detail');
     Route::get('/room', function () {
         return view(mainPages('roomLelang'));
-    });
+    })->name('lelang.room');
     Route::get('/lelang-saya', function () {
         return view(mainPages('lelangSaya'));
     })->name('lelang.lelangSaya');
@@ -69,6 +72,9 @@ Route::group(['prefix' => 'dashboard'], function () {
     Route::get('/', function () {
         return view(adminPages('dashboard'));
     })->name('dashboard.index');
+    Route::get('/login', function () {
+            return view(adminPages('login'));
+        })->name('dashboard.login');
     Route::group(['prefix' => 'product'], function () {
         Route::get('/', function () {
             return view(adminPages('product'));
@@ -79,5 +85,6 @@ Route::group(['prefix' => 'dashboard'], function () {
         Route::get('/edit', function () {
             return view(adminPages('editProduct'));
         })->name('dashboard.editProduct');
+        
     });
 });
