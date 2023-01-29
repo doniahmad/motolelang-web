@@ -1,22 +1,17 @@
 @extends('admin.layouts.master')
 @section('title', 'Data Product')
 
-{{-- @push('scripts')
-    <script src="/assets/API/GET/getDataProduct.js"></script>
-@endpush --}}
-
-{{-- @dd($data) --}}
 <div class="container" id="data-product">
     <div class="content">
         <div class="data-product-title">
-            Data Barang
+            Data Customer
         </div>
         <div class="data-product-header">
-            <a href="{{ route('dashboard.inputProduct') }}">
+            {{-- <a href="{{ route('dashboard.inputProduct') }}">
                 <button type="button" class="btn btn-primary">
                     Tambah
                 </button>
-            </a>
+            </a> --}}
         </div>
         <div class="page-content" id="page-content">
             <div class="table-data-product">
@@ -24,30 +19,28 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>No. LOT</th>
-                                <th>Nama Barang</th>
-                                <th>Harga Awal</th>
-                                <th>Kategori</th>
-                                <th>Status Pelelangan</th>
+                                <th>Nama</th>
+                                <th>Email</th>
+                                <th>No Hp</th>
+                                <th>Alamat</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($data as $product)
+                            @foreach ($data as $customer)
                                 <tr>
-                                    <td>{{ $product->product_id }}</td>
-                                    <td>{{ $product->nama_product }}</td>
-                                    <td>Rp. {{ $product->harga_awal }}</td>
-                                    <td>{{ $product->jenis }}</td>
-                                    {{-- <td><label class="badge bg-warning">{{ $product->status_pelelangan }}</label></td> --}}
+                                    <td>{{ $customer->name }}</td>
+                                    <td>{{ $customer->email }}</td>
+                                    <td>{{ $customer->handphone != null ? $customer->handphone : 'Kosong' }}</td>
+                                    <td>{{ $customer->address != null ? $customer->email : 'Kosong' }}</td>
                                     <td>
-                                        <a href="{{ route('dashboard.editProduct', ['id' => $product->product_id]) }}">
+                                        <a href="{{ route('dashboard.getCustomer', ['id' => $customer->user_id]) }}">
                                             <button type="button" class="btn btn-primary">
-                                                <i class="fa-solid fa-gear"></i>
+                                                <i class="fa-solid fa-circle-info"></i>
                                             </button>
                                         </a>
                                         <button type="button" class="btn btn-danger">
-                                            <i class="fa-solid fa-trash"></i>
+                                            <i class="fa-solid fa-ban"></i>
                                         </button>
 
                                     </td>

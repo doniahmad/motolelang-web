@@ -10,7 +10,10 @@
 
         </div>
         <div class="page-content">
-            @include('Admin.components.formInput')
+            @include('Admin.components.formInput', [
+                'method' => 'POST',
+                'path' => route('dashboard.postProduct'),
+            ])
         </div>
     </div>
 </div>

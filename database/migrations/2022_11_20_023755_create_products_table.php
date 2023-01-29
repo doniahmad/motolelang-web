@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id('product_id');
-            $table->unsignedBigInteger('category_id');
+            $table->unsignedBigInteger('category_id')->nullable();
             $table->foreign('category_id')->references('category_id')->on('categories')->onDelete('cascade');
             $table->integer('kapasitas_cc');
             $table->integer('odometer');
@@ -25,11 +25,10 @@ return new class extends Migration
             $table->string('merk');
             $table->string('nomor_mesin');
             $table->string('bahan_bakar');
-            $table->string('warna_tnkb');
             $table->string('jenis');
             $table->string('nomor_rangka');
             $table->string('warna');
-            $table->enum('status_pelelangan', ['berjalan', 'selesai'])->default('berjalan');
+            $table->string('img_url');
             $table->timestamps();
         });
     }

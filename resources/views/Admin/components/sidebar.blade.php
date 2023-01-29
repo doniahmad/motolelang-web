@@ -19,7 +19,7 @@
                 </span>
                 Dashboard</a>
         </li>
-        {{-- <li>
+        <li>
 
             <a class="nav-link {{ request()->is('/customer') ? 'active' : '' }}"
                 href="{{ route('dashboard.customer') }}">
@@ -27,7 +27,7 @@
                     <i class="fa-solid fa-users"></i>
                 </span>
                 Data Customer</a>
-        </li> --}}
+        </li>
         <li>
             <a class="nav-link {{ request()->is('dashboard/product') ? 'active' : '' }}"
                 href="{{ route('dashboard.product') }}">
@@ -36,13 +36,14 @@
                 </span>
                 Data Barang</a>
         </li>
-        {{-- <li>
-            <a class="nav-link {{ request()->is('/confirm') ? 'active' : '' }}" href="{{ route('dashboard.confirm') }}">
+        <li>
+            <a class="nav-link {{ request()->is('/pembayaran') ? 'active' : '' }}"
+                href="{{ route('dashboard.pembayaran') }}">
                 <span>
                     <i class="fa-solid fa-list-check"></i>
                 </span>
                 Konfirmasi</a>
-        </li> --}}
+        </li>
     </ul>
 </nav>
 
