@@ -9,13 +9,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-    <link rel="stylesheet" type="text/css" href="{!! '/assets/main/css/style.css' !!}">
-    <link rel="stylesheet" type="text/css" href="{!! '/assets/main/css/footer.css' !!}">
-    <link rel="stylesheet" type="text/css" href="{!! '/assets/main/css/login.css' !!}">
-    <link rel="stylesheet" type="text/css" href="{!! '/assets/main/css/navbarLogin.css' !!}">
-    <link rel="stylesheet" type="text/css" href="{!! '/assets/main/css/detailSlider.css' !!}">
-    <link rel="stylesheet" type="text/css" href="{!! '/assets/main/css/inputPenawaran.css' !!}">
-
+    <link rel="stylesheet" href="/assets/admin/css/login.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
 
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
@@ -33,11 +27,11 @@
 
 <body>
 
-    @include('Main.components.navbarLogin')
+
 
     @yield('content')
 
-    @include('Main.components.footer')
+
 
 </body>
 

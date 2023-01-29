@@ -61,8 +61,8 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <a href="room" class="btn btn-pelelangan bg-color-primer text-light mt-3">Ikut Lelang</a>
-
+                        <a href="#" class="btn btn-pelelangan bg-color-primer text-light mt-3"
+                            data-bs-toggle="modal" data-bs-target="#modalInputUsername">Ikut Lelang</a>
                     </div>
                 </div>
             </div>
@@ -204,3 +204,5 @@
 </div>
 
 </div>
+
+@include('main.modal.modalInputUsername')
