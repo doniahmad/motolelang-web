@@ -24,41 +24,41 @@
                 aria-label="Slide 3"></button>
         </div>
 
-        <div class="carousel-inner ps-5">
+        <div id="bannerSlider" class="carousel-inner ps-5">
             <div class="carousel-item active">
                 <div class="banner-price ">
                     <p>Harga Awal</p>
-                    <h5>Rp. 17.000.000</h5>
+                    <h5>Rp.3.000.000</h5>
                 </div>
-                <img src="/assets/main/img/beat-2019-blue_result.webp" class="d-block w-100" alt="beat 2021 biru">
+                <img src="/assets/main/img/beat-2019-blue_result.webp" class="d-block w-100" alt="beat 2019 biru">
             </div>
             <div class="carousel-item">
                 <div class="banner-price ">
                     <p>Harga Awal</p>
-                    <h5>Rp. 17.000.000</h5>
+                    <h5>Rp. 4.000.000</h5>
                 </div>
-                <img src="/assets/main/img/beat-2019-blue_result.webp" class="d-block w-100" alt="beat 2021 biru">
+                <img src="/assets/main/img/beat-20212.png" class="d-block w-100" alt="beat 2021">
             </div>
             <div class="carousel-item">
                 <div class="banner-price ">
                     <p>Harga Awal</p>
-                    <h5>Rp. 17.000.000</h5>
+                    <h5>Rp. 10.000.000</h5>
                 </div>
-                <img src="/assets/main/img/beat-2019-blue_result.webp" class="d-block w-100" alt="beat 2021 biru">
+                <img src="/assets/main/img/unitedemotor2.png" class="d-block w-100" alt="united e motor">
             </div>
             <div class="carousel-item">
                 <div class="banner-price ">
                     <p>Harga Awal</p>
-                    <h5>Rp. 17.000.000</h5>
+                    <h5>Rp. 20.000.000</h5>
                 </div>
-                <img src="/assets/main/img/beat-2019-blue_result.webp" class="d-block w-100" alt="beat 2021 biru">
+                <img src="/assets/main/img/yamaha-r152.png" class="d-block w-100" alt="yamaha r-15">
             </div>
             <div class="carousel-item">
                 <div class="banner-price ">
                     <p>Harga Awal</p>
-                    <h5>Rp. 17.000.000</h5>
+                    <h5>Rp. 21.000.000</h5>
                 </div>
-                <img src="/assets/main/img/beat-2019-blue_result.webp" class="d-block w-100" alt="beat 2021 biru">
+                <img src="/assets/main/img/yamaha-xsr-1552.png" class="d-block w-100" alt="xsr">
             </div>
         </div>
         {{-- <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"

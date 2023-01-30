@@ -32,8 +32,12 @@ body {
     transform: translate(-50%, -50%);
 }
 
+#bannerSlider .w-100 {
+    height: 80vh;
+}
+
 .btn-ikut {
-    border: 1px solid #2F5EA5;
+    border: 1px solid #5394F4;
     border-radius: 5px;
     background-color: white;
     padding: 8px;
@@ -47,11 +51,12 @@ body {
 
 .btn-ikut:hover {
     color: #fff;
-    border: #2F5EA5 solid 1px;
-    background: #2F5EA5;
+    border: #5394F4 solid 1px;
+    background: #5394F4;
 }
 
 .banner-price {
+    background-color: #fff;
     margin-top: -60px;
     padding: 10px;
     border-radius: 7px;
@@ -86,6 +91,27 @@ body {
     transition: opacity .6s ease;
     border-radius: 100%;
     /* add border-radius */
+}
+
+#lagiRame img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+#lagiRame p {
+    padding: 0;
+    margin: 0;
+}
+
+#desc {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    /* number of lines to show */
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
 }
 
 .color-primer {
@@ -125,7 +151,7 @@ body {
     position: relative;
 }
 
-.share-icon {
+#detailLelang .share-icon {
     margin-top: -25px;
 }
 
@@ -140,14 +166,11 @@ body {
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
 }
 
-.top-penawar {
-    width: 100%;
-    height: 400px;
-}
+#topPenawar {}
 
 .img-pelelangan {
     width: 100%;
-    height: 480px;
+    height: 300px;
     object-position: center;
     object-fit: cover;
 }
@@ -354,6 +377,11 @@ body {
 
 #modalInputUsername .myModal .modal-content {
     display: table-cell;
+}
+
+#cardLelang img {
+    width: 100%;
+    height: 220px;
 }
 
 /* * {

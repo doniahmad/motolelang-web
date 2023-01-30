@@ -1,16 +1,15 @@
 @extends('Main.layouts.master')
 @section('title', 'Lelang')
 
-<div class=" konten-2">
+<div id="detailLelang" class="konten-2">
     <div class="container">
         <div class="d-flex align-items-center">
             <span style="height: fit-content"><i class="fa fa-arrow-left fa-lg"></i></span>
             <h4 class="ps-3 my-auto">United E-Motor T1800</h4>
         </div>
     </div>
-    <div class="container my-5">
-        <div class="row ">
-
+    <div class="container my-4">
+        <div class="row">
             <div class="col-7 mb-5">
                 @include('main.components.detailSlider')
             </div>

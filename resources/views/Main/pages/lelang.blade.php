@@ -46,10 +46,10 @@
                 </div>
 
                 <div class="container">
-                    <div class="mt-5 d-flex justify-content-between">
+                    <div id="cardLelang" class="mt-5 d-flex justify-content-between">
                         <div class="card" style="width: 17rem;">
                             <div class="card">
-                                <a class="text-reset text-decoration-none" href="lelang/detail">
+                                <a class="text-reset text-decoration-none" href="{{ route('lelang.detail') }}">
                                     <div class="">
                                         <div class="">
                                             <img src="/assets/main/img/unitedemotor_result.webp" alt="United-e-motor"
@@ -74,7 +74,7 @@
 
                         <div class="card" style="width: 17rem;">
                             <div class="card">
-                                <a class="text-reset text-decoration-none" href="lelang/detail">
+                                <a class="text-reset text-decoration-none" href="{{ route('lelang.detail') }}">
                                     <div class="">
                                         <div class="">
                                             <img src="/assets/main/img/unitedemotor_result.webp" alt="United-e-motor"
@@ -99,7 +99,7 @@
 
                         <div class="card" style="width: 17rem;">
                             <div class="card">
-                                <a class="text-reset text-decoration-none" href="lelang/detail">
+                                <a class="text-reset text-decoration-none" href="{{ route('lelang.detail') }}">
                                     <div class="">
                                         <div class="">
                                             <img src="/assets/main/img/unitedemotor_result.webp" alt="United-e-motor"
@@ -124,7 +124,7 @@
 
                         <div class="card" style="width: 17rem;">
                             <div class="card">
-                                <a class="text-reset text-decoration-none" href="lelang/detail">
+                                <a class="text-reset text-decoration-none" href="{{ route('lelang.detail') }}">
                                     <div class="">
                                         <div class="">
                                             <img src="/assets/main/img/unitedemotor_result.webp" alt="United-e-motor"

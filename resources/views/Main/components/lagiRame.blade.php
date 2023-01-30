@@ -1,7 +1,7 @@
 <div class="container mt-5 text-center">
     <h4 class="bold">Yang Lagi Rame</h4>
 </div>
-<div class="container d-flex">
+<div id="lagiRame" class="container d-flex">
     <div class="container card-day">
         <div class="row">
             <div class="col-4">
@@ -20,18 +20,21 @@
                                     </div>
                                 </div>
 
-                                <div class="">
+                                <div class="py-3">
                                     <img src="/assets/main/img/yamaha-r15_result.webp" alt="Yamaha R15" width="100%"
                                         srcset="">
                                 </div>
 
                                 <div class="">
                                     <h6 class="bold">Yamaha R15</h6>
-                                    <p class="deskripsi-produk">Yamaha YZF-R15, sering disebut juga sebagai
+                                    <p id="desc" class="deskripsi-produk">Yamaha YZF-R15, sering disebut juga
+                                        sebagai
                                         Yamaha R15, adalah sebuah
                                         sepeda
                                         motor sport bermesin 150 cc yang diperkenalkan tahun 2008 di India oleh
-                                        Yamaha. Pada bulan...</p>
+                                        Yamaha. Pada
+                                        bulan...........................................................................
+                                    </p>
                                 </div>
                                 <div class="d-flex pt-2 semi-bold">
                                     <h6>Penawaran Tertinggi</h6>
@@ -59,18 +62,16 @@
                                     </div>
                                 </div>
 
-                                <div class="">
-                                    <img src="/assets/main/img/yamaha-r15_result.webp" alt="Yamaha R15" width="100%"
+                                <div class="py-3">
+                                    <img src="/assets/main/img/cbr-150r.png" alt="xsr-155" width="100%"
                                         srcset="">
                                 </div>
 
                                 <div class="">
-                                    <h6 class="bold">Yamaha R15</h6>
-                                    <p class="deskripsi-produk">Yamaha YZF-R15, sering disebut juga sebagai
-                                        Yamaha R15, adalah sebuah
-                                        sepeda
-                                        motor sport bermesin 150 cc yang diperkenalkan tahun 2008 di India oleh
-                                        Yamaha. Pada bulan...</p>
+                                    <h6 class="bold">Honda CBR 150 R</h6>
+                                    <p id="desc" class="deskripsi-produk">Kilometer masih dikit, minus lecet
+                                        pemakaian. Surat ada,
+                                        pajak lengkap hidup tinggal ngeng pokoknya. Ndang Sat Set...</p>
                                 </div>
                                 <div class="d-flex pt-2 semi-bold">
                                     <h6>Penawaran Tertinggi</h6>
@@ -98,18 +99,16 @@
                                     </div>
                                 </div>
 
-                                <div class="">
-                                    <img src="/assets/main/img/yamaha-r15_result.webp" alt="Yamaha R15" width="100%"
+                                <div class="py-3">
+                                    <img src="/assets/main/img/suzuki-gsx-150.png" alt="Yamaha R15" width="100%"
                                         srcset="">
                                 </div>
 
                                 <div class="">
-                                    <h6 class="bold">Yamaha R15</h6>
-                                    <p class="deskripsi-produk">Yamaha YZF-R15, sering disebut juga sebagai
-                                        Yamaha R15, adalah sebuah
-                                        sepeda
-                                        motor sport bermesin 150 cc yang diperkenalkan tahun 2008 di India oleh
-                                        Yamaha. Pada bulan...</p>
+                                    <h6 class="bold">Suzuki GSX 150</h6>
+                                    <p id="desc" class="deskripsi-produk">Kilometer masih dikit, minus lecet
+                                        pemakaian. Surat ada,
+                                        pajak lengkap hidup tinggal ngeng pokoknya. Ndang Sat Set...</p>
                                 </div>
                                 <div class="d-flex pt-2 semi-bold">
                                     <h6>Penawaran Tertinggi</h6>
