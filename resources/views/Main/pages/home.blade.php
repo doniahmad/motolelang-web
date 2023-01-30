@@ -68,5 +68,10 @@
 <div class="container">
     @include('main.components.lagiRame')
 </div>
+
+<div class="d-flex justify-content-center mt-5">
+    <a href="{{ route('lelang.index') }}" class="btn-ikut text-decoration-none"><span class="px-4">Temukan
+            lainnya</span></a>
+</div>
 </div>
 </div>

@@ -14,14 +14,14 @@
                     <hr style="border: 1px solid black">
                 </div>
                 <div class="container">
-                    <div class="mt-5 d-flex justify-content-between">
+                    <div id="cardLelang" class="mt-5 d-flex justify-content-between">
                         <div class="card" style="width: 17rem;">
                             <div class="card">
                                 <a class="text-reset text-decoration-none" href="lelang/detail">
                                     <div class="">
                                         <div class="">
                                             <img src="/assets/main/img/unitedemotor_result.webp" alt="United-e-motor"
-                                                width="100%" srcset="">
+                                                srcset="">
                                         </div>
                                         <div class="card-body">
                                             <div class="">
@@ -42,18 +42,18 @@
 
                         <div class="card" style="width: 17rem;">
                             <div class="card">
-                                <a class="text-reset text-decoration-none" href="lelang/detail">
+                                <a class="text-reset text-decoration-none" href="{{ route('lelang.detail') }}">
                                     <div class="">
                                         <div class="">
-                                            <img src="/assets/main/img/unitedemotor_result.webp" alt="United-e-motor"
-                                                width="100%" srcset="">
+                                            <img src="/assets/main/img/yamaha-xsr-155_result.webp" alt="xsr-155"
+                                                srcset="">
                                         </div>
                                         <div class="card-body">
                                             <div class="">
-                                                <h6>United E-Motor T1800</h6>
+                                                <h6>Yamaha XSR 155</h6>
                                             </div>
                                             <div class="d-flex pt-2 align-items-center">
-                                                <h6 class="my-auto">Rp. 10.000.000</h6>
+                                                <h6 class="my-auto">Rp. 15.000.000</h6>
                                                 <div class="ms-auto ">
                                                     <i class="fa-regular fa-clock"></i>
                                                     <span>10 Hari</span>
@@ -67,18 +67,18 @@
 
                         <div class="card" style="width: 17rem;">
                             <div class="card">
-                                <a class="text-reset text-decoration-none" href="lelang/detail">
+                                <a class="text-reset text-decoration-none" href="{{ route('lelang.detail') }}">
                                     <div class="">
                                         <div class="">
-                                            <img src="/assets/main/img/unitedemotor_result.webp" alt="United-e-motor"
-                                                width="100%" srcset="">
+                                            <img src="/assets/main/img/beat-2021_result.webp" alt="United-e-motor"
+                                                srcset="">
                                         </div>
                                         <div class="card-body">
                                             <div class="">
-                                                <h6>United E-Motor T1800</h6>
+                                                <h6>Beat 2021</h6>
                                             </div>
                                             <div class="d-flex pt-2 align-items-center">
-                                                <h6 class="my-auto">Rp. 10.000.000</h6>
+                                                <h6 class="my-auto">Rp. 4.000.000</h6>
                                                 <div class="ms-auto ">
                                                     <i class="fa-regular fa-clock"></i>
                                                     <span>10 Hari</span>
@@ -92,18 +92,18 @@
 
                         <div class="card" style="width: 17rem;">
                             <div class="card">
-                                <a class="text-reset text-decoration-none" href="lelang/detail">
+                                <a class="text-reset text-decoration-none" href="{{ route('lelang.detail') }}">
                                     <div class="">
                                         <div class="">
-                                            <img src="/assets/main/img/unitedemotor_result.webp" alt="United-e-motor"
-                                                width="100%" srcset="">
+                                            <img src="/assets/main/img/beat-2019-blue_result.webp" alt="United-e-motor"
+                                                srcset="">
                                         </div>
                                         <div class="card-body">
                                             <div class="">
-                                                <h6>United E-Motor T1800</h6>
+                                                <h6>Beat 2019</h6>
                                             </div>
                                             <div class="d-flex pt-2 align-items-center">
-                                                <h6 class="my-auto">Rp. 10.000.000</h6>
+                                                <h6 class="my-auto">Rp. 3.000.000</h6>
                                                 <div class="ms-auto ">
                                                     <i class="fa-regular fa-clock"></i>
                                                     <span>10 Hari</span>
@@ -119,10 +119,10 @@
                 </div>
 
                 <div class="container">
-                    <div class="mt-5 d-flex justify-content-between">
+                    <div id="cardLelang" class="mt-5 d-flex justify-content-between">
                         <div class="card" style="width: 17rem;">
                             <div class="card">
-                                <a class="text-reset text-decoration-none" href="lelang/detail">
+                                <a class="text-reset text-decoration-none" href="{{ route('lelang.detail') }}">
                                     <div class="">
                                         <div class="">
                                             <img src="/assets/main/img/unitedemotor_result.webp" alt="United-e-motor"
@@ -147,7 +147,7 @@
 
                         <div class="card" style="width: 17rem;">
                             <div class="card">
-                                <a class="text-reset text-decoration-none" href="lelang/detail">
+                                <a class="text-reset text-decoration-none" href="{{ route('lelang.detail') }}">
                                     <div class="">
                                         <div class="">
                                             <img src="/assets/main/img/unitedemotor_result.webp" alt="United-e-motor"
@@ -172,7 +172,7 @@
 
                         <div class="card" style="width: 17rem;">
                             <div class="card">
-                                <a class="text-reset text-decoration-none" href="lelang/detail">
+                                <a class="text-reset text-decoration-none" href="{{ route('lelang.detail') }}">
                                     <div class="">
                                         <div class="">
                                             <img src="/assets/main/img/unitedemotor_result.webp" alt="United-e-motor"
@@ -197,7 +197,7 @@
 
                         <div class="card" style="width: 17rem;">
                             <div class="card">
-                                <a class="text-reset text-decoration-none" href="lelang/detail">
+                                <a class="text-reset text-decoration-none" href="{{ route('lelang.detail') }}">
                                     <div class="">
                                         <div class="">
                                             <img src="/assets/main/img/unitedemotor_result.webp" alt="United-e-motor"
