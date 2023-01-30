@@ -17,7 +17,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $response = Product::with(['categories', 'document', 'offers', 'payment'])->get();
+        $response = Product::with(['categories', 'document', 'offers', 'payment', 'auction', 'auctioneer'])->get();
         return response()->json($response, 200);
     }
 
@@ -30,7 +30,7 @@ class ProductController extends Controller
 
     public function productPaginate8()
     {
-        $response = Product::with(['categories', 'document', 'offers', 'payment'])->paginate(8);
+        $response = Product::with(['categories', 'document', 'offers', 'payment', 'auction', 'auctioneer'])->paginate(8);
         return response()->json($response, 200);
     }
 
@@ -88,7 +88,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        $data = $product->load(['categories', 'document']);
+        $data = $product->load(['categories', 'document', 'offers', 'payment', 'auction', 'auctioneer']);
         return response()->json($data, 200);
     }
 

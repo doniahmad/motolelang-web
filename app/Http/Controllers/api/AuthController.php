@@ -16,7 +16,6 @@ class AuthController extends Controller
             'name' => 'required',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|confirmed|min:8',
-            'role' => 'required|in:admin,customer,owner',
         ]);
 
         $fields['role'] = 'customer';

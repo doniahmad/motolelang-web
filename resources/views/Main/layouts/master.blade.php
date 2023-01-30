@@ -29,7 +29,11 @@
 
 <body>
 
-    @include('Main.components.navbarLogin')
+    @if (!auth()->check())
+        @include('Main.components.navbar')
+    @else
+        @include('Main.components.navbarLogin')
+    @endif
 
     @yield('content')
 

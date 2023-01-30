@@ -12,7 +12,7 @@
         <div class="row ">
 
             <div class="col-7 mb-5">
-                @include('main.components.detailSlider')
+                @include('main.components.detailSlider', ['path' => $data->img_url])
             </div>
 
             <div class="col-5">
@@ -22,8 +22,8 @@
                             <h6 class="color-primer mb-0 mt-3">INFOMASI KENDARAAN LELANG</h6>
                             <span class="ms-auto share-icon"><i class="fa-solid fa-share-nodes"></i></span>
                         </div>
-                        <h5 class="my-2">United E-Motor T1800</h5>
-                        <p>Tahun : <strong>2021</strong> </p>
+                        <h5 class="my-2">{{ $data->nama_product }}</h5>
+                        <p>Tahun : <strong>2022</strong> </p>
                         <hr style="margin-bottom: -15px!important">
                     </div>
                     <div class="p-3">
@@ -32,22 +32,23 @@
                                 <tr>
                                     <td>No. Lot</td>
                                     <td>:</td>
-                                    <td>0000001</td>
+                                    <td>00000{{ $data->product_id }}</td>
                                 </tr>
                                 <tr>
                                     <td>Lelang Mulai</td>
                                     <td>:</td>
-                                    <td>14-10-22</td>
+                                    <td>{{ Carbon\Carbon::parse($data->auction->created_at)->format('Y-m-d H:m:s') }}
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>Lelang Selesai</td>
                                     <td>:</td>
-                                    <td>11-11-22</td>
+                                    <td>{{ $data->auction->exp_date }}</td>
                                 </tr>
                                 <tr>
                                     <td>Harga Limit</td>
                                     <td>:</td>
-                                    <td><Strong>Rp. 10.000.000</Strong></td>
+                                    <td><Strong>Rp. {{ $data->harga_awal }}</Strong></td>
                                 </tr>
                                 <tr>
                                     <td>Penawaran Tertinggi</td>
@@ -68,6 +69,7 @@
             </div>
         </div>
 
+
         <div class="container my-5 bg-white box-shadow-santuy">
             <h6 class="color-primer mb-0 mt-3 px-5 pt-5 pb-2">SPESIFIKASI KENDARAAN</h6>
             <div class="row">
@@ -78,22 +80,22 @@
                                 <tr>
                                     <td>Merk</td>
                                     <td>:</td>
-                                    <td>United</td>
+                                    <td>{{ $data->merk }}</td>
                                 </tr>
                                 <tr>
                                     <td>Kapasitas Mesin</td>
                                     <td>:</td>
-                                    <td>Kapasitas Mesin</td>
+                                    <td>{{ $data->kapasitas_cc }} CC</td>
                                 </tr>
                                 <tr>
                                     <td>Odometer</td>
                                     <td>:</td>
-                                    <td>5438 KM</td>
+                                    <td>{{ $data->odometer }} KM</td>
                                 </tr>
                                 <tr>
                                     <td>Nomor Mesin</td>
                                     <td>:</td>
-                                    <td>VR001FMG17000001</td>
+                                    <td>{{ $data->nomor_mesin }}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -107,22 +109,22 @@
                                 <tr>
                                     <td>Type</td>
                                     <td>:</td>
-                                    <td>E-Motor T1800</td>
+                                    <td>{{ $data->jenis }}</td>
                                 </tr>
                                 <tr>
                                     <td>Bahan Bakar</td>
                                     <td>:</td>
-                                    <td>Listrik</td>
+                                    <td>{{ $data->bahan_bakar }}</td>
                                 </tr>
                                 <tr>
                                     <td>Warna</td>
                                     <td>:</td>
-                                    <td>Hitam</td>
+                                    <td>{{ $data->warna }}</td>
                                 </tr>
                                 <tr>
                                     <td>Nomor Rangka</td>
                                     <td>:</td>
-                                    <td>MF3VR01SCHL000002</td>
+                                    <td>{{ $data->nomor_rangka }}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -132,61 +134,63 @@
 
             </div>
 
-            <h6 class="color-primer mb-0 mt-3 px-5 py-2">DOKUMEN KENDARAAN</h6>
-            <div class="row">
-                <div class="col-6">
-                    <div class="px-5">
-                        <table class="table">
-                            <tbody class="">
-                                <tr>
-                                    <td>Nomor Polisi</td>
-                                    <td>:</td>
-                                    <td>B 3203 UNP</td>
-                                </tr>
-                                <tr>
-                                    <td>STNK</td>
-                                    <td>:</td>
-                                    <td>Ada</td>
-                                </tr>
-                                <tr>
-                                    <td>BPKB</td>
-                                    <td>:</td>
-                                    <td>Ada</td>
-                                </tr>
-                                <tr>
-                                    <td>Form A</td>
-                                    <td>:</td>
-                                    <td>Ada</td>
-                                </tr>
-                            </tbody>
-                        </table>
+            @if ($data->document != null)
+                <h6 class="color-primer mb-0 mt-3 px-5 py-2">DOKUMEN KENDARAAN</h6>
+                <div class="row">
+                    <div class="col-6">
+                        <div class="px-5">
+                            <table class="table">
+                                <tbody class="">
+                                    <tr>
+                                        <td>Nomor Polisi</td>
+                                        <td>:</td>
+                                        <td>B 3203 UNP</td>
+                                    </tr>
+                                    <tr>
+                                        <td>STNK</td>
+                                        <td>:</td>
+                                        <td>Ada</td>
+                                    </tr>
+                                    <tr>
+                                        <td>BPKB</td>
+                                        <td>:</td>
+                                        <td>Ada</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Form A</td>
+                                        <td>:</td>
+                                        <td>Ada</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-                </div>
 
-                <div class="col-6">
-                    <div class="px-5">
-                        <table class="table">
-                            <tbody class="">
-                                <tr>
-                                    <td>Masa Berlaku STNK</td>
-                                    <td>:</td>
-                                    <td>-</td>
-                                </tr>
-                                <tr>
-                                    <td>Faktur</td>
-                                    <td>:</td>
-                                    <td>Ada</td>
-                                </tr>
-                                <tr>
-                                    <td>Kwitansi Blanko</td>
-                                    <td>:</td>
-                                    <td>Tidak Ada</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    <div class="col-6">
+                        <div class="px-5">
+                            <table class="table">
+                                <tbody class="">
+                                    <tr>
+                                        <td>Masa Berlaku STNK</td>
+                                        <td>:</td>
+                                        <td>-</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Faktur</td>
+                                        <td>:</td>
+                                        <td>Ada</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Kwitansi Blanko</td>
+                                        <td>:</td>
+                                        <td>Tidak Ada</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
-            </div>
+            @endif
 
             <div class="px-5 pb-5">
                 <h6 class="color-primer mb-0 mt-3 py-2">DESKRIPSI KENDARAAN</h6>

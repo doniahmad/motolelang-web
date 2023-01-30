@@ -15,136 +15,34 @@
                 </div>
                 <div class="container">
                     <div class="mt-5 d-flex justify-content-between">
-                        @foreach ($data->data as $product)
-                            <div class="card" style="width: 17rem;">
-                                <div class="card">
-                                    <a class="text-reset text-decoration-none" href="lelang/detail">
-                                        <div class="">
+                        <div class="row" style="border: none">
+                            @foreach ($data->data as $product)
+                                <div class="card col-3 mt-4 justify-content-center" style="border:none;">
+                                    <div class="card">
+                                        <a class="text-reset text-decoration-none"
+                                            href="{{ route('lelang.detail', $product->product_slug) }}">
                                             <div class="">
-                                                <img src="{{ asset('storage/image/product/' . $product->img_url) }}"
-                                                    alt="United-e-motor" width="100%" srcset="">
-                                            </div>
-                                            <div class="card-body">
                                                 <div class="">
-                                                    <h6>{{ $product->nama_product }}</h6>
+                                                    <img src="{{ asset('storage/image/product/' . $product->img_url) }}"
+                                                        alt="United-e-motor" width="100%" srcset="">
                                                 </div>
-                                                <div class="d-flex pt-2 align-items-center">
-                                                    <h6 class="my-auto">Rp. {{ $product->harga_awal }}</h6>
-                                                    <div class="ms-auto ">
-                                                        <i class="fa-regular fa-clock"></i>
-                                                        <span>10 Hari</span>
+                                                <div class="card-body">
+                                                    <div class="">
+                                                        <h6>{{ $product->nama_product }}</h6>
+                                                    </div>
+                                                    <div class="d-flex pt-2 align-items-center">
+                                                        <h6 class="my-auto">Rp. {{ $product->harga_awal }}</h6>
+                                                        <div class="ms-auto ">
+                                                            <i class="fa-regular fa-clock"></i>
+                                                            <span>10 Hari</span>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </a>
+                                        </a>
+                                    </div>
                                 </div>
-                            </div>
-                        @endforeach
-
-                    </div>
-                </div>
-
-                <div class="container">
-                    <div class="mt-5 d-flex justify-content-between">
-                        <div class="card" style="width: 17rem;">
-                            <div class="card">
-                                <a class="text-reset text-decoration-none" href="lelang/detail">
-                                    <div class="">
-                                        <div class="">
-                                            <img src="/assets/main/img/unitedemotor_result.webp" alt="United-e-motor"
-                                                width="100%" srcset="">
-                                        </div>
-                                        <div class="card-body">
-                                            <div class="">
-                                                <h6>United E-Motor T1800</h6>
-                                            </div>
-                                            <div class="d-flex pt-2 align-items-center">
-                                                <h6 class="my-auto">Rp. 10.000.000</h6>
-                                                <div class="ms-auto ">
-                                                    <i class="fa-regular fa-clock"></i>
-                                                    <span>10 Hari</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="card" style="width: 17rem;">
-                            <div class="card">
-                                <a class="text-reset text-decoration-none" href="lelang/detail">
-                                    <div class="">
-                                        <div class="">
-                                            <img src="/assets/main/img/unitedemotor_result.webp" alt="United-e-motor"
-                                                width="100%" srcset="">
-                                        </div>
-                                        <div class="card-body">
-                                            <div class="">
-                                                <h6>United E-Motor T1800</h6>
-                                            </div>
-                                            <div class="d-flex pt-2 align-items-center">
-                                                <h6 class="my-auto">Rp. 10.000.000</h6>
-                                                <div class="ms-auto ">
-                                                    <i class="fa-regular fa-clock"></i>
-                                                    <span>10 Hari</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="card" style="width: 17rem;">
-                            <div class="card">
-                                <a class="text-reset text-decoration-none" href="lelang/detail">
-                                    <div class="">
-                                        <div class="">
-                                            <img src="/assets/main/img/unitedemotor_result.webp" alt="United-e-motor"
-                                                width="100%" srcset="">
-                                        </div>
-                                        <div class="card-body">
-                                            <div class="">
-                                                <h6>United E-Motor T1800</h6>
-                                            </div>
-                                            <div class="d-flex pt-2 align-items-center">
-                                                <h6 class="my-auto">Rp. 10.000.000</h6>
-                                                <div class="ms-auto ">
-                                                    <i class="fa-regular fa-clock"></i>
-                                                    <span>10 Hari</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="card" style="width: 17rem;">
-                            <div class="card">
-                                <a class="text-reset text-decoration-none" href="lelang/detail">
-                                    <div class="">
-                                        <div class="">
-                                            <img src="/assets/main/img/unitedemotor_result.webp" alt="United-e-motor"
-                                                width="100%" srcset="">
-                                        </div>
-                                        <div class="card-body">
-                                            <div class="">
-                                                <h6>United E-Motor T1800</h6>
-                                            </div>
-                                            <div class="d-flex pt-2 align-items-center">
-                                                <h6 class="my-auto">Rp. 10.000.000</h6>
-                                                <div class="ms-auto ">
-                                                    <i class="fa-regular fa-clock"></i>
-                                                    <span>10 Hari</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
+                            @endforeach
                         </div>
 
                     </div>
@@ -153,21 +51,39 @@
                 <div class="container mt-5">
                     <nav aria-label="Page navigation example">
                         <ul class="pagination justify-content-center">
-                            <li class="page-item">
-                                <a class="page-link" href="#" aria-label="Previous">
-                                    <span aria-hidden="true">&laquo;</span>
-                                    <span class="sr-only">Previous</span>
-                                </a>
-                            </li>
-                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item">
-                                <a class="page-link" href="#" aria-label="Next">
-                                    <span aria-hidden="true">&raquo;</span>
-                                    <span class="sr-only">Next</span>
-                                </a>
-                            </li>
+                            @if ($data->prev_page_url != null)
+                                <li class="page-item">
+                                    <a class="page-link" href="#" aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
+                                </li>
+                            @else
+                                <li class="page-item disabled">
+                                    <a class="page-link" href="#" aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
+                                </li>
+                            @endif
+                            @for ($i = 1; $i <= $data->last_page; $i++)
+                                <li class="page-item"><a class="page-link" href="#">{{ $i }}</a></li>
+                            @endfor
+                            @if ($data->next_page_url != null)
+                                <li class="page-item">
+                                    <a class="page-link" href="#" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                        <span class="sr-only">Next</span>
+                                    </a>
+                                </li>
+                            @else
+                                <li class="page-item disabled">
+                                    <a class="page-link" href="#" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                        <span class="sr-only">Next</span>
+                                    </a>
+                                </li>
+                            @endif
                         </ul>
                     </nav>
 

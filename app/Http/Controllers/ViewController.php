@@ -44,9 +44,28 @@ class ViewController extends Controller
         // return view(mainPages('signIn'), compact($data));
     }
 
+    public function logoutAction(HttpRequest $input)
+    {
+        try {
+            auth()->logout();
+            Session::forget('token');
+            return Redirect::to(route('home.index'));
+        } catch (\Exception $e) {
+            return dd($e->getMessage());
+        }
+    }
+
     public static function getProducts()
     {
         $request = Request::create('/api/product', 'GET');
+        $response = Route::dispatch($request);
+        $data = json_decode($response->getContent());
+        return $data;
+    }
+
+    public static function getProduct(HttpRequest $request)
+    {
+        $request = Request::create('/api/product/' . $request->slug, 'GET');
         $response = Route::dispatch($request);
         $data = json_decode($response->getContent());
         return $data;

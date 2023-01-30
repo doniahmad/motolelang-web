@@ -42,4 +42,13 @@ class Product extends Model
     {
         return $this->hasOne(Payment::class, 'id_product');
     }
+
+    public function auction()
+    {
+        return $this->hasOne(Auction::class, 'id_product');
+    }
+    public function auctioneer()
+    {
+        return $this->hasMany(Auctioneer::class, 'id_product');
+    }
 }

@@ -14,6 +14,8 @@
     <link rel="stylesheet" href="/assets/admin/css/dashboard.css">
     <link rel="stylesheet" href="/assets/admin/css/product.css">
     <link rel="stylesheet" href="/assets/admin/css/input-product.css">
+    <link rel="stylesheet" href="/assets/admin/css/login.css">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/regular.min.css"
         integrity="sha512-k2UAKyvfA7Xd/6FrOv5SG4Qr9h4p2oaeshXF99WO3zIpCsgTJ3YZELDK0gHdlJE5ls+Mbd5HL50b458z3meB/Q=="
@@ -42,14 +44,18 @@
 
 <body>
 
-    @include('Admin.components.navbar')
-    @include('Admin.components.sidebar')
+    @if (!auth()->check())
+        @include('Admin.components.navbar')
+        @include('Admin.components.sidebar')
 
-    @yield('content')
+        @yield('content')
 
-    {{-- CUSTOM JS --}}
+        {{-- CUSTOM JS --}}
 
-    @stack('scripts')
+        @stack('scripts')
+    @else
+    @endif
+
 </body>
 
 </html>

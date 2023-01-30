@@ -4,6 +4,7 @@ use App\Http\Controllers\ViewController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Request;
 use \GuzzleHttp\Client;
+use Illuminate\Http\Request as HttpRequest;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,14 +51,16 @@ Route::group(['prefix' => 'login'], function () {
     })->name('login.daftar');
 });
 
+Route::get('/logout', [ViewController::class, 'logoutAction'])->name('logout.action');
 
 Route::group(['prefix' => 'lelang'], function () {
     Route::get('/', function () {
         $data = ViewController::getProductsGallery();
         return view(mainPages('lelang'), compact('data'));
     })->name('lelang.index');
-    Route::get('/detail', function () {
-        return view(mainPages('detail'));
+    Route::get('/detail/{slug}', function (HttpRequest $request) {
+        $data = ViewController::getProduct($request);
+        return view(mainPages('detail'), compact('data'));
     })->name('lelang.detail');
     Route::get('/room', function () {
         return view(mainPages('roomLelang'));
