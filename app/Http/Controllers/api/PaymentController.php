@@ -33,11 +33,9 @@ class PaymentController extends Controller
             'tagihan' => 'requaired|integer',
         ]);
 
-
         // kode pembayaran
         $kodePembayaran = date('dmys') . $request->id_product . $request->id_user;
         $validateData['kode_pembayaran'] = $kodePembayaran;
-
 
         try {
             $data = Payment::create($validateData);
@@ -73,8 +71,6 @@ class PaymentController extends Controller
             'alasan_penolakan' => 'string',
             'bukti_pembayaran' => 'image|mimes:png,jpg',
         ]);
-
-
 
         try {
             // image

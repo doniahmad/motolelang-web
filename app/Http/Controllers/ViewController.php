@@ -63,9 +63,9 @@ class ViewController extends Controller
         return $data;
     }
 
-    public static function getProduct(HttpRequest $request)
+    public static function getProduct(HttpRequest $input)
     {
-        $request = Request::create('/api/product/' . $request->slug, 'GET');
+        $request = Request::create('/api/product/' . $input->slug, 'GET');
         $response = Route::dispatch($request);
         $data = json_decode($response->getContent());
         return $data;
@@ -159,6 +159,14 @@ class ViewController extends Controller
     public static function getPayments()
     {
         $request = Request::create('/api/payment', 'GET');
+        $response = Route::dispatch($request);
+        $data = json_decode($response->getContent());
+        return $data;
+    }
+
+    public static function getAuction(HttpRequest $param)
+    {
+        $request = Request::create('/api/auction/' . $param->id, 'GET');
         $response = Route::dispatch($request);
         $data = json_decode($response->getContent());
         return $data;

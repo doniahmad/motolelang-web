@@ -13,7 +13,7 @@
             <div class="d-flex align-items-center">
                 <h5 class="color-primer">ArilPoncoNugroho</h5>
                 <h6 class="ms-auto">Selesai Dalam
-                    <span>10h 3j</span>
+                    <span>{{ $data->exp_date }}</span>
                     <span><i class="fa-regular fa-clock"></i></span>
                 </h6>
             </div>
@@ -73,8 +73,6 @@
                                     <td>ArilPoncoNugroho</td>
                                     <td>Rp. 0</td>
                                 </tr>
-
-
                             </tbody>
                         </table>
                     </div>
@@ -84,8 +82,8 @@
 
             <div class="col-7">
                 <div class="d-flex ">
-                    <img src="/assets/main/img/unitedemotor_result.webp" class="img-pelelangan" alt=""
-                        srcset="">
+                    <img src="{{ asset('storage/image/product/' . $data->product->img_url) }}" class="img-pelelangan"
+                        alt="" srcset="">
                 </div>
 
                 <div class="bg-white text-center p-3 box-shadow-santuy ">

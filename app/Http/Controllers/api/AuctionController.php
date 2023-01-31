@@ -64,7 +64,7 @@ class AuctionController extends Controller
      */
     public function show(Auction $auction)
     {
-        $data = $auction->load('product');
+        $data = $auction->load('product.auctioneer');
         return response()->json($data);
     }
 
