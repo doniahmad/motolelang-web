@@ -73,7 +73,7 @@
 
                     <div id="btnLelangSaya" class="">
                         <div class="text-center text-reset text-decoration-none">
-                            <a href="{{ route('lelang.detail') }}" class="btn detail my-2">
+                            <a class="btn detail my-2">
                                 Detail Kendaraan
                             </a>
                             <a href="" class="btn bayar text-light my-2">

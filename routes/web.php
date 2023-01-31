@@ -62,8 +62,9 @@ Route::group(['prefix' => 'lelang'], function () {
         $data = ViewController::getProduct($request);
         return view(mainPages('detail'), compact('data'));
     })->name('lelang.detail');
-    Route::get('/room', function () {
-        return view(mainPages('roomLelang'));
+    Route::get('/room/{id}', function (HttpRequest $request) {
+        $data = ViewController::getAuction($request);
+        return view(mainPages('roomLelang'), compact('data'));
     })->name('lelang.room');
     Route::get('/lelang-saya', function () {
         return view(mainPages('lelangSaya'));

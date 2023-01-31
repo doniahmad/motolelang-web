@@ -39,7 +39,10 @@
                                     <td>{{ $product->nama_product }}</td>
                                     <td>Rp. {{ $product->harga_awal }}</td>
                                     <td>{{ $product->jenis }}</td>
-                                    {{-- <td><label class="badge bg-warning">{{ $product->status_pelelangan }}</label></td> --}}
+                                    <td>
+
+                                        <label class="badge bg-warning">BERJALAN</label>
+                                    </td>
                                     <td>
                                         <a href="{{ route('dashboard.editProduct', ['id' => $product->product_id]) }}">
                                             <button type="button" class="btn btn-primary">

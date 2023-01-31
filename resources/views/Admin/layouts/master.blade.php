@@ -44,17 +44,15 @@
 
 <body>
 
-    @if (!auth()->check())
-        @include('Admin.components.navbar')
-        @include('Admin.components.sidebar')
+    @include('Admin.components.navbar')
+    @include('Admin.components.sidebar')
 
-        @yield('content')
+    @yield('content')
 
-        {{-- CUSTOM JS --}}
+    {{-- CUSTOM JS --}}
 
-        @stack('scripts')
-    @else
-    @endif
+    @stack('scripts')
+
 
 </body>
 

@@ -5,7 +5,7 @@
     <div class="container">
         <div class="d-flex align-items-center">
             <span style="height: fit-content"><i class="fa fa-arrow-left fa-lg"></i></span>
-            <h4 class="ps-3 my-auto">United E-Motor T1800</h4>
+            <h4 class="ps-3 my-auto">{{ $data->nama_product }}</h4>
         </div>
     </div>
     <div class="container my-4">
@@ -61,8 +61,8 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <a href="#" class="btn btn-pelelangan bg-color-primer text-light mt-3"
-                            data-bs-toggle="modal" data-bs-target="#modalInputUsername">Ikut Lelang</a>
+                        <a class="btn btn-pelelangan bg-color-primer text-light mt-3" data-bs-toggle="modal"
+                            data-bs-target="#modalInputUsername">Ikut Lelang</a>
                     </div>
                 </div>
             </div>
