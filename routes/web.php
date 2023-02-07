@@ -35,6 +35,10 @@ Route::get('/about', function () {
     return view(mainPages('about'));
 })->name('about.index');
 
+Route::get('/profil', function () {
+    return view(mainPages('profile'));
+})->name('profil.index');
+
 
 
 Route::group(['prefix' => 'login'], function () {
