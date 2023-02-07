@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Jobs\PostAuction;
+use App\Jobs\PostDocument;
 use Illuminate\Http\Request as HttpRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
@@ -16,11 +18,6 @@ class ViewController extends Controller
     function mainPages($value)
     {
         return 'Main.pages.' . $value;
-    }
-
-    public function login()
-    {
-        return view(mainPages('signIn'));
     }
 
     public function loginAction(HttpRequest $input)
@@ -40,8 +37,26 @@ class ViewController extends Controller
         } catch (\Exception $e) {
             return dd($e->getMessage());
         }
+    }
 
-        // return view(mainPages('signIn'), compact($data));
+    public function registerAction(HttpRequest $input)
+    {
+        $inputData = [
+            'name' => $input->name,
+            'email' => $input->email,
+            'handphone' => $input->handphone,
+            'password' => $input->password,
+            'password_confirmation' => $input->password_confirmation
+        ];
+
+        try {
+            $request = Request::create('/api/register', 'POST', $inputData);
+            $response = Route::dispatch($request);
+        } catch (\Exception $e) {
+            return dd($e->getMessage());
+        }
+
+        return Redirect::to(route('login.index'));
     }
 
     public function logoutAction(HttpRequest $input)
@@ -65,7 +80,7 @@ class ViewController extends Controller
 
     public static function getProduct(HttpRequest $input)
     {
-        $request = Request::create('/api/product/' . $input->slug, 'GET');
+        $request = Request::create('/api/product/' . $input->param, 'GET');
         $response = Route::dispatch($request);
         $data = json_decode($response->getContent());
         return $data;
@@ -82,60 +97,65 @@ class ViewController extends Controller
     public function postProduct(HttpRequest $input)
     {
 
+        // input data for product
+        $reqProduct = [
+            'nama_product' => $input->nama_product,
+            'merk' => $input->merk,
+            'harga_awal' => $input->harga_awal,
+            'kapasitas_cc' => $input->kapasitas_cc,
+            'odometer' => $input->odometer,
+            'nomor_mesin' => $input->nomor_mesin,
+            'jenis' => $input->jenis,
+            'bahan_bakar' => $input->bahan_bakar,
+            'warna' => $input->warna,
+            'nomor_rangka' => $input->nomor_rangka,
+            'merk' => $input->merk,
+            'img_url' => $input->img_url,
+            'deskripsi' => $input->deskripsi,
+            'nomor_polisi' => $input->nomor_polisi,
+            'stnk' => $input->stnk,
+            'bpkb' => $input->bpkb,
+            'form_a' => $input->form_a,
+            'faktur' => $input->faktur,
+            'kwitansi_blanko' => $input->kwitansi_blanko,
+            'masa_stnk' => $input->masa_stnk,
+        ];
+
+
+
         try {
-            // input data for product
-            // $reqProduct = [
-            //     'nama_product' => $input->nama_product,
-            //     'merk' => $input->merk,
-            //     'kapasitas_cc' => $input->kapasitas_cc,
-            //     'odometer' => $input->odometer,
-            //     'nomor_mesin' => $input->nomor_mesin,
-            //     'jenis' => $input->jenis,
-            //     'bahan_bakar' => $input->bahan_bakar,
-            //     'warna' => $input->warna,
-            //     'nomor_rangka' => $input->nomor_rangka,
-            //     'merk' => $input->merk,
-            // ];
-
-
-            // $requestProduct = Request::create('/api/product', 'POST', $reqProduct);
-            try {
-                // $responseProduct = Route::dispatch($requestProduct);
-                // $dataProduct = json_decode($responseProduct->getContent());
-
-                // if ($dataProduct->product_id != null) {
-                //     $reqAuction = [
-                //         'id_product' => $dataProduct->product_id,
-                //         'exp_date' => $input['exp_date'],
-                //     ];
-
-                //     $requestAuction = Request::create('http://127.0.0.1:8000/api/auction', 'POST', $reqAuction);
-                //     $requestAuction->header('Accept', 'application/json');
-                //     $responseAuction = Route::dispatch($requestAuction);
-                //     $dataAuction = json_decode($responseAuction->getContent());
-                //     dd($requestAuction);
-                // }
-                // PostDocument::dispatch($input->all());
-                // PostAuction::dispatch($input->all());
-            } catch (\Exception $e) {
-                return dd($e->getMessage());
-            }
-
-            // if ($responseProduct) {
-            //     return dd('test');
-            // } else {
-            // }
-
-
-            // return var_dump($dataProduct);
-            // return Redirect::to(route('dashboard.product'));
-        } catch (\Exception $e) {
-            return dd($e->getMessage());
+            $request = Request::create('/api/product', 'POST', $reqProduct);
+            $response = Route::dispatch($request);
+            return Redirect::to(route('dashboard.product'));
+        } catch (\ErrorException $e) {
+            return $e->getMessage();
         }
+
+        // $reqAuction = [
+        //     'id_product' => $dataProduct->data->product_id,
+        //     'exp_date' => $input->exp_date
+        // ];
+
+        // Request::create('/api/auction', 'POST', $reqAuction);
+
     }
 
     public function updateProduct(HttpRequest $input)
     {
+
+        $input['_method'] = 'PUT';
+        $request = Request::create('/api/product/' . $input->param, 'POST', $input->all());
+        $response = Route::dispatch($request);
+        return Redirect::to(route('dashboard.product'));
+    }
+
+    public function deleteProduct(HttpRequest $input)
+    {
+
+        $method = ["_method" => 'DELETE'];
+        $request = Request::create('/api/product/' . $input->param, 'POST', $method);
+        $response = Route::dispatch($request);
+        return Redirect::to(route('dashboard.product'));
     }
 
     public static function getCustomers()
@@ -162,6 +182,13 @@ class ViewController extends Controller
         $response = Route::dispatch($request);
         $data = json_decode($response->getContent());
         return $data;
+    }
+
+    public static function setAuction(HttpRequest $input)
+    {
+        $request = Request::create('/api/auction', 'POST', $input->all());
+        $response = Route::dispatch($request);
+        return Redirect::to(route('dashboard.product'));
     }
 
     public static function getAuction(HttpRequest $param)

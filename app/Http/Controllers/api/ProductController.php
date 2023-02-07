@@ -49,7 +49,15 @@ class ProductController extends Controller
             'category_id' => 'integer',
             'warna' => 'string|required',
             'img_url' => 'image|required',
-            'img_url.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+            'img_url.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'deskripsi' => 'required|string',
+            'nomor_polisi' => 'required|string',
+            'stnk' => "required|boolean",
+            'bpkb' => "required|boolean",
+            'form_a' => "required|boolean",
+            'kwitansi_blanko' => "required|string",
+            'faktur' => "required|boolean",
+            'masa_stnk' => "required",
         ]);
 
         $slug = SlugService::createSlug(Product::class, 'product_slug', $request->nama_product);
@@ -113,7 +121,17 @@ class ProductController extends Controller
             'odometer' => 'integer',
             'nomor_rangka' => 'string',
             'category_id' => 'integer',
-            'warna' => 'string'
+            'warna' => 'string',
+            'img_url' => 'image',
+            'img_url.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'deskripsi' => 'string',
+            'nomor_polisi' => 'string',
+            'stnk' => "boolean",
+            'bpkb' => "boolean",
+            'form_a' => "boolean",
+            'faktur' => "boolean",
+            'kwitansi_blanko' => "string",
+            'masa_stnk' => "date",
         ]);
 
         try {

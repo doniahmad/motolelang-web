@@ -167,8 +167,6 @@ body {
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
 }
 
-#topPenawar {}
-
 .img-pelelangan {
     width: 100%;
     height: 300px;
@@ -187,7 +185,6 @@ body {
     border-radius: 5px;
 }
 
-#detail-carousel {}
 
 #detail-carousel .main-img {
     width: 700px;
@@ -305,8 +302,6 @@ body {
 #kontenLelangSaya .selesai {
     background-color: #00FF46;
 }
-
-#btnLelangSaya {}
 
 #btnLelangSaya .btn {
     width: 70%;

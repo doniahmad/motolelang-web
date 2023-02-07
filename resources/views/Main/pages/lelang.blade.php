@@ -53,7 +53,7 @@
                         <ul class="pagination justify-content-center">
                             @if ($data->prev_page_url != null)
                                 <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="Previous">
+                                    <a class="page-link" href="" aria-label="Previous">
                                         <span aria-hidden="true">&laquo;</span>
                                         <span class="sr-only">Previous</span>
                                     </a>

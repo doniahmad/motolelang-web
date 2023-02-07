@@ -9,7 +9,7 @@
 <div class="container mt-5 mb-5">
     <div class="row">
         <div class="col-md-6">
-            <img src="/assets/main/img/tanya_result.webp" alt="why?" width="80%">
+            <img src="/assets/main/img/tanya_result.webp" width="80%">
         </div>
 
         <div class="col-md-6">

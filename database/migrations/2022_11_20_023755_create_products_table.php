@@ -29,6 +29,14 @@ return new class extends Migration
             $table->string('nomor_rangka');
             $table->string('warna');
             $table->string('img_url');
+            $table->text('deskripsi');
+            $table->string('nomor_polisi');
+            $table->boolean('stnk');
+            $table->boolean('bpkb');
+            $table->boolean('form_a');
+            $table->boolean('faktur');
+            $table->boolean('kwitansi_blanko');
+            $table->date('masa_stnk')->nullable();
             $table->timestamps();
         });
     }

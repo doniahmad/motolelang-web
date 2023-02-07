@@ -25,7 +25,7 @@
                             <input type="submit" value="Masuk">
                             <p class="text-center my-3">OR</p>
                             <div class="signup_link">
-                                Belum punya akun? <a href="#"> Daftar</a>
+                                Belum punya akun? <a href="{{ route('login.daftar') }}"> Daftar</a>
                             </div>
                         </form>
                         <div class="text-center mt-5">

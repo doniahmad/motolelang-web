@@ -36,7 +36,7 @@ class DocumentController extends Controller
             'faktur' => 'boolean',
             'kwitansi_blanko' => 'boolean',
             'masa_stnk' => 'string',
-            'product_id' => 'integer'
+            'id_product' => 'required|integer'
         ]);
 
         try {

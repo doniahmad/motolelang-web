@@ -13,6 +13,7 @@
             @include('Admin.components.formInput', [
                 'method' => 'POST',
                 'path' => route('dashboard.postProduct'),
+                'data' => $data,
             ])
         </div>
     </div>
