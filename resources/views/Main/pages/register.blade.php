@@ -7,19 +7,20 @@
             <div class="center">
                 <div class="my-5">
                     <h1 class="bold">Daftar</h1>
-                    <form method="post">
+                    <form method="POST" action="{{ route('login.daftarAction') }}">
+                        @csrf
                         <div class="txt_field">
-                            <input type="text" required>
+                            <input type="text" name="name" required>
                             <span></span>
                             <label>Nama</label>
                         </div>
                         <div class="txt_field">
-                            <input type="text" required>
+                            <input type="email" name="email" required>
                             <span></span>
                             <label>Email</label>
                         </div>
                         <div class="txt_field">
-                            <input type="text" required>
+                            <input type="text" name="handphone" required>
                             <span></span>
                             <label>No. handphone</label>
                         </div>
@@ -30,13 +31,14 @@
                             <label>Kata Sandi</label>
                         </div>
                         <div class="txt_field">
-                            <input type="password" name="password" id="password-confirmation" class="password" required>
+                            <input type="password" name="password_confirmation" id="password-confirmation"
+                                class="password" required>
                             <i class="eye-icon fa fa-eye-slash" id="eyeConfrimPass"
                                 onclick="changePasswordIcon(this)"></i>
                             <span></span>
                             <label>Konfirmasi Kata Sandi</label>
                         </div>
-                        <input type="submit" value="Masuk">
+                        <input type="submit" value="Daftar">
                         <p class="text-center my-3">OR</p>
                         <div class="signup_link">
                             Sudah punya akun? <a href="{{ route('login.index') }}"> Masuk</a>

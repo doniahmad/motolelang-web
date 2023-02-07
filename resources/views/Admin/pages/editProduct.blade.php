@@ -12,7 +12,8 @@
         <div class="page-content">
             @include('Admin.components.formInput', [
                 'method' => 'POST',
-                'path' => route('dashboard.postProduct'),
+                'path' => route('dashboard.updateProduct', [$data->product_slug]),
+                'product' => $data,
             ])
         </div>
     </div>

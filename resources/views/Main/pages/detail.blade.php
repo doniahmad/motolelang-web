@@ -57,7 +57,7 @@
                                 <tr>
                                     <td>Jumlah Peserta</td>
                                     <td>:</td>
-                                    <td>9</td>
+                                    <td>{{ count($data->auctioneer) }}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -143,22 +143,22 @@
                                     <tr>
                                         <td>Nomor Polisi</td>
                                         <td>:</td>
-                                        <td>B 3203 UNP</td>
+                                        <td>{{ $data->document->nomor_polisi }}</td>
                                     </tr>
                                     <tr>
                                         <td>STNK</td>
                                         <td>:</td>
-                                        <td>Ada</td>
+                                        <td>{{ $data->document->stnk ? 'Ada' : 'Tidak Ada' }}</td>
                                     </tr>
                                     <tr>
                                         <td>BPKB</td>
                                         <td>:</td>
-                                        <td>Ada</td>
+                                        <td>{{ $data->document->bpkb ? 'Ada' : 'Tidak Ada' }}</td>
                                     </tr>
                                     <tr>
                                         <td>Form A</td>
                                         <td>:</td>
-                                        <td>Ada</td>
+                                        <td>{{ $data->document->form_a ? 'Ada' : 'Tidak Ada' }}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -172,17 +172,17 @@
                                     <tr>
                                         <td>Masa Berlaku STNK</td>
                                         <td>:</td>
-                                        <td>-</td>
+                                        <td>{{ $data->document->masa_stnk }}</td>
                                     </tr>
                                     <tr>
                                         <td>Faktur</td>
                                         <td>:</td>
-                                        <td>Ada</td>
+                                        <td>{{ $data->document->faktur ? 'Ada' : 'Tidak Ada' }}</td>
                                     </tr>
                                     <tr>
                                         <td>Kwitansi Blanko</td>
                                         <td>:</td>
-                                        <td>Tidak Ada</td>
+                                        <td>{{ $data->document->kwitansi_blanko ? 'Ada' : 'Tidak Ada' }}</td>
                                     </tr>
                                 </tbody>
                             </table>

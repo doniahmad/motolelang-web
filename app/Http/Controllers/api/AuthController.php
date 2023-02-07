@@ -15,6 +15,7 @@ class AuthController extends Controller
         $fields = $request->validate([
             'name' => 'required',
             'email' => 'required|email|unique:users,email',
+            'handphone' => 'required|string|unique:users,handphone',
             'password' => 'required|confirmed|min:8',
         ]);
 
@@ -26,11 +27,8 @@ class AuthController extends Controller
 
         $user->assignRole($fields['role']);
 
-        $token = $user->createToken('apptoken')->plainTextToken;
-
         $response = [
-            'user' => $user,
-            'token' => $token
+            'user' => $user
         ];
 
         return $response;

@@ -25,7 +25,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => ['auth:sanctum', 'role:customer']], function () {
     Route::get('/user', [UserController::class, 'user']);
-    Route::post('/user/update', [UserController::class, 'update']);
+    Route::put('/user/update', [UserController::class, 'update']);
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::apiResource('offer', OfferController::class);
 });

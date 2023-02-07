@@ -49,6 +49,7 @@ Route::group(['prefix' => 'login'], function () {
     Route::get('/daftar', function () {
         return view(mainPages('register'));
     })->name('login.daftar');
+    Route::post('/daftar', [ViewController::class, 'registerAction'])->name('login.daftarAction');
 });
 
 Route::get('/logout', [ViewController::class, 'logoutAction'])->name('logout.action');
@@ -58,7 +59,7 @@ Route::group(['prefix' => 'lelang'], function () {
         $data = ViewController::getProductsGallery();
         return view(mainPages('lelang'), compact('data'));
     })->name('lelang.index');
-    Route::get('/detail/{slug}', function (HttpRequest $request) {
+    Route::get('/detail/{param}', function (HttpRequest $request) {
         $data = ViewController::getProduct($request);
         return view(mainPages('detail'), compact('data'));
     })->name('lelang.detail');
@@ -93,13 +94,39 @@ Route::group(['prefix' => 'dashboard'], function () {
             $data = ViewController::getProducts();
             return view(adminPages('product'), compact('data'));
         })->name('dashboard.product');
+        Route::get('/delete/{param}', [ViewController::class, 'deleteProduct'])->name('dashboard.deleteProduct');
+        Route::post('/set-auction', [ViewController::class, 'setAuction'])->name('dashboard.setAuction');
         Route::post('/add', [ViewController::class, 'postProduct'])->name('dashboard.postProduct');
         Route::get('/add', function () {
-            return view(adminPages('inputProduct'));
+            $data = (object) [
+                'nama_product' => '',
+                'harga_awal' => '',
+                'merk' => '',
+                'kapasitas_cc' => '',
+                'odometer' => '',
+                'nomor_mesin' => '',
+                'jenis' => '',
+                'bahan_bakar' => '',
+                'warna' => '',
+                'nomor_rangka' => '',
+                'merk' => '',
+                'img_url' => '',
+                'deskripsi' => '',
+                'nomor_polisi' => '',
+                'stnk' => '',
+                'bpkb' => '',
+                'form_a' => '',
+                'faktur' => '',
+                'kwitansi_blanko' => '',
+                'masa_stnk' => '',
+            ];
+            return view(adminPages('inputProduct'), compact('data'));
         })->name('dashboard.inputProduct');
-        Route::get('/edit/{id}', function () {
-            return view(adminPages('editProduct'));
+        Route::get('/edit/{param}', function (HttpRequest $param) {
+            $data = ViewController::getProduct($param);
+            return view(adminPages('editProduct'), compact('data'));
         })->name('dashboard.editProduct');
+        Route::post('/edit/{param}', [ViewController::class, 'updateProduct'])->name('dashboard.updateProduct');
     });
     Route::group(['prefix' => 'customer'], function () {
         Route::get('/', function () {

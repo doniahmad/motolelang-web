@@ -1,11 +1,6 @@
 @extends('admin.layouts.master')
 @section('title', 'Data Product')
 
-{{-- @push('scripts')
-    <script src="/assets/API/GET/getDataProduct.js"></script>
-@endpush --}}
-
-{{-- @dd($data) --}}
 <div class="container" id="data-product">
     <div class="content">
         <div class="data-product-title">
@@ -35,23 +30,64 @@
                         <tbody>
                             @foreach ($data as $product)
                                 <tr>
-                                    <td>{{ $product->product_id }}</td>
+                                    <td>0000{{ $product->product_id }}</td>
                                     <td>{{ $product->nama_product }}</td>
                                     <td>Rp. {{ $product->harga_awal }}</td>
                                     <td>{{ $product->jenis }}</td>
                                     <td>
+                                        @if ($product->auction)
+                                            @switch($product->auction->status)
+                                                @case(1)
+                                                    <label class="badge bg-warning">BERJALAN</label>
+                                                @break
 
-                                        <label class="badge bg-warning">BERJALAN</label>
+                                                @case(0)
+                                                    <label class="badge bg-danger">TUTUP</label>
+                                                @break
+                                            @endswitch
+                                        @else
+                                            <label class="badge bg-secondary">DRAFT</label>
+                                        @endif
                                     </td>
                                     <td>
-                                        <a href="{{ route('dashboard.editProduct', ['id' => $product->product_id]) }}">
-                                            <button type="button" class="btn btn-primary">
-                                                <i class="fa-solid fa-gear"></i>
+                                        @if ($product->auction)
+                                            <a
+                                                href="{{ route('dashboard.editProduct', ['param' => $product->product_id]) }}">
+                                                <button type="button" class="btn btn-primary">
+                                                    <i class="fa-solid fa-gear"></i>
+                                                </button>
+                                            </a>
+                                            <a
+                                                href="{{ route('dashboard.deleteProduct', ['param' => $product->product_slug]) }}">
+                                                <button type="button" class="btn btn-danger">
+                                                    <i class="fa-solid fa-trash"></i>
+                                                </button>
+                                            </a>
+                                        @else
+                                            <button type="button" class="btn btn-primary btn-for-modal"
+                                                data-bs-toggle="modal" data-bs-target="#modalPublish"
+                                                data-id="{{ $product->product_id }}"
+                                                data-name="{{ $product->nama_product }}"
+                                                data-merk="{{ $product->merk }}"
+                                                data-bahan-bakar="{{ $product->bahan_bakar }}"
+                                                data-jenis="{{ $product->jenis }}" data-warna="{{ $product->warna }}"
+                                                data-img="{{ asset('storage/image/product/' . $product->img_url) }}">
+                                                <i class="fa-solid fa-input"></i>
+                                                Publish
                                             </button>
-                                        </a>
-                                        <button type="button" class="btn btn-danger">
-                                            <i class="fa-solid fa-trash"></i>
-                                        </button>
+                                            <a
+                                                href="{{ route('dashboard.editProduct', ['param' => $product->product_slug]) }}">
+                                                <button type="button" class="btn btn-primary">
+                                                    <i class="fa-solid fa-gear"></i>
+                                                </button>
+                                            </a>
+                                            <a
+                                                href="{{ route('dashboard.deleteProduct', ['param' => $product->product_slug]) }}">
+                                                <button type="button" class="btn btn-danger">
+                                                    <i class="fa-solid fa-trash"></i>
+                                                </button>
+                                            </a>
+                                        @endif
 
                                     </td>
                                 </tr>
@@ -63,3 +99,8 @@
         </div>
     </div>
 </div>
+
+@include('Admin.modal.modalPublish')
+@push('scripts')
+    <script type="text/javascript" src="/assets/admin/js/valueModal.js"></script>
+@endpush
