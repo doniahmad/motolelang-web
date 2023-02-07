@@ -12,7 +12,7 @@
     <link rel="stylesheet" type="text/css" href="{!! '/assets/main/css/style.css' !!}">
     <link rel="stylesheet" type="text/css" href="{!! '/assets/main/css/footer.css' !!}">
     <link rel="stylesheet" type="text/css" href="{!! '/assets/main/css/login.css' !!}">
-    <link rel="stylesheet" type="text/css" href="{!! '/assets/main/css/navbarLogin.css' !!}">
+    {{-- <link rel="stylesheet" type="text/css" href="{!! '/assets/main/css/navbarLogin.css' !!}"> --}}
     <link rel="stylesheet" type="text/css" href="{!! '/assets/main/css/detailSlider.css' !!}">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
