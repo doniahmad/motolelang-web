@@ -12,13 +12,13 @@ class Offer extends Model
     protected $guarded = ['offer_id'];
     protected $primaryKey = "offer_id";
 
-    public function product()
+    public function auction()
     {
-        return $this->belongsTo(Product::class, "product_tawaran_id");
+        return $this->belongsTo(Auction::class, "auction_id");
     }
 
-    public function user()
+    public function auctioneers()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(Auctioneer::class, 'auctioneer_id');
     }
 }

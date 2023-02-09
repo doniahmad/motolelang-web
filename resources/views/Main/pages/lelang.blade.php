@@ -16,22 +16,22 @@
                 <div class="container">
                     <div class="mt-5 d-flex justify-content-between">
                         <div class="row" style="border: none">
-                            @foreach ($data->data as $product)
+                            @foreach ($data as $product)
                                 <div class="card col-3 mt-4 justify-content-center" style="border:none;">
                                     <div class="card">
                                         <a class="text-reset text-decoration-none"
-                                            href="{{ route('lelang.detail', $product->product_slug) }}">
+                                            href="{{ route('lelang.detail', $product->product->product_slug) }}">
                                             <div class="">
                                                 <div class="">
-                                                    <img src="{{ asset('storage/image/product/' . $product->img_url) }}"
+                                                    <img src="{{ asset('storage/image/product/' . $product->product->img_url) }}"
                                                         alt="United-e-motor" width="100%" srcset="">
                                                 </div>
                                                 <div class="card-body">
                                                     <div class="">
-                                                        <h6>{{ $product->nama_product }}</h6>
+                                                        <h6>{{ $product->product->nama_product }}</h6>
                                                     </div>
                                                     <div class="d-flex pt-2 align-items-center">
-                                                        <h6 class="my-auto">Rp. {{ $product->harga_awal }}</h6>
+                                                        <h6 class="my-auto">Rp. {{ $product->product->harga_awal }}</h6>
                                                         <div class="ms-auto ">
                                                             <i class="fa-regular fa-clock"></i>
                                                             <span>10 Hari</span>
@@ -48,7 +48,7 @@
                     </div>
                 </div>
 
-                <div class="container mt-5">
+                {{-- <div class="container mt-5">
                     <nav aria-label="Page navigation example">
                         <ul class="pagination justify-content-center">
                             @if ($data->prev_page_url != null)
@@ -87,7 +87,7 @@
                         </ul>
                     </nav>
 
-                </div>
+                </div> --}}
 
 
             </div>

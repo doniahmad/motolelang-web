@@ -28,11 +28,6 @@ class Product extends Model
         return $this->belongsTo(Category::class, "category_id");
     }
 
-    public function document()
-    {
-        return $this->hasOne(Document::class, 'document_id');
-    }
-
     public function offers()
     {
         return $this->hasMany(Offer::class, 'offer_id');
@@ -45,10 +40,6 @@ class Product extends Model
 
     public function auction()
     {
-        return $this->hasOne(Auction::class, 'id_product');
-    }
-    public function auctioneer()
-    {
-        return $this->hasMany(Auctioneer::class, 'id_product');
+        return $this->hasOne(Auction::class, 'auction_id');
     }
 }

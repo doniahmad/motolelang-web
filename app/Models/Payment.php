@@ -12,13 +12,13 @@ class Payment extends Model
     protected $primaryKey = "payment_id";
     protected $guarded = ["payment_id"];
 
-    public function user()
+    public function auction()
     {
-        return $this->belongsTo(User::class, 'id_user');
+        return $this->belongsTo(Auction::class, 'id_auction');
     }
 
-    public function product()
+    public function auctioneer()
     {
-        return $this->belongsTo(Product::class, 'id_product');
+        return $this->belongsTo(Auctioneer::class, 'id_auctioneer');
     }
 }

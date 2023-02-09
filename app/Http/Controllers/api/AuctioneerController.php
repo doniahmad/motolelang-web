@@ -29,8 +29,8 @@ class AuctioneerController extends Controller
     {
         $data = $request->validate([
             'nama_samaran' => 'string',
-            'token_pelelangan' => 'string|unique:auction,token',
-            'id_product' => 'integer',
+            'token_pelelangan' => 'string',
+            'id_auction' => 'integer',
             'id_user' => 'integer'
         ]);
 
