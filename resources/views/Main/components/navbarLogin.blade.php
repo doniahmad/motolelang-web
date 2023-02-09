@@ -24,7 +24,23 @@
                         href="{{ route('about.index') }}">About Us</a>
                 </li>
                 <li id="iconBell" class="nav-item text-light">
-                    <i class="fa-solid fa-bell"></i>
+                    <div class="dropdown">
+                        <a class="text-decoration-none text-reset" href="#" id="notification" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa fa-bell"></i>
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <li>
+                                <a class="dropdown-item" href="#">Some news</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#">Another news</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#">Something else here</a>
+                            </li>
+                        </ul>
+                    </div>
                 </li>
                 <li id="iconUser" class="nav-item text-light">
 

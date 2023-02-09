@@ -1,0 +1,115 @@
+/* Modal Input Username */
+
+#modalInputUsername .btn {
+    width: 20%;
+    background-color: #3B85F2;
+}
+
+#modalInputUsername .myModal {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    display: table;
+}
+
+/* Modal input Penawaran */
+
+#modalInputPenawaran .myModal .modal-content {
+    display: table-cell;
+}
+
+#modalInputPenawaran .btn {
+    width: 20%;
+    background-color: #3B85F2;
+}
+
+#modalInputPenawaran .myModal {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    display: table;
+}
+
+#modalInputPenawaran .myModal .modal-content {
+    display: table-cell;
+}
+
+/* Alert Pembayaran Berhasil */
+
+#alertPembayaranBerhasil img {
+    width: 150px;
+    height: auto;
+}
+
+#alertPembayaranBerhasil .btn {
+    width: 20%;
+}
+
+#alertPembayaranBerhasil .modal-content {
+    padding: 50px 100px 50px 100px;
+}
+
+#alertPembayaranBerhasil h5 {
+    font-weight: bold;
+}
+
+/* Alert Before Login */
+
+#alertBeforeLogin img {
+    width: 150px;
+    height: auto;
+}
+
+#alertBeforeLogin .btn {
+    width: 20%;
+}
+
+#alertBeforeLogin .modal-content {
+    padding: 50px 100px 50px 100px;
+}
+
+/* Alert Logout */
+
+#alertLogout .modal-content {
+    padding: 50px 100px 50px 100px;
+}
+
+#alertLogout img {
+    width: 150px;
+    height: auto;
+}
+
+#alertLogout button {
+    width: 150px;
+}
+
+#alertLogout .btn-danger {
+    background-color: #E11A22;
+    border-color: #E11A22;
+}
+
+#alertLogout .btn-success {
+    background-color: #23EC1E;
+    border-color: #23EC1E;
+}
+
+/* Alert Penawaran Berhasil */
+
+#alertPenawaranBerhasil img {
+    width: 150px;
+    height: auto;
+}
+
+#alertPenawaranBerhasil .btn {
+    width: 20%;
+}
+
+#alertPenawaranBerhasil .modal-content {
+    padding: 50px 100px 50px 100px;
+}

@@ -122,12 +122,12 @@
 
                     <div id="btnLelangSaya" class="">
                         <div class="text-center">
-                            <div class="btn detail my-2">
+                            <a href="" class="btn detail my-2">
                                 Detail Kendaraan
-                            </div>
-                            <div class="btn bayar text-light my-2">
+                            </a>
+                            <a href="" class="btn bayar text-light my-2">
                                 Bayar
-                            </div>
+                            </a>
                         </div>
 
                     </div>
