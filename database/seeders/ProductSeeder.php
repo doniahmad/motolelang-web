@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Product;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -184,5 +185,7 @@ class ProductSeeder extends Seeder
             'kwitansi_blanko' => true,
             'img_url' => 'https://assets.pikiran-rakyat.com/crop/0x0:0x0/x/photo/2022/08/28/830903204.png'
         ]];
+
+        DB::table('products')->insert($data);
     }
 }

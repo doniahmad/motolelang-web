@@ -8,7 +8,7 @@
                     <input type="text" required class="form-control" id="inputUsername" aria-describedby="inputUsername"
                         placeholder="">
                 </div>
-                <button type="button" class="btn btn-primary mt-3" onclick="window.location.href = '/lelang/room/1'">
+                <button type="submit" class="btn btn-primary mt-3" onclick="window.location.href = '/lelang/room/1'">
                     Kirim
                 </button>
             </div>
