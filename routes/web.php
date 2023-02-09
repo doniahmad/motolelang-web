@@ -60,14 +60,15 @@ Route::get('/logout', [ViewController::class, 'logoutAction'])->name('logout.act
 
 Route::group(['prefix' => 'lelang'], function () {
     Route::get('/', function () {
-        $data = ViewController::getProductsGallery();
+        $data = ViewController::getAuctions();
         return view(mainPages('lelang'), compact('data'));
     })->name('lelang.index');
     Route::get('/detail/{param}', function (HttpRequest $request) {
         $data = ViewController::getProduct($request);
         return view(mainPages('detail'), compact('data'));
     })->name('lelang.detail');
-    Route::get('/room/{id}', function (HttpRequest $request) {
+    Route::post('/auction/join', [ViewController::class, 'createAuctioneer'])->name('lelang.auctioneer');
+    Route::get('/room/{token}', function (HttpRequest $request) {
         $data = ViewController::getAuction($request);
         return view(mainPages('roomLelang'), compact('data'));
     })->name('lelang.room');

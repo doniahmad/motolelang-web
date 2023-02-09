@@ -18,8 +18,8 @@ return new class extends Migration
             $table->id('auctioneer_id');
             $table->string('nama_samaran');
             $table->string('token_pelelangan');
-            $table->unsignedBigInteger('id_product');
-            $table->foreign('id_product')->references('product_id')->on('products')->onUpdate('cascade')->onDelete('cascade');
+            $table->unsignedBigInteger('id_auction');
+            $table->foreign('id_auction')->references('auction_id')->on('auctions')->onUpdate('cascade')->onDelete('cascade');
             $table->unsignedBigInteger('id_user');
             $table->foreign('id_user')->references('user_id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();

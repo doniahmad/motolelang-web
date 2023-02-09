@@ -193,9 +193,25 @@ class ViewController extends Controller
 
     public static function getAuction(HttpRequest $param)
     {
-        $request = Request::create('/api/auction/' . $param->id, 'GET');
+        $request = Request::create('/api/auction/' . $param->token, 'GET');
         $response = Route::dispatch($request);
         $data = json_decode($response->getContent());
         return $data;
+    }
+
+    public static function getAuctions()
+    {
+        $request = Request::create('/api/auction', 'GET');
+        $response = Route::dispatch($request);
+        $data = json_decode($response->getContent());
+        return $data;
+    }
+
+    public static function createAuctioneer(HttpRequest $input)
+    {
+        $request = Request::create('api/auctioneer', 'POST', $input->all());
+        $response = Route::dispatch($request);
+        $data = json_decode($response->getContent());
+        return Redirect::to(route('lelang.room', ['token' => $input->token_pelelangan]));
     }
 }

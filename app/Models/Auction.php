@@ -16,4 +16,14 @@ class Auction extends Model
     {
         return $this->belongsTo(Product::class, 'id_product');
     }
+
+    public function auctioneer()
+    {
+        return $this->hasMany(Auctioneer::class, 'auctioneer_id');
+    }
+
+    public function offer()
+    {
+        return $this->hasMany(Offer::class, 'offer_id');
+    }
 }

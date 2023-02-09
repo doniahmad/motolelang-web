@@ -1,5 +1,13 @@
 @extends('Main.layouts.master')
-@section('title', 'Lelang')
+@section('title', $data->nama_product)
+
+@php
+    
+    $checkIfMemberAuction = array_filter($data->auction->auctioneer, function ($auctioneer) {
+        return $auctioneer->id_user == auth()->user()->user_id;
+    });
+    
+@endphp
 
 <div id="detailLelang" class="konten-2">
     <div class="container">
@@ -36,13 +44,13 @@
                                 <tr>
                                     <td>Lelang Mulai</td>
                                     <td>:</td>
-                                    <td>{{ Carbon\Carbon::parse($data->auction->created_at)->format('Y-m-d H:m:s') }}
+                                    <td>{{ $data->auction ? Carbon\Carbon::parse($data->auction->created_at)->format('Y-m-d H:m:s') : '' }}
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>Lelang Selesai</td>
                                     <td>:</td>
-                                    <td>{{ $data->auction->exp_date }}</td>
+                                    <td>{{ $data->auction ? $data->auction->exp_date : '' }}</td>
                                 </tr>
                                 <tr>
                                     <td>Harga Limit</td>
@@ -57,12 +65,18 @@
                                 <tr>
                                     <td>Jumlah Peserta</td>
                                     <td>:</td>
-                                    <td>{{ count($data->auctioneer) }}</td>
+                                    <td>{{ count($data->auction->auctioneer) }}</td>
                                 </tr>
                             </tbody>
                         </table>
-                        <a class="btn btn-pelelangan bg-color-primer text-light mt-3" data-bs-toggle="modal"
-                            data-bs-target="#modalInputUsername">Ikut Lelang</a>
+                        @if (!count($checkIfMemberAuction))
+                            <button type="button" class="btn btn-pelelangan bg-color-primer text-light mt-3"
+                                data-bs-toggle="modal" data-bs-target="#modalInputUsername">Ikut Lelang</button>
+                        @else
+                            <a href="{{ route('lelang.room', ['token' => $data->auction->token]) }}"
+                                class="btn btn-pelelangan bg-color-primer text-light mt-3">Masuk
+                                Lelang</a>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -133,63 +147,61 @@
 
             </div>
 
-            @if ($data->document != null)
-                <h6 class="color-primer mb-0 mt-3 px-5 py-2">DOKUMEN KENDARAAN</h6>
-                <div class="row">
-                    <div class="col-6">
-                        <div class="px-5">
-                            <table class="table">
-                                <tbody class="">
-                                    <tr>
-                                        <td>Nomor Polisi</td>
-                                        <td>:</td>
-                                        <td>{{ $data->document->nomor_polisi }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>STNK</td>
-                                        <td>:</td>
-                                        <td>{{ $data->document->stnk ? 'Ada' : 'Tidak Ada' }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>BPKB</td>
-                                        <td>:</td>
-                                        <td>{{ $data->document->bpkb ? 'Ada' : 'Tidak Ada' }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Form A</td>
-                                        <td>:</td>
-                                        <td>{{ $data->document->form_a ? 'Ada' : 'Tidak Ada' }}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-
-                    <div class="col-6">
-                        <div class="px-5">
-                            <table class="table">
-                                <tbody class="">
-                                    <tr>
-                                        <td>Masa Berlaku STNK</td>
-                                        <td>:</td>
-                                        <td>{{ $data->document->masa_stnk }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Faktur</td>
-                                        <td>:</td>
-                                        <td>{{ $data->document->faktur ? 'Ada' : 'Tidak Ada' }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Kwitansi Blanko</td>
-                                        <td>:</td>
-                                        <td>{{ $data->document->kwitansi_blanko ? 'Ada' : 'Tidak Ada' }}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+            <h6 class="color-primer mb-0 mt-3 px-5 py-2">DOKUMEN KENDARAAN</h6>
+            <div class="row">
+                <div class="col-6">
+                    <div class="px-5">
+                        <table class="table">
+                            <tbody class="">
+                                <tr>
+                                    <td>Nomor Polisi</td>
+                                    <td>:</td>
+                                    <td>{{ $data->nomor_polisi }}</td>
+                                </tr>
+                                <tr>
+                                    <td>STNK</td>
+                                    <td>:</td>
+                                    <td>{{ $data->stnk ? 'Ada' : 'Tidak Ada' }}</td>
+                                </tr>
+                                <tr>
+                                    <td>BPKB</td>
+                                    <td>:</td>
+                                    <td>{{ $data->bpkb ? 'Ada' : 'Tidak Ada' }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Form A</td>
+                                    <td>:</td>
+                                    <td>{{ $data->form_a ? 'Ada' : 'Tidak Ada' }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
-            @endif
+
+                <div class="col-6">
+                    <div class="px-5">
+                        <table class="table">
+                            <tbody class="">
+                                <tr>
+                                    <td>Masa Berlaku STNK</td>
+                                    <td>:</td>
+                                    <td>{{ $data->masa_stnk }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Faktur</td>
+                                    <td>:</td>
+                                    <td>{{ $data->faktur ? 'Ada' : 'Tidak Ada' }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Kwitansi Blanko</td>
+                                    <td>:</td>
+                                    <td>{{ $data->kwitansi_blanko ? 'Ada' : 'Tidak Ada' }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
 
             <div class="px-5 pb-5">
                 <h6 class="color-primer mb-0 mt-3 py-2">DESKRIPSI KENDARAAN</h6>

@@ -16,9 +16,10 @@ return new class extends Migration
         Schema::create('offers', function (Blueprint $table) {
             $table->id('offer_id');
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('product_tawaran_id');
-            $table->foreign('user_id')->references('user_id')->on('users')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('product_tawaran_id')->references('product_id')->on('products')->onUpdate('cascade')->onDelete('cascade');
+            $table->unsignedBigInteger('id_auction');
+            $table->unsignedBigInteger('id_auctioneer');
+            $table->foreign('id_auction')->references('auction_id')->on('auctions')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('id_auctioneer')->references('auctioneer_id')->on('auctioneers')->onUpdate('cascade')->onDelete('cascade');
             $table->string('code_offer');
             $table->string('offer');
             $table->timestamps();

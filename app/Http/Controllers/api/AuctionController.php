@@ -16,7 +16,7 @@ class AuctionController extends Controller
      */
     public function index()
     {
-        $response = Auction::all();
+        $response = Auction::with(['product', 'auctioneer.user'])->get();
         return response()->json($response, 200);
     }
 
@@ -64,7 +64,7 @@ class AuctionController extends Controller
      */
     public function show(Auction $auction)
     {
-        $data = $auction->load('product.auctioneer');
+        $data = $auction->load(['product', 'auctioneer.user', 'auctioneer.offer',]);
         return response()->json($data);
     }
 
