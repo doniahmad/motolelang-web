@@ -3,6 +3,17 @@
     font-family: 'Poppins', sans-serif;
 }
 
+input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -33,7 +44,9 @@ body {
 }
 
 #bannerSlider .w-100 {
+    width: 80vh;
     height: 80vh;
+    object-fit: cover;
 }
 
 .btn-ikut {
@@ -94,8 +107,8 @@ body {
 }
 
 #lagiRame img {
-    width: 100%;
-    height: auto;
+    width: 250px;
+    height: 200px;
     object-fit: cover;
 }
 
@@ -173,8 +186,22 @@ body {
     object-fit: contain;
 }
 
-.penawaran-tertinggi {
-    margin-top: -150px;
+#topPenawar {
+    width: 100%;
+    height: 500px;
+}
+
+#topPenawar #tableTopPenawar .table {
+    height: auto;
+}
+
+#topPenawar #tabkeTopPenawar tr td {
+    padding: 0;
+    margin: 0;
+}
+
+#formKirimPenawaran {
+    margin-top: 33px;
 }
 
 .btn-pelelangan {
@@ -360,8 +387,10 @@ body {
 }
 
 #dropdown-profil {
+    border: none;
     background-color: #fff;
     width: 200px;
+    height: 400px;
     margin-left: -80px;
     position: absolute;
     top: 0;
@@ -369,6 +398,16 @@ body {
 
 #iconUser #dropdown-profil img {
     width: 75px;
+}
+
+#iconUser #keluar {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+}
+
+#dropdown-profil .bt {
+    border-top: 1px solid #B7B7B7;
 }
 
 #dropdown-profil li a .dropdown-item {
@@ -391,6 +430,27 @@ body {
 
 #profil img {
     width: 250px;
+    height: auto;
+}
+
+#dropdownNotif {
+    border: none;
+    background-color: #fff;
+    width: 400px;
+    margin-left: -400px;
+}
+
+#dropdownNotif .konten-notif {
+    border-top: 1px solid grey;
+    border-bottom: 1px solid grey;
+}
+
+#dropdownNotif p {
+    font-size: 12px;
+}
+
+#dropdownNotif img {
+    width: 100px;
     height: auto;
 }
 

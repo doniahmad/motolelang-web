@@ -35,7 +35,7 @@
                         <h5 class="text-center">TOP PENAWAR</h5>
                     </div>
 
-                    <div class="px-4 py-2">
+                    <div id="tableTopPenawar" class="px-4 py-2">
                         <table class="table table-borderless">
                             <tbody class="">
                                 @foreach ($data->auctioneer as $index => $auctioneer)
@@ -45,7 +45,6 @@
                                         <td>Rp. {{ $auctioneer->offer ? $auctioneer->offer->offer : 0 }}</td>
                                     </tr>
                                 @endforeach
-
                             </tbody>
                         </table>
                     </div>
@@ -59,12 +58,13 @@
                         class="img-pelelangan" alt="" srcset="">
                 </div>
 
-                <div class="bg-white text-center p-3 box-shadow-santuy ">
+                <div id="formKirimPenawaran" class="bg-white text-center p-3 box-shadow-santuy">
                     <p class="">Penawaran Saya</p>
                     <h3 class="">Rp.
                         {{ isset($currentAuctioneer->auctioneer->offer) ? $currentAuctioneer->auctioneer->offer : 0 }}
                     </h3>
-                    <button type="button" class="btn btn-pelelangan bg-color-primer text-light mt-3 ">Kirim
+                    <button type="button" class="btn btn-pelelangan bg-color-primer text-light mt-3"
+                        data-bs-toggle="modal" data-bs-target="#modalInputPenawaran">Kirim
                         Penawaran</button>
                 </div>
             </div>

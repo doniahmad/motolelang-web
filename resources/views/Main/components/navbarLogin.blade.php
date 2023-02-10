@@ -29,16 +29,23 @@
                             data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="fa fa-bell"></i>
                         </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <li>
-                                <a class="dropdown-item" href="#">Some news</a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="#">Another news</a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="#">Something else here</a>
-                            </li>
+                        <ul id="dropdownNotif" class="dropdown-menu box-shadow-santuy"
+                            aria-labelledby="navbarDropdownMenuLink">
+                            <div class="p-3">
+                                <h6>Notifikasi</h6>
+                                <div class="konten-notif">
+                                    <div class="d-flex my-3">
+                                        <img src="/assets/main/img/beat-2021_result.webp" alt="">
+                                        <p class="ms-auto ps-3">Selamat, Anda berhasil memenangkan pelelangan motor
+                                            <strong>Beat
+                                                2021</strong> . Mohon lakukan
+                                            pembayaran untuk dapat menerima barang anda.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+
                         </ul>
                     </div>
                 </li>
