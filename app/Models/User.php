@@ -52,13 +52,13 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function offers()
+    public function auctioneer()
     {
-        return $this->hasMany(Offer::class, 'offer_id');
+        return $this->hasMany(Auctioneer::class, 'auctioneer_id');
     }
 
-    public function payments()
+    public function routeNotificationEmail($notification)
     {
-        return $this->hasMany(Payment::class, 'payment_id');
+        return $this->email;
     }
 }
