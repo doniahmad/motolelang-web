@@ -29,16 +29,23 @@
                             data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="fa fa-bell"></i>
                         </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <li>
-                                <a class="dropdown-item" href="#">Some news</a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="#">Another news</a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="#">Something else here</a>
-                            </li>
+                        <ul id="dropdownNotif" class="dropdown-menu box-shadow-santuy"
+                            aria-labelledby="navbarDropdownMenuLink">
+                            <div class="p-3">
+                                <h6>Notifikasi</h6>
+                                <div class="konten-notif">
+                                    <div class="d-flex my-3">
+                                        <img src="/assets/main/img/beat-2021_result.webp" alt="">
+                                        <p class="ms-auto ps-3">Selamat, Anda berhasil memenangkan pelelangan motor
+                                            <strong>Beat
+                                                2021</strong> . Mohon lakukan
+                                            pembayaran untuk dapat menerima barang anda.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+
                         </ul>
                     </div>
                 </li>
@@ -49,23 +56,22 @@
                             aria-expanded="false">
                             <img src="/assets/main/img/avatarround.png" alt="">
                         </a>
-                        <ul id="dropdown-profil" class="dropdown-menu text-center text-grey">
-                            <li class="row"><img src="/assets/main/img/avatar.png" class="rounded mx-auto d-block"
-                                    alt="" srcset=""><span class="text-center pt-2 pb-1">Aril
-                                    Ponco Nugroho</span></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="#">Profil</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="#">Lelang Saya</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li id="keluar"><a class="dropdown-item" href="#">Keluar</a>
-                            </li>
+                        <ul id="dropdown-profil" class="dropdown-menu text-center text-grey box-shadow-santuy">
+                            <div class="">
+                                <li class="row"><img src="/assets/main/img/avatar.png"
+                                        class="rounded mx-auto d-block" alt="" srcset=""><span
+                                        class="text-center pt-2 pb-2">Aril
+                                        Ponco Nugroho</span></li>
+                                <li><a class="dropdown-item bt py-3" href="#">Profil</a></li>
+
+                                <li style="border-bottom: 1px solid #B7B7B7;
+}"><a class="dropdown-item bt py-3"
+                                        href="#">Lelang Saya</a></li>
+
+                                <li id="keluar"><a class="dropdown-item bt py-3" href="#">Keluar</a>
+                                </li>
+                            </div>
+
                         </ul>
                     </div>
                 </li>

@@ -2,9 +2,9 @@
     <h4 class="bold">Yang Lagi Rame</h4>
 </div>
 <div id="lagiRame" class="container d-flex">
-    <div class="container card-day">
+    <div class="container">
         <div class="row">
-            <div class="col-4">
+            <div class="col-4 d-flex align-items-stretch">
                 <div class="card mt-5">
                     <div class="card-body">
                         <div class="container">
@@ -20,14 +20,14 @@
                                     </div>
                                 </div>
 
-                                <div class="py-3">
-                                    <img src="/assets/main/img/yamaha-r15_result.webp" alt="Yamaha R15" width="100%"
-                                        srcset="">
+                                <div class="py-3 text-center">
+                                    <img src="/assets/main/img/yamaha-r15_result.webp" alt="Yamaha R15" srcset="">
                                 </div>
 
                                 <div class="">
                                     <h6 class="bold">Yamaha R15</h6>
-                                    <p id="desc" class="deskripsi-produk">Yamaha YZF-R15, sering disebut juga
+                                    <p id="desc" class="deskripsi-produk">Yamaha YZF-R15, sering
+                                        disebut juga
                                         sebagai
                                         Yamaha R15, adalah sebuah
                                         sepeda
@@ -46,7 +46,7 @@
                 </div>
             </div>
 
-            <div class="col-4">
+            <div class="col-4 d-flex align-items-stretch">
                 <div class="card mt-5">
                     <div class="card-body">
                         <div class="container">
@@ -62,8 +62,8 @@
                                     </div>
                                 </div>
 
-                                <div class="py-3">
-                                    <img src="/assets/main/img/cbr-150r.png" alt="xsr-155" width="100%"
+                                <div class="py-3 text-center">
+                                    <img class="" src="/assets/main/img/cbr-150r.png" alt="xsr-155"
                                         srcset="">
                                 </div>
 
@@ -83,7 +83,7 @@
                 </div>
             </div>
 
-            <div class="col-4">
+            <div class="col-4 d-flex align-items-stretch">
                 <div class="card mt-5">
                     <div class="card-body">
                         <div class="container">
@@ -99,9 +99,8 @@
                                     </div>
                                 </div>
 
-                                <div class="py-3">
-                                    <img src="/assets/main/img/suzuki-gsx-150.png" alt="Yamaha R15" width="100%"
-                                        srcset="">
+                                <div class="py-3 text-center">
+                                    <img src="/assets/main/img/suzuki-gsx-150.png" alt="Yamaha R15" srcset="">
                                 </div>
 
                                 <div class="">
