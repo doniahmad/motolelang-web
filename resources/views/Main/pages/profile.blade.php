@@ -1,6 +1,10 @@
 @extends('Main.layouts.master')
 @section('title', 'Galeri Lelang')
 
+@php
+    $user = auth()->user();
+@endphp
+
 <div id="profil" class="konten-2">
     <div class="container border bg-white">
         <div class="p-5">
@@ -17,37 +21,46 @@
                             <tr>
                                 <td>Nama</td>
                                 <td>:</td>
-                                <td id="table-border" class="">Aril Ponco Nugroho</td>
+                                <td id="table-border" class="">{{ isset($user->name) ? $user->name : '' }}</td>
                             </tr>
                             <tr>
                                 <td>No. Handphone</td>
                                 <td>:</td>
-                                <td id="table-border" class="border2">0895619917517</td>
+                                <td id="table-border" class="border2">
+                                    {{ isset($user->handphone) ? $user->handphone : '' }}</td>
                             </tr>
                             <tr>
                                 <td>Tempat Lahir</td>
                                 <td>:</td>
-                                <td id="table-border" class="border2">Demak</td>
+                                <td id="table-border" class="border2">
+                                    {{ isset($user->birth_place) ? $user->birth_place : 'Kosong' }}</td>
                             </tr>
                             <tr>
                                 <td>Tanggal Lahir</td>
                                 <td>:</td>
-                                <td id="table-border" class="border2">1 ferbuari 2005</td>
+                                <td id="table-border" class="border2">
+                                    {{ isset($user->birth_date) ? $user->birth_date : 'Kosong' }}</td>
                             </tr>
                             <tr>
                                 <td>Jenis Kelamin</td>
                                 <td>:</td>
-                                <td id="table-border" class="border2">Laki-laki</td>
+                                <td id="table-border" class="border2">
+                                    {{ isset($user->gender) ? $user->gender : 'Kosong' }}
+                                </td>
                             </tr>
                             <tr>
                                 <td>Alamat</td>
                                 <td>:</td>
-                                <td id="table-border" class="border2">Demak, Jawa tengah</td>
+                                <td id="table-border" class="border2">
+                                    {{ isset($user->address) ? $user->address : 'Kosong' }}
+                                </td>
                             </tr>
                             <tr>
-                                <td>Pekerjaan</td>
+                                <td>Role</td>
                                 <td>:</td>
-                                <td id="table-border" class="border2">Pelajar</td>
+                                <td id="table-border" class="border2">
+                                    {{ isset($user->roles) ? $user->roles : 'Kosong' }}
+                                </td>
                             </tr>
                         </tbody>
                     </table>

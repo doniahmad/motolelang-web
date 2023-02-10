@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\ViewController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Request;
@@ -55,6 +56,8 @@ Route::group(['prefix' => 'login'], function () {
     })->name('login.daftar');
     Route::post('/daftar', [ViewController::class, 'registerAction'])->name('login.daftarAction');
 });
+
+Route::get('/sendEndAuctionNotification', [NotificationController::class, 'sendEmailEndAuctionNotification'])->name('notif.endAuction');
 
 Route::get('/logout', [ViewController::class, 'logoutAction'])->name('logout.action');
 

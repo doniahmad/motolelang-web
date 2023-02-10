@@ -46,7 +46,7 @@ class UserController extends Controller
 
     public function customers()
     {
-        $customers = User::whereHas('roles', function ($role) {
+        $customers = User::with(['auctioneer.auction', 'auctioneer.offer'])->whereHas('roles', function ($role) {
             $role->where('name', 'customer');
         })->get();
 
@@ -55,7 +55,7 @@ class UserController extends Controller
 
     public function customer(User $user)
     {
-        $customer = $user->load(['offers', 'payments']);
+        $customer = $user->load(['auctioneer.auction', 'auctioneer.offer']);
 
         return response()->json($customer, 200);
     }

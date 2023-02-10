@@ -42,6 +42,9 @@
                         </ul>
                     </div>
                 </li>
+                {{-- <li>
+                    <a href="{{ route('notif.endAuction') }}" class="btn btn-primary">Send Email</a>
+                </li> --}}
                 <li id="iconUser" class="nav-item text-light">
 
                     <div class="dropdown">
@@ -51,20 +54,20 @@
                         </a>
                         <ul id="dropdown-profil" class="dropdown-menu text-center text-grey">
                             <li class="row"><img src="/assets/main/img/avatar.png" class="rounded mx-auto d-block"
-                                    alt="" srcset=""><span class="text-center pt-2 pb-1">Aril
-                                    Ponco Nugroho</span></li>
+                                    alt="" srcset=""><span
+                                    class="text-center pt-2 pb-1">{{ auth()->user()->name }}</span></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item" href="#">Profil</a></li>
+                            <li><a class="dropdown-item" href="{{ route('profil.index') }}">Profil</a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item" href="#">Lelang Saya</a></li>
+                            <li><a class="dropdown-item" href="{{ route('lelang.lelangSaya') }}">Lelang Saya</a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li id="keluar"><a class="dropdown-item" href="#">Keluar</a>
+                            <li id="keluar"><a class="dropdown-item" href="{{ route('logout.action') }}">Keluar</a>
                             </li>
                         </ul>
                     </div>

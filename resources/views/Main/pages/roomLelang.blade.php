@@ -61,7 +61,9 @@
 
                 <div class="bg-white text-center p-3 box-shadow-santuy ">
                     <p class="">Penawaran Saya</p>
-                    <h3 class="">Rp. {{ $currentAuctioneer->offer ? $currentAuctioneer->offer->offer : 0 }}</h3>
+                    <h3 class="">Rp.
+                        {{ isset($currentAuctioneer->auctioneer->offer) ? $currentAuctioneer->auctioneer->offer : 0 }}
+                    </h3>
                     <button type="button" class="btn btn-pelelangan bg-color-primer text-light mt-3 ">Kirim
                         Penawaran</button>
                 </div>
