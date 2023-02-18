@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-color-primer fixed-top">
+<nav id="navbar" class="navbar navbar-expand-lg navbar-dark bg-color-primer fixed-top">
     <div class="container">
         <a class="navbar-brand" href="/">
             <img src="/assets/main/img/logo_white.svg" alt="Logo Moto Lelang" width="100%">
@@ -31,3 +31,15 @@
         </div>
     </div>
 </nav>
+
+{{-- <script>
+    const navbar = document.getElementsByTagName('nav')[0];
+    window.addEventListener('scroll', function() {
+        console.log(window.scrollY);
+        if (window.scrollY > 1) {
+            navbar.classList.add('add-shadow')
+        } else if (this.window.scrollY <= 0) {
+            navbar.classList.remove('add-shadow')
+        }
+    });
+</script> --}}

@@ -6,9 +6,9 @@
         <div class="d-flex align-items-center">
             <h4>Pembayaran</h4>
         </div>
-        <hr>
+        <hr class="mb-4">
         <div class="container">
-            <div id="toggleLelangSaya" class="my-3 btn-lelang">
+            {{-- <div id="toggleLelangSaya" class="my-3 btn-lelang">
                 <div class="row">
                     <div class="col-6">
                         <a href="{{ route('lelang.lelangSaya') }}" class="text-reset text-decoration-none">
@@ -27,15 +27,12 @@
 
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
 
         <div id="kontenPembayaran" class="row">
             <div class="col-7">
                 <div id="titlePembayaran" class="container d-flex align-items-center">
-                    <div class="form-check ">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                    </div>
                     <div id="kontenTitlePembayaran" class="bg-white d-flex align-items-center box-shadow-santuy">
                         <div class="img-lelang">
                             <img src="/assets/main/img/unitedemotor_result.webp" alt="" srcset="">
@@ -71,27 +68,24 @@
                             <h5 class="color-primer">Tagihan</h5>
                             <hr>
                             <div class="d-flex">
-                                <p>Jumlah barang</p>
-                                <p class="ms-auto">0</p>
+                                <p>Harga Kemenangan</p>
+                                <p class="ms-auto">Rp. 13.113.002</p>
                             </div>
                             <div class="d-flex">
                                 <p>Biaya Pengiriman</p>
-                                <p class="ms-auto">-</p>
+                                <p class="ms-auto">Rp. 100.000</p>
                             </div>
                             <hr>
                             <div class="dropdown">
-                                <button class="d-flex align-items-center btn border" type="button"
-                                    id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <span>Pilih Cara Pengambilan</span>
-                                    <i class="fa fa-caret-down ms-auto"></i>
-                                </button>
-                                <ul class="dropdown-menu px-3" aria-labelledby="dropdownMenuButton1">
-                                    <li><a class="dropdown-item " href="#">Ambil Ditempat</a></li>
-                                    <li>
-                                        <hr class="dropdown-divider my-auto">
-                                    </li>
-                                    <li><a class="dropdown-item " href="#">Kirim Dengan Eskpedisi</a></li>
-                                </ul>
+
+                                <select class="form-select py-1 px-2" id="SelectPengiriman"
+                                    aria-label="Default select example">
+                                    <option selected disabled>Pilih Cara Pengambilan
+                                    </option>
+                                    <option value="1">Ambil di tempat</option>
+                                    <option value="2" class="">Kirim</option>
+                                </select>
+
                             </div>
                             <hr>
                             <div class="d-flex align-items-center">

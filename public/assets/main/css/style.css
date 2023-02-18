@@ -19,6 +19,12 @@ body {
     padding: 0;
 }
 
+/* 
+.add-shadow {
+    box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.22);
+    transition: all ease-in-out 0.3s;
+} */
+
 .judul-banner {
     font-weight: 600;
 }
@@ -106,6 +112,15 @@ body {
     /* add border-radius */
 }
 
+.carousel-indicators button[data-bs-target]:not(.active) {
+    opacity: 0.8;
+}
+
+#caraIkutLelang img {
+    height: 235px;
+    width: 150px;
+}
+
 #lagiRame img {
     width: 250px;
     height: 200px;
@@ -186,6 +201,13 @@ body {
     object-fit: contain;
 }
 
+#kataPengguna img {
+    border-radius: 50%;
+    width: 100px;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+}
+
 #topPenawar {
     width: 100%;
     height: 500px;
@@ -216,15 +238,6 @@ body {
     height: 480px;
     object-position: top center;
     object-fit: cover;
-}
-
-#filterLelang {
-    border-radius: 10px;
-    height: 80vh;
-}
-
-#filterLelang .btn-group {
-    width: 90%;
 }
 
 #lelangSaya hr {
@@ -362,18 +375,11 @@ body {
     width: 100%;
 }
 
-#tagihan .border {
+#tagihan select {
+    padding: 0;
+    margin: 0;
+    border: none;
     border: 1px solid #3B85F2 !important;
-}
-
-#tagihan .dropdown-item {
-    padding-left: 0;
-    padding-right: 0;
-}
-
-#tagihan .dropdown-item:focus, .dropdown-item:hover {
-    background-color: #fff;
-    color: #3B85F2;
 }
 
 #tagihan .btn-primer {
@@ -478,6 +484,68 @@ body {
     color: #fff;
     border: #5394F4 solid 1px;
     background: #5394F4;
+}
+
+#editProfil img {
+    width: 300px;
+    height: 400px;
+    object-fit: cover;
+}
+
+#editProfil .image-upload>input {
+    display: none;
+}
+
+/* imgoverlayprofile */
+
+#editProfil .wrapper {}
+
+#editProfil .wrapper .container {}
+
+#editProfil .wrapper .container .hero-section {}
+
+#editProfil .wrapper .container .hero-section .gallery {
+    width: 100%;
+    position: relative;
+}
+
+#editProfil .wrapper .container .hero-section .gallery .image-section {
+    width: 100%;
+}
+
+#editProfil .wrapper .container .hero-section .gallery .image-section img {
+    width: 300px;
+    height: 400px;
+}
+
+#editProfil .wrapper .container .hero-section .gallery .caption {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    padding: 15px;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transition: opacity 0.30s;
+}
+
+#editProfil .wrapper .container .hero-section .gallery .caption .btn-outline-secondary {
+    border: 1px solid white;
+    position: relative;
+    cursor: pointer;
+}
+
+#btnUbahFoto input[type="file"] {
+    display: none;
+}
+
+#editProfil .wrapper .container .hero-section .gallery .caption:hover {
+    opacity: 1;
 }
 
 /* * {

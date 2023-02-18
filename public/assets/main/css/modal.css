@@ -113,3 +113,11 @@
 #alertPenawaranBerhasil .modal-content {
     padding: 50px 100px 50px 100px;
 }
+
+/* Modal Pembayaran */
+
+#modalPembayaran img {
+    width: 500px;
+    height: auto;
+    /* object-fit: cover; */
+}

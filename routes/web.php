@@ -36,12 +36,20 @@ Route::get('/about', function () {
     return view(mainPages('about'));
 })->name('about.index');
 
-Route::get('/profil', function () {
-    return view(mainPages('profile'));
-})->name('profil.index');
+// Route::get('/profil', function () {
+//     return view(mainPages('profile'));
+// })->name('profil.index');
 
-
-
+// 
+Route::group(['prefix' => 'profil'], function () {
+    Route::get('/', function () {
+        return view(mainPages('profile'));
+    })->name('profil.index');
+    Route::get('/edit-profil', function () {
+        return view(mainPages('editProfile'));
+    })->name('profil.edit');
+});
+// 
 Route::group(['prefix' => 'login'], function () {
     Route::get('/', function () {
         return view(mainPages('signIn'));

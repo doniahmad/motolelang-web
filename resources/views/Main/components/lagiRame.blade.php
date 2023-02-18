@@ -4,7 +4,7 @@
 <div id="lagiRame" class="container d-flex">
     <div class="container">
         <div class="row">
-            <div class="col-4 d-flex align-items-stretch">
+            <div class="col-md-4 col-sm-6 d-flex align-items-stretch">
                 <div class="card mt-5">
                     <div class="card-body">
                         <div class="container">
@@ -46,7 +46,7 @@
                 </div>
             </div>
 
-            <div class="col-4 d-flex align-items-stretch">
+            <div class="col-md-4 col-sm-6 d-flex align-items-stretch">
                 <div class="card mt-5">
                     <div class="card-body">
                         <div class="container">
@@ -83,7 +83,7 @@
                 </div>
             </div>
 
-            <div class="col-4 d-flex align-items-stretch">
+            <div class="col-md-4 col-sm-6 d-flex align-items-stretch">
                 <div class="card mt-5">
                     <div class="card-body">
                         <div class="container">

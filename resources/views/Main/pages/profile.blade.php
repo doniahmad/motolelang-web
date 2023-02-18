@@ -1,5 +1,5 @@
 @extends('Main.layouts.master')
-@section('title', 'Galeri Lelang')
+@section('title', 'Profil')
 
 <div id="profil" class="konten-2">
     <div class="container border bg-white">
@@ -54,7 +54,8 @@
                 </div>
             </div>
             <div class="d-flex">
-                <a id="btnAturProfil" href="#" class="text-decoration-none ms-auto">Atur Profil</a>
+                <a id="btnAturProfil" href="{{ route('profil.edit') }}" class="text-decoration-none ms-auto">Atur
+                    Profil</a>
             </div>
 
         </div>

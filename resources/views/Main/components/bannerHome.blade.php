@@ -37,7 +37,7 @@
                     <p>Harga Awal</p>
                     <h5>Rp. 4.000.000</h5>
                 </div>
-                <img src="/assets/main/img/beat-20212.png" class="d-block w-100" alt="beat 2021">
+                <img src="/assets/main/img/suzuki-gsx-150.png" class="d-block w-100" alt="Yamaha R-15">
             </div>
             <div class="carousel-item">
                 <div class="banner-price ">

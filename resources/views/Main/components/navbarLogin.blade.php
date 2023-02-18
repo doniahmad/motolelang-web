@@ -62,11 +62,11 @@
                                         class="rounded mx-auto d-block" alt="" srcset=""><span
                                         class="text-center pt-2 pb-2">Aril
                                         Ponco Nugroho</span></li>
-                                <li><a class="dropdown-item bt py-3" href="#">Profil</a></li>
+                                <li><a class="dropdown-item bt py-3" href="{{ route('profil.index') }}">Profil</a></li>
 
                                 <li style="border-bottom: 1px solid #B7B7B7;
 }"><a class="dropdown-item bt py-3"
-                                        href="#">Lelang Saya</a></li>
+                                        href="{{ route('lelang.lelangSaya') }}">Lelang Saya</a></li>
 
                                 <li id="keluar"><a class="dropdown-item bt py-3" href="#">Keluar</a>
                                 </li>
