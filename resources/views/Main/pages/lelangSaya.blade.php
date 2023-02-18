@@ -14,9 +14,9 @@
         <div class="d-flex align-items-center">
             <h4>Lelang Saya</h4>
         </div>
-        <hr>
+        <hr class="mb-4">
         <div class="container">
-            <div id="toggleLelangSaya" class="my-3 btn-lelang">
+            {{-- <div id="toggleLelangSaya" class="my-3 btn-lelang">
                 <div class="row">
                     <div class="col-6">
                         <a href="{{ route('lelang.lelangSaya') }}" class="text-reset text-decoration-none">
@@ -35,7 +35,7 @@
 
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
 
         <div class="row">
@@ -83,7 +83,7 @@
 
                         <div id="btnLelangSaya" class="">
                             <div class="text-center text-reset text-decoration-none">
-                                <a class="btn detail my-2"
+                                <a href="" class="btn detail my-2"
                                     href="{{ route('lelang.detail', ['param' => $auction->auction->product->product_slug]) }}">
                                     Detail Kendaraan
                                 </a>
@@ -93,7 +93,8 @@
                                         Masuk Pelelangan
                                     </a>
                                 @else
-                                    <a href="" class="btn bayar text-light my-2">
+                                    <a href="{{ route('lelang.pembayaran', ['token' => $auction->invoice->kode_pembayaran]) }}"
+                                        class="btn bayar text-light my-2">
                                         Bayar
                                     </a>
                                 @endif

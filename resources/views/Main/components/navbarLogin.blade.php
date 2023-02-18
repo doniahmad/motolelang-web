@@ -62,23 +62,23 @@
                             aria-expanded="false">
                             <img src="/assets/main/img/avatarround.png" alt="">
                         </a>
-                        <ul id="dropdown-profil" class="dropdown-menu text-center text-grey">
-                            <li class="row"><img src="/assets/main/img/avatar.png" class="rounded mx-auto d-block"
-                                    alt="" srcset=""><span
-                                    class="text-center pt-2 pb-1">{{ auth()->user()->name }}</span></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="{{ route('profil.index') }}">Profil</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="{{ route('lelang.lelangSaya') }}">Lelang Saya</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li id="keluar"><a class="dropdown-item" href="{{ route('logout.action') }}">Keluar</a>
-                            </li>
+                        <ul id="dropdown-profil" class="dropdown-menu text-center text-grey box-shadow-santuy">
+                            <div class="">
+                                <li class="row"><img src="/assets/main/img/avatar.png"
+                                        class="rounded mx-auto d-block" alt="" srcset=""><span
+                                        class="text-center pt-2 pb-2">Aril
+                                        Ponco Nugroho</span></li>
+                                <li><a class="dropdown-item bt py-3" href="{{ route('profil.index') }}">Profil</a></li>
+
+                                <li style="border-bottom: 1px solid #B7B7B7;
+}"><a class="dropdown-item bt py-3"
+                                        href="{{ route('lelang.lelangSaya') }}">Lelang Saya</a></li>
+
+                                <li id="keluar"><a class="dropdown-item bt py-3"
+                                        href="{{ route('logout.action') }}">Keluar</a>
+                                </li>
+                            </div>
+
                         </ul>
                     </div>
                 </li>

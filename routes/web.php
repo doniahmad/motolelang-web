@@ -37,12 +37,20 @@ Route::get('/about', function () {
     return view(mainPages('about'));
 })->name('about.index');
 
-Route::get('/profil', function () {
-    return view(mainPages('profile'));
-})->name('profil.index');
+// Route::get('/profil', function () {
+//     return view(mainPages('profile'));
+// })->name('profil.index');
 
-
-
+//
+Route::group(['prefix' => 'profil'], function () {
+    Route::get('/', function () {
+        return view(mainPages('profile'));
+    })->name('profil.index');
+    Route::get('/edit-profil', function () {
+        return view(mainPages('editProfile'));
+    })->name('profil.edit');
+});
+//
 Route::group(['prefix' => 'login'], function () {
     Route::get('/', function () {
         return view(mainPages('signIn'));
@@ -77,8 +85,8 @@ Route::group(['prefix' => 'lelang'], function () {
     Route::get('/lelang-saya', function () {
         return view(mainPages('lelangSaya'));
     })->name('lelang.lelangSaya');
-    Route::get('/pembayaran', function () {
-        $data = ViewController::getInvoice();
+    Route::get('/pembayaran/{token}', function (HttpRequest $request) {
+        $data = ViewController::getInvoice($request);
         return view(mainPages('pembayaran'), compact('data'));
     })->name('lelang.pembayaran');
     Route::post('/invoice/bayar', [ViewController::class, 'payInvoice'])->name('invoice.bayar');

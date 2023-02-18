@@ -63,7 +63,7 @@ class InvoiceController extends Controller
      */
     public function show(Invoice $invoice)
     {
-        $data = $invoice->load(['auctioneer']);
+        $data = $invoice->load(['auctioneer.auction.product']);
         return response()->json($data);
     }
 

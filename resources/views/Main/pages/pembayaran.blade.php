@@ -1,16 +1,14 @@
 @extends('Main.layouts.master')
 @section('title', 'Lelang Saya')
 
-{{-- @dd($data) --}}
-
 <div id="pembayaran" class="konten-2">
     <div class="container">
         <div class="d-flex align-items-center">
             <h4>Pembayaran</h4>
         </div>
-        <hr>
+        <hr class="mb-4">
         <div class="container">
-            <div id="toggleLelangSaya" class="my-3 btn-lelang">
+            {{-- <div id="toggleLelangSaya" class="my-3 btn-lelang">
                 <div class="row">
                     <div class="col-6">
                         <a href="{{ route('lelang.lelangSaya') }}" class="text-reset text-decoration-none">
@@ -29,87 +27,66 @@
 
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
 
         <div id="kontenPembayaran" class="row">
-            <div class="">
+            <div class="col-7">
                 @isset($data)
-
-                    @foreach ($data as $invoice)
-                        <div class="container d-flex align-items-center">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                    <div class="container d-flex align-items-center">
+                        <div id="kontenTitlePembayaran" class="bg-white d-flex align-items-center box-shadow-santuy">
+                            <div class="img-lelang">
+                                <img src="{{ asset('storage/image/product/' . $data->auctioneer->auction->product->img_url) }}"
+                                    alt="" srcset="">
                             </div>
-                            <div id="kontenTitlePembayaran" class="bg-white d-flex align-items-center box-shadow-santuy">
-                                <div class="img-lelang">
-                                    <img src="{{ asset('storage/image/product/' . $invoice->auctioneer->auction->product->img_url) }}"
-                                        alt="" srcset="">
-                                </div>
-                                <div id="infoPembayaran" class="">
-                                    <table class="table table-borderless">
-                                        <tbody class="">
-                                            <tr>
-                                                <td>Tanggal Pemutusan</td>
-                                                <td>:</td>
-                                                <td>{{ $invoice->auctioneer->auction->exp_date }}</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Tagihan</td>
-                                                <td>:</td>
-                                                <td>Rp. {{ $invoice->invoice }}</td>
-                                            </tr>
-                                            <tr>
-                                                <b>{{ $invoice->auctioneer->auction->product->nama_product }}</b>
-                                            </tr>
-                                            {{-- <tr>
-                                        <td>Penawaran Tertinggi</td>
-                                        <td>:</td>
-                                        <td>Rp. {{ $invoice-> }}</td>
-                                    </tr> --}}
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div class="ms-auto mx-5">
-                                    <button class="btn-for-modal btn btn-primary " id="btn-for-payment-modal"
-                                        data-bs-toggle="modal" data-bs-target="#modalPembayaran"
-                                        data-kode="{{ $invoice->kode_pembayaran }}">
-                                        Bayar
-                                    </button>
-                                </div>
+                            <div id="infoPembayaran" class="">
+                                <table class="table table-borderless">
+                                    <tbody class="">
+                                        <tr>
+                                            <td>Tanggal Pemutusan</td>
+                                            <td>:</td>
+                                            <td>{{ $data->auctioneer->auction->exp_date }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Tagihan</td>
+                                            <td>:</td>
+                                            <td>Rp. {{ $data->invoice }}</td>
+                                        </tr>
+                                        <tr>
+                                            <b>{{ $data->auctioneer->auction->product->nama_product }}</b>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
-                    @endforeach
+                    </div>
                 @endisset
             </div>
-            {{-- <div class="col-5">
+            <div class="col-5">
                 <div id="tagihan" class="">
                     <div class="bg-white box-shadow-santuy">
                         <div class="p-4">
                             <h5 class="color-primer">Tagihan</h5>
                             <hr>
                             <div class="d-flex">
-                                <p>Jumlah barang</p>
-                                <p class="ms-auto">0</p>
+                                <p>Harga Kemenangan</p>
+                                <p class="ms-auto">Rp. 13.113.002</p>
                             </div>
                             <div class="d-flex">
                                 <p>Biaya Pengiriman</p>
-                                <p class="ms-auto">-</p>
+                                <p class="ms-auto">Rp. 100.000</p>
                             </div>
                             <hr>
                             <div class="dropdown">
-                                <button class="d-flex align-items-center btn border" type="button"
-                                    id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <span>Pilih Cara Pengambilan</span>
-                                    <i class="fa fa-caret-down ms-auto"></i>
-                                </button>
-                                <ul class="dropdown-menu px-3" aria-labelledby="dropdownMenuButton1">
-                                    <li><a class="dropdown-item " href="#">Ambil Ditempat</a></li>
-                                    <li>
-                                        <hr class="dropdown-divider my-auto">
-                                    </li>
-                                    <li><a class="dropdown-item " href="#">Kirim Dengan Eskpedisi</a></li>
-                                </ul>
+
+                                <select class="form-select py-1 px-2" id="SelectPengiriman"
+                                    aria-label="Default select example">
+                                    <option selected disabled>Pilih Cara Pengambilan
+                                    </option>
+                                    <option value="1">Ambil di tempat</option>
+                                    <option value="2" class="">Kirim</option>
+                                </select>
+
                             </div>
                             <hr>
                             <div class="d-flex align-items-center">
@@ -123,7 +100,7 @@
                         </div>
                     </div>
                 </div>
-            </div> --}}
+            </div>
         </div>
     </div>
 </div>

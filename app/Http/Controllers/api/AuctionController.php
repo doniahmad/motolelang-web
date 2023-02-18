@@ -16,7 +16,7 @@ class AuctionController extends Controller
      */
     public function index()
     {
-        $response = Auction::with(['product', 'auctioneer.user', 'auctioneer.offer', 'offer.auctioneer'])->get();
+        $response = Auction::with(['product', 'auctioneer.user', 'auctioneer.offer', 'offer.auctioneer', 'auctioneer.invoice',])->get();
         return response()->json($response, 200);
     }
 
@@ -64,7 +64,7 @@ class AuctionController extends Controller
      */
     public function show(Auction $auction)
     {
-        $data = $auction->load(['product', 'auctioneer.user', 'auctioneer.offer',]);
+        $data = $auction->load(['product', 'auctioneer.user', 'auctioneer.offer', 'auctioneer.invoice',]);
         return response()->json($data);
     }
 

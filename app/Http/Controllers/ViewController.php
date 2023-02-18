@@ -228,9 +228,9 @@ class ViewController extends Controller
         return Redirect::to(route('lelang.room', ['token' => $input->token_lelang]));
     }
 
-    public static function getInvoice()
+    public static function getInvoice(HttpRequest $param)
     {
-        $request = Request::create('api/my-invoice', 'GET');
+        $request = Request::create('api/invoice/' . $param->token, 'GET');
         $response = Route::dispatch($request);
         $data = json_decode($response->getContent());
 
