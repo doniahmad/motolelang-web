@@ -13,7 +13,7 @@ class UserController extends Controller
 
     public function user(Request $request)
     {
-        $response = $request->user();
+        $response = $request->user()->load(['auctioneer']);
         $response->role = $response->getRoleNames();
         $response->premission = $response->getPermissionsViaRoles()->pluck("name");
         $response->makeHidden('roles');

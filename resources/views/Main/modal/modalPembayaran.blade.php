@@ -1,4 +1,5 @@
-<form action="">
+<form method="POST" action="{{ route('invoice.bayar') }}" enctype="multipart/form-data">
+    @csrf
     <div id="modalPembayaran" class="modal" tabindex="-1">
         <div class="modal-dialog modal-lg">
             <div class="modal-content p-3">
@@ -23,9 +24,11 @@
                         <p>Kirim bukti transfer dibawah sini : </p>
                         <div id="formBayar" class="form-group">
                             <label>File</label>
+                            <input id="kode_pembayaran_container" type="text" name="kode_pembayaran" hidden>
+                            <input type="text" name="status" value="menunggu_persetujuan" hidden>
                             <div class="input-group">
                                 <i class="input-group-btn">
-                                    <input type="file" class="btn btn-primary-outlined" />
+                                    <input type="file" name="bukti_pembayaran" class="btn btn-primary-outlined" />
                                 </i>
                             </div>
                         </div>

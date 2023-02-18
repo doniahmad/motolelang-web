@@ -7,19 +7,21 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class NotifAuction extends Notification implements ShouldQueue
+class EndWinnerNotification extends Notification
 {
     use Queueable;
 
-
+    protected $auction;
+    protected $auctioneer;
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($auction, $auctioneer)
     {
-        //
+        $this->auction = $auction;
+        $this->auctioneer = $auctioneer;
     }
 
     /**
@@ -30,7 +32,7 @@ class NotifAuction extends Notification implements ShouldQueue
      */
     public function via($notifiable)
     {
-        return ['mail'];
+        return ['mail', 'database'];
     }
 
     /**
@@ -41,7 +43,9 @@ class NotifAuction extends Notification implements ShouldQueue
      */
     public function toMail($notifiable)
     {
-        return (new MailMessage);
+        $auction = $this->auction;
+        $auctioneer = $this->auctioneer;
+        return (new MailMessage)->from('motolelang.noreply@gmail.com')->subject('Pelelangan Selesai')->markdown('emails.endWinnerNotification', ['auction' => $auction, 'auctioneer' => $auctioneer]);
     }
 
     /**
@@ -52,6 +56,12 @@ class NotifAuction extends Notification implements ShouldQueue
      */
     public function toArray($notifiable)
     {
-        return [];
+        return [
+            'nama_product' => $this->auction->product->nama_product,
+            'img_product' => $this->auction->product->img_url,
+            'token_auction' => $this->auction->token,
+            'id_auctioneer' => $this->auctioneer->auctioneer->auctioneer_id,
+            'id_user' => $this->auctioneer->auctioneer->user->user_id
+        ];
     }
 }

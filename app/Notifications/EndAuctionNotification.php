@@ -7,19 +7,21 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class NotifAuction extends Notification implements ShouldQueue
+class EndAuctionNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
-
+    protected $auction;
+    protected $user;
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($auction, $user)
     {
-        //
+        $this->auction = $auction;
+        $this->user = $user;
     }
 
     /**
@@ -41,7 +43,9 @@ class NotifAuction extends Notification implements ShouldQueue
      */
     public function toMail($notifiable)
     {
-        return (new MailMessage);
+        $data = $this->auction;
+        $user = $this->user;
+        return (new MailMessage)->from('motolelang.noreply@gmail.com')->subject('Pelelangan Selesai')->markdown('emails.endAuctionEmail', ['data' => $data, 'user' => $user]);
     }
 
     /**
@@ -52,6 +56,5 @@ class NotifAuction extends Notification implements ShouldQueue
      */
     public function toArray($notifiable)
     {
-        return [];
     }
 }

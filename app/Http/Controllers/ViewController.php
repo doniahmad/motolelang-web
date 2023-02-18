@@ -3,10 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Jobs\PostAuction;
-use App\Jobs\PostDocument;
 use Illuminate\Http\Request as HttpRequest;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Route;
@@ -176,14 +174,6 @@ class ViewController extends Controller
 
     }
 
-    public static function getPayments()
-    {
-        $request = Request::create('/api/payment', 'GET');
-        $response = Route::dispatch($request);
-        $data = json_decode($response->getContent());
-        return $data;
-    }
-
     public static function setAuction(HttpRequest $input)
     {
         $request = Request::create('/api/auction', 'POST', $input->all());
@@ -213,5 +203,58 @@ class ViewController extends Controller
         $response = Route::dispatch($request);
         $data = json_decode($response->getContent());
         return Redirect::to(route('lelang.room', ['token' => $input->token_pelelangan]));
+    }
+
+    public static function createOffer(HttpRequest $input)
+    {
+
+        if (isset($input->new_offer)) {
+            $dataReq = [
+                'offer' => $input->new_offer,
+                '_method' => 'PUT',
+            ];
+            $request = Request::create('api/offer/' . $input->current_offer_id, 'POST', $dataReq);
+            $response = Route::dispatch($request);
+        } else {
+            $dataReq = [
+                'id_auction' => $input->id_auction,
+                'id_auctioneer' => $input->id_auctioneer,
+                'offer' => $input->offer,
+            ];
+            $request = Request::create('api/offer', 'POST', $dataReq);
+            $response = Route::dispatch($request);
+        }
+
+        return Redirect::to(route('lelang.room', ['token' => $input->token_lelang]));
+    }
+
+    public static function getInvoice()
+    {
+        $request = Request::create('api/my-invoice', 'GET');
+        $response = Route::dispatch($request);
+        $data = json_decode($response->getContent());
+
+        return $data;
+    }
+
+    public static function getInvoices()
+    {
+        $request = Request::create('api/invoice', 'GET');
+        $response = Route::dispatch($request);
+        $data = json_decode($response->getContent());
+
+        return $data;
+    }
+
+    public static function payInvoice(HttpRequest $param)
+    {
+        $dataReq = [
+            'bukti_pembayaran' => $param->bukti_pembayaran,
+            '_method' => 'PUT'
+        ];
+
+        $request = Request::create('api/invoice/' . $param->kode_pembayaran, 'POST', $dataReq);
+        $response = Route::dispatch($request);
+        dd($response);
     }
 }

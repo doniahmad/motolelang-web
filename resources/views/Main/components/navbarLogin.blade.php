@@ -34,14 +34,20 @@
                             <div class="p-3">
                                 <h6>Notifikasi</h6>
                                 <div class="konten-notif">
-                                    <div class="d-flex my-3">
-                                        <img src="/assets/main/img/beat-2021_result.webp" alt="">
-                                        <p class="ms-auto ps-3">Selamat, Anda berhasil memenangkan pelelangan motor
-                                            <strong>Beat
-                                                2021</strong> . Mohon lakukan
-                                            pembayaran untuk dapat menerima barang anda.
-                                        </p>
-                                    </div>
+                                    @foreach (json_decode(auth()->user()->unreadNotifications) as $notif)
+                                        <a href="http://127.0.0.1:8000/lelang/pembayaran"
+                                            class="text-dark text-decoration-none">
+                                            <div class="d-flex my-3">
+                                                <img src="{{ asset('storage/image/product/' . $notif->data->img_product) }}"
+                                                    alt="">
+                                                <p class="ms-auto ps-3">Selamat, Anda berhasil memenangkan pelelangan
+                                                    motor
+                                                    <strong>{{ $notif->data->nama_product }}</strong> . Mohon lakukan
+                                                    pembayaran untuk dapat menerima barang anda.
+                                                </p>
+                                            </div>
+                                        </a>
+                                    @endforeach
                                 </div>
                             </div>
 
@@ -49,9 +55,6 @@
                         </ul>
                     </div>
                 </li>
-                {{-- <li>
-                    <a href="{{ route('notif.endAuction') }}" class="btn btn-primary">Send Email</a>
-                </li> --}}
                 <li id="iconUser" class="nav-item text-light">
 
                     <div class="dropdown">

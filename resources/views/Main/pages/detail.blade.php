@@ -2,11 +2,14 @@
 @section('title', $data->nama_product)
 
 @php
-    
-    $checkIfMemberAuction = array_filter($data->auction->auctioneer, function ($auctioneer) {
-        return $auctioneer->id_user == auth()->user()->user_id;
-    });
-    
+    $checkIfMemberAuction = [];
+
+    if (auth()->user() !== null) {
+        $checkIfMemberAuction = array_filter($data->auction->auctioneer, function ($auctioneer) {
+            return $auctioneer->id_user == auth()->user()->user_id;
+        });
+    }
+
 @endphp
 
 <div id="detailLelang" class="konten-2">

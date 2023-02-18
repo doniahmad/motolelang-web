@@ -16,7 +16,7 @@
                     <div class="col">
                         <div class="mb-4">
                             <label for="harga_awal" class="custom-label form-label">Harga Awal</label>
-                            <input name="harga_awal" type="text" class="custom-input form-control" id="harga_awal"
+                            <input name="harga_awal" type="number" class="custom-input form-control" id="harga_awal"
                                 placeholder="Masukkan Harga Awal"
                                 value="{{ $data->harga_awal ? $data->harga_awal : '' }}" required>
                         </div>
@@ -28,13 +28,13 @@
                         <div class="mb-4">
                             <label for="kapasitas-cc" class="custom-label form-label">Kapasitas
                                 Mesin</label>
-                            <input name="kapasitas_cc" type="text" class="custom-input form-control"
+                            <input name="kapasitas_cc" type="number" class="custom-input form-control"
                                 id="kapasitas-cc" placeholder="Masukkan Bahan Bakar"
                                 value="{{ $data->kapasitas_cc ? $data->kapasitas_cc : '' }}" required>
                         </div>
                         <div class="mb-4">
                             <label for="odometer" class="custom-label form-label">Odometer</label>
-                            <input name="odometer" type="text" class="custom-input form-control" id="odometer"
+                            <input name="odometer" type="number" class="custom-input form-control" id="odometer"
                                 placeholder="Masukkan Odometer" value="{{ $data->odometer ? $data->odometer : '' }}"
                                 required>
                         </div>
@@ -82,7 +82,7 @@
                         </div>
                         <div class="mb-4">
                             <label for="stnk" class="custom-label form-label">STNK</label>
-                            <select name="stnk" id="stnk" class="custom-input form-control" sele required>
+                            <select name="stnk" id="stnk" class="custom-input form-control" required>
                                 <option disabled selected>Pilih Ada/Tidak Ada</option>
                                 <option value="1" {{ $data->stnk == 1 ? 'selected' : '' }}>Ada</option>
                                 <option value="0" {{ $data->stnk == 0 ? 'selected' : '' }}>Tidak Ada</option>

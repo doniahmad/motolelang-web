@@ -19,11 +19,16 @@ class Auction extends Model
 
     public function auctioneer()
     {
-        return $this->hasMany(Auctioneer::class, 'auctioneer_id');
+        return $this->hasMany(Auctioneer::class, 'id_auction');
     }
 
     public function offer()
     {
-        return $this->hasMany(Offer::class, 'offer_id');
+        return $this->hasMany(Offer::class, 'id_auction');
+    }
+
+    public function winner()
+    {
+        return $this->hasOne(Auctioneer::class, 'winner_id');
     }
 }

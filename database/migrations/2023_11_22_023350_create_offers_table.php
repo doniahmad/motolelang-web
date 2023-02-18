@@ -15,13 +15,12 @@ return new class extends Migration
     {
         Schema::create('offers', function (Blueprint $table) {
             $table->id('offer_id');
-            $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('id_auction');
             $table->unsignedBigInteger('id_auctioneer');
             $table->foreign('id_auction')->references('auction_id')->on('auctions')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('id_auctioneer')->references('auctioneer_id')->on('auctioneers')->onUpdate('cascade')->onDelete('cascade');
             $table->string('code_offer');
-            $table->string('offer');
+            $table->integer('offer');
             $table->timestamps();
         });
     }
