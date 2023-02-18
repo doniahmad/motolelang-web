@@ -21,7 +21,9 @@
         <div class="my-4">
             <h6>Selamat Datang,</h6>
             <div class="d-flex align-items-center">
-                <h5 class="color-primer">ArilPoncoNugroho</h5>
+                <h5 class="color-primer">
+                    {{ isset($currentAuctioneer) ? $currentAuctioneer->nama_samaran : 'Null' }}
+                </h5>
                 <h6 class="ms-auto">Selesai Dalam
                     <span>{{ $data ? $data->exp_date : '' }}</span>
                     <span><i class="fa-regular fa-clock"></i></span>
@@ -61,7 +63,7 @@
                 <div id="formKirimPenawaran" class="bg-white text-center p-3 box-shadow-santuy">
                     <p class="">Penawaran Saya</p>
                     <h3 class="">Rp.
-                        {{ isset($currentAuctioneer->auctioneer->offer) ? $currentAuctioneer->auctioneer->offer : 0 }}
+                        {{ isset($currentAuctioneer->offer) ? $currentAuctioneer->offer->offer : 0 }}
                     </h3>
                     <button type="button" class="btn btn-pelelangan bg-color-primer text-light mt-3"
                         data-bs-toggle="modal" data-bs-target="#modalInputPenawaran">Kirim

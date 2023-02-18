@@ -2,21 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\api\UserController;
 use App\Http\Controllers\Controller;
-use App\Models\Auctioneer;
+use App\Models\Auction;
 use App\Models\User;
-use App\Notifications\NotifAuction;
-use Illuminate\Http\Request;
+use App\Notifications\EndAuctionNotification;
 use Illuminate\Support\Facades\Notification;
 
 class NotificationController extends Controller
 {
     public function SendEmailEndAuctionNotification()
     {
-        $target = User::with(['auctioneer.auction', 'auctioneer.offer'])->whereHas('roles', function ($role) {
-            $role->where('name', 'customer');
-        })->get();
-        Notification::send($target, new NotifAuction());
+        $target = Auction::with(['auctioneer', 'auctioneer.offer', 'product'])->first();
+        Notification::send(auth()->user(), new EndAuctionNotification($target, auth()->user()));
     }
 }

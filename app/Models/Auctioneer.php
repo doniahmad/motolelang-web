@@ -24,11 +24,11 @@ class Auctioneer extends Model
 
     public function offer()
     {
-        return $this->hasOne(Offer::class, 'offer_id');
+        return $this->hasOne(Offer::class, 'id_auctioneer');
     }
 
-    public function payment()
+    public function invoice()
     {
-        return $this->hasOne(Offer::class, 'id_payment');
+        return $this->hasOne(Invoice::class, 'id_auctioneer');
     }
 }

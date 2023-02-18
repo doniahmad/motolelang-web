@@ -13,16 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('payments', function (Blueprint $table) {
-            $table->id('payment_id');
-            $table->string('kode_pembayaran');
+        Schema::create('invoices', function (Blueprint $table) {
+            $table->id('invoice_id');
             $table->unsignedBigInteger("id_auctioneer");
-            $table->unsignedBigInteger("id_auction");
             $table->foreign("id_auctioneer")->references("auctioneer_id")->on("auctioneers")->onUpdate("cascade");
-            $table->foreign("id_auction")->references("auction_id")->on("auctions")->onUpdate("cascade");
-            $table->integer("tagihan");
+            $table->integer("invoice");
+            $table->string("kode_pembayaran");
             $table->string("bukti_pembayaran")->nullable();
-            $table->enum("status_pembayaran", ['belum_dibayar', 'menunggu_persetujuan', 'dibayar', 'ditolak'])->default('belum_dibayar');
+            $table->enum("status", ['belum_dibayar', 'menunggu_persetujuan', 'dibayar', 'ditolak'])->default('belum_dibayar');
             $table->string('alasan_penolakan')->nullable();
             $table->timestamps();
         });
@@ -35,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('payments');
+        Schema::dropIfExists('invoices');
     }
 };

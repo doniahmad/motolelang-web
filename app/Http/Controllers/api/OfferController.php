@@ -15,7 +15,7 @@ class OfferController extends Controller
      */
     public function index()
     {
-        $data = Offer::all();
+        $data = Offer::with(['auction', 'auctioneer'])->get();
 
         return response()->json($data);
     }
@@ -30,9 +30,9 @@ class OfferController extends Controller
     {
 
         $validateData = $request->validate([
-            'user_id' => 'integer',
-            'product_tawaran_id' => 'integer',
-            'offer' => 'integer',
+            'id_auctioneer' => 'integer|required',
+            'id_auction' => 'integer|required',
+            'offer' => 'integer|required',
         ]);
 
         $offer_code = mt_rand(100, 999) . '-' . date('dmys') . $request->user_id . $request->product_tawaran_id;
@@ -77,7 +77,7 @@ class OfferController extends Controller
     public function update(Request $request, Offer $offer)
     {
         $updateData = $request->validate([
-            'offer' => 'integer'
+            'offer' => 'integer|required'
         ]);
 
         try {

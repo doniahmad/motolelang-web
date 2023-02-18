@@ -7,11 +7,6 @@
             Data Pembayaran
         </div>
         <div class="data-product-header">
-            {{-- <a href="{{ route('dashboard.inputProduct') }}">
-                <button type="button" class="btn btn-primary">
-                    Tambah
-                </button>
-            </a> --}}
         </div>
         <div class="page-content" id="page-content">
             <div class="table-data-product">
@@ -22,33 +17,34 @@
                                 <th>No. LOT</th>
                                 <th>Nama Barang</th>
                                 <th>Nama Pemenang</th>
-                                <th>Total Pembayaran</th>
+                                <th>Total Tagihan</th>
                                 <th>Waktu Pembayaran</th>
                                 <th>Bukti Pembayaran</th>
+                                <th>Status</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {{-- @foreach ($data as $payment) --}}
-                            <tr>
-                                <td>000001</td>
-                                {{-- <td>{{ $product->nama_product }}</td> --}}
-                                {{-- <td>Rp. {{ $product->harga_awal }}</td> --}}
-                                {{-- <td>{{ $product->jenis }}</td> --}}
-                                {{-- <td>{{ $product->jenis }}</td> --}}
-                                {{-- <td>{{ $product->jenis }}</td> --}}
-                                {{-- <td><label class="badge bg-warning">{{ $product->status_pelelangan }}</label></td> --}}
-                                <td>
-                                    <button type="button" class="btn btn-primary">
-                                        <i class="fa-solid fa-check"></i>
-                                    </button>
-                                    <button type="button" class="btn btn-danger">
-                                        <i class="fa-solid fa-x"></i>
-                                    </button>
+                            @foreach ($data as $invoice)
+                                <tr>
+                                    <td>000001</td>
+                                    <td>{{ $invoice->auctioneer->auction->product->nama_product }}</td>
+                                    <td>{{ $invoice->auctioneer->user->name }}</td>
+                                    <td>{{ $invoice->invoice }}</td>
+                                    <td>{{ isset($invoice->bukti_pembayaran) ? 'Iya' : 'Belum Ada' }}</td>
+                                    <td>{{ isset($invoice->bukti_pembayaran) ? 'Iya' : 'Belum Ada' }}</td>
+                                    <td><label class="badge bg-warning">{{ $invoice->status }}</label></td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary">
+                                            <i class="fa-solid fa-check"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-danger">
+                                            <i class="fa-solid fa-x"></i>
+                                        </button>
 
-                                </td>
-                            </tr>
-                            {{-- @endforeach --}}
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

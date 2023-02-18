@@ -57,7 +57,7 @@ Route::group(['prefix' => 'login'], function () {
     Route::post('/daftar', [ViewController::class, 'registerAction'])->name('login.daftarAction');
 });
 
-Route::get('/sendEndAuctionNotification', [NotificationController::class, 'sendEmailEndAuctionNotification'])->name('notif.endAuction');
+Route::get('/send-email', [NotificationController::class, 'sendEmailEndAuctionNotification'])->name('notif.endAuction');
 
 Route::get('/logout', [ViewController::class, 'logoutAction'])->name('logout.action');
 
@@ -70,7 +70,6 @@ Route::group(['prefix' => 'lelang'], function () {
         $data = ViewController::getProduct($request);
         return view(mainPages('detail'), compact('data'));
     })->name('lelang.detail');
-    Route::post('/auction/join', [ViewController::class, 'createAuctioneer'])->name('lelang.auctioneer');
     Route::get('/room/{token}', function (HttpRequest $request) {
         $data = ViewController::getAuction($request);
         return view(mainPages('roomLelang'), compact('data'));
@@ -79,8 +78,12 @@ Route::group(['prefix' => 'lelang'], function () {
         return view(mainPages('lelangSaya'));
     })->name('lelang.lelangSaya');
     Route::get('/pembayaran', function () {
-        return view(mainPages('pembayaran'));
+        $data = ViewController::getInvoice();
+        return view(mainPages('pembayaran'), compact('data'));
     })->name('lelang.pembayaran');
+    Route::post('/invoice/bayar', [ViewController::class, 'payInvoice'])->name('invoice.bayar');
+    Route::post('/auction/join', [ViewController::class, 'createAuctioneer'])->name('lelang.auctioneer');
+    Route::post('/auction/offer', [ViewController::class, 'createOffer'])->name('lelang.offer');
 });
 
 // Admin
@@ -145,7 +148,7 @@ Route::group(['prefix' => 'dashboard'], function () {
     });
     Route::group(['prefix' => 'pembayaran'], function () {
         Route::get('/', function () {
-            $data = ViewController::getPayments();
+            $data = ViewController::getInvoices();
             return view(adminPages('pembayaran'), compact('data'));
         })->name('dashboard.pembayaran');
     });

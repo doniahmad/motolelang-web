@@ -1,5 +1,13 @@
 @extends('Main.layouts.master')
 @section('title', 'Lelang Saya')
+@php
+    $data = auth()
+        ->user()
+        ->load(['auctioneer.auction', 'auctioneer.offer', 'auctioneer']);
+
+    // dd($data->auctioneer);
+
+@endphp
 
 <div id="lelangSaya" class="konten-2">
     <div class="container">
@@ -36,103 +44,63 @@
             </div>
 
             <div id="kontenLelangSaya" class="col-10">
-                <div class="bg-white d-flex align-items-center box-shadow-santuy mb-4">
-                    <div class="img-lelang">
-                        <img src="/assets/main/img/unitedemotor_result.webp" alt="" srcset="">
-                    </div>
-
-                    <div id="titleLelangSaya" class="">
-                        <h5>United E-Motor T1800</h5>
-                        <div class="selesai mt-4">
-                            <p class="text-center">Selesai</p>
-                        </div>
-                    </div>
-
-                    <div id="infoLelangSaya" class="">
-                        <table class="table table-borderless">
-                            <tbody class="">
-                                <tr>
-                                    <td>Batas Pelelangan</td>
-                                    <td>:</td>
-                                    <td>12-11-2022 18:23:11</td>
-                                </tr>
-                                <tr>
-                                    <td>Penawaran Saya</td>
-                                    <td>:</td>
-                                    <td>Rp. 13.113.002</td>
-                                </tr>
-                                <tr>
-                                    <td>Penawaran Tertinggi</td>
-                                    <td>:</td>
-                                    <td>Rp. 13.113.002</td>
-                                </tr>
-                            </tbody>
-                        </table>
-
-                    </div>
-
-                    <div id="btnLelangSaya" class="">
-                        <div class="text-center text-reset text-decoration-none">
-                            <a class="btn detail my-2">
-                                Detail Kendaraan
-                            </a>
-                            <a href="" class="btn bayar text-light my-2">
-                                Bayar
-                            </a>
+                @foreach ($data->auctioneer as $auction)
+                    <div class="bg-white d-flex align-items-center box-shadow-santuy mb-4">
+                        <div class="img-lelang">
+                            <img src="/assets/main/img/unitedemotor_result.webp" alt="" srcset="">
                         </div>
 
-                    </div>
-
-                </div>
-
-                <div class="bg-white d-flex align-items-center box-shadow-santuy">
-                    <div class="img-lelang">
-                        <img src="/assets/main/img/unitedemotor_result.webp" alt="" srcset="">
-                    </div>
-
-                    <div id="titleLelangSaya" class="">
-                        <h5>Beat 2021</h5>
-                        <div class="selesai mt-4">
-                            <p class="text-center">Selesai</p>
-                        </div>
-                    </div>
-
-                    <div id="infoLelangSaya" class="">
-                        <table class="table table-borderless">
-                            <tbody class="">
-                                <tr>
-                                    <td>Batas Pelelangan</td>
-                                    <td>:</td>
-                                    <td>12-11-2022 18:23:11</td>
-                                </tr>
-                                <tr>
-                                    <td>Penawaran Saya</td>
-                                    <td>:</td>
-                                    <td>Rp. 13.113.002</td>
-                                </tr>
-                                <tr>
-                                    <td>Penawaran Tertinggi</td>
-                                    <td>:</td>
-                                    <td>Rp. 13.113.002</td>
-                                </tr>
-                            </tbody>
-                        </table>
-
-                    </div>
-
-                    <div id="btnLelangSaya" class="">
-                        <div class="text-center">
-                            <a href="" class="btn detail my-2">
-                                Detail Kendaraan
-                            </a>
-                            <a href="" class="btn bayar text-light my-2">
-                                Bayar
-                            </a>
+                        <div id="titleLelangSaya" class="">
+                            <h5>{{ $auction->auction->product->nama_product }}</h5>
+                            <div class="selesai mt-4 {{ $auction->auction->status ? 'bg-warning' : 'bg-success' }}">
+                                <p class="text-center">
+                                    {{ $auction->auction->status ? 'BERJALAN' : 'SELESAI' }}</p>
+                            </div>
                         </div>
 
-                    </div>
+                        <div id="infoLelangSaya" class="">
+                            <table class="table table-borderless">
+                                <tbody class="">
+                                    <tr>
+                                        <td>Batas Pelelangan</td>
+                                        <td>:</td>
+                                        <td>{{ $auction->auction->exp_date }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Penawaran Saya</td>
+                                        <td>:</td>
+                                        <td>Rp. {{ isset($auction->offer) ? $auction->offer->offer : 0 }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Penawaran Tertinggi</td>
+                                        <td>:</td>
+                                        <td>Rp. 13.113.002</td>
+                                    </tr>
+                                </tbody>
+                            </table>
 
-                </div>
+                        </div>
+
+                        <div id="btnLelangSaya" class="">
+                            <div class="text-center text-reset text-decoration-none">
+                                <a class="btn detail my-2"
+                                    href="{{ route('lelang.detail', ['param' => $auction->auction->product->product_slug]) }}">
+                                    Detail Kendaraan
+                                </a>
+                                @if ($auction->auction->status)
+                                    <a href="{{ route('lelang.room', ['token' => $auction->auction->token]) }}"
+                                        class="btn bayar text-light my-2">
+                                        Masuk Pelelangan
+                                    </a>
+                                @else
+                                    <a href="" class="btn bayar text-light my-2">
+                                        Bayar
+                                    </a>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
 
             </div>
 

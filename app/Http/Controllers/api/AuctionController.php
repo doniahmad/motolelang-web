@@ -16,7 +16,7 @@ class AuctionController extends Controller
      */
     public function index()
     {
-        $response = Auction::with(['product', 'auctioneer.user'])->get();
+        $response = Auction::with(['product', 'auctioneer.user', 'auctioneer.offer', 'offer.auctioneer'])->get();
         return response()->json($response, 200);
     }
 
@@ -80,7 +80,7 @@ class AuctionController extends Controller
         $data = $request->validate(
             [
                 'exp_data' => 'date', // Warning, ada dua pilihan date_format dan Date
-                'id_product' => 'integer',
+                'id_winner' => 'integer',
                 'status' => 'boolean'
             ]
         );

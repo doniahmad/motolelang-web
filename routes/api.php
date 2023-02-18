@@ -5,10 +5,12 @@ use App\Http\Controllers\api\AuctionController;
 use App\Http\Controllers\api\AuctioneerController;
 use App\Http\Controllers\api\AuthController;
 use App\Http\Controllers\api\CategoryController;
+use App\Http\Controllers\api\InvoiceController;
 use App\Http\Controllers\api\OfferController;
 use App\Http\Controllers\api\PaymentController;
 use App\Http\Controllers\api\ProductController;
 use App\Http\Controllers\api\UserController;
+use App\Models\Invoice;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,13 +28,14 @@ Route::group(['middleware' => ['auth:sanctum', 'role:customer']], function () {
     Route::get('/user', [UserController::class, 'user']);
     Route::put('/user/update', [UserController::class, 'update']);
     Route::post('/logout', [AuthController::class, 'logout']);
-    Route::apiResource('offer', OfferController::class);
 });
+Route::get('/my-invoice', [InvoiceController::class, 'userInvoice']);
 
 Route::group(['middleware' => ['auth:sanctum', 'role:admin']], function () {
     Route::apiResource('admin', AdminController::class)->except('store');
 });
 
+Route::apiResource('offer', OfferController::class);
 Route::apiResource('admin', AdminController::class)->only('store');
 Route::get('/users', [UserController::class, 'users']);
 Route::get('/customers', [UserController::class, 'customers']);
@@ -44,4 +47,4 @@ Route::apiResource('auctioneer', AuctioneerController::class);
 Route::apiResource('product', ProductController::class)->parameters(['product' => 'product:product_slug']);
 Route::get('/product-gallery', [ProductController::class, 'productPaginate8']);
 Route::apiResource('category', CategoryController::class)->except('update');
-Route::apiResource('payment', PaymentController::class);
+Route::apiResource('invoice', InvoiceController::class)->parameters(['invoice' => 'invoice:kode_pembayaran']);

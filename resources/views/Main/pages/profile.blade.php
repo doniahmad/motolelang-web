@@ -55,13 +55,6 @@
                                     {{ isset($user->address) ? $user->address : 'Kosong' }}
                                 </td>
                             </tr>
-                            <tr>
-                                <td>Role</td>
-                                <td>:</td>
-                                <td id="table-border" class="border2">
-                                    {{ isset($user->roles) ? $user->roles : 'Kosong' }}
-                                </td>
-                            </tr>
                         </tbody>
                     </table>
                 </div>

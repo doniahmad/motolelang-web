@@ -1,6 +1,8 @@
 @extends('Main.layouts.master')
 @section('title', 'Lelang Saya')
 
+{{-- @dd($data) --}}
+
 <div id="pembayaran" class="konten-2">
     <div class="container">
         <div class="d-flex align-items-center">
@@ -31,40 +33,56 @@
         </div>
 
         <div id="kontenPembayaran" class="row">
-            <div class="col-7">
-                <div id="titlePembayaran" class="container d-flex align-items-center">
-                    <div class="form-check ">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                    </div>
-                    <div id="kontenTitlePembayaran" class="bg-white d-flex align-items-center box-shadow-santuy">
-                        <div class="img-lelang">
-                            <img src="/assets/main/img/unitedemotor_result.webp" alt="" srcset="">
-                        </div>
-                        <div id="infoPembayaran" class="">
-                            <table class="table table-borderless">
-                                <tbody class="">
-                                    <tr>
-                                        <td>Batas Pelelangan</td>
-                                        <td>:</td>
-                                        <td>12-11-2022 18:23:11</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Penawaran Saya</td>
-                                        <td>:</td>
-                                        <td>Rp. 13.113.002</td>
-                                    </tr>
-                                    <tr>
+            <div class="">
+                @isset($data)
+
+                    @foreach ($data as $invoice)
+                        <div class="container d-flex align-items-center">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            </div>
+                            <div id="kontenTitlePembayaran" class="bg-white d-flex align-items-center box-shadow-santuy">
+                                <div class="img-lelang">
+                                    <img src="{{ asset('storage/image/product/' . $invoice->auctioneer->auction->product->img_url) }}"
+                                        alt="" srcset="">
+                                </div>
+                                <div id="infoPembayaran" class="">
+                                    <table class="table table-borderless">
+                                        <tbody class="">
+                                            <tr>
+                                                <td>Tanggal Pemutusan</td>
+                                                <td>:</td>
+                                                <td>{{ $invoice->auctioneer->auction->exp_date }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Tagihan</td>
+                                                <td>:</td>
+                                                <td>Rp. {{ $invoice->invoice }}</td>
+                                            </tr>
+                                            <tr>
+                                                <b>{{ $invoice->auctioneer->auction->product->nama_product }}</b>
+                                            </tr>
+                                            {{-- <tr>
                                         <td>Penawaran Tertinggi</td>
                                         <td>:</td>
-                                        <td>Rp. 13.113.002</td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                                        <td>Rp. {{ $invoice-> }}</td>
+                                    </tr> --}}
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="ms-auto mx-5">
+                                    <button class="btn-for-modal btn btn-primary " id="btn-for-payment-modal"
+                                        data-bs-toggle="modal" data-bs-target="#modalPembayaran"
+                                        data-kode="{{ $invoice->kode_pembayaran }}">
+                                        Bayar
+                                    </button>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
+                    @endforeach
+                @endisset
             </div>
-            <div class="col-5">
+            {{-- <div class="col-5">
                 <div id="tagihan" class="">
                     <div class="bg-white box-shadow-santuy">
                         <div class="p-4">
@@ -105,9 +123,15 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
 </div>
 </div>
-@include('main.modal.modalPembayaran')
+@isset($data)
+    @include('main.modal.modalPembayaran')
+@endisset
+
+@push('scripts')
+    <script type="text/javascript" src="/assets/main/js/valueModal.js"></script>
+@endpush

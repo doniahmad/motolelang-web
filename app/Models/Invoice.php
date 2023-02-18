@@ -5,17 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Offer extends Model
+class Invoice extends Model
 {
     use HasFactory;
 
-    protected $guarded = ['offer_id'];
-    protected $primaryKey = "offer_id";
-
-    public function auction()
-    {
-        return $this->belongsTo(Auction::class, "id_auction");
-    }
+    protected $primaryKey = "invoice_id";
+    protected $guarded = ["invoice_id"];
 
     public function auctioneer()
     {

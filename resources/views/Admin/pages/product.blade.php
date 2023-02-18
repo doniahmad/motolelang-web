@@ -52,7 +52,7 @@
                                     <td>
                                         @if ($product->auction)
                                             <a
-                                                href="{{ route('dashboard.editProduct', ['param' => $product->product_id]) }}">
+                                                href="{{ route('dashboard.editProduct', ['param' => $product->product_slug]) }}">
                                                 <button type="button" class="btn btn-primary">
                                                     <i class="fa-solid fa-gear"></i>
                                                 </button>

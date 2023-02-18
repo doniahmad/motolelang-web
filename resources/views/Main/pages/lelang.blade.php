@@ -1,6 +1,10 @@
 @extends('Main.layouts.master')
 @section('title', 'Galeri Lelang')
 
+@php
+    $startedAuction = array_filter($data, fn($product) => $product->status === 1);
+@endphp
+
 <div id="lelang" class="konten-2">
     <div class="px-5">
         <div class="row">
@@ -16,7 +20,7 @@
                 <div class="container">
                     <div class="mt-5 d-flex justify-content-between">
                         <div class="row" style="border: none">
-                            @foreach ($data as $product)
+                            @foreach ($startedAuction as $product)
                                 <div class="card col-3 mt-4 justify-content-center" style="border:none;">
                                     <div class="card">
                                         <a class="text-reset text-decoration-none"
