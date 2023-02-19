@@ -16,6 +16,7 @@
     {{-- <link rel="stylesheet" type="text/css" href="{!! '/assets/main/css/navbarLogin.css' !!}"> --}}
     <link rel="stylesheet" type="text/css" href="{!! '/assets/main/css/detailSlider.css' !!}">
     <link rel="stylesheet" type="text/css" href="{!! '/assets/main/css/modal.css' !!}">
+    <link rel="stylesheet" type="text/css" href="{!! '/assets/main/css/alert.css' !!}">
 
 
 
@@ -28,6 +29,81 @@
         integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous">
     </script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script type="text/javascript">
+        // alert pembayaran sukses
+        $(function() {
+            $(document).on('click', '#suksesPembayaran', function(e) {
+                e.preventDefault();
+                var link = $(this).attr("href");
+
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Bukti berhasil dikirimkan',
+                    text: 'Silahkan menunggu sampai bukti di konfirmasi oleh admin',
+                })
+            })
+        });
+
+        // alert logout
+        $(function() {
+            $(document).on('click', '#', function(e) {
+                e.preventDefault();
+                var link = $(this).attr("href");
+
+                Swal.fire({
+                    title: 'Yakin ingin keluar ?',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#23EC1E',
+                    cancelButtonColor: '#E11A22',
+                    confirmButtonText: 'Ya',
+                    cancelButtonText: "Tidak",
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Keluar',
+                            text: 'Anda Telah Keluar',
+                            confirmButtonColor: '#23EC1E',
+                        })
+                    }
+                })
+            })
+        });
+
+        // alert pemasangan penawaran berhasil
+        $(function() {
+            $(document).on('click', '#', function(e) {
+                e.preventDefault();
+                var link = $(this).attr("href");
+
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Pemasangan penawaran berhasil.',
+
+                })
+            })
+        });
+
+        // alert perlu login
+        $(function() {
+            $(document).on('click', '#', function(e) {
+                e.preventDefault();
+                var link = $(this).attr("href");
+
+                Swal.fire({
+                    position: 'center',
+                    icon: 'error',
+                    title: 'Anda perlu login untuk dapat melakukan pelelangan',
+                })
+            })
+        });
+    </script>
 
     <title>@yield('title')</title>
 </head>

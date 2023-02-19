@@ -5,7 +5,7 @@
             <div class="modal-content p-5">
                 <h5>Masukkan Username</h5>
                 <div class="form-group">
-                    <label for="inputUsername">Jangan menggunakan nama asli untuk mentimpan privasi anda</label>
+                    <label for="inputUsername">Jangan menggunakan nama asli untuk menyimpan privasi anda</label>
                     <input type="text" name="nama_samaran" required class="form-control" id="inputUsername"
                         aria-describedby="inputUsername" placeholder="">
                 </div>

@@ -1,42 +1,40 @@
-#filterLelang {
-    border-radius: 10px;
-    height: 80vh;
+#btnUrutkan h6 {
+    font-size: 16px;
 }
 
-#filterLelang #dropdownUrutkan .btn {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-#filterLelang #dropdownUrutkan .dropdown-menu {
-    width: 100%;
+#btnUrutkan h5 {
+    font-size: 18px;
+    font-weight: 600;
     padding: 0;
     margin: 0;
-    border: none;
 }
 
-#filterLelang #dropdownCheckbox .btn {
-    width: 100%;
+#urutkan {
+    border: 1px solid #C2C2C2;
+    border-radius: 5px;
+    font-size: 16px;
 }
 
-#filterLelang #dropdownCheckbox .btn-filter-toggle {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-#filterLelang #dropdownCheckbox .dropdown-menu {
-    width: 100%;
-    padding: 0;
-    margin: 0;
-    border: none;
-}
-
-#filterLelang #dropdownCheckbox .terapkan {
+#btnFilter .terapkan {
     background-color: #3B85F2;
     border: 1px solid #3B85F2;
-    text-align: center;
+}
+
+#btnFilter h5 {
+    font-size: 18px;
+    font-weight: 600;
+    padding: 0;
+    margin: 0;
+}
+
+#btnFilter h6 {
+    font-size: 16px;
+}
+
+#btnFilter .btn {
+    width: 100%;
+}
+
+#btnFilter #filterHarga .btn {
+    width: 100%;
 }

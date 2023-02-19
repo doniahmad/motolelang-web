@@ -39,7 +39,7 @@
                                                 <i class="fa-solid fa-circle-info"></i>
                                             </button>
                                         </a>
-                                        <button type="button" class="btn btn-danger">
+                                        <button id="banned" type="button" class="btn btn-danger">
                                             <i class="fa-solid fa-ban"></i>
                                         </button>
 

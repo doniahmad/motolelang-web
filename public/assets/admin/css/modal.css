@@ -1,0 +1,31 @@
+/* Modal Alasan */
+
+#modalAlasan .btn {
+    width: 120px;
+}
+
+#modalAlasan .myModal {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    display: table;
+}
+
+#modalAlasan h5 {
+    font-weight: bold;
+}
+
+#modalAlasan .form-group {
+    width: 600px;
+}
+
+#modalAlasan .form-control {
+    border: none;
+}
+
+#modalAlasan .form-group input {
+    border-bottom: 1px solid black;
+}

@@ -53,13 +53,13 @@
                                         @if ($product->auction)
                                             <a
                                                 href="{{ route('dashboard.editProduct', ['param' => $product->product_slug]) }}">
-                                                <button type="button" class="btn btn-primary">
+                                                <button id="btnEdit" type="button" class="btn btn-primary">
                                                     <i class="fa-solid fa-gear"></i>
                                                 </button>
                                             </a>
                                             <a
                                                 href="{{ route('dashboard.deleteProduct', ['param' => $product->product_slug]) }}">
-                                                <button type="button" class="btn btn-danger">
+                                                <button id="btnHapus" type="button" class="btn btn-danger">
                                                     <i class="fa-solid fa-trash"></i>
                                                 </button>
                                             </a>
@@ -77,13 +77,13 @@
                                             </button>
                                             <a
                                                 href="{{ route('dashboard.editProduct', ['param' => $product->product_slug]) }}">
-                                                <button type="button" class="btn btn-primary">
+                                                <button id="btnEdit" type="button" class="btn btn-primary">
                                                     <i class="fa-solid fa-gear"></i>
                                                 </button>
                                             </a>
                                             <a
                                                 href="{{ route('dashboard.deleteProduct', ['param' => $product->product_slug]) }}">
-                                                <button type="button" class="btn btn-danger">
+                                                <button id="btnHapus" type="button" class="btn btn-danger">
                                                     <i class="fa-solid fa-trash"></i>
                                                 </button>
                                             </a>

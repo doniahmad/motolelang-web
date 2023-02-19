@@ -39,7 +39,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary ps-4">Kirim <span><i
+                    <button id="suksesPembayaran" type="submit" class="btn btn-primary ps-4">Kirim <span><i
                                 class="fa fa-chevron-right ps-4"></i></span></button>
                 </div>
             </div>

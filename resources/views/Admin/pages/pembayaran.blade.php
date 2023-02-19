@@ -38,7 +38,8 @@
                                         <button type="button" class="btn btn-primary">
                                             <i class="fa-solid fa-check"></i>
                                         </button>
-                                        <button type="button" class="btn btn-danger">
+                                        <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                            data-bs-target="#modalAlasan">
                                             <i class="fa-solid fa-x"></i>
                                         </button>
 
@@ -52,3 +53,5 @@
         </div>
     </div>
 </div>
+
+@include('admin.modal.modalAlasan')

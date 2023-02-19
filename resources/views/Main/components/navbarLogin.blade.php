@@ -11,19 +11,19 @@
 
         <div class="collapse navbar-collapse" id="navbarLogin">
             <ul class="navbar-nav ms-auto align-items-center">
-                <li class="nav-item">
+                <li class="nav-item pe-3">
                     <a class="nav-link {{ request()->is('/') ? 'active' : '' }}"
                         href="{{ route('home.index') }}">Home</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item pe-3">
                     <a class="nav-link {{ request()->is('lelang*') ? 'active' : '' }}"
                         href="{{ route('lelang.index') }}">Lelang</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item pe-3">
                     <a class="nav-link {{ request()->is('about') ? 'active' : '' }}"
                         href="{{ route('about.index') }}">About Us</a>
                 </li>
-                <li id="iconBell" class="nav-item text-light">
+                <li id="iconBell" class="nav-item text-light pe-4">
                     <div class="dropdown">
                         <a class="text-decoration-none text-reset" href="#" id="notification" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
