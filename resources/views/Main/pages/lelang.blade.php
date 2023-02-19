@@ -18,38 +18,37 @@
                     <hr style="border: 1px solid black">
                 </div>
                 <div class="container">
-                    <div class="mt-5 d-flex justify-content-between">
-                        <div class="row" style="border: none">
-                            @foreach ($startedAuction as $product)
-                                <div class="card col-3 mt-4 justify-content-center" style="border:none;">
-                                    <div class="card">
-                                        <a class="text-reset text-decoration-none"
-                                            href="{{ route('lelang.detail', $product->product->product_slug) }}">
-                                            <div class="">
+                    <div class="row" style="border: none; height:auto;">
+                        @foreach ($startedAuction as $product)
+                            <div class="col-3 mt-4" style="border:none;">
+                                <div class="col-lelang card">
+                                    <a class="text-reset text-decoration-none"
+                                        href="{{ route('lelang.detail', $product->product->product_slug) }}">
+                                        <div class="card-container">
+                                            <div class="img-card-lelang">
+                                                <img src="{{ asset('storage/image/product/' . $product->product->img_url) }}"
+                                                    alt="{{ $product->product->nama_product }}" width="100%"
+                                                    srcset="">
+                                            </div>
+                                            <div class="card-lelang">
                                                 <div class="">
-                                                    <img src="{{ asset('storage/image/product/' . $product->product->img_url) }}"
-                                                        alt="United-e-motor" width="100%" srcset="">
+                                                    <h6>{{ $product->product->nama_product }}</h6>
                                                 </div>
-                                                <div class="card-body">
-                                                    <div class="">
-                                                        <h6>{{ $product->product->nama_product }}</h6>
-                                                    </div>
-                                                    <div class="d-flex pt-2 align-items-center">
-                                                        <h6 class="my-auto">Rp. {{ $product->product->harga_awal }}</h6>
-                                                        <div class="ms-auto ">
-                                                            <i class="fa-regular fa-clock"></i>
-                                                            <span>10 Hari</span>
-                                                        </div>
+                                                <div class="card-lelang-bot d-flex ">
+                                                    <h6 class="my-auto">Rp. {{ $product->product->harga_awal }}</h6>
+                                                    <div class="ms-auto ">
+                                                        <i class="fa-regular fa-clock"></i>
+                                                        <span>10 Hari</span>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </a>
-                                    </div>
+                                        </div>
+                                    </a>
                                 </div>
-                            @endforeach
-                        </div>
-
+                            </div>
+                        @endforeach
                     </div>
+
                 </div>
 
                 {{-- <div class="container mt-5">

@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('invoices', function (Blueprint $table) {
             $table->id('invoice_id');
             $table->unsignedBigInteger("id_auctioneer");
-            $table->foreign("id_auctioneer")->references("auctioneer_id")->on("auctioneers")->onUpdate("cascade");
+            $table->foreign("id_auctioneer")->references("auctioneer_id")->on("auctioneers")->onUpdate("cascade")->onDelete('cascade');
             $table->integer("invoice");
             $table->string("kode_pembayaran");
             $table->string("bukti_pembayaran")->nullable();

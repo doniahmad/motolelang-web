@@ -1,6 +1,6 @@
 <form method="POST" action="{{ route('invoice.bayar') }}" enctype="multipart/form-data">
     @csrf
-    <div id="modalPembayaran" class="modal" tabindex="-1">
+    <div id="modalPembayaran" class="modal">
         <div class="modal-dialog modal-lg">
             <div class="modal-content p-3">
                 <div class="modal-header">
@@ -32,7 +32,8 @@
                             <input type="text" name="status" value="menunggu_persetujuan" hidden>
                             <div class="input-group">
                                 <i class="input-group-btn">
-                                    <input type="file" class="btn btn-primary-outlined" onchange="loadFile(event)">
+                                    <input type="file" class="btn btn-primary-outlined" name="bukti_pembayaran"
+                                        onchange="loadFile(event)">
                                 </i>
                             </div>
                         </div>

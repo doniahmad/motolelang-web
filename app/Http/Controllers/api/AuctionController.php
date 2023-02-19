@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Auction;
 use Illuminate\Http\Request;
 use Illuminate\Notifications\Action;
+use Illuminate\Support\Facades\Storage;
 
 class AuctionController extends Controller
 {
@@ -64,7 +65,7 @@ class AuctionController extends Controller
      */
     public function show(Auction $auction)
     {
-        $data = $auction->load(['product', 'auctioneer.user', 'auctioneer.offer', 'auctioneer.invoice',]);
+        $data = $auction->load(['product', 'auctioneer.user', 'auctioneer.offer', 'auctioneer.invoice', 'offer.auctioneer']);
         return response()->json($data);
     }
 

@@ -1,6 +1,6 @@
 <form method="POST" action="{{ route('dashboard.setAuction') }}">
     @csrf
-    <div id="modalPublish" class="modal" tabindex="-1">
+    <div id="modalPublish" class="modal">
         <div class="modal-dialog myModal modal-xl">
             <div class="modal-content p-5">
                 <h5>Mulai Pelelangan</h5>
@@ -47,7 +47,7 @@
                         <input name="exp_date" type="datetime-local" class="custom-input form-control" id="exp_date"
                             placeholder="Masukkan Batas Waktu Pelelangan" required>
                     </div>
-                    <input name="id_product" type="text" class="custom-input form-control" id="id_product" hidden>
+                    <input name="id_product" type="text" id="id-product" hidden>
                 </div>
                 <button type="submit" class="btn btn-primary mt-3">
                     Publish

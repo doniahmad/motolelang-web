@@ -33,13 +33,8 @@ class Product extends Model
         return $this->hasMany(Offer::class, 'offer_id');
     }
 
-    public function payment()
-    {
-        return $this->hasOne(Payment::class, 'id_product');
-    }
-
     public function auction()
     {
-        return $this->hasOne(Auction::class, 'auction_id');
+        return $this->hasOne(Auction::class, 'id_product');
     }
 }

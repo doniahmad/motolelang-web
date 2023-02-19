@@ -53,11 +53,10 @@
 
 #input-product .imgShowcase {
     margin-top: 20px;
-    height: 100%;
+    width: 45%;
 }
 
 #input-product .imgShowcase img {
-    width: 45%;
     margin: 10px;
 }
 

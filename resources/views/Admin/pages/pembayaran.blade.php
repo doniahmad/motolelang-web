@@ -34,14 +34,24 @@
                                     <td>{{ isset($invoice->bukti_pembayaran) ? 'Iya' : 'Belum Ada' }}</td>
                                     <td>{{ isset($invoice->bukti_pembayaran) ? 'Iya' : 'Belum Ada' }}</td>
                                     <td><label class="badge bg-warning">{{ $invoice->status }}</label></td>
-                                    <td>
-                                        <button type="button" class="btn btn-primary">
-                                            <i class="fa-solid fa-check"></i>
-                                        </button>
-                                        <button type="button" class="btn btn-danger">
-                                            <i class="fa-solid fa-x"></i>
-                                        </button>
-
+                                    <td class="d-flex">
+                                        @if ($invoice->status == 'menunggu_persetujuan')
+                                            <div>
+                                                <button type="button" class="btn btn-primary">
+                                                    <i class="fa-solid fa-check"></i>
+                                                </button>
+                                            </div>
+                                            <form action="{{ route('dashboard.rejectInvoice') }}" method="POST">
+                                                @csrf
+                                                <input type="text" name="kode_pembayaran"
+                                                    value="{{ $invoice->kode_pembayaran }}" hidden>
+                                                <input type="text" name="status" value="ditolak" hidden>
+                                                <input type="text" name="alasan_penolakan" value="Belum Ada" hidden>
+                                                <button type="submit" class="btn btn-danger">
+                                                    <i class="fa-solid fa-x"></i>
+                                                </button>
+                                            </form>
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach

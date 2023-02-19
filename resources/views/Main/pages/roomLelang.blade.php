@@ -2,13 +2,16 @@
 @section('title', 'Ruang Lelang')
 
 @php
-    
+
     $checkIfMemberAuction = array_filter($data->auctioneer, function ($auctioneer) {
         return $auctioneer->id_user == auth()->user()->user_id;
     });
-    
+
+    $bestOffer = collect($data->offer)->sortByDesc('offer');
+
     $currentAuctioneer = current($checkIfMemberAuction);
-    
+
+    $i = 1;
 @endphp
 
 <div id="roomLelang" class="konten-2">
@@ -40,11 +43,11 @@
                     <div id="tableTopPenawar" class="px-4 py-2">
                         <table class="table table-borderless">
                             <tbody class="">
-                                @foreach ($data->auctioneer as $index => $auctioneer)
+                                @foreach ($bestOffer as $index => $auctioneer)
                                     <tr>
-                                        <td>{{ $index + 1 }}.</td>
-                                        <td>{{ $auctioneer->nama_samaran }}</td>
-                                        <td>Rp. {{ $auctioneer->offer ? $auctioneer->offer->offer : 0 }}</td>
+                                        <td>{{ $i++ }}.</td>
+                                        <td>{{ $auctioneer->auctioneer->nama_samaran }}</td>
+                                        <td>Rp. {{ $auctioneer->offer ? $auctioneer->offer : 0 }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>

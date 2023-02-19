@@ -15,7 +15,9 @@
 <div id="detailLelang" class="konten-2">
     <div class="container">
         <div class="d-flex align-items-center">
-            <span style="height: fit-content"><i class="fa fa-arrow-left fa-lg"></i></span>
+            <a href="{{ url()->previous() }}" class="text-dark">
+                <span style="height: fit-content"><i class="fa fa-arrow-left fa-lg"></i></span>
+            </a>
             <h4 class="ps-3 my-auto">{{ $data->nama_product }}</h4>
         </div>
     </div>
@@ -73,8 +75,13 @@
                             </tbody>
                         </table>
                         @if (!count($checkIfMemberAuction))
-                            <button type="button" class="btn btn-pelelangan bg-color-primer text-light mt-3"
-                                data-bs-toggle="modal" data-bs-target="#modalInputUsername">Ikut Lelang</button>
+                            @if (auth()->check())
+                                <button type="button" class="btn btn-pelelangan bg-color-primer text-light mt-3"
+                                    data-bs-toggle="modal" data-bs-target="#modalInputUsername">Ikut Lelang</button>
+                            @else
+                                <a href="{{ route('login.index') }}"
+                                    class="btn btn-pelelangan bg-color-primer text-light mt-3">Ikut Lelang</a>
+                            @endif
                         @else
                             <a href="{{ route('lelang.room', ['token' => $data->auction->token]) }}"
                                 class="btn btn-pelelangan bg-color-primer text-light mt-3">Masuk

@@ -159,5 +159,6 @@ Route::group(['prefix' => 'dashboard'], function () {
             $data = ViewController::getInvoices();
             return view(adminPages('pembayaran'), compact('data'));
         })->name('dashboard.pembayaran');
+        Route::post('/reject', [ViewController::class, 'rejectInvoice'])->name('dashboard.rejectInvoice');
     });
 });

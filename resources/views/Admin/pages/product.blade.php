@@ -102,5 +102,18 @@
 
 @include('Admin.modal.modalPublish')
 @push('scripts')
-    <script type="text/javascript" src="/assets/admin/js/valueModal.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $(".btn-for-modal").click(function() {
+                $("#id-product").val($(this).attr("data-id"));
+                $("#name-product-value").text($(this).attr("data-name"));
+                $("#merk-value").text($(this).attr("data-merk"));
+                $("#bahan-bakar-value").text($(this).attr("data-bahan-bakar"));
+                $("#jenis-value").text($(this).attr("data-jenis"));
+                $("#warna-value").text($(this).attr("data-warna"));
+                // $("#form-publish").attr("action",
+                //     {{ route('dashboard.setAuction', ['id' => $product->product_id]) }});
+            });
+        });
+    </script>
 @endpush

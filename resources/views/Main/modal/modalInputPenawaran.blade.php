@@ -8,8 +8,8 @@
                     <label>Penawaran Tidak Boleh Lebih Kecil Atau Sama Dengan Harga Tertinggi Yang
                         Terbaru</label>
                     @if (isset($currentAuctioneer->offer->offer))
-                        <input type="number" required class="form-control" name="offer" id="inputPenawaran"
-                            aria-describedby="inputPenawaran" placeholder="">
+                        <input type="number" min="{{ $data->product->harga_awal }}" required class="form-control"
+                            name="offer" id="inputPenawaran" aria-describedby="inputPenawaran" placeholder="">
                         <input type="text" hidden name="current_offer_id"
                             value="{{ $currentAuctioneer->offer->offer_id }}">
                         <input type="text" hidden name="new_offer" value="1">

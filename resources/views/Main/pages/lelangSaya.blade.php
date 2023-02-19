@@ -47,7 +47,8 @@
                 @foreach ($data->auctioneer as $auction)
                     <div class="bg-white d-flex align-items-center box-shadow-santuy mb-4">
                         <div class="img-lelang">
-                            <img src="/assets/main/img/unitedemotor_result.webp" alt="" srcset="">
+                            <img src="{{ asset('storage/image/product/' . $auction->auction->product->img_url) }}"
+                                alt="" srcset="">
                         </div>
 
                         <div id="titleLelangSaya" class="">

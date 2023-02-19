@@ -158,6 +158,7 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         try {
+            Storage::delete('images/product/' . $product->img_url);
             $product->delete();
             return response()->json([
                 'success' => true,

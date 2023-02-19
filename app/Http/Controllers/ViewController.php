@@ -249,11 +249,21 @@ class ViewController extends Controller
     public static function payInvoice(HttpRequest $param)
     {
         $dataReq = [
-            'bukti_pembayaran' => $param->bukti_pembayaran,
             '_method' => 'PUT'
         ];
 
         $request = Request::create('api/invoice/' . $param->kode_pembayaran, 'POST', $dataReq);
+        $response = Route::dispatch($request);
+        dd($response);
+    }
+
+    public function rejectInvoice(HttpRequest $data)
+    {
+        $dataReq = [
+            '_method' => 'PUT'
+        ];
+
+        $request = Request::create('api/invoice/' . $data->kode_pembayaran, 'POST', $dataReq);
         $response = Route::dispatch($request);
         dd($response);
     }
