@@ -5,7 +5,7 @@
             <div class="modal-content p-5">
                 <h5>Masukkan Username</h5>
                 <div class="form-group">
-                    <label for="inputUsername">Jangan menggunakan nama asli untuk mentimpan privasi anda</label>
+                    <label for="inputUsername">Jangan menggunakan nama asli untuk menyimpan privasi anda</label>
                     <input type="text" name="nama_samaran" required class="form-control" id="inputUsername"
                         aria-describedby="inputUsername" placeholder="">
                 </div>
@@ -13,10 +13,13 @@
                     value="{{ $data->auction->token }}">
                 <input type="text" name="id_auction" id="id_auction" hidden value="{{ $data->auction->auction_id }}">
                 <input type="text" name="id_user" id="id_user" hidden value="{{ auth()->id() }}">
-                <button type="submit" class="btn btn-primary mt-3">
+                <button type="submit" class="btn btn-primary mt-3" data-bs-toggle="modal"
+                    data-bs-target="#alertPenawaranBerhasil">
                     Kirim
                 </button>
             </div>
         </div>
     </div>
 </form>
+
+@include('main.modal.alertPenawaranBerhasil')

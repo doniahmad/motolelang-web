@@ -79,8 +79,8 @@
                                 <button type="button" class="btn btn-pelelangan bg-color-primer text-light mt-3"
                                     data-bs-toggle="modal" data-bs-target="#modalInputUsername">Ikut Lelang</button>
                             @else
-                                <a href="{{ route('login.index') }}"
-                                    class="btn btn-pelelangan bg-color-primer text-light mt-3">Ikut Lelang</a>
+                                <button type="button" class="btn btn-pelelangan bg-color-primer text-light mt-3"
+                                    data-bs-toggle="modal" data-bs-target="#alertBeforeLogin">Ikut Lelang</button>
                             @endif
                         @else
                             <a href="{{ route('lelang.room', ['token' => $data->auction->token]) }}"
@@ -215,11 +215,7 @@
 
             <div class="px-5 pb-5">
                 <h6 class="color-primer mb-0 mt-3 py-2">DESKRIPSI KENDARAAN</h6>
-                <p>United T1800 menggunakan tenaga dari penggerak motor listrik BOSCH 60V1800W dengan rated speed 620
-                    rpm,
-                    torsi 27 Nm dan tenaga 1.800 W. Kapasitas baterai Lithium yang digunakan adalah 60V 28Ah yang dalam
-                    kondisi penuh 100% dapat mencapai kecepatan maksimum 70 km/jam dan jarak tempuh hingga 60 km dengan
-                    kecepatan rata-rata pada 50- 60 km/jam pada mode kecepatan normal.</p>
+                <p>{{ $data->deskripsi }}</p>
             </div>
 
 
@@ -231,3 +227,4 @@
 </div>
 
 @include('main.modal.modalInputUsername')
+@include('main.modal.alertBeforeLogin')

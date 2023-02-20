@@ -18,7 +18,7 @@
     <div class="container">
         <div class="d-flex align-items-center">
             <span style="height: fit-content"><i class="fa fa-arrow-left fa-lg"></i></span>
-            <h4 class="ps-3 my-auto">Pelelangan United E-Motor T1800</h4>
+            <h4 class="ps-3 my-auto">Pelelangan {{ $data->product->nama_product }}</h4>
         </div>
 
         <div class="my-4">

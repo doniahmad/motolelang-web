@@ -25,7 +25,7 @@
                 </p>
                 {{-- <button type="button" class="btn-ikut">Ikut Lelang <span class="ms-1"><i
                                 class="fa-solid fa-arrow-right"></i></span></button> --}}
-                <a href="about" class="btn-ikut text-decoration-none">Info Lengkap <span class="ms-1"><i
+                <a href="about" class="btn-ikut text-decoration-none">Info Lengkap <span class="ms-auto"><i
                             class="fa-solid fa-arrow-right"></i></span></a>
             </div>
         </div>

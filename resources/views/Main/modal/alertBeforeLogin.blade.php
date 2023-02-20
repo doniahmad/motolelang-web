@@ -1,4 +1,4 @@
-<div id="alertBeforeLogin" class="modal" tabindex="-1">
+<div id="alertBeforeLogin" class="modal">
     <div class="modal-dialog myModal modal-lg">
         <div class="modal-content">
             <div class="d-block text-center">
@@ -8,9 +8,9 @@
                 <h6>Anda Perlu Login Untuk dapat Mengikuti Pelelangan
                 </h6>
             </div>
-            <button type="button" class="btn btn-primary ms-auto">
+            <a href="{{ route('login.index') }}" type="button" class="btn btn-primary ms-auto">
                 Login
-            </button>
+            </a>
         </div>
     </div>
 </div>

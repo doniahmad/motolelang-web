@@ -1,6 +1,10 @@
 @extends('Main.layouts.master')
 @section('title', 'Edit Profil')
 
+@php
+    $user = auth()->user();
+@endphp
+
 <div id="editProfil" class="konten-2">
     <form action="">
         <div class="container border bg-white">
@@ -38,27 +42,31 @@
                                     <td>Nama</td>
                                     <td>:</td>
                                     <td class=""><input type="text" class="form-control" id="inputNama"
-                                            aria-describedby="inputNama" placeholder="Masukkan Nama Anda"></td>
+                                            aria-describedby="inputNama" placeholder="Masukkan Nama Anda"
+                                            value="{{ $user->name }}"></td>
                                 </tr>
                                 <tr>
                                     <td>No. Handphone</td>
                                     <td>:</td>
                                     <td class=""><input type="number" class="form-control" id="inputNoHp"
-                                            aria-describedby="inputNoHp" placeholder="Masukkan Nomor Handphone">
+                                            aria-describedby="inputNoHp" placeholder="Masukkan Nomor Handphone"
+                                            value="{{ $user->handphone }}">
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>Tempat Lahir</td>
                                     <td>:</td>
                                     <td class=""><input type="text" class="form-control" id="inputTempatLahir"
-                                            aria-describedby="inputTempatLahir" placeholder="Masukkan Tempat Lahir">
+                                            aria-describedby="inputTempatLahir" placeholder="Masukkan Tempat Lahir"
+                                            value="{{ $user->birth_place }}">
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>Tanggal Lahir</td>
                                     <td>:</td>
                                     <td class=""><input type="text" class="form-control" id="inputTanggalLahir"
-                                            aria-describedby="inputTanggalLahir" placeholder="Masukkan Tanggal Lahir">
+                                            aria-describedby="inputTanggalLahir" placeholder="Masukkan Tanggal Lahir"
+                                            value="{{ $user->birth_Date }}">
                                     </td>
                                 </tr>
                                 <tr>
@@ -68,8 +76,8 @@
                                             aria-label="Default select example">
                                             <option selected>Pilih Jenis Kelamin
                                             </option>
-                                            <option value="1">Laki-laki</option>
-                                            <option value="2">Perempuan</option>
+                                            <option value="laki-laki">Laki-laki</option>
+                                            <option value="perempuan">Perempuan</option>
                                         </select>
                                     </td>
                                 </tr>
@@ -77,22 +85,23 @@
                                     <td>Alamat</td>
                                     <td>:</td>
                                     <td class=""><input type="text" class="form-control" id="inputAlamat"
-                                            aria-describedby="inputTanggalLahir" placeholder="Masukkan Alamat">
+                                            aria-describedby="inputTanggalLahir" placeholder="Masukkan Alamat"
+                                            value="{{ $user->address }}">
                                     </td>
                                 </tr>
-                                <tr>
+                                {{-- <tr>
                                     <td>Pekerjaan</td>
                                     <td>:</td>
                                     <td class=""><input type="text" class="form-control" id="inputPekerjaan"
                                             aria-describedby="inputPekerjaan" placeholder="Masukkan Pekerjaan">
                                     </td>
-                                </tr>
+                                </tr> --}}
                             </tbody>
                         </table>
                     </div>
                 </div>
                 <div class="d-flex">
-                    <a id="btnAturProfil" href="#" class="text-decoration-none ms-auto">Simpan</a>
+                    <button type="submit" id="btnAturProfil" class="text-decoration-none ms-auto">Simpan</button>
                 </div>
             </div>
         </div>

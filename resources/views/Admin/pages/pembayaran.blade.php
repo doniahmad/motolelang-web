@@ -41,16 +41,12 @@
                                                     <i class="fa-solid fa-check"></i>
                                                 </button>
                                             </div>
-                                            <form action="{{ route('dashboard.rejectInvoice') }}" method="POST">
-                                                @csrf
-                                                <input type="text" name="kode_pembayaran"
-                                                    value="{{ $invoice->kode_pembayaran }}" hidden>
-                                                <input type="text" name="status" value="ditolak" hidden>
-                                                <input type="text" name="alasan_penolakan" value="Belum Ada" hidden>
-                                                <button type="submit" class="btn btn-danger">
-                                                    <i class="fa-solid fa-x"></i>
-                                                </button>
-                                            </form>
+
+                                            <button type="submit" class="btn btn-danger btn-modal-alasan"
+                                                data-bs-toggle="modal" data-bs-target="#modalAlasan"
+                                                data-kode="{{ $invoice->kode_pembayaran }}">
+                                                <i class="fa-solid fa-x"></i>
+                                            </button>
                                         @endif
                                     </td>
                                 </tr>
@@ -62,3 +58,15 @@
         </div>
     </div>
 </div>
+
+@include('admin.modal.modalAlasan')
+
+@push('scripts')
+    <script>
+        $(document).ready(function() {
+            $(".btn-modal-alasan").click(function() {
+                $("#kode_pembayaran").val($(this).attr("data-kode"));
+            });
+        });
+    </script>
+@endpush

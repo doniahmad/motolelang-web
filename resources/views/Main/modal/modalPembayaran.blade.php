@@ -28,7 +28,8 @@
 
                         <div id="formBayar" class="form-group">
                             <label>File</label>
-                            <input id="kode_pembayaran_container" type="text" name="kode_pembayaran" hidden>
+                            <input id="kode_pembayaran_container" type="text" name="kode_pembayaran"
+                                value="{{ $data->kode_pembayaran }}" hidden>
                             <input type="text" name="status" value="menunggu_persetujuan" hidden>
                             <div class="input-group">
                                 <i class="input-group-btn">

@@ -8,12 +8,13 @@
                 <h5>Yakin Ingin Keluar</h5>
             </div>
             <div class="d-flex ms-auto">
-                <button type="button" class="btn me-3 btn-danger">
+                <button type="button" class="btn me-3 btn-danger" data-bs-toggle="modal" data-bs-target="#alertLogout"
+                    data-dismiss="modal">
                     TIDAK
                 </button>
-                <button type="button" class="btn btn-success">
+                <a href="{{ route('logout.action') }}" class="btn btn-success">
                     YA
-                </button>
+                </a>
             </div>
 
         </div>

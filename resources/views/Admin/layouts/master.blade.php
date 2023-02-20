@@ -15,6 +15,8 @@
     <link rel="stylesheet" href="/assets/admin/css/product.css">
     <link rel="stylesheet" href="/assets/admin/css/input-product.css">
     <link rel="stylesheet" href="/assets/admin/css/login.css">
+    <link rel="stylesheet" href="/assets/admin/css/alert.css">
+    <link rel="stylesheet" href="/assets/admin/css/modal.css">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/regular.min.css"
@@ -38,6 +40,97 @@
         integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous">
     </script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script type="text/javascript">
+        // alert hapus
+        $(function() {
+            $(document).on('click', '#', function(e) {
+                e.preventDefault();
+                var link = $(this).attr("href");
+
+                Swal.fire({
+                    title: 'Yakin ingin menghapus barang ?',
+                    text: "Anda akan menghapus barang.Pikirkan terlebih dahulu",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#138611',
+                    cancelButtonColor: '#C72D00',
+                    confirmButtonText: 'Iya',
+                    cancelButtonText: 'Tidak',
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Terhapus',
+                            text: 'Barang anda berhasil dihapus',
+                            confirmButtonColor: '#138611',
+                        })
+                    }
+                })
+
+            })
+        });
+
+        // alert edit 
+        $(function() {
+            $(document).on('click', '#', function(e) {
+                e.preventDefault();
+                var link = $(this).attr("href");
+
+                Swal.fire({
+                    title: 'Yakin ingin mengedit barang ?',
+
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#138611',
+                    cancelButtonColor: '#C72D00',
+                    confirmButtonText: 'Ya',
+                    cancelButtonText: "Tidak",
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Teredit',
+                            text: 'Barang anda berhasil diedit',
+                            confirmButtonColor: '#138611',
+                        })
+                    }
+                })
+
+            })
+        });
+
+        //alert banned user
+        $(function() {
+            $(document).on('click', '#banned', function(e) {
+                e.preventDefault();
+                var link = $(this).attr("href");
+
+                Swal.fire({
+                    title: 'Yakin ingin banned user ?',
+                    text: "Anda akan banned user.Pikirkan terlebih dahulu",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#138611',
+                    cancelButtonColor: '#C72D00',
+                    confirmButtonText: 'Iya',
+                    cancelButtonText: 'Tidak',
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Banned',
+                            text: 'Pengguna telah berhasil dibanned',
+                            confirmButtonColor: '#138611',
+                        })
+                    }
+                })
+
+            })
+        });
+    </script>
 
     <title>@yield('title')</title>
 </head>

@@ -25,16 +25,16 @@ class ViewController extends Controller
             'password' => $input->password,
         ];
 
-        try {
-            $request = Request::create('/api/login', 'POST', $inputData);
-            $response = Route::dispatch($request);
-            $data = json_decode($response->getContent());
-            Session::put('token', $data->token);
+        // try {
+        $request = Request::create('/api/login', 'POST', $inputData);
+        $response = Route::dispatch($request);
+        $data = json_decode($response->getContent());
+        Session::put('token', $data->token);
 
-            return Redirect::to(route('home.index'));
-        } catch (\Exception $e) {
-            return dd($e->getMessage());
-        }
+        return Redirect::to(route('home.index'));
+        // } catch (\Exception $e) {
+        //     return dd($e->getMessage());
+        // }
     }
 
     public function registerAction(HttpRequest $input)
@@ -47,25 +47,26 @@ class ViewController extends Controller
             'password_confirmation' => $input->password_confirmation
         ];
 
+        // dd($inputData);
+
         try {
             $request = Request::create('/api/register', 'POST', $inputData);
             $response = Route::dispatch($request);
+            return Redirect::to(route('login.index'));
         } catch (\Exception $e) {
             return dd($e->getMessage());
         }
-
-        return Redirect::to(route('login.index'));
     }
 
     public function logoutAction(HttpRequest $input)
     {
-        try {
-            auth()->logout();
-            Session::forget('token');
-            return Redirect::to(route('home.index'));
-        } catch (\Exception $e) {
-            return dd($e->getMessage());
-        }
+        // try {
+        auth()->logout();
+        Session::forget('token');
+        return Redirect::to(route('home.index'));
+        // } catch (\Exception $e) {
+        //     return dd($e->getMessage());
+        // }
     }
 
     public static function getProducts()
@@ -254,7 +255,7 @@ class ViewController extends Controller
 
         $request = Request::create('api/invoice/' . $param->kode_pembayaran, 'POST', $dataReq);
         $response = Route::dispatch($request);
-        dd($response);
+        return Redirect::to('http://127.0.0.1:8000/lelang/lelang-saya');
     }
 
     public function rejectInvoice(HttpRequest $data)
@@ -265,6 +266,6 @@ class ViewController extends Controller
 
         $request = Request::create('api/invoice/' . $data->kode_pembayaran, 'POST', $dataReq);
         $response = Route::dispatch($request);
-        dd($response);
+        return Redirect::to(route('dashboard.pembayaran'));
     }
 }

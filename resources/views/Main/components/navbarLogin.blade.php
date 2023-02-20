@@ -11,19 +11,19 @@
 
         <div class="collapse navbar-collapse" id="navbarLogin">
             <ul class="navbar-nav ms-auto align-items-center">
-                <li class="nav-item">
+                <li class="nav-item pe-3">
                     <a class="nav-link {{ request()->is('/') ? 'active' : '' }}"
                         href="{{ route('home.index') }}">Home</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item pe-3">
                     <a class="nav-link {{ request()->is('lelang*') ? 'active' : '' }}"
                         href="{{ route('lelang.index') }}">Lelang</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item pe-3">
                     <a class="nav-link {{ request()->is('about') ? 'active' : '' }}"
                         href="{{ route('about.index') }}">About Us</a>
                 </li>
-                <li id="iconBell" class="nav-item text-light">
+                <li id="iconBell" class="nav-item text-light pe-4">
                     <div class="dropdown">
                         <a class="text-decoration-none text-reset" href="#" id="notification" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
@@ -35,7 +35,7 @@
                                 <h6>Notifikasi</h6>
                                 <div class="konten-notif">
                                     @foreach (json_decode(auth()->user()->unreadNotifications) as $notif)
-                                        <a href="http://127.0.0.1:8000/lelang/pembayaran"
+                                        <a href="{{ 'http://127.0.0.1:8000/lelang/pembayaran/' . $notif->data->token_auction }}"
                                             class="text-dark text-decoration-none">
                                             <div class="d-flex my-3">
                                                 <img src="{{ asset('storage/image/product/' . $notif->data->img_product) }}"
@@ -66,16 +66,15 @@
                             <div class="">
                                 <li class="row"><img src="/assets/main/img/avatar.png"
                                         class="rounded mx-auto d-block" alt="" srcset=""><span
-                                        class="text-center pt-2 pb-2">Aril
-                                        Ponco Nugroho</span></li>
+                                        class="text-center pt-2 pb-2">{{ auth()->user()->name }}</span></li>
                                 <li><a class="dropdown-item bt py-3" href="{{ route('profil.index') }}">Profil</a></li>
 
                                 <li style="border-bottom: 1px solid #B7B7B7;
 }"><a class="dropdown-item bt py-3"
                                         href="{{ route('lelang.lelangSaya') }}">Lelang Saya</a></li>
 
-                                <li id="keluar"><a class="dropdown-item bt py-3"
-                                        href="{{ route('logout.action') }}">Keluar</a>
+                                <li id="keluar"><button type="button" class="dropdown-item bt py-3"
+                                        data-bs-toggle="modal" data-bs-target="#alertLogout">Keluar</button>
                                 </li>
                             </div>
 
@@ -86,3 +85,5 @@
         </div>
     </div>
 </nav>
+
+@include('main.modal.alertLogout')

@@ -60,6 +60,8 @@
                             </div>
                         </div>
                     </div>
+                    <br>
+                    <b>Alasan Penolakan : {{ isset($data->alasan_penolakan) ? $data->alasan_penolakan : '' }}</b>
                 @endisset
             </div>
             <div class="col-5">

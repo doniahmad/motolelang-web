@@ -1,77 +1,63 @@
 <div id="filterLelang" class="bg-white box-shadow-santuy">
     <div class="px-1 py-3">
-        {{-- dropdown urutkan --}}
-        <div id="dropdownUrutkan" class="dropdown">
-            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Urutkan
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdown">
-                <li><a class="dropdown-item" href="#">A-Z</a></li>
-                <li><a class="dropdown-item" href="#">Terbaru</a></li>
-                <li><a class="dropdown-item" href="#">Hampir Selesai</a></li>
-            </ul>
+        {{-- urutkan --}}
+        <div id="btnUrutkan" class="">
+            <div class="d-flex align-items-center">
+                <button class="btn d-flex" style="width:100%">
+                    <h5>Urutkan</h5> <span class="ms-auto"><i class="fa fa-caret-down"></i></span>
+                </button>
+            </div>
+            <div class="dropdown text-center">
+                <button class="btn dropdown-toggle" type="button" id="urutkan" data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                    Urutkan dari...
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <li><a class="dropdown-item" href="#">a-z</a></li>
+                    <li><a class="dropdown-item" href="#">terbaru</a></li>
+                </ul>
+            </div>
         </div>
-        {{-- dropdown checkbox --}}
-        <div id="dropdownCheckbox" class="dropdown">
-            <button class="btn-filter-toggle btn dropdown-toggle" type="button" id="dropdownMenuButton"
-                data-bs-toggle="dropdown" aria-expanded="false">
-                Filter
-            </button>
-            <ul class="dropdown-menu p-3" aria-labelledby="dropdownMenuButton">
-                <div class="">
-                    <h6>Kategori</h6>
-                    <li>
-                        <a class="dropdown-item" href="#">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="Checkme1" />
-                                <label class="form-check-label" for="Checkme1">Motor Listrik</label>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="#">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="Checkme2" />
-                                <label class="form-check-label" for="Checkme2">Motor Sport</label>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="#">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="Checkme3" />
-                                <label class="form-check-label" for="Checkme3">Skuter</label>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="#">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="Checkme4" />
-                                <label class="form-check-label" for="Checkme4">Retro</label>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="#">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="Checkme5" />
-                                <label class="form-check-label" for="Checkme4">Motor Bebek</label>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="#">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="Checkme6" />
-                                <label class="form-check-label" for="Checkme4">Matic</label>
-                            </div>
-                        </a>
-                    </li>
+        {{-- Filter --}}
+        <div id="btnFilter" class="mt-3">
+            <div class="d-flex align-items-center">
+                <button class="btn d-flex">
+                    <h5>Filter</h5> <span class="ms-auto"><i class="fa fa-caret-down"></i></span>
+                </button>
+            </div>
+            <div id="filterkonten" class="">
+                <div class="mt-1">
+                    <ul id="multiselect" class="list-group px-3">
+                        <h6 class="">Kategori</h6>
+                        <li class="dropdown-item">
+                            <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
+                            Motor Listrik
+                        </li>
+                        <li class="dropdown-item">
+                            <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
+                            Motor Sport
+                        </li>
+                        <li class="dropdown-item">
+                            <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
+                            Skuter
+                        </li>
+                        <li class="dropdown-item">
+                            <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
+                            Retro
+                        </li>
+                        <li class="dropdown-item">
+                            <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
+                            Motor Bebek
+                        </li>
+                        <li class="dropdown-item">
+                            <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
+                            Motor Matic
+                        </li>
+                    </ul>
                 </div>
-                <div class="">
-                    <h6>Harga</h6>
-                    <form class="">
+                <div id="filterHarga" class="mt-1">
+                    <h6 class="px-3">Harga</h6>
+                    <form class="mx-3">
                         <div class="mb-3">
                             <input type="number" class="form-control" id="minHarga" aria-describedby="minHarga"
                                 placeholder="Harga Minimal">
@@ -85,9 +71,8 @@
                         </a>
                     </form>
                 </div>
+            </div>
 
-            </ul>
         </div>
-
     </div>
 </div>
