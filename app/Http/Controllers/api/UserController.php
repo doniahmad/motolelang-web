@@ -92,7 +92,7 @@ class UserController extends Controller
             'handphone' => 'string',
             'birth_place' => 'string',
             'birth_date' => 'string',
-            'gender' => 'in:perempuan,laki-laki',
+            'gender' => 'in:pria,wanita',
             'address' => 'string',
             'photo' => 'image|mimes:jpg,png'
         ]);
@@ -101,9 +101,9 @@ class UserController extends Controller
 
             if ($request->hasFile('photo')) {
                 $image = $request->file('photo');
-                $image_name = date('dmys') . '-' . $user->id;
+                $image_name = date('dmys') . '-' . $user->id . '.' . $image->extension();
                 Storage::delete('image/user/' . $user->photo);
-                $request->photo->storeAs('image/user', $image_name . '.' . $image->extension());
+                $request->photo->storeAs('image/user', $image_name);
                 $validateData['photo'] = $image_name;
             }
 

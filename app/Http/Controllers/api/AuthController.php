@@ -60,6 +60,37 @@ class AuthController extends Controller
         }
     }
 
+    public function loginAdmin(Request $request)
+    {
+        $error = 'Email or password invalid';
+        $target = User::with('roles')->where('email', $request->email)->first();
+        $role = $target->getRoleNames();
+        try {
+            if ($role[0] === 'admin' || $role[0] === 'kurir' || $role[0] === 'owner') {
+                if (Auth::attempt($request->only('email', 'password'))) {
+                    /** @var User $user */
+                    $user = Auth::user();
+                    $token = $user->createToken('apptoken')->plainTextToken;
+
+                    return response([
+                        'message' => 'succes',
+                        'token' => $token,
+                        'user' => $user
+                    ]);
+                }
+            }
+            return response([
+                'message' => $error,
+                'target' => $role[0]
+            ], 401);
+        } catch (\Exception $exception) {
+            return response([
+                'message' => $exception->getMessage(),
+                'target' => $target->getRoleNames()
+            ], 400);
+        }
+    }
+
     public function logout(Request $request)
     {
         try {

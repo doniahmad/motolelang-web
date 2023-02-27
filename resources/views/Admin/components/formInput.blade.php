@@ -161,7 +161,7 @@
             <div class="col">
                 <div class="mb-3">
                     <label for="imgInput" class="form-label">Masukkan Foto - Foto</label>
-                    <input class="form-control" type="file" id="imgInput" name="img_url" multiple>
+                    <input class="form-control" type="file" id="imgInput" name="image_path" multiple>
                 </div>
                 <div class="mb-3">
                     <div class="imgShowcase row">

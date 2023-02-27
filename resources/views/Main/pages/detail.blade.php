@@ -3,19 +3,25 @@
 
 @php
     $checkIfMemberAuction = [];
-
+    
     if (auth()->user() !== null) {
         $checkIfMemberAuction = array_filter($data->auction->auctioneer, function ($auctioneer) {
             return $auctioneer->id_user == auth()->user()->user_id;
         });
     }
-
+    
+    // dd($data->auction);
+    
+    $bestOffer = collect($data->auction->offer)
+        ->sortByDesc('offer')
+        ->first();
+    
 @endphp
 
 <div id="detailLelang" class="konten-2">
     <div class="container">
         <div class="d-flex align-items-center">
-            <a href="{{ url()->previous() }}" class="text-dark">
+            <a href="{{ route('lelang.index') }}" class="text-dark">
                 <span style="height: fit-content"><i class="fa fa-arrow-left fa-lg"></i></span>
             </a>
             <h4 class="ps-3 my-auto">{{ $data->nama_product }}</h4>
@@ -65,7 +71,8 @@
                                 <tr>
                                     <td>Penawaran Tertinggi</td>
                                     <td>:</td>
-                                    <td><Strong>Rp. 13.120.001</Strong></td>
+                                    <td><Strong>Rp.
+                                            {{ count($data->auction->offer) ? $bestOffer->offer : 0 }}</Strong></td>
                                 </tr>
                                 <tr>
                                     <td>Jumlah Peserta</td>

@@ -6,7 +6,9 @@
 @endphp
 
 <div id="editProfil" class="konten-2">
-    <form action="">
+    <form method="POST" action="{{ route('profil.update') }}" enctype="multipart/form-data">
+        @csrf
+        <input type="text" name="id" value="{{ $user->user_id }}" hidden>
         <div class="container border bg-white">
             <div class="p-5">
                 <h4>Atur Profile</h4>
@@ -18,14 +20,16 @@
                                     <div class="hero-section">
                                         <div class="gallery">
                                             <div id="imgProfil" class="image-section">
-                                                <img id="img1" src="/assets/main/img/noimg.png" alt="">
+                                                <img id="img1"
+                                                    src="{{ $user->photo !== null ? asset('storage/image/user/' . $user->photo) : '/assets/main/img/noimg.png' }}"
+                                                    alt="">
                                             </div>
                                             <div class="caption">
                                                 <label id="btnUbahFoto" for="input-file-profile"
                                                     class="btn btn-outline-secondary text-light">Ganti
                                                     Foto
                                                     <input type="file" id="input-file-profile"
-                                                        onchange="loadFile(event)">
+                                                        onchange="loadFile(event)" name="photo">
                                                 </label>
                                             </div>
                                         </div>
@@ -43,14 +47,15 @@
                                     <td>:</td>
                                     <td class=""><input type="text" class="form-control" id="inputNama"
                                             aria-describedby="inputNama" placeholder="Masukkan Nama Anda"
-                                            value="{{ $user->name }}"></td>
+                                            value="{{ isset($user->name) ? $user->name : null }}" name="name"></td>
                                 </tr>
                                 <tr>
                                     <td>No. Handphone</td>
                                     <td>:</td>
                                     <td class=""><input type="number" class="form-control" id="inputNoHp"
                                             aria-describedby="inputNoHp" placeholder="Masukkan Nomor Handphone"
-                                            value="{{ $user->handphone }}">
+                                            value="{{ isset($user->handphone) ? $user->handphone : null }}"
+                                            name="handphone">
                                     </td>
                                 </tr>
                                 <tr>
@@ -58,26 +63,30 @@
                                     <td>:</td>
                                     <td class=""><input type="text" class="form-control" id="inputTempatLahir"
                                             aria-describedby="inputTempatLahir" placeholder="Masukkan Tempat Lahir"
-                                            value="{{ $user->birth_place }}">
+                                            value="{{ isset($user->birth_place) ? $user->birth_place : null }}"
+                                            name="birth_place">
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>Tanggal Lahir</td>
                                     <td>:</td>
-                                    <td class=""><input type="text" class="form-control" id="inputTanggalLahir"
+                                    <td class=""><input type="date" class="form-control" id="inputTanggalLahir"
                                             aria-describedby="inputTanggalLahir" placeholder="Masukkan Tanggal Lahir"
-                                            value="{{ $user->birth_Date }}">
+                                            value="{{ isset($user->birth_date) ? $user->birth_date : null }}"
+                                            name="birth_date">
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>Jenis Kelamin</td>
                                     <td>:</td>
                                     <td class=""><select class="form-select" id="SelectKelamin"
-                                            aria-label="Default select example">
-                                            <option selected>Pilih Jenis Kelamin
+                                            aria-label="Default select example" name="gender">
+                                            <option selected value="{{ null }}">Pilih Jenis Kelamin
                                             </option>
-                                            <option value="laki-laki">Laki-laki</option>
-                                            <option value="perempuan">Perempuan</option>
+                                            <option value="pria" {{ $user->gender === 'pria' ? 'selected' : '' }}>Pria
+                                            </option>
+                                            <option value="wanita" {{ $user->gender === 'wanita' ? 'selected' : '' }}>
+                                                Wanita</option>
                                         </select>
                                     </td>
                                 </tr>
@@ -86,16 +95,9 @@
                                     <td>:</td>
                                     <td class=""><input type="text" class="form-control" id="inputAlamat"
                                             aria-describedby="inputTanggalLahir" placeholder="Masukkan Alamat"
-                                            value="{{ $user->address }}">
+                                            value="{{ isset($user->address) ? $user->address : null }}" name="address">
                                     </td>
                                 </tr>
-                                {{-- <tr>
-                                    <td>Pekerjaan</td>
-                                    <td>:</td>
-                                    <td class=""><input type="text" class="form-control" id="inputPekerjaan"
-                                            aria-describedby="inputPekerjaan" placeholder="Masukkan Pekerjaan">
-                                    </td>
-                                </tr> --}}
                             </tbody>
                         </table>
                     </div>

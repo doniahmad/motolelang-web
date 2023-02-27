@@ -1,10 +1,7 @@
 /* Modal Alasan */
 
-#modalAlasan .btn {
-    width: 120px;
-}
 
-#modalAlasan .myModal {
+.custom-modal .myModal {
     position: fixed;
     left: 0;
     right: 0;
@@ -14,18 +11,15 @@
     display: table;
 }
 
-#modalAlasan h5 {
+.custom-modal h5 {
     font-weight: bold;
 }
 
-#modalAlasan .form-group {
-    width: 600px;
-}
-
-#modalAlasan .form-control {
+.custom-modal .custom-input {
+    width: 600;
+    box-shadow: none;
     border: none;
-}
-
-#modalAlasan .form-group input {
-    border-bottom: 1px solid black;
+    border-radius: 0;
+    border-bottom: 2px solid black;
+    padding-left: 0;
 }

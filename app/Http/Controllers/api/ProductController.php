@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Image;
 use App\Models\Product;
 use Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Http\Request;
@@ -17,7 +18,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $response = Product::with(['categories', 'auction'])->get();
+        $response = Product::with(['categories', 'auction.offer', 'images'])->get();
         return response()->json($response, 200);
     }
 
@@ -36,7 +37,7 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
-        $validateData = $request->validate([
+        $validateProduct = $request->validate([
             'nama_product' => 'string|required',
             'harga_awal' => 'integer|required',
             'jenis' => 'string|required',
@@ -48,8 +49,6 @@ class ProductController extends Controller
             'nomor_rangka' => 'string|required',
             'category_id' => 'integer',
             'warna' => 'string|required',
-            'img_url' => 'image|required',
-            'img_url.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'deskripsi' => 'required|string',
             'nomor_polisi' => 'required|string',
             'stnk' => "required|boolean",
@@ -64,21 +63,22 @@ class ProductController extends Controller
 
         try {
 
-            if ($request->hasFile('img_url')) {
-                $image = $request->file('img_url');
-                $image_name = 'product-' . date('dmys');
-                $request->img_url->storeAs('image/product', $image_name . '.' . $image->extension());
-                $data_img[] = $image_name .  '.' . $image->extension();
-            }
-
-            $validateData['img_url'] = $image_name .  '.' . $image->extension();
-
-            $validateData['product_slug'] = $slug;
-            $response = Product::create($validateData);
+            $validateProduct['product_slug'] = $slug;
+            $product = Product::create($validateProduct);
+            if ($request->hasFile('image')) {
+                $imgList = array();
+                $image = $request->file('image');
+                foreach ($image as $imageFile) {
+                    $image_name = 'product-' . rand(1, 9999) .  '.' . $imageFile->extension();
+                    $imageFile->move(public_path('storage/image/product'), $image_name);
+                    $imgList[] = ['image_path' => $image_name, 'id_product' => $product->product_id];
+                }
+                $reqImage = Image::insert($imgList);
+            };
             return response()->json([
                 'succes' => true,
                 'message' => 'Success',
-                'data' => $response,
+                'data' => ['product' => $product, 'image' => $reqImage],
             ]);
         } catch (\Exception $e) {
             return response()->json([
@@ -96,7 +96,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        $data = $product->load(['categories', 'auction.auctioneer.user']);
+        $data = $product->load(['categories', 'auction.auctioneer.user', 'auction.offer']);
         return response()->json($data, 200);
     }
 

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\api;
 
-use app\Models\Pengiriman;
+use App\Models\Pengiriman;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -16,7 +16,7 @@ class PengirimanController extends Controller
      */
     public function index()
     {
-        $data = Pengiriman::with(['invoice.auctioneer.user'])->get();
+        $data = Pengiriman::with(['invoice.auctioneer.user', 'invoice.auctioneer.auction.product', 'kurir'])->get();
         return response()->json($data);
     }
 
@@ -51,7 +51,8 @@ class PengirimanController extends Controller
      */
     public function show(Pengiriman $pengiriman)
     {
-        //
+        $data = $pengiriman->load(['invoice.auctioneer.user', 'kurir']);
+        return response()->json($data, 200);
     }
 
     /**
@@ -64,9 +65,10 @@ class PengirimanController extends Controller
     public function update(Request $request, Pengiriman $pengiriman)
     {
         $validateData = $request->validate([
-            'status' => 'string',
             'bukti_penerimaan' => 'image|mimes:png,jpg',
         ]);
+
+        $validateData['status'] = 'diterima';
 
         try {
             // image
