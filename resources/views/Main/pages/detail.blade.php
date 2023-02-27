@@ -16,6 +16,12 @@
         ->sortByDesc('offer')
         ->first();
     
+    // dd($data->auction);
+    
+    $bestOffer = collect($data->auction->offer)
+        ->sortByDesc('offer')
+        ->first();
+    
 @endphp
 
 <div id="detailLelang" class="konten-2">
@@ -37,8 +43,8 @@
                 <div class="container bg-white box-shadow-santuy py-2">
                     <div class="p-3">
                         <div class="d-flex align-items-center">
-                            <h6 class="color-primer mb-0 mt-3">INFOMASI KENDARAAN LELANG</h6>
-                            <span class="ms-auto share-icon"><i class="fa-solid fa-share-nodes"></i></span>
+                            <h6 class="color-primer mb-0">INFOMASI KENDARAAN LELANG</h6>
+                            {{-- <span class="ms-auto share-icon"><i class="fa-solid fa-share-nodes"></i></span> --}}
                         </div>
                         <h5 class="my-2">{{ $data->nama_product }}</h5>
                         <p>Tahun : <strong>2022</strong> </p>
@@ -66,13 +72,13 @@
                                 <tr>
                                     <td>Harga Limit</td>
                                     <td>:</td>
-                                    <td><Strong>Rp. {{ $data->harga_awal }}</Strong></td>
+                                    <td><Strong>{{ currency_IDR($data->harga_awal) }}</Strong></td>
                                 </tr>
                                 <tr>
                                     <td>Penawaran Tertinggi</td>
                                     <td>:</td>
-                                    <td><Strong>Rp.
-                                            {{ count($data->auction->offer) ? $bestOffer->offer : 0 }}</Strong></td>
+                                    <td><Strong>{{ currency_IDR(count($data->auction->offer) ? $bestOffer->offer : 0) }}</Strong>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>Jumlah Peserta</td>

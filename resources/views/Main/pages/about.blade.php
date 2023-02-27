@@ -132,9 +132,8 @@
                     <div class="card mt-5" style="width: 18rem;">
                         <div class="card-body">
                             <div class="text-center">
-                                <p>Disuruh Emak Cari Motor Bekas Buat Adek Sekolah eh Dapat Motor Yang Sesuai Dengan
-                                    Budget
-                                    Saya Di MOTO Lelang</p>
+                                <p>Saya Senang ikut lelang motor di MOTO Lelang, mudah cara mengikuti pelelanganya dan
+                                    praktis.</p>
                                 <img src="/assets/main/img/mem.jpeg" alt="" srcset="">
                                 <h5 class="mt-3">Humam</h5>
                             </div>

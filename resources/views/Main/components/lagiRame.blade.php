@@ -1,5 +1,5 @@
 <div class="container mt-5 text-center">
-    <h4 class="bold">Yang Lagi Rame</h4>
+    <h4 class="bold">Lelang Yang Sedang Berlangsung</h4>
 </div>
 <div id="lagiRame" class="container d-flex">
     <div class="container">

@@ -13,8 +13,7 @@
                     value="{{ $data->auction->token }}">
                 <input type="text" name="id_auction" id="id_auction" hidden value="{{ $data->auction->auction_id }}">
                 <input type="text" name="id_user" id="id_user" hidden value="{{ auth()->id() }}">
-                <button type="submit" class="btn btn-primary mt-3" data-bs-toggle="modal"
-                    data-bs-target="#alertPenawaranBerhasil">
+                <button type="submit" class="btn btn-primary mt-3" data-bs-toggle="" data-bs-target="">
                     Kirim
                 </button>
             </div>

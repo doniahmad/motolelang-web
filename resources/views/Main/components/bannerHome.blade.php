@@ -37,7 +37,7 @@
                     <p>Harga Awal</p>
                     <h5>Rp. 4.000.000</h5>
                 </div>
-                <img src="/assets/main/img/suzuki-gsx-150.png" class="d-block w-100" alt="Yamaha R-15">
+                <img src="/assets/main/img/gsx150 1.png" class="d-block w-100" alt="Yamaha R-15">
             </div>
             <div class="carousel-item">
                 <div class="banner-price ">
@@ -51,14 +51,14 @@
                     <p>Harga Awal</p>
                     <h5>Rp. 20.000.000</h5>
                 </div>
-                <img src="/assets/main/img/yamaha-r152.png" class="d-block w-100" alt="yamaha r-15">
+                <img src="/assets/main/img/yamahar15 1.png" class="d-block w-100" alt="yamaha r-15">
             </div>
             <div class="carousel-item">
                 <div class="banner-price ">
                     <p>Harga Awal</p>
                     <h5>Rp. 21.000.000</h5>
                 </div>
-                <img src="/assets/main/img/yamaha-xsr-1552.png" class="d-block w-100" alt="xsr">
+                <img src="/assets/main/img/xsr155 1.png" class="d-block w-100" alt="xsr">
             </div>
         </div>
         {{-- <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"

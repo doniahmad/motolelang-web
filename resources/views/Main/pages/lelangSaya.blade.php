@@ -3,8 +3,7 @@
 @php
     $data = auth()
         ->user()
-        ->load(['auctioneer.auction', 'auctioneer.offer', 'auctioneer.invoice']);
-
+        ->load(['auctioneer.auction.offer', 'auctioneer.offer', 'auctioneer.invoice']);
 @endphp
 
 <div id="lelangSaya" class="konten-2">
@@ -37,12 +36,18 @@
         </div>
 
         <div class="row">
-            <div class="col-2">
+            {{-- <div class="col-2">
                 @include('main.components.filterLelang')
-            </div>
+            </div> --}}
 
-            <div id="kontenLelangSaya" class="col-10">
+            <div id="kontenLelangSaya" class="">
                 @foreach ($data->auctioneer as $auction)
+                    @php
+                        $bestOffer = collect($auction->auction->offer)
+                            ->sortByDesc('offer')
+                            ->first();
+                    @endphp
+
                     @if ($auction->auction->status === 0 && $auction->invoice === null)
                     @else
                         <div class="bg-white d-flex align-items-center box-shadow-santuy mb-4">
@@ -53,9 +58,9 @@
 
                             <div id="titleLelangSaya" class="">
                                 <h5>{{ $auction->auction->product->nama_product }}</h5>
-                                <div class="selesai mt-4 {{ $auction->auction->status ? 'bg-warning' : 'bg-success' }}">
-                                    @if ($auction->invoice !== null)
-                                        @switch($auction->invoice->status)
+                                <div class="mt-4 {{ $auction->auction->status ? 'bg-warning' : 'bg-success' }}">
+                                    @if ($auction->invoice)
+                                        {{-- @switch($auction->invoice->status)
                                             @case('menunggu_persetujuan')
                                                 <p class="text-center">
                                                     SEDANG DIPROSES
@@ -71,9 +76,23 @@
                                             @break
 
                                             @default
-                                        @endswitch
+                                        @endswitch --}}
+                                        @if ($auction->invoice->status === 'menunggu_persetujuan')
+                                            <p class="text-center">
+                                                SEDANG DIPROSES
+                                            </p>
+                                        @elseif ($auction->invoice->status === 'dibayar')
+                                            <p class="text-center">
+                                                SEDANG DIKIRIM
+                                            </p>
+                                        @elseif ($auction->invoice->status === 'ditolak')
+                                            <p class="text-center">
+                                                DITOLAK
+                                            </p>
+                                        @endif
                                     @else
-                                        <p class="text-center"> {{ $auction->auction->status ? 'BERJALAN' : 'SELESAI' }}
+                                        <p class="text-center">
+                                            {{ $auction->auction->status ? 'BERJALAN' : 'SELESAI' }}
                                         </p>
                                     @endif
 
@@ -91,12 +110,15 @@
                                         <tr>
                                             <td>Penawaran Saya</td>
                                             <td>:</td>
-                                            <td>Rp. {{ isset($auction->offer) ? $auction->offer->offer : 0 }}</td>
+                                            <td>
+                                                {{ currency_IDR(isset($auction->offer) ? $auction->offer->offer : 0) }}
+                                            </td>
                                         </tr>
                                         <tr>
                                             <td>Penawaran Tertinggi</td>
                                             <td>:</td>
-                                            <td>Rp. 13.113.002</td>
+                                            <td>{{ currency_IDR(count($auction->auction->offer) ? $bestOffer->offer : 0) }}
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -109,13 +131,6 @@
                                         href="{{ route('lelang.detail', ['param' => $auction->auction->product->product_slug]) }}">
                                         Detail Kendaraan
                                     </a>
-                                    {{-- @php
-                                    $allUserAuctioneer = auth()->user()->auctioneer;
-                                    $allIdAuctioneer = [];
-                                    foreach ($allUserAuctioneer as $data) {
-                                        $allIdAuctioneer[] += $data->auctioneer_id;
-                                    }
-                                @endphp --}}
                                     @if ($auction->invoice === null)
                                         <a href="{{ route('lelang.room', ['token' => $auction->auction->token]) }}"
                                             class="btn bayar text-light my-2">
@@ -132,14 +147,8 @@
                         </div>
                     @endif
                 @endforeach
-
             </div>
-
-
-
         </div>
-
     </div>
-
 </div>
 </div>
