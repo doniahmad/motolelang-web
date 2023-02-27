@@ -3,6 +3,7 @@
 
 @php
     $startedAuction = array_filter($data, fn($product) => $product->status === 1);
+    
 @endphp
 
 <div id="lelang" class="konten-2">
@@ -20,6 +21,11 @@
                 <div class="container">
                     <div class="row" style="border: none; height:auto;">
                         @foreach ($startedAuction as $product)
+                            @php
+                                $bestOffer = collect($product->offer)
+                                    ->sortByDesc('offer')
+                                    ->first();
+                            @endphp
                             <div class="col-3 mt-4" style="border:none;">
                                 <div class="col-lelang card">
                                     <a class="text-reset text-decoration-none"
@@ -35,7 +41,9 @@
                                                     <h6>{{ $product->product->nama_product }}</h6>
                                                 </div>
                                                 <div class="card-lelang-bot d-flex ">
-                                                    <h6 class="my-auto">Rp. {{ $product->product->harga_awal }}</h6>
+                                                    <h6 class="my-auto">
+                                                        {{ currency_IDR(count($product->offer) ? $bestOffer->offer : 0) }}
+                                                    </h6>
                                                     <div class="ms-auto ">
                                                         <i class="fa-regular fa-clock"></i>
                                                         <span>10 Hari</span>
@@ -48,7 +56,6 @@
                             </div>
                         @endforeach
                     </div>
-
                 </div>
 
                 {{-- <div class="container mt-5">

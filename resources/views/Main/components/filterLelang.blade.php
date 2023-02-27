@@ -1,14 +1,14 @@
 <div id="filterLelang" class="bg-white box-shadow-santuy">
     <div class="px-1 py-3">
         {{-- urutkan --}}
-        <div id="btnUrutkan" class="">
+        <div class="">
             <div class="d-flex align-items-center">
-                <button class="btn d-flex" style="width:100%">
+                <button id="btnUrutkan" class="btn d-flex" onchange="hideUrutkan()" style="width:100%">
                     <h5>Urutkan</h5> <span class="ms-auto"><i class="fa fa-caret-down"></i></span>
                 </button>
             </div>
-            <div class="dropdown text-center">
-                <button class="btn dropdown-toggle" type="button" id="urutkan" data-bs-toggle="dropdown"
+            <div id="urutkanKonten" class="dropdown text-center">
+                <button class="btn dropdown-toggle mt-2" type="button" id="urutkan" data-bs-toggle="dropdown"
                     aria-expanded="false">
                     Urutkan dari...
                 </button>
@@ -72,7 +72,10 @@
                     </form>
                 </div>
             </div>
-
         </div>
     </div>
 </div>
+
+@push('scripts')
+    <script type="text/javascript" src="/assets/main/js/filter.js"></script>
+@endpush

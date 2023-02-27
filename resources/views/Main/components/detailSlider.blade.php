@@ -13,7 +13,7 @@
 
     <div class="carousel-indicators">
         <button type="button" data-bs-target="#carouselDetailSlider" data-bs-slide-to="0" class="active img-thumbnail"
-            aria-current="true" aria-label="Slide 1">
+            aria-current="true" aria-label="Slide 0">
             <img src="{{ asset('storage/image/product/' . $path) }}" class="d-block w-100" alt="">
         </button>
         {{-- <button type="button" data-bs-target="#carouselDetailSlider" data-bs-slide-to="1" class="img-thumbnail"

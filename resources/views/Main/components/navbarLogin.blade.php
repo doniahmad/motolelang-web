@@ -27,14 +27,23 @@
                     <div class="dropdown">
                         <a class="text-decoration-none text-reset" href="#" id="notification" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fa fa-bell"></i>
+                            @if (count(auth()->user()->unreadNotifications))
+                                <div class="unread-notif">
+                                    <i class="fa fa-bell"></i>
+                                    <div id="iconUnread"
+                                        style="width:10px;height:10px;border-radius:100%;background-color:red;">
+                                    </div>
+                                </div>
+                            @else
+                                <i class="fa fa-bell"></i>
+                            @endif
                         </a>
                         <ul id="dropdownNotif" class="dropdown-menu box-shadow-santuy"
                             aria-labelledby="navbarDropdownMenuLink">
                             <div class="p-3">
                                 <h6>Notifikasi</h6>
                                 <div class="konten-notif">
-                                    @foreach (json_decode(auth()->user()->unreadNotifications) as $notif)
+                                    @foreach (json_decode(auth()->user()->notifications) as $notif)
                                         <a href="{{ 'http://127.0.0.1:8000/lelang/pembayaran/' . $notif->data->token_auction }}"
                                             class="text-dark text-decoration-none">
                                             <div class="d-flex my-3">
@@ -87,3 +96,11 @@
 </nav>
 
 @include('main.modal.alertLogout')
+
+@push('scripts')
+    <script type="text/javascript">
+        function readNotif() {
+            // {{ auth()->user()->unreadNotifications->markAsRead() }}
+        }
+    </script>
+@endpush

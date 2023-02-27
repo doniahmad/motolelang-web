@@ -2,15 +2,15 @@
 @section('title', 'Ruang Lelang')
 
 @php
-
+    
     $checkIfMemberAuction = array_filter($data->auctioneer, function ($auctioneer) {
         return $auctioneer->id_user == auth()->user()->user_id;
     });
-
+    
     $bestOffer = collect($data->offer)->sortByDesc('offer');
-
+    
     $currentAuctioneer = current($checkIfMemberAuction);
-
+    
     $i = 1;
 @endphp
 
@@ -47,7 +47,7 @@
                                     <tr>
                                         <td>{{ $i++ }}.</td>
                                         <td>{{ $auctioneer->auctioneer->nama_samaran }}</td>
-                                        <td>Rp. {{ $auctioneer->offer ? $auctioneer->offer : 0 }}</td>
+                                        <td>{{ currency_IDR($auctioneer->offer ? $auctioneer->offer : 0) }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -65,8 +65,8 @@
 
                 <div id="formKirimPenawaran" class="bg-white text-center p-3 box-shadow-santuy">
                     <p class="">Penawaran Saya</p>
-                    <h3 class="">Rp.
-                        {{ isset($currentAuctioneer->offer) ? $currentAuctioneer->offer->offer : 0 }}
+                    <h3 class="">
+                        {{ currency_IDR(isset($currentAuctioneer->offer) ? $currentAuctioneer->offer->offer : 0) }}
                     </h3>
                     <button type="button" class="btn btn-pelelangan bg-color-primer text-light mt-3"
                         data-bs-toggle="modal" data-bs-target="#modalInputPenawaran">Kirim
@@ -74,9 +74,6 @@
                 </div>
             </div>
         </div>
-
-
-
     </div>
 </div>
 

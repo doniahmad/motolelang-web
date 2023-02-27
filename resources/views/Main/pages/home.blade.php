@@ -41,23 +41,23 @@
     <div id="caraIkutLelang" class="container d-flex border my-5">
         <div class="row justify-content-md-center mt-5 img-center text-center py-5">
             <div class="col-lg-2">
-                <img src="/assets/main/img/Dayflow-Sitting1.svg" alt="buat akun" ">
+                <img src="/assets/main/img/Sign up-amico.svg" alt="buat akun">
                 <p class="mt-3">Buat Akun Terlebih Dahulu</p>
             </div>
             <div class="col-lg-2">
-                <img src="/assets/main/img/Croods-Chart1.svg" alt="Isi Profil" ">
+                <img src="/assets/main/img/Customer Survey-amico.svg" alt="Isi Profil">
                 <p class="mt-3">Isi Data Diri DI Menu Profil</p>
             </div>
             <div class="col-lg-2">
-                <img src="/assets/main/img/Hands-Point1.svg" alt="" ">
+                <img src="/assets/main/img/Choose-rafiki.svg" alt="">
                 <p class="mt-3">Pilih Pelelangan Yang ingin Anda Ikuti</p>
             </div>
             <div class="col-lg-2 col-sm-6">
-                <img src="/assets/main/img/HappyBunch-Desk1.svg" alt="" ">
+                <img src="/assets/main/img/Gaming-bro.svg" alt="">
                 <p class="mt-3">Tentukan Username Rahasia Untuk Masuk Lelang</p>
             </div>
             <div class="col-lg-2">
-                <img src="/assets/main/img/BigShoes-DynamicPose1.svg" alt="" width="100%">
+                <img src="/assets/main/img/Done-rafiki.svg" alt="">
                 <p class="mt-3">Selamat Anda Sudah Memasuki Pelelangan</p>
             </div>
         </div>

@@ -1,11 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-
 * {
     font-family: 'Poppins', sans-serif;
 }
 
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
+input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
@@ -119,8 +117,7 @@ body {
 }
 
 #caraIkutLelang img {
-    height: 235px;
-    width: 150px;
+    height: 210px;
 }
 
 #lagiRame img {
@@ -339,12 +336,8 @@ body {
     padding: 0;
 }
 
-#kontenLelangSaya .selesai {
-    background-color: #00FF46;
-}
-
 #btnLelangSaya .btn {
-    width: 70%;
+    width: 250px;
 }
 
 #btnLelangSaya .detail {
@@ -387,6 +380,10 @@ body {
 #tagihan .btn-primer {
     background-color: #3B85F2;
     color: #fff;
+}
+
+#selectPengambilan .d-none {
+    display: none;
 }
 
 #cardLelang img {
@@ -465,6 +462,16 @@ body {
 #iconBell {
     font-size: 20px;
     padding: 0 10px 0 10px;
+}
+
+#iconBell #iconUnread {
+    width: 5px;
+    height: 5px;
+    border-radius: 100%;
+    background-color: red;
+    position: absolute;
+    margin-top: -20px;
+    margin-left: 10px;
 }
 
 #iconUser img {
