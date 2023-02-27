@@ -12,7 +12,8 @@
             <div class="row pt-5">
                 <div class="col-5">
                     <div class="d-flex justify-content-center">
-                        <img src="/assets/main/img/noimg.png" alt="">
+                        <img src="{{ $user->photo !== null ? asset('storage/image/user/' . $user->photo) : '/assets/main/img/noimg.png' }}"
+                            alt="" style="object-fit: cover">
                     </div>
                 </div>
                 <div class="col-7 d-flex align-items-center">

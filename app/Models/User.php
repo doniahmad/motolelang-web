@@ -57,6 +57,11 @@ class User extends Authenticatable
         return $this->hasMany(Auctioneer::class, 'id_user');
     }
 
+    public function pengiriman()
+    {
+        return $this->hasMany(Pengiriman::class, 'id_kurir');
+    }
+
     public function routeNotificationEmail($notification)
     {
         return $this->email;

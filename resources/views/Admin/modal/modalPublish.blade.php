@@ -1,6 +1,6 @@
 <form method="POST" action="{{ route('dashboard.setAuction') }}">
     @csrf
-    <div id="modalPublish" class="modal">
+    <div id="modalPublish" class="modal custom-modal">
         <div class="modal-dialog myModal modal-xl">
             <div class="modal-content p-5">
                 <h5>Mulai Pelelangan</h5>

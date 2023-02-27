@@ -18,7 +18,8 @@
     <link rel="stylesheet" type="text/css" href="{!! '/assets/main/css/modal.css' !!}">
     <link rel="stylesheet" type="text/css" href="{!! '/assets/main/css/alert.css' !!}">
 
-
+    <link rel="shortcut icon" href="{!! '/assets/admin/img/logo-2.svg' !!}">
+    <link rel="icon" href="{!! '/assets/admin/img/logo-2.svg' !!}" type="image/x-icon">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
 
@@ -122,6 +123,7 @@
 
     @stack('scripts')
 
+    @include('sweetalert::alert')
 </body>
 
 </html>

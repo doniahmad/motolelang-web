@@ -32,16 +32,20 @@
                                     <td>{{ $customer->name }}</td>
                                     <td>{{ $customer->email }}</td>
                                     <td>{{ $customer->handphone != null ? $customer->handphone : 'Kosong' }}</td>
-                                    <td>{{ $customer->address != null ? $customer->email : 'Kosong' }}</td>
+                                    <td>{{ $customer->address != null ? $customer->address : 'Kosong' }}</td>
                                     <td>
                                         <a href="{{ route('dashboard.getCustomer', ['id' => $customer->user_id]) }}">
                                             <button type="button" class="btn btn-primary">
                                                 <i class="fa-solid fa-circle-info"></i>
                                             </button>
                                         </a>
-                                        <button id="banned" type="button" class="btn btn-danger">
-                                            <i class="fa-solid fa-ban"></i>
-                                        </button>
+                                        @can('access owner')
+                                            <button
+                                                href="{{ route('dashboard.banCustomer', ['id' => $customer->user_id]) }}"
+                                                id="banned" class="btn btn-danger" onclick="banAction(this)">
+                                                <i class="fa-solid fa-ban"></i>
+                                            </button>
+                                        @endcan
 
                                     </td>
                                 </tr>
@@ -53,3 +57,27 @@
         </div>
     </div>
 </div>
+
+@push('scripts')
+    <script>
+        function banAction(val) {
+
+            Swal.fire({
+                title: 'Yakin ingin banned user ?',
+                text: "Anda akan banned user.Pikirkan terlebih dahulu",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#138611',
+                cancelButtonColor: '#C72D00',
+                confirmButtonText: 'Iya',
+                cancelButtonText: 'Tidak',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = val.getAttribute('href');
+                } else {
+
+                }
+            });
+        }
+    </script>
+@endpush

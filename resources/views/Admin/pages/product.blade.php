@@ -70,8 +70,7 @@
                                                 data-name="{{ $product->nama_product }}"
                                                 data-merk="{{ $product->merk }}"
                                                 data-bahan-bakar="{{ $product->bahan_bakar }}"
-                                                data-jenis="{{ $product->jenis }}" data-warna="{{ $product->warna }}"
-                                                data-img="{{ asset('storage/image/product/' . $product->img_url) }}">
+                                                data-jenis="{{ $product->jenis }}" data-warna="{{ $product->warna }}">
                                                 <i class="fa-solid fa-input"></i>
                                                 Publish
                                             </button>
@@ -81,12 +80,13 @@
                                                     <i class="fa-solid fa-gear"></i>
                                                 </button>
                                             </a>
-                                            <a
-                                                href="{{ route('dashboard.deleteProduct', ['param' => $product->product_slug]) }}">
-                                                <button id="btnHapus" type="button" class="btn btn-danger">
-                                                    <i class="fa-solid fa-trash"></i>
-                                                </button>
-                                            </a>
+
+                                            <button
+                                                href="{{ route('dashboard.deleteProduct', ['param' => $product->product_slug]) }}"
+                                                id="btnHapus" type="button" class="btn btn-danger"
+                                                onclick="deleteProduct(this)">
+                                                <i class="fa-solid fa-trash"></i>
+                                            </button>
                                         @endif
 
                                     </td>
@@ -111,9 +111,24 @@
                 $("#bahan-bakar-value").text($(this).attr("data-bahan-bakar"));
                 $("#jenis-value").text($(this).attr("data-jenis"));
                 $("#warna-value").text($(this).attr("data-warna"));
-                // $("#form-publish").attr("action",
-                //     {{ route('dashboard.setAuction', ['id' => $product->product_id]) }});
             });
         });
+
+        function deleteProduct(val) {
+            Swal.fire({
+                title: 'Yakin ingin menghapus Product ?',
+                text: "Product akan dihapus secara permanen. Mohon perhatikan pilihan anda !",
+                icon: 'danger',
+                showCancelButton: true,
+                confirmButtonColor: '#138611',
+                cancelButtonColor: '#C72D00',
+                confirmButtonText: 'Iya',
+                cancelButtonText: 'Tidak',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = val.getAttribute('href');
+                }
+            })
+        }
     </script>
 @endpush

@@ -1,4 +1,4 @@
-@extends('admin.layouts.master')
+@extends('admin.layouts.layoutLogin')
 @section('title', 'Masuk')
 
 @if (!auth()->check())
@@ -8,11 +8,12 @@
                 <div class="center">
                     <div class="my-5">
                         <h1 class="bold">Admin</h1>
-                        <form method="post">
+                        <form method="post" action="{{ route('login.admin') }}">
+                            @csrf
                             <div class="txt_field">
-                                <input type="text" required>
+                                <input type="email" name="email" required>
                                 <span></span>
-                                <label>Username</label>
+                                <label>Email</label>
                             </div>
                             <div class="txt_field">
                                 <input type="password" name="password" id="password" required>

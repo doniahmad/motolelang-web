@@ -28,7 +28,6 @@ return new class extends Migration
             $table->string('jenis');
             $table->string('nomor_rangka');
             $table->string('warna');
-            $table->string('img_url');
             $table->text('deskripsi');
             $table->string('nomor_polisi');
             $table->boolean('stnk');

@@ -25,6 +25,15 @@ function mainPages($value)
 };
 
 Route::group(['middleware' => 'auth'], function () {
+    Route::group(['prefix' => 'profil'], function () {
+        Route::get('/', function () {
+            return view(mainPages('profile'));
+        })->name('profil.index');
+        Route::post('/update-profil', [ViewController::class, 'updateUserProfile'])->name('profil.update');
+        Route::get('/edit-profil', function () {
+            return view(mainPages('editProfile'));
+        })->name('profil.edit');
+    });
 });
 
 
@@ -42,14 +51,6 @@ Route::get('/about', function () {
 // })->name('profil.index');
 
 //
-Route::group(['prefix' => 'profil'], function () {
-    Route::get('/', function () {
-        return view(mainPages('profile'));
-    })->name('profil.index');
-    Route::get('/edit-profil', function () {
-        return view(mainPages('editProfile'));
-    })->name('profil.edit');
-});
 //
 Route::group(['prefix' => 'login'], function () {
     Route::get('/', function () {
@@ -101,64 +102,112 @@ function adminPages($value)
     return 'Admin.pages.' . $value;
 };
 
+
 Route::group(['prefix' => 'dashboard'], function () {
-    Route::get('/', function () {
-        return view(adminPages('dashboard'));
-    })->name('dashboard.index');
     Route::get('/login', function () {
         return view(adminPages('login'));
-    })->name('dashboard.login');
-    Route::group(['prefix' => 'product'], function () {
+    })->name('login');
+    Route::post('/login-action', [ViewController::class, 'loginAdmin'])->name('login.admin');
+    Route::group(['middleware' => ['auth:sanctum', 'role:admin|owner|kurir']], function () {
         Route::get('/', function () {
-            $data = ViewController::getProducts();
-            return view(adminPages('product'), compact('data'));
-        })->name('dashboard.product');
-        Route::get('/delete/{param}', [ViewController::class, 'deleteProduct'])->name('dashboard.deleteProduct');
-        Route::post('/set-auction', [ViewController::class, 'setAuction'])->name('dashboard.setAuction');
-        Route::post('/add', [ViewController::class, 'postProduct'])->name('dashboard.postProduct');
-        Route::get('/add', function () {
-            $data = (object) [
-                'nama_product' => '',
-                'harga_awal' => '',
-                'merk' => '',
-                'kapasitas_cc' => '',
-                'odometer' => '',
-                'nomor_mesin' => '',
-                'jenis' => '',
-                'bahan_bakar' => '',
-                'warna' => '',
-                'nomor_rangka' => '',
-                'merk' => '',
-                'img_url' => '',
-                'deskripsi' => '',
-                'nomor_polisi' => '',
-                'stnk' => '',
-                'bpkb' => '',
-                'form_a' => '',
-                'faktur' => '',
-                'kwitansi_blanko' => '',
-                'masa_stnk' => '',
-            ];
-            return view(adminPages('inputProduct'), compact('data'));
-        })->name('dashboard.inputProduct');
-        Route::get('/edit/{param}', function (HttpRequest $param) {
-            $data = ViewController::getProduct($param);
-            return view(adminPages('editProduct'), compact('data'));
-        })->name('dashboard.editProduct');
-        Route::post('/edit/{param}', [ViewController::class, 'updateProduct'])->name('dashboard.updateProduct');
-    });
-    Route::group(['prefix' => 'customer'], function () {
-        Route::get('/', function () {
-            $data = ViewController::getCustomers();
-            return view(adminPages('customer'), compact('data'));
-        })->name('dashboard.customer');
-        Route::get('/{id}', [ViewController::class, 'getCustomer'])->name('dashboard.getCustomer');
-    });
-    Route::group(['prefix' => 'pembayaran'], function () {
-        Route::get('/', function () {
-            $data = ViewController::getInvoices();
-            return view(adminPages('pembayaran'), compact('data'));
-        })->name('dashboard.pembayaran');
-        Route::post('/reject', [ViewController::class, 'rejectInvoice'])->name('dashboard.rejectInvoice');
+            return view(adminPages('dashboard'));
+        })->name('dashboard.index');
+        Route::get('/logout', [ViewController::class, 'adminLogoutAction'])->name('admin.logout');
+        Route::get('/profile', function () {
+            return view(adminPages('profileAdmin'));
+        })->name('admin.profile');
+        Route::get('/profile/edit', function () {
+            return view(adminPages('editProfileAdmin'));
+        })->name('dashboard.editProfil');
+        Route::post('/profile/update', [ViewController::class, 'updateAdminProfile'])->name('update.profileAdmin');
+        Route::group(['prefix' => 'product'], function () {
+            Route::get('/', function () {
+                $data = ViewController::getProducts();
+                return view(adminPages('product'), compact('data'));
+            })->name('dashboard.product');
+            Route::get('/delete/{param}', [ViewController::class, 'deleteProduct'])->name('dashboard.deleteProduct');
+            Route::get('/add', function () {
+                $data = (object) [
+                    'nama_product' => '',
+                    'harga_awal' => '',
+                    'merk' => '',
+                    'kapasitas_cc' => '',
+                    'odometer' => '',
+                    'nomor_mesin' => '',
+                    'jenis' => '',
+                    'bahan_bakar' => '',
+                    'warna' => '',
+                    'nomor_rangka' => '',
+                    'merk' => '',
+                    'img_url' => '',
+                    'deskripsi' => '',
+                    'nomor_polisi' => '',
+                    'stnk' => '',
+                    'bpkb' => '',
+                    'form_a' => '',
+                    'faktur' => '',
+                    'kwitansi_blanko' => '',
+                    'masa_stnk' => '',
+                ];
+                return view(adminPages('inputProduct'), compact('data'));
+            })->name('dashboard.inputProduct');
+            Route::get('/edit/{param}', function (HttpRequest $param) {
+                $data = ViewController::getProduct($param);
+                return view(adminPages('editProduct'), compact('data'));
+            })->name('dashboard.editProduct');
+            Route::post('/set-auction', [ViewController::class, 'setAuction'])->name('dashboard.setAuction');
+            Route::post('/add', [ViewController::class, 'postProduct'])->name('dashboard.postProduct');
+            Route::post('/edit/{param}', [ViewController::class, 'updateProduct'])->name('dashboard.updateProduct');
+        });
+        Route::group(['prefix' => 'customer'], function () {
+            Route::get('/', function () {
+                $data = ViewController::getCustomers();
+                return view(adminPages('customer'), compact('data'));
+            })->name('dashboard.customer');
+            Route::get('/{id}', [ViewController::class, 'getCustomer'])->name('dashboard.getCustomer');
+            Route::get('/ban/{id}', [ViewController::class, 'banCustomer'])->name('dashboard.banCustomer');
+        });
+        // Route::group(['prefix' => 'admin'], function () {
+        //     Route::get('/delete/{id}', [ViewController::class, 'deleteAdmin'])->name('dashboard.deleteAdmin');
+        //     Route::get('/', function () {
+        //         $data = ViewController::getAdmins();
+        //         return view(adminPages('admin'), compact('data'));
+        //     })->name('dashboard.admin');
+        //     Route::get('/add', function () {
+        //         return view(adminPages('inputAdmin'));
+        //     })->name('dashboard.inputAdmin');
+        //     Route::post('/send-req', [ViewController::class, 'postAdmin'])->name('dashboard.postAdmin');
+        //     Route::get('/{id}', [ViewController::class, 'getAdmin'])->name('dashboard.getAdmin');
+        // });
+        Route::group(['prefix' => 'kurir'], function () {
+            Route::get('/', function () {
+                $data = ViewController::getKurirs();
+                return view(adminPages('kurir'), compact('data'));
+            })->name('dashboard.kurir');
+            Route::get('/add', function () {
+                return view(adminPages('inputKurir'));
+            })->name('dashboard.inputKurir');
+            Route::get('/{id}', [ViewController::class, 'getKurir'])->name('dashboard.detailKurir');
+            Route::get('/delete/{id}', [ViewController::class, 'deleteKurir'])->name('dashboard.deleteKurir');
+            Route::post('/send-req', [ViewController::class, 'postKurir'])->name('dashboard.postKurir');
+        });
+        Route::group(['prefix' => 'pengiriman'], function () {
+            Route::get('/', function () {
+                $data = ViewController::getPengirimans();
+
+                return view(adminPages('pengiriman'), compact('data'));
+            })->name('dashboard.pengiriman');
+            Route::post('/delivered/{id}', [ViewController::class, 'setDelivered'])->name('dashboard.delivered');
+            // Route::get('/{id}', [ViewController::class, 'getCustomer'])->name('dashboard.getCustomer');
+        });
+        Route::group(['prefix' => 'pembayaran'], function () {
+            Route::get('/', function () {
+                $data = ViewController::getInvoices();
+                $pengirim = ViewController::getKurirs();
+                return view(adminPages('pembayaran'), compact(['data', 'pengirim']));
+            })->name('dashboard.pembayaran');
+            Route::post('/reject', [ViewController::class, 'rejectInvoice'])->name('dashboard.rejectInvoice');
+            Route::post('/acc', [ViewController::class, 'acceptInvoice'])->name('dashboard.acceptInvoice');
+        });
     });
 });

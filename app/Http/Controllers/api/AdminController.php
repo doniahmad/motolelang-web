@@ -17,7 +17,7 @@ class AdminController extends Controller
      */
     public function allAdmin()
     {
-        $allAdmin = User::whereHas('roles', function ($role) {
+        $allAdmin = User::with('roles')->whereHas('roles', function ($role) {
             $role->where('name', 'admin');
             $role->orWhere('name', 'owner');
         })->get();
@@ -35,12 +35,12 @@ class AdminController extends Controller
         $fields = $request->validate([
             'name' => 'required',
             'email' => 'required|email|unique:users,email',
-            'password' => 'required|confirmed|min:8',
+            'password' => 'required|min:8',
             'role' => 'in:admin',
             'handphone' => 'required|string',
             'birth_place' => 'required|string',
             'birth_date' => 'required|string',
-            'gender' => 'required|in:perempuan,laki-laki',
+            'gender' => 'required|in:wanita,pria',
             'address' => 'required|string',
             'photo' => 'required|image|mimes:jpg,png,jpeg'
         ]);
@@ -52,8 +52,8 @@ class AdminController extends Controller
 
             if ($request->hasFile('photo')) {
                 $image = $request->file('photo');
-                $image_name = 'admin' . date('dmys');
-                $request->photo->storeAs('image/admin', $image_name . '.' . $image->extension());
+                $image_name = 'admin' . date('dmys') . '.' . $image->extension();
+                $request->photo->storeAs('image/admin', $image_name);
                 $fields['photo'] = $image_name;
             }
 
@@ -73,14 +73,13 @@ class AdminController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        $data = $request->user();
-        $data->role = $data->getRoleNames();
-        $data->premission = $data->getPermissionsViaRoles()->pluck("name");
-        $data->makeHidden('roles');
-
-        return response()->json($data);
+        $allAdmin = User::with('roles')->whereHas('roles', function ($role) {
+            $role->where('name', 'admin');
+            $role->orWhere('name', 'owner');
+        })->get();
+        return response()->json($allAdmin);
     }
 
     /**
@@ -90,31 +89,30 @@ class AdminController extends Controller
      * @param  \App\Models\Admin  $admin
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, User $admin)
     {
         $fields = $request->validate([
             'name' => 'string',
             'handphone' => 'string',
             'birth_place' => 'string',
             'birth_date' => 'string',
-            'gender' => 'in:perempuan,laki-laki',
+            'gender' => 'in:pria,wanita',
             'address' => 'string',
             'photo' => 'image|mimes:jpg,png'
         ]);
 
 
         try {
-            $fields['role'] = 'admin';
 
             if ($request->hasFile('photo')) {
                 $image = $request->file('photo');
-                $image_name = 'admin' . date('dmys');
-                Storage::delete('image/admin/' . $user->photo);
-                $request->photo->storeAs('image/admin', $image_name . '.' . $image->extension());
+                $image_name = 'admin' . date('dmys') . '.' . $image->extension();
+                Storage::delete('image/admin/' . $admin->photo);
+                $request->photo->storeAs('image/admin', $image_name);
                 $fields['photo'] = $image_name;
             }
 
-            $updateData = $user->update($fields);
+            $updateData = $admin->update($fields);
 
             return response()->json([
                 'success' => true,
@@ -131,13 +129,13 @@ class AdminController extends Controller
      * @param  \App\Models\Admin  $admin
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy(User $admin)
     {
         try {
-            $user->delete();
-            Storage::delete('image/user/' . $user->photo);
+            $admin->delete();
+            Storage::delete('image/user/' . $admin->photo);
 
-            return response()->json('success');
+            return response()->json('Success Delete');
         } catch (\Exception $e) {
             return response()->json($e->getMessage());
         }

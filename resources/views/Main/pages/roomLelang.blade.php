@@ -2,22 +2,26 @@
 @section('title', 'Ruang Lelang')
 
 @php
-
+    
     $checkIfMemberAuction = array_filter($data->auctioneer, function ($auctioneer) {
         return $auctioneer->id_user == auth()->user()->user_id;
     });
-
+    
     $bestOffer = collect($data->offer)->sortByDesc('offer');
-
+    
+    $num1BestOffer = $bestOffer->first();
+    
     $currentAuctioneer = current($checkIfMemberAuction);
-
+    
     $i = 1;
 @endphp
 
 <div id="roomLelang" class="konten-2">
     <div class="container">
         <div class="d-flex align-items-center">
-            <span style="height: fit-content"><i class="fa fa-arrow-left fa-lg"></i></span>
+            <a href="{{ url()->previous() }}" class="text-dark">
+                <span style="height: fit-content"><i class="fa fa-arrow-left fa-lg"></i></span>
+            </a>
             <h4 class="ps-3 my-auto">Pelelangan {{ $data->product->nama_product }}</h4>
         </div>
 
