@@ -112,7 +112,7 @@ class ViewController extends Controller
 
     public function adminLogoutAction()
     {
-        auth()->logout();
+        auth()->guard('web')->logout();
         Session::forget('token');
         return Redirect::to(route('login'));
     }

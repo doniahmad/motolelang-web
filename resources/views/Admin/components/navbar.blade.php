@@ -22,12 +22,31 @@
                 <li>
                     <hr class="dropdown-divider p-0">
                 </li>
-                <li><a class="dropdown-item" href="{{ route('admin.logout') }}">Logout</a></li>
+                <li>
+                    <div class="dropdown-item" href="{{ route('admin.logout') }}" onclick="logoutBtn(this)">Logout</div>
+                </li>
             </ul>
         </div>
     </div>
 </nav>
 
 @push('scripts')
+    <script type="text/javascript">
+        function logoutBtn(val) {
+            Swal.fire({
+                title: 'Yakin ingin logout ?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#138611',
+                cancelButtonColor: '#C72D00',
+                confirmButtonText: 'Iya',
+                cancelButtonText: 'Tidak',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = val.getAttribute('href');
+                }
+            })
+        }
+    </script>
     <script type="text/javascript" src="/assets/admin/js/sidebar.js"></script>
 @endpush

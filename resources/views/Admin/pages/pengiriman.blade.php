@@ -23,42 +23,45 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($data as $pengiriman)
-                                <tr>
-                                    <td class="text-center">
-                                        {{ $pengiriman->invoice->auctioneer->auction->product->nama_product }}</td>
-                                    <td class="text-center">{{ $pengiriman->invoice->auctioneer->user->name }}</td>
-                                    <td class="text-center">{{ $pengiriman->invoice->auctioneer->user->address }}</td>
-                                    <td class="text-center">{{ $pengiriman->invoice->auctioneer->user->handphone }}</td>
-                                    <td class="text-center">{{ $pengiriman->kurir->name }}</td>
-                                    @switch($pengiriman->status)
-                                        @case('perjalanan')
-                                            <td class="text-center"><label class="badge bg-warning">Dalam Perjalanan</label>
-                                            </td>
-                                        @break
+                            @isset($data)
 
-                                        @case('diterima')
-                                            <td class="text-center"><label class="badge bg-success">Sudah Diterima</label>
-                                            </td>
-                                        @break
+                                @foreach ($data as $pengiriman)
+                                    <tr>
+                                        <td class="text-center">
+                                            {{ $pengiriman->invoice->auctioneer->auction->product->nama_product }}</td>
+                                        <td class="text-center">{{ $pengiriman->invoice->auctioneer->user->name }}</td>
+                                        <td class="text-center">{{ $pengiriman->invoice->auctioneer->user->address }}</td>
+                                        <td class="text-center">{{ $pengiriman->invoice->auctioneer->user->handphone }}</td>
+                                        <td class="text-center">{{ $pengiriman->kurir->name }}</td>
+                                        @switch($pengiriman->status)
+                                            @case('perjalanan')
+                                                <td class="text-center"><label class="badge bg-warning">Dalam Perjalanan</label>
+                                                </td>
+                                            @break
 
-                                        @default
-                                            <td class="text-center">-</td>
-                                    @endswitch
-                                    <td class="text-center">
-                                        @if ($pengiriman->bukti_penerimaan !== null)
-                                            <img src="{{ asset('storage/image/penerimaan/' . $pengiriman->bukti_penerimaan) }}"
-                                                alt="" style="width: 100px;height: 100px; object-fit:cover;">
-                                        @else
-                                            <button type="button" class="btn btn-primary btn-modal-terkirim"
-                                                data-bs-toggle="modal" data-bs-target="#modalPenerimaan"
-                                                onclick="setBukti({{ $pengiriman->pengiriman_id }})">
-                                                Kirim Bukti
-                                            </button>
-                                        @endif
-                                    </td>
-                                </tr>
-                            @endforeach
+                                            @case('diterima')
+                                                <td class="text-center"><label class="badge bg-success">Sudah Diterima</label>
+                                                </td>
+                                            @break
+
+                                            @default
+                                                <td class="text-center">-</td>
+                                        @endswitch
+                                        <td class="text-center">
+                                            @if ($pengiriman->bukti_penerimaan !== null)
+                                                <img src="{{ asset('storage/image/penerimaan/' . $pengiriman->bukti_penerimaan) }}"
+                                                    alt="" style="width: 100px;height: 100px; object-fit:cover;">
+                                            @else
+                                                <button type="button" class="btn btn-primary btn-modal-terkirim"
+                                                    data-bs-toggle="modal" data-bs-target="#modalPenerimaan"
+                                                    onclick="setBukti({{ $pengiriman->pengiriman_id }})">
+                                                    Kirim Bukti
+                                                </button>
+                                            @endif
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            @endisset
                         </tbody>
                     </table>
                 </div>

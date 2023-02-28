@@ -63,7 +63,7 @@
 
             <div class="col-7">
                 <div class="d-flex ">
-                    <img src="{{ $data ? asset('storage/image/product/' . $data->product->img_url) : '' }}"
+                    <img src="{{ $data ? asset('storage/image/product/' . $data->product->images[0]->image_path) : '' }}"
                         class="img-pelelangan" alt="" srcset="">
                 </div>
 

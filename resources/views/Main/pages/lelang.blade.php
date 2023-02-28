@@ -32,9 +32,8 @@
                                         href="{{ route('lelang.detail', $product->product->product_slug) }}">
                                         <div class="card-container">
                                             <div class="img-card-lelang">
-                                                <img src="{{ asset('storage/image/product/' . $product->product->img_url) }}"
-                                                    alt="{{ $product->product->nama_product }}" width="100%"
-                                                    srcset="">
+                                                <img src="{{ asset('storage/image/product/' . $product->product->images[0]->image_path) }}"
+                                                    width="100%" srcset="">
                                             </div>
                                             <div class="card-lelang">
                                                 <div class="">
@@ -42,7 +41,7 @@
                                                 </div>
                                                 <div class="card-lelang-bot d-flex ">
                                                     <h6 class="my-auto">
-                                                        {{ currency_IDR(count($product->offer) ? $bestOffer->offer : 0) }}
+                                                        {{ currency_IDR(count($product->offer) ? $bestOffer->offer : $product->product->harga_awal) }}
                                                     </h6>
                                                     <div class="ms-auto ">
                                                         <i class="fa-regular fa-clock"></i>
