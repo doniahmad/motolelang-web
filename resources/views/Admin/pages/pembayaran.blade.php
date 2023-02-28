@@ -30,7 +30,7 @@
                                     <td class="text-center">{{ $invoice->auctioneer->auction->product->nama_product }}
                                     </td>
                                     <td class="text-center">{{ $invoice->auctioneer->user->name }}</td>
-                                    <td class="text-center">{{ $invoice->invoice }}</td>
+                                    <td class="text-center">{{ currency_IDR($invoice->invoice) }}</td>
                                     <td class="text-center">
                                         @if ($invoice->bukti_pembayaran !== null)
                                             <a

@@ -96,7 +96,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        $data = $product->load(['categories', 'auction.auctioneer.user', 'auction.offer']);
+        $data = $product->load(['categories', 'auction.auctioneer.user', 'auction.offer', 'images']);
         return response()->json($data, 200);
     }
 

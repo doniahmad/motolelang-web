@@ -16,12 +16,6 @@
         ->sortByDesc('offer')
         ->first();
     
-    // dd($data->auction);
-    
-    $bestOffer = collect($data->auction->offer)
-        ->sortByDesc('offer')
-        ->first();
-    
 @endphp
 
 <div id="detailLelang" class="konten-2">
@@ -36,7 +30,7 @@
     <div class="container my-4">
         <div class="row">
             <div class="col-7 mb-5">
-                @include('main.components.detailSlider', ['path' => $data->img_url])
+                @include('main.components.detailSlider', ['path' => $data->images])
             </div>
 
             <div class="col-5">

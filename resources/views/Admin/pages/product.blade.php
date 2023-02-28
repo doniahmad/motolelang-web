@@ -32,7 +32,7 @@
                                 <tr>
                                     <td>0000{{ $product->product_id }}</td>
                                     <td>{{ $product->nama_product }}</td>
-                                    <td>Rp. {{ $product->harga_awal }}</td>
+                                    <td>{{ currency_IDR($product->harga_awal) }}</td>
                                     <td>{{ $product->jenis }}</td>
                                     <td>
                                         @if ($product->auction)
