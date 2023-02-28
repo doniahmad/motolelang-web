@@ -19,7 +19,7 @@
 <div id="roomLelang" class="konten-2">
     <div class="container">
         <div class="d-flex align-items-center">
-            <a href="{{ url()->previous() }}" class="text-dark">
+            <a href="{{ route('lelang.detail', ['param' => $data->product->product_slug]) }}" class="text-dark">
                 <span style="height: fit-content"><i class="fa fa-arrow-left fa-lg"></i></span>
             </a>
             <h4 class="ps-3 my-auto">Pelelangan {{ $data->product->nama_product }}</h4>

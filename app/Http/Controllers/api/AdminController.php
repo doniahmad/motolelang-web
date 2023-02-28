@@ -133,7 +133,7 @@ class AdminController extends Controller
     {
         try {
             $admin->delete();
-            Storage::delete('image/user/' . $admin->photo);
+            Storage::delete('image/admin/' . $admin->photo);
 
             return response()->json('Success Delete');
         } catch (\Exception $e) {

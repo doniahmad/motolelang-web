@@ -36,7 +36,7 @@
                     <div class="container d-flex align-items-center">
                         <div id="kontenTitlePembayaran" class="bg-white d-flex align-items-center box-shadow-santuy">
                             <div class="img-lelang">
-                                <img src="{{ asset('storage/image/product/' . $data->auctioneer->auction->product->img_url) }}"
+                                <img src="{{ asset('storage/image/product/' . $data->auctioneer->auction->product->images[0]->image_path) }}"
                                     alt="" srcset="">
                             </div>
                             <div id="infoPembayaran" class="">

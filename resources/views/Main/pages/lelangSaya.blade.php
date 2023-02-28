@@ -52,7 +52,7 @@
                     @else
                         <div class="bg-white d-flex align-items-center box-shadow-santuy mb-4">
                             <div class="img-lelang">
-                                <img src="{{ asset('storage/image/product/' . $auction->auction->product->img_url) }}"
+                                <img src="{{ asset('storage/image/product/' . $auction->auction->product->images[0]->image_path) }}"
                                     alt="" srcset="">
                             </div>
 

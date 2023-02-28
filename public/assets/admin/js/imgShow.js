@@ -20,5 +20,6 @@ $(function () {
 
     $("#imgInput").on("change", function () {
         imagesPreview(this, "div.imgShowcase");
+        $(".img-default-product").hide();
     });
 });

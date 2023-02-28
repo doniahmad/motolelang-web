@@ -23,7 +23,7 @@ class InvoiceController extends Controller
 
     public function userInvoice()
     {
-        $data = Invoice::with(['auctioneer.auction.product'])->whereHas('auctioneer', function ($query) {
+        $data = Invoice::with(['auctioneer.auction.product.images'])->whereHas('auctioneer', function ($query) {
             return $query->where('id_user', Auth::user()->user_id);
         })->get();
 
@@ -63,7 +63,7 @@ class InvoiceController extends Controller
      */
     public function show(Invoice $invoice)
     {
-        $data = $invoice->load(['auctioneer.auction.product']);
+        $data = $invoice->load(['auctioneer.auction.product.images']);
         return response()->json($data);
     }
 
@@ -85,7 +85,8 @@ class InvoiceController extends Controller
         try {
             // image
             if ($request->status == 'ditolak') {
-                Storage::delete($invoice->bukti_pembayaran);
+                Storage::delete('image/invoice/' . $invoice->bukti_pembayaran);
+                $validateData['bukti_pembayaran'] = null;
             } else {
 
                 if ($request->hasFile('bukti_pembayaran')) {
@@ -112,6 +113,7 @@ class InvoiceController extends Controller
     public function destroy(Invoice $invoice)
     {
         try {
+            Storage::delete('image/invoice/' . $invoice->bukti_pembayaran);
             $invoice->delete();
             return response()->json(['message' => 'Success']);
         } catch (\Exception $e) {

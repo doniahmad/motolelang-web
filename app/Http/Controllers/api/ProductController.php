@@ -134,12 +134,29 @@ class ProductController extends Controller
             'masa_stnk' => "date",
         ]);
 
+        $productWithImage = $product->load('images');
+
         try {
+            if ($request->hasFile('image')) {
+                foreach ($productWithImage->images as $img) {
+                    Storage::delete('image/product/' . $img->image_path);
+                    Image::find($img->image_id)->delete();
+                };
+
+                $imgList = array();
+                $image = $request->file('image');
+                foreach ($image as $imageFile) {
+                    $image_name = 'product-' . rand(1, 9999) .  '.' . $imageFile->extension();
+                    $imageFile->move(public_path('storage/image/product'), $image_name);
+                    $imgList[] = ['image_path' => $image_name, 'id_product' => $product->product_id];
+                }
+                $reqImage = Image::insert($imgList);
+            };
             $product->update($validateData);
             return response()->json([
                 'succes' => true,
                 'message' => 'Success',
-                'data' => $product,
+                'data' => ['product' => $product, 'image' => $reqImage],
             ]);
         } catch (\Exception $e) {
             return response()->json([
@@ -158,7 +175,9 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         try {
-            Storage::delete('images/product/' . $product->img_url);
+            foreach ($product->images as $img) {
+                Storage::delete('images/product/' . $img->image_path);
+            };
             $product->delete();
             return response()->json([
                 'success' => true,

@@ -165,8 +165,11 @@
                 </div>
                 <div class="mb-3">
                     <div class="imgShowcase row">
-                        @if ($data->img_url)
-                            <img src="{{ asset('storage/image/product/' . $product->img_url) }}" alt="">
+                        @if ($data->images)
+                            @foreach ($data->images as $img)
+                                <img src="{{ asset('storage/image/product/' . $img->image_path) }}" alt=""
+                                    class="img-default-product">
+                            @endforeach
                         @endif
                     </div>
                 </div>
