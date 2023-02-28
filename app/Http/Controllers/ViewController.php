@@ -157,7 +157,6 @@ class ViewController extends Controller
             'warna' => $input->warna,
             'nomor_rangka' => $input->nomor_rangka,
             'merk' => $input->merk,
-            'img_url' => $input->img_url,
             'deskripsi' => $input->deskripsi,
             'nomor_polisi' => $input->nomor_polisi,
             'stnk' => $input->stnk,
@@ -166,6 +165,7 @@ class ViewController extends Controller
             'faktur' => $input->faktur,
             'kwitansi_blanko' => $input->kwitansi_blanko,
             'masa_stnk' => $input->masa_stnk,
+            'image[]' => $input->image,
         ];
 
 
