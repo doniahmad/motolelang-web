@@ -81,12 +81,11 @@
                                                 </button>
                                             </a>
 
-                                            <button
-                                                href="{{ route('dashboard.deleteProduct', ['param' => $product->product_slug]) }}"
+                                            <div href="{{ route('dashboard.deleteProduct', ['param' => $product->product_slug]) }}"
                                                 id="btnHapus" type="button" class="btn btn-danger"
                                                 onclick="deleteProduct(this)">
                                                 <i class="fa-solid fa-trash"></i>
-                                            </button>
+                                            </div>
                                         @endif
 
                                     </td>
