@@ -17,6 +17,7 @@ class OngkirController extends Controller
     {
         $data = Ongkir::all();
         return response()->json($data);
+        // return view('Main.pages.pembayaran' ,compact('ongkirs'));
     }
 
     /**
@@ -48,7 +49,7 @@ class OngkirController extends Controller
      */
     public function show(Ongkir $ongkir)
     {
-        //
+        // 
     }
 
     /**

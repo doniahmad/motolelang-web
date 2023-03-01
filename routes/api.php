@@ -8,11 +8,10 @@ use App\Http\Controllers\api\CategoryController;
 use App\Http\Controllers\api\InvoiceController;
 use App\Http\Controllers\api\KurirController;
 use App\Http\Controllers\api\OfferController;
-use App\Http\Controllers\api\PaymentController;
+use App\Http\Controllers\api\OngkirController;
 use App\Http\Controllers\api\PengirimanController;
 use App\Http\Controllers\api\ProductController;
 use App\Http\Controllers\api\UserController;
-use App\Models\Invoice;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -54,3 +53,4 @@ Route::apiResource('invoice', InvoiceController::class)->parameters(['invoice' =
 Route::apiResource('kurir', KurirController::class);
 Route::get('kurirs', [KurirController::class, 'dataKurir']);
 Route::apiResource('pengiriman', PengirimanController::class);
+Route::apiResource('ongkir', OngkirController::class);

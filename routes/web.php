@@ -87,7 +87,8 @@ Route::group(['prefix' => 'lelang'], function () {
     })->name('lelang.index');
     Route::get('/detail/{param}', function (HttpRequest $request) {
         $data = ViewController::getProduct($request);
-        return view(mainPages('detail'), compact('data'));
+        $ongkir = ViewController::getOngkirs();
+        return view(mainPages('detail'), compact(['data', 'ongkir']));
     })->name('lelang.detail');
     Route::get('/room/{token}', function (HttpRequest $request) {
         $data = ViewController::getAuction($request);
@@ -98,7 +99,8 @@ Route::group(['prefix' => 'lelang'], function () {
     })->name('lelang.lelangSaya');
     Route::get('/pembayaran/{token}', function (HttpRequest $request) {
         $data = ViewController::getInvoice($request);
-        return view(mainPages('pembayaran'), compact('data'));
+        $ongkir = ViewController::getOngkirs();
+        return view(mainPages('pembayaran'), compact(['data','ongkir']));
     })->name('lelang.pembayaran');
     Route::post('/invoice/bayar', [ViewController::class, 'payInvoice'])->name('invoice.bayar');
     Route::post('/auction/join', [ViewController::class, 'createAuctioneer'])->name('lelang.auctioneer');

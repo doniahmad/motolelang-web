@@ -17,7 +17,7 @@ class InvoiceController extends Controller
      */
     public function index()
     {
-        $data = Invoice::with(['auctioneer.auction.product', 'auctioneer.user'])->get();
+        $data = Invoice::with(['auctioneer.auction.product.images', 'auctioneer.user'])->get();
         return response()->json($data);
     }
 

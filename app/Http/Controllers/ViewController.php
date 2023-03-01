@@ -493,4 +493,13 @@ class ViewController extends Controller
 
         Alert::success('Berhasil memperbarui password');
     }
+
+    public static function getOngkirs()
+    {
+        $request = Request::create('api/ongkir', 'GET');
+        $response = Route::dispatch($request);
+        $data = json_decode($response->getContent());
+
+        return $data;
+    }
 }
