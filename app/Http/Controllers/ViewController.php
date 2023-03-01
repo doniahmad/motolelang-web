@@ -471,4 +471,26 @@ class ViewController extends Controller
         Alert::toast('Pengiriman telah selesai', 'success');
         return redirect(route('dashboard.pengiriman'));
     }
+
+    public function sendPasswordResetEmail(HttpRequest $email)
+    {
+        $request = Request::create('api/password/forgot', 'POST', $email->all());
+        Route::dispatch($request);
+        Session::put('email_reset_password', $email);
+        Alert::success('Email berhasil dikirimkan', 'Silahkab cek email anda untuk verifikasi');
+    }
+
+    public function resetPassword(HttpRequest $req)
+    {
+        $data = [
+            'email' => $req->query('email'),
+            'token' => $req->query('token'),
+            'password' => $req->password,
+            'password_confirmation' => $req->password_confirmation
+        ];
+        $request = Request::create('api/password/reset', 'POST', $data);
+        $response = Route::dispatch($request);
+
+        Alert::success('Berhasil memperbarui password');
+    }
 }

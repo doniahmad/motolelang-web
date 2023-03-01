@@ -57,13 +57,23 @@ Route::group(['prefix' => 'login'], function () {
         return view(mainPages('signIn'));
     })->name('login.index');
     Route::post('/', [ViewController::class, 'loginAction'])->name('login.action');
-    Route::get('/lupa', function () {
+    Route::get('/forgot', function () {
         return view(mainPages('forgotpassword'));
-    })->name('login.lupa');
+    })->name('login.forgot');
+    Route::get('/forgot/email-sended', function () {
+        return view(mainPages('afterSendEmailReset'));
+    })->name('login.sendEmailForgot');
+    Route::get('/password/reset', function () {
+        return view(mainPages('resetPassword'));
+    })->name('password.reset');
+    Route::get('users/{id}', function ($id) {
+    });
     Route::get('/daftar', function () {
         return view(mainPages('register'));
     })->name('login.daftar');
     Route::post('/daftar', [ViewController::class, 'registerAction'])->name('login.daftarAction');
+    Route::post('/send/forgotPassword', [ViewController::class, 'sendPasswordResetEmail'])->name('forgot.sendEmail');
+    Route::post('/send/resetPassword', [ViewController::class, 'resetPassword'])->name('forgot.resetPassword');
 });
 
 Route::get('/send-email', [NotificationController::class, 'sendEmailEndAuctionNotification'])->name('notif.endAuction');
