@@ -7,18 +7,9 @@
             <div class="center">
                 <div class="my-5">
                     <h1 class="bold">Lupa Kata Sandi</h1>
-                    <form method="post" action="{{ route('forgot.sendEmail') }}">
-                        @csrf
-                        <div class="txt_field">
-                            <input type="email" name="email" required>
-                            <span></span>
-                            <label>Email</label>
-                        </div>
-
-                        <input type="submit" value="Kirim">
-
-
-                    </form>
+                    <p>
+                        Email verifikasi telah dikirimkan. silahkan cek email anda.
+                    </p>
                     <div class="text-center mt-5">
                         <p> Copyright &copy; <a href="/" class="text-decoration-none">MOTO Lelang</a> 2022</p>
                     </div>
