@@ -54,3 +54,4 @@ Route::apiResource('invoice', InvoiceController::class)->parameters(['invoice' =
 Route::apiResource('kurir', KurirController::class);
 Route::get('kurirs', [KurirController::class, 'dataKurir']);
 Route::apiResource('pengiriman', PengirimanController::class);
+Route::apiResource('ongkir', OngkirController::class);

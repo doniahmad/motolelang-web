@@ -17,13 +17,13 @@ class InvoiceController extends Controller
      */
     public function index()
     {
-        $data = Invoice::with(['auctioneer.auction.product', 'auctioneer.user'])->get();
+        $data = Invoice::with(['auctioneer.auction.product.images', 'auctioneer.user'])->get();
         return response()->json($data);
     }
 
     public function userInvoice()
     {
-        $data = Invoice::with(['auctioneer.auction.product'])->whereHas('auctioneer', function ($query) {
+        $data = Invoice::with(['auctioneer.auction.product.images'])->whereHas('auctioneer', function ($query) {
             return $query->where('id_user', Auth::user()->user_id);
         })->get();
 
@@ -63,7 +63,7 @@ class InvoiceController extends Controller
      */
     public function show(Invoice $invoice)
     {
-        $data = $invoice->load(['auctioneer.auction.product']);
+        $data = $invoice->load(['auctioneer.auction.product.images']);
         return response()->json($data);
     }
 

@@ -11,4 +11,5 @@ class Ongkir extends Model
 
     protected $primaryKey = "ongkir_id";
     protected $guarded = ["ongkir_id"];
+    
 }

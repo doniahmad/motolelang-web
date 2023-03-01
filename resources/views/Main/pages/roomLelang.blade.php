@@ -1,5 +1,5 @@
 @extends('Main.layouts.master')
-@section('title', 'Ruang Lelang')
+@section('title', $data->nama_product)
 
 @php
     
@@ -31,7 +31,7 @@
                 <h5 class="color-primer">
                     {{ isset($currentAuctioneer) ? $currentAuctioneer->nama_samaran : 'Null' }}
                 </h5>
-                <h6 class="ms-auto">Selesai Dalam
+                <h6 class="ms-auto">Selesai Pada
                     <span>{{ $data ? $data->exp_date : '' }}</span>
                     <span><i class="fa-regular fa-clock"></i></span>
                 </h6>

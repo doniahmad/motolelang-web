@@ -471,4 +471,13 @@ class ViewController extends Controller
         Alert::toast('Pengiriman telah selesai', 'success');
         return redirect(route('dashboard.pengiriman'));
     }
+
+    public static function getOngkirs()
+    {
+        $request = Request::create('api/ongkir', 'GET');
+        $response = Route::dispatch($request);
+        $data = json_decode($response->getContent());
+
+        return $data;
+    }
 }

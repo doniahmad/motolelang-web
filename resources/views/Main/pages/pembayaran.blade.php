@@ -1,5 +1,7 @@
 @extends('Main.layouts.master')
+@dd($ongkir)
 @section('title', 'Lelang Saya')
+
 
 <div id="pembayaran" class="konten-2">
     <div class="container">
@@ -31,12 +33,12 @@
         </div>
 
         <div id="kontenPembayaran" class="row">
-            <div class="col-7">
+            <div class="col-md-7 col-sm-6">
                 @isset($data)
                     <div class="container d-flex align-items-center">
-                        <div id="kontenTitlePembayaran" class="bg-white d-flex align-items-center box-shadow-santuy">
+                        <div id="kontenTitlePembayaran" class="bg-white d-flex align-items-center box-shadow-santuy p-3">
                             <div class="img-lelang">
-                                <img src="{{ asset('storage/image/product/' . $data->auctioneer->auction->product->img_url) }}"
+                                <img src="{{ asset('storage/image/product/' . $data->auctioneer->auction->product->images[0]->image_path) }}"
                                     alt="" srcset="">
                             </div>
                             <div id="infoPembayaran" class="">
@@ -64,7 +66,7 @@
                     <b>Alasan Penolakan : {{ isset($data->alasan_penolakan) ? $data->alasan_penolakan : '' }}</b>
                 @endisset
             </div>
-            <div class="col-5">
+            <div class="col-md-5 col-sm-6">
                 @isset($data)
                     <div id="tagihan" class="">
                         <div class="bg-white box-shadow-santuy">
@@ -82,15 +84,15 @@
                                 <hr>
                                 <div class="dropdown">
 
-                                    <select id="selectPengambilan" class="form-select py-1 px-2"
+                                    {{-- <select id="selectPengambilan" class="form-select py-1 px-2"
                                         onchange="enablePengiriman(this)" aria-label="Default select example">
                                         <option selected disabled>Pilih Cara Pengambilan
                                         </option>
                                         <option value="0">Ambil di tempat</option>
                                         <option value="1" class="">Kirim</option>
-                                    </select>
+                                    </select> --}}
 
-                                    <select id="selectPengiriman" class="form-select mt-3 py-1 px-2 d-none" onchange=""
+                                    {{-- <select id="selectPengiriman" class="form-select mt-3 py-1 px-2" onchange=""
                                         aria-label="Default select example">
                                         <option class="" value="0">Pilih Daerah Pengiriman
                                         </option>
@@ -130,6 +132,15 @@
                                         <option value="33" class="">Kota Semarang</option>
                                         <option value="34" class="">Kota Surakarta</option>
                                         <option value="35" class="">Kota Tegal</option>
+                                    </select> --}}
+
+                                    <select name="" id="selectKabupaten" class="form-select mt-3 py-1 px-2"
+                                        onchange="" aria-label="Default select example">
+                                        <option value="">Pilih Daerah Pengiriman</option>
+                                        <option value="" disabled="disabled">----------------------</option>
+                                        @foreach ($ongkir as $item)
+                                            {{-- <option value="{{ $item->ongkir_id }}">{{ $item->nama_daerah }}</option> --}}
+                                        @endforeach
                                     </select>
 
                                 </div>
@@ -157,5 +168,5 @@
 
 @push('scripts')
     <script type="text/javascript" src="/assets/main/js/valueModal.js"></script>
-    <script type="text/javascript" src="/assets/main/js/pengiriman.js"></script>
+    {{-- <script type="text/javascript" src="/assets/main/js/pengiriman.js"></script> --}}
 @endpush
