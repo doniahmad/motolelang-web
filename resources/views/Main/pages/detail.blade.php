@@ -16,7 +16,8 @@
         ->sortByDesc('offer')
         ->first();
     
-    dd($ongkir);
+    // dd($ongkir);
+    
 @endphp
 
 <div id="detailLelang" class="konten-2">

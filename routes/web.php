@@ -87,8 +87,7 @@ Route::group(['prefix' => 'lelang'], function () {
     })->name('lelang.index');
     Route::get('/detail/{param}', function (HttpRequest $request) {
         $data = ViewController::getProduct($request);
-        $ongkir = ViewController::getOngkirs();
-        return view(mainPages('detail'), compact(['data', 'ongkir']));
+        return view(mainPages('detail'), compact('data'));
     })->name('lelang.detail');
     Route::get('/room/{token}', function (HttpRequest $request) {
         $data = ViewController::getAuction($request);

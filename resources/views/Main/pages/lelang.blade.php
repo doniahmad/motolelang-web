@@ -45,7 +45,7 @@
                                                     </h6>
                                                     <div class="ms-auto ">
                                                         <i class="fa-regular fa-clock"></i>
-                                                        <span>10 Hari</span>
+                                                        <span>1 Hari</span>
                                                     </div>
                                                 </div>
                                             </div>
