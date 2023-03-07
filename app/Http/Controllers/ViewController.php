@@ -3,14 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Auction;
+use App\Models\User;
+use App\Notifications\AcceptInvoiceNotification;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Http\Request as HttpRequest;
-use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
+use Exception;
+use Illuminate\Support\Facades\Notification;
 
 class ViewController extends Controller
 {
@@ -20,6 +24,13 @@ class ViewController extends Controller
         return 'Main.pages.' . $value;
     }
 
+    public static function postAction($path, $input)
+    {
+        $request = Request::create($path, 'POST', $input);
+        $response = Route::dispatch($request);
+        return json_decode($response->getContent());
+    }
+
     public function loginAction(HttpRequest $input)
     {
         $inputData = [
@@ -27,16 +38,13 @@ class ViewController extends Controller
             'password' => $input->password,
         ];
 
-        // try {
-        $request = Request::create('/api/login', 'POST', $inputData);
-        $response = Route::dispatch($request);
-        $data = json_decode($response->getContent());
-        Session::put('token', $data->token);
-
-        return Redirect::to(route('home.index'));
-        // } catch (\Exception $e) {
-        //     return dd($e->getMessage());
-        // }
+        $data = $this->postAction('/api/login', $inputData);
+        if ($data->status === "success") {
+            Session::put('token', $data->token);
+            return Redirect::to(route('home.index'));
+        } else {
+            return redirect()->back()->withErrors($data);
+        }
     }
 
     public function loginAdmin(HttpRequest $input)
@@ -46,12 +54,17 @@ class ViewController extends Controller
             'password' => $input->password,
         ];
 
-        $request = Request::create('/api/login-admin', 'POST', $inputData);
-        $response = Route::dispatch($request);
-        $data = json_decode($response->getContent());
-        Session::put('token', $data->token);
-
-        return Redirect::to(route('dashboard.index'));
+        $data = $this->postAction('/api/login-admin', $inputData);
+        if ($data->status === 'success') {
+            Session::put('token', $data->token);
+            if ($data->user->role[0] === 'kurir') {
+                return redirect(route('dashboard.pengiriman'));
+            } else {
+                return redirect(route('dashboard.index'));
+            }
+        } else {
+            return redirect()->back()->withErrors($data);
+        }
     }
 
     public function registerAction(HttpRequest $input)
@@ -64,39 +77,44 @@ class ViewController extends Controller
             'password_confirmation' => $input->password_confirmation
         ];
 
-        // dd($inputData);
+        $data = $this->postAction('/api/register', $inputData);
 
-        try {
-            $request = Request::create('/api/register', 'POST', $inputData);
-            $response = Route::dispatch($request);
+        if ($data->status === "success") {
             return Redirect::to(route('login.index'));
-        } catch (\Exception $e) {
-            return dd($e->getMessage());
+        } else {
+            return redirect()->back()->withErrors($data->message);
         }
     }
 
-    public static function updateUserProfile(HttpRequest $data)
+    public static function updateUserProfile(HttpRequest $input)
     {
 
-        $data['_method'] = 'PUT';
+        $input['_method'] = 'PUT';
 
-        $request = Request::create('/api/user/' . $data->id, 'POST', $data->all());
-        $response = Route::dispatch($request);
+        $data = self::postAction('/api/user/' . $input->id, $input->all());
 
-        Alert::toast('Profile Telah Diperbarui', 'success');
-        return redirect(route('profil.index'));
+        if ($data->status === 'success') {
+            Alert::toast('Profile Telah Diperbarui', 'success');
+            return redirect(route('profil.index'));
+        } else {
+            return redirect()->back()->withErrors($data);
+        }
     }
 
-    public static function updateAdminProfile(HttpRequest $data)
+    public static function updateAdminProfile(HttpRequest $input)
     {
 
-        $data['_method'] = 'PUT';
+        $input['_method'] = 'PUT';
 
-        $request = Request::create('/api/admin/' . $data->id, 'POST', $data->all());
-        $response = Route::dispatch($request);
 
-        Alert::toast('Profile Telah Diperbarui', 'success');
-        return redirect(route('admin.profile'));
+        $data = self::postAction('/api/admin/' . $input->id, $input->all());
+
+        if ($data->status === 'success') {
+            Alert::toast('Profile Telah Diperbarui', 'success');
+            return redirect(route('admin.profile'));
+        } else {
+            return redirect()->back()->withErrors($data);
+        }
     }
 
     public function logoutAction()
@@ -114,7 +132,14 @@ class ViewController extends Controller
     {
         auth()->guard('web')->logout();
         Session::forget('token');
-        return Redirect::to(route('login'));
+        return Redirect::to(route('login.dashboard'));
+    }
+
+    public function showGalleryLelang()
+    {
+        $response = Auction::with(['product.images', 'auctioneer.user', 'auctioneer.offer', 'offer.auctioneer', 'auctioneer.invoice',])->paginate(12);
+        // dd($response);
+        return view($this->mainPages('lelang'))->with('data', $response);
     }
 
     public static function getProducts()
@@ -143,7 +168,6 @@ class ViewController extends Controller
 
     public function postProduct(HttpRequest $input)
     {
-
         // input data for product
         $reqProduct = [
             'nama_product' => $input->nama_product,
@@ -167,39 +191,30 @@ class ViewController extends Controller
             'masa_stnk' => $input->masa_stnk,
             'image[]' => $input->image,
         ];
-
-
-
-        try {
-            $request = Request::create('/api/product', 'POST', $reqProduct);
-            $response = Route::dispatch($request);
-
+        $data = self::postAction('/api/product/', $reqProduct);
+        if ($data->status === 'success') {
             Alert::toast('Product berhasil ditambahkan', 'success');
-
             return Redirect::to(route('dashboard.product'));
-        } catch (\ErrorException $e) {
-            return $e->getMessage();
+        } else {
+            Alert::toast('Product gagal ditambahkan', 'Sayang sekali, Product gagal untuk ditambahkan.', 'error');
+            return redirect()->back()->withErrors($data);
         }
-
-        // $reqAuction = [
-        //     'id_product' => $dataProduct->data->product_id,
-        //     'exp_date' => $input->exp_date
-        // ];
-
-        // Request::create('/api/auction', 'POST', $reqAuction);
-
     }
 
     public function updateProduct(HttpRequest $input)
     {
 
         $input['_method'] = 'PUT';
-        $request = Request::create('/api/product/' . $input->param, 'POST', $input->all());
-        $response = Route::dispatch($request);
 
-        Alert::toast('Product berhasil diperbarui', 'success');
+        $data = $this->postAction('/api/product/' . $input->param, $input->all());
 
-        return Redirect::to(route('dashboard.product'));
+        if ($data->status === 'success') {
+            Alert::toast('Product berhasil diperbarui', 'success');
+            return Redirect::to(route('dashboard.product'));
+        } else {
+            Alert::toast('Product gagal diperbarui', 'error');
+            return redirect()->back()->withErrors($data);
+        }
     }
 
     public function deleteProduct(HttpRequest $input)
@@ -242,12 +257,14 @@ class ViewController extends Controller
 
     public static function setAuction(HttpRequest $input)
     {
-        $request = Request::create('/api/auction', 'POST', $input->all());
-        $response = Route::dispatch($request);
+        $data = self::postAction('/api/auction', $input->all());
 
-        Alert::toast('Pelelangan berhasil dijalankan', 'success');
-
-        return Redirect::to(route('dashboard.product'));
+        if ($data->status === 'success') {
+            Alert::toast('Pelelangan berhasil dijalankan', 'success');
+            return Redirect::to(route('dashboard.product'));
+        } else {
+            return redirect()->back()->withErrors($data);
+        }
     }
 
     public static function getAuction(HttpRequest $param)
@@ -268,33 +285,39 @@ class ViewController extends Controller
 
     public static function createAuctioneer(HttpRequest $input)
     {
-        $request = Request::create('api/auctioneer', 'POST', $input->all());
-        $response = Route::dispatch($request);
-        $data = json_decode($response->getContent());
-        return Redirect::to(route('lelang.room', ['token' => $input->token_pelelangan]));
+        $data = self::postAction('/api/auctioneer', $input->all());
+
+        if ($data->status === 'success') {
+            Alert::toast('Anda berhasil mengikuti lelang', 'success');
+            return Redirect::to(route('lelang.room', ['token' => $input->token_pelelangan]));
+        } else {
+            return redirect()->back()->withErrors($data);
+        }
     }
 
     public static function createOffer(HttpRequest $input)
     {
-
         if (isset($input->new_offer)) {
             $dataReq = [
                 'offer' => $input->new_offer,
                 '_method' => 'PUT',
             ];
-            $request = Request::create('api/offer/' . $input->current_offer_id, 'POST', $dataReq);
-            $response = Route::dispatch($request);
+            $data = self::postAction('/api/offer/' . $input->current_offer_id, $dataReq);
         } else {
             $dataReq = [
                 'id_auction' => $input->id_auction,
                 'id_auctioneer' => $input->id_auctioneer,
                 'offer' => $input->offer,
             ];
-            $request = Request::create('api/offer', 'POST', $dataReq);
-            $response = Route::dispatch($request);
+            $data = self::postAction('/api/offer', $dataReq);
         }
-
-        return Redirect::to(route('lelang.room', ['token' => $input->token_lelang]));
+        if ($data->status === 'success') {
+            Alert::toast('Berhasil memasang penawaran', 'success');
+            return Redirect::to(route('lelang.room', ['token' => $input->token_lelang]));
+        } else {
+            Alert::toast('Gagal memasang penawaran', 'error');
+            return redirect()->back()->withErrors($data);
+        }
     }
 
     public static function getInvoice(HttpRequest $param)
@@ -317,53 +340,60 @@ class ViewController extends Controller
 
     public static function payInvoice(HttpRequest $param)
     {
-        $dataReq = [
-            '_method' => 'PUT'
-        ];
+        $param['_method'] = 'PUT';
 
-        $request = Request::create('api/invoice/' . $param->kode_pembayaran, 'POST', $dataReq);
-        $response = Route::dispatch($request);
+        $data = self::postAction('/api/invoice/' . $param->kode_pembayaran, $param->all());
 
-        Alert::toast('Pembayaran berhasil dikirimkan', 'success');
-
-        return Redirect::to('http://127.0.0.1:8000/lelang/lelang-saya');
+        if ($data->status === 'success') {
+            Alert::success('Pembayaran berhasil dikirimkan');
+            return Redirect::to(route('lelang.lelangSaya'));
+        } else {
+            Alert::error('Gagal melakukan pembayaran');
+            return redirect()->back()->withErrors($data);
+        }
     }
 
-    public function rejectInvoice(HttpRequest $data)
+    public function rejectInvoice(HttpRequest $param)
     {
-        $dataReq = [
-            '_method' => 'PUT'
-        ];
+        $param['_method'] = 'PUT';
 
-        $request = Request::create('api/invoice/' . $data->kode_pembayaran, 'POST', $dataReq);
-        $response = Route::dispatch($request);
+        $data = $this->postAction('/api/invoice/' . $param->kode_pembayaran, $param->all());
 
-        Alert::toast('Pembayaran ditolak', 'success');
-
-        return Redirect::to(route('dashboard.pembayaran'));
+        if ($data->status === 'success') {
+            Alert::toast('Pembayaran ditolak', 'success');
+            return Redirect::to(route('dashboard.pembayaran'));
+        } else {
+            return redirect()->back()->withErrors($data);
+        }
     }
 
     public function acceptInvoice(HttpRequest $data)
     {
-        $reqAuction = [
+        $reqInvoice = [
             '_method' => 'PUT',
             'status' => $data->status,
-            'alasan_penolakan' => ''
+            'alasan_penolakan' => null
         ];
 
         $reqPengiriman = [
             'id_invoice' => $data->id_invoice,
             'id_kurir' => $data->id_kurir,
-
         ];
 
-        $updateInvoice = Request::create('api/invoice/' . $data->kode_pembayaran, 'POST', $reqAuction);
-        $sendPengiriman = Request::create('api/pengiriman', 'POST', $reqPengiriman);
-        Route::dispatch($updateInvoice);
-        Route::dispatch($sendPengiriman);
+        $auctioneer = json_decode($data->auctioneer);
+        $user = User::find($auctioneer->user->user_id);
 
-        Alert::toast('Pembayaran disetujui', 'success');
-        return Redirect::to(route('dashboard.pembayaran'));
+        Notification::send($user, new AcceptInvoiceNotification($auctioneer));
+
+        // $pengiriman = $this->postAction('api/pengiriman', $reqPengiriman);
+        // $invoice = $this->postAction('api/invoice/' . $data->kode_pembayaran, $reqInvoice);
+
+        // if ($invoice->status === 'success' && $pengiriman->status === 'success') {
+        //     Alert::toast('Pembayaran disetujui', 'success');
+        //     return redirect()->back();
+        // } else {
+        //     return redirect()->back();
+        // }
     }
 
     public static function getKurirs()
@@ -386,14 +416,14 @@ class ViewController extends Controller
 
     public static function postKurir(HttpRequest $input)
     {
+        $data = self::postAction('/api/kurir', $input->all());
 
-        $request = Request::create('api/kurir', 'POST', $input->all());
-        $response = Route::dispatch($request);
-
-
-        // dd($response);
-        Alert::toast('Berhasil menambahkan kurir', 'success');
-        return redirect(route('dashboard.kurir'));
+        if ($data->status === 'success') {
+            Alert::toast('Berhasil menambahkan kurir', 'success');
+            return redirect(route('dashboard.kurir'));
+        } else {
+            return redirect()->back()->withErrors($data);
+        }
     }
 
     public static function deleteKurir(HttpRequest $param)
@@ -402,8 +432,6 @@ class ViewController extends Controller
         $request = Request::create('api/kurir/' . $param->id, 'DELETE');
         $response = Route::dispatch($request);
 
-        // dd($param->id);
-        // alert()->success('SuccessAlert', 'Lorem ipsum dolor sit amet.');
         Alert::toast('Berhasil menghapus kurir', 'success');
         return redirect(route('dashboard.kurir'));
     }
@@ -422,19 +450,20 @@ class ViewController extends Controller
         $request = Request::create('/api/kurir/' . $id->id, 'GET');
         $response = Route::dispatch($request);
         $data = json_decode($response->getContent());
-        // return response()->json($data, 200);
         return view(adminPages('detailAdmin'), compact('data'));
     }
 
     public static function postAdmin(HttpRequest $input)
     {
+        $data = self::postAction('/api/admin', $input->all());
 
-        $request = Request::create('api/admin', 'POST', $input->all());
-        $response = Route::dispatch($request);
-
-        Alert::toast('Admin berhasil ditambahkan', 'success');
-        // dd($response);
-        return redirect(route('dashboard.admin'))->withSuccess('Admin berhasil ditambahkan');
+        if ($data === 'success') {
+            Alert::toast('Admin berhasil ditambahkan', 'success');
+            return redirect(route('dashboard.admin'))->withSuccess('Admin berhasil ditambahkan');
+        } else {
+            Alert::error('Admin gagal ditambahkan', 'Anda gagal menambahkan admin baru!');
+            return redirect()->back()->withErrors($data);
+        }
     }
 
     public static function deleteAdmin(HttpRequest $param)
@@ -458,26 +487,33 @@ class ViewController extends Controller
         return $data;
     }
 
-    public static function setDelivered(HttpRequest $data)
+    public static function setDelivered(HttpRequest $input)
     {
         $req = [
-            'bukti_penerimaan' => $data->bukti_penerimaan,
+            'bukti_penerimaan' => $input->bukti_penerimaan,
             '_method' => 'PUT'
         ];
+        $data = self::postAction('/api/pengiriman/' . $input->id, $req);
 
-        $request = Request::create('api/pengiriman/' . $data->id, 'POST', $req);
-        Route::dispatch($request);
-
-        Alert::toast('Pengiriman telah selesai', 'success');
-        return redirect(route('dashboard.pengiriman'));
+        if ($data->status === 'success') {
+            Alert::toast('Pengiriman telah selesai', 'success');
+            return redirect(route('dashboard.pengiriman'));
+        } else {
+            Alert::error('Gagal memasang bukti');
+            return redirect()->back()->withErrors($data);
+        }
     }
 
     public function sendPasswordResetEmail(HttpRequest $email)
     {
-        $request = Request::create('api/password/forgot', 'POST', $email->all());
-        Route::dispatch($request);
-        Session::put('email_reset_password', $email);
-        Alert::success('Email berhasil dikirimkan', 'Silahkab cek email anda untuk verifikasi');
+        $data = $this->postAction('/api/password/forgot', $email->all());
+
+        if ($data->status === 'success') {
+            Session::put('email_reset_password', $email);
+            Alert::success('Email berhasil dikirimkan', 'Silahkan cek email anda untuk verifikasi');
+        } else {
+            return redirect()->back()->withErrors($data);
+        }
     }
 
     public function resetPassword(HttpRequest $req)
@@ -488,10 +524,15 @@ class ViewController extends Controller
             'password' => $req->password,
             'password_confirmation' => $req->password_confirmation
         ];
-        $request = Request::create('api/password/reset', 'POST', $data);
-        $response = Route::dispatch($request);
 
-        Alert::success('Berhasil memperbarui password');
+        $data = $this->postAction('/api/password/reset', $data);
+
+        if ($data->status === 'success') {
+            Alert::success('Berhasil memperbarui password');
+            return redirect(route('login.index'));
+        } else {
+            return redirect()->back()->withErrors($data);
+        }
     }
 
     public static function getOngkirs()

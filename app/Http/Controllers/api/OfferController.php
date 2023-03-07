@@ -5,6 +5,7 @@ namespace App\Http\Controllers\api;
 use App\Http\Controllers\Controller;
 use App\Models\Offer;
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 
 class OfferController extends Controller
 {
@@ -42,14 +43,13 @@ class OfferController extends Controller
         try {
             $response = Offer::create($validateData);
             return response()->json([
-                'succes' => true,
-                'message' => 'Success',
+                'status' => 'success',
                 'data' => $response,
             ]);
-        } catch (\Exception $e) {
+        } catch (ValidationException $e) {
             return response()->json([
-                'message' => 'Error',
-                'error' => $e->getMessage()
+                'status' => 'error',
+                'error' => $e->errors()
             ], 422);
         }
     }
@@ -83,14 +83,13 @@ class OfferController extends Controller
         try {
             $product = $offer->update($updateData);
             return response()->json([
-                'succes' => true,
-                'message' => 'Success',
+                'status' => 'success',
                 'data' => $product,
             ]);
-        } catch (\Exception $e) {
+        } catch (ValidationException $e) {
             return response()->json([
-                'message' => 'Error',
-                'error' => $e->getMessage()
+                'statsu' => 'error',
+                'error' => $e->errors()
             ], 422);
         }
     }

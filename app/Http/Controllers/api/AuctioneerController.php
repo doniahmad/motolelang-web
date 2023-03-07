@@ -5,6 +5,7 @@ namespace App\Http\Controllers\api;
 use App\Http\Controllers\Controller;
 use App\Models\Auctioneer;
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 
 class AuctioneerController extends Controller
 {
@@ -37,14 +38,14 @@ class AuctioneerController extends Controller
         try {
             $response = Auctioneer::create($data);
             return response()->json([
-                'succes' => true,
+                'status' => 'success',
                 'message' => 'Auctioneer Success Created',
                 'data' => $response,
             ]);
-        } catch (\Exception $e) {
+        } catch (ValidationException $e) {
             return response()->json([
-                'message' => 'Error',
-                'error' => $e->getMessage()
+                'status' => 'error',
+                'message' => $e->errors()
             ], 422);
         }
     }

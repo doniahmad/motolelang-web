@@ -10,7 +10,7 @@ class Pengiriman extends Model
     use HasFactory;
 
     // nanti hapus jika sudah migrate lagi
-    // protected $table = 'pengiriman';
+    protected $table = 'pengiriman';
 
     protected $primaryKey = "pengiriman_id";
     protected $guarded = ["pengiriman_id"];

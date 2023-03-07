@@ -8,6 +8,7 @@ use App\Models\Product;
 use Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\ValidationException;
 
 class ProductController extends Controller
 {
@@ -76,14 +77,13 @@ class ProductController extends Controller
                 $reqImage = Image::insert($imgList);
             };
             return response()->json([
-                'succes' => true,
-                'message' => 'Success',
+                'status' => 'success',
                 'data' => ['product' => $product, 'image' => $reqImage],
             ]);
-        } catch (\Exception $e) {
+        } catch (ValidationException $e) {
             return response()->json([
-                'message' => 'Error',
-                'error' => $e->getMessage()
+                'status' => 'error',
+                'message' => $e->errors()
             ], 422);
         }
     }
@@ -154,14 +154,13 @@ class ProductController extends Controller
             };
             $product->update($validateData);
             return response()->json([
-                'succes' => true,
-                'message' => 'Success',
+                'status' => 'success',
                 'data' => ['product' => $product, 'image' => $reqImage],
             ]);
-        } catch (\Exception $e) {
+        } catch (ValidationException $e) {
             return response()->json([
-                'message' => 'Error',
-                'error' => $e->getMessage()
+                'status' => 'error',
+                'error' => $e->errors()
             ], 422);
         }
     }

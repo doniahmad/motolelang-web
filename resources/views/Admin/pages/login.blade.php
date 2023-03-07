@@ -10,6 +10,15 @@
                         <h1 class="bold">Admin</h1>
                         <form method="post" action="{{ route('login.admin') }}">
                             @csrf
+                            @if ($errors->any())
+                                <div class="alert alert-warning py-2" role="alert">
+                                    <i class="fa-solid fa-circle-exclamation">
+                                    </i>
+                                    <span class="ps-2">
+                                        {{ $errors->first('message') }}
+                                    </span>
+                                </div>
+                            @endif
                             <div class="txt_field">
                                 <input type="email" name="email" required>
                                 <span></span>
@@ -26,7 +35,7 @@
 
                         </form>
                         <div class="text-center mt-5">
-                            <p> Copyright &copy; <a href="#" class="text-decoration-none">MOTO Lelang</a> 2022</p>
+                            <p> Copyright &copy; <a href="/" class="text-decoration-none">MOTO Lelang</a> 2022</p>
                         </div>
 
                     </div>

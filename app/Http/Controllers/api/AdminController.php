@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\ValidationException;
 
 class AdminController extends Controller
 {
@@ -19,7 +20,6 @@ class AdminController extends Controller
     {
         $allAdmin = User::with('roles')->whereHas('roles', function ($role) {
             $role->where('name', 'admin');
-            $role->orWhere('name', 'owner');
         })->get();
         return response()->json($allAdmin);
     }
@@ -32,21 +32,20 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-        $fields = $request->validate([
-            'name' => 'required',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|min:8',
-            'role' => 'in:admin',
-            'handphone' => 'required|string',
-            'birth_place' => 'required|string',
-            'birth_date' => 'required|string',
-            'gender' => 'required|in:wanita,pria',
-            'address' => 'required|string',
-            'photo' => 'required|image|mimes:jpg,png,jpeg'
-        ]);
-
-
         try {
+            $fields = $request->validate([
+                'name' => 'required',
+                'email' => 'required|email|unique:users,email',
+                'password' => 'required|min:8',
+                'role' => 'in:admin',
+                'handphone' => 'required|string',
+                'birth_place' => 'required|string',
+                'birth_date' => 'required|string',
+                'gender' => 'required|in:wanita,pria',
+                'address' => 'required|string',
+                'photo' => 'required|image|mimes:jpg,png,jpeg'
+            ]);
+
             $fields['role'] = 'admin';
             $fields['password'] = Hash::make($fields['password']);
 
@@ -61,9 +60,9 @@ class AdminController extends Controller
 
             $admin->assignRole($fields['role']);
 
-            return response()->json($admin);
-        } catch (\Exception $e) {
-            return response()->json($e->getMessage());
+            return response()->json(['status' => 'success', 'data' => $admin]);
+        } catch (ValidationException $e) {
+            return response()->json(['status' => 'error', 'message' => $e->errors()]);
         }
     }
 
@@ -77,7 +76,6 @@ class AdminController extends Controller
     {
         $allAdmin = User::with('roles')->whereHas('roles', function ($role) {
             $role->where('name', 'admin');
-            $role->orWhere('name', 'owner');
         })->get();
         return response()->json($allAdmin);
     }
@@ -91,18 +89,16 @@ class AdminController extends Controller
      */
     public function update(Request $request, User $admin)
     {
-        $fields = $request->validate([
-            'name' => 'string',
-            'handphone' => 'string',
-            'birth_place' => 'string',
-            'birth_date' => 'string',
-            'gender' => 'in:pria,wanita',
-            'address' => 'string',
-            'photo' => 'image|mimes:jpg,png'
-        ]);
-
-
         try {
+            $fields = $request->validate([
+                'name' => 'string',
+                'handphone' => 'string',
+                'birth_place' => 'string',
+                'birth_date' => 'string',
+                'gender' => 'in:pria,wanita',
+                'address' => 'string',
+                'photo' => 'image|mimes:jpg,png'
+            ]);
 
             if ($request->hasFile('photo')) {
                 $image = $request->file('photo');
@@ -118,8 +114,8 @@ class AdminController extends Controller
                 'success' => true,
                 'data' => $updateData,
             ]);
-        } catch (\Exception $e) {
-            return response()->json($e->getMessage());
+        } catch (ValidationException $e) {
+            return response()->json(['status' => 'error', 'message' => $e->errors()]);
         }
     }
 

@@ -110,6 +110,9 @@
 </head>
 
 <body>
+    @php
+        header('Accept', 'application/json');
+    @endphp
 
     @if (!auth()->check())
         @include('Main.components.navbar')

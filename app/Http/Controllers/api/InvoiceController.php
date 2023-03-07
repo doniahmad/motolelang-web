@@ -49,9 +49,9 @@ class InvoiceController extends Controller
 
         try {
             $data = Invoice::create($validateData);
-            return response()->json($data);
+            return response()->json(['status' => 'success', 'data' => $data]);
         } catch (\Exception $e) {
-            return response()->json($e->getMessage());
+            return response()->json(['status' => 'success', 'message' => $e->getMessage()]);
         }
     }
 
@@ -78,7 +78,7 @@ class InvoiceController extends Controller
     {
         $validateData = $request->validate([
             'status' => 'string',
-            'alasan_penolakan' => 'string',
+            'alasan_penolakan' => 'string|nullable',
             'bukti_pembayaran' => 'image|mimes:png,jpg',
         ]);
 
@@ -98,9 +98,9 @@ class InvoiceController extends Controller
                 }
             }
             $updatedData = $invoice->update($validateData);
-            return response()->json($updatedData);
+            return response()->json(['status' => 'success', 'data' => $updatedData]);
         } catch (\Exception $e) {
-            return response()->json($e->getMessage());
+            return response()->json(['status' => 'error', 'message' => $e->getMessage()]);
         }
     }
 

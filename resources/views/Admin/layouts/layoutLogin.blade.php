@@ -27,11 +27,7 @@
 
 <body>
 
-
-
     @yield('content')
-
-
 
 </body>
 

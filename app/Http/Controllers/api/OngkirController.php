@@ -5,6 +5,7 @@ namespace App\Http\Controllers\api;
 use App\Models\Ongkir;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 
 class OngkirController extends Controller
 {
@@ -35,9 +36,15 @@ class OngkirController extends Controller
 
         try {
             $data = Ongkir::create($validatedData);
-            return response()->json($data);
-        } catch (\Exception $e) {
-            return response()->json($e->getMessage());
+            return response()->json([
+                'status' => 'success',
+                'data' => $data,
+            ]);
+        } catch (ValidationException $e) {
+            return response()->json([
+                'status' => 'error',
+                'message' => $e->errors(),
+            ]);
         }
     }
 
@@ -49,7 +56,7 @@ class OngkirController extends Controller
      */
     public function show(Ongkir $ongkir)
     {
-        // 
+        //
     }
 
     /**
@@ -68,9 +75,15 @@ class OngkirController extends Controller
 
         try {
             $data = $ongkir->update($validatedData);
-            return response()->json($data);
-        } catch (\Exception $e) {
-            return response()->json($e->getMessage());
+            return response()->json([
+                'status' => 'status',
+                'data' => $data,
+            ]);
+        } catch (ValidationException $e) {
+            return response()->json([
+                'status' => 'error',
+                'message' => $e->errors(),
+            ]);
         }
     }
 

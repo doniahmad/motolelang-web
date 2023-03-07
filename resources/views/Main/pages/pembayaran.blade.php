@@ -1,5 +1,4 @@
 @extends('Main.layouts.master')
-@dd($ongkir)
 @section('title', 'Lelang Saya')
 
 
