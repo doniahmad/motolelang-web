@@ -25,7 +25,7 @@
                                 </div>
 
                                 <div class="">
-                                    <h6 class="bold">Yamaha R15</h6>
+                                    <h6 class="bold"></h6>
                                     <p id="desc" class="deskripsi-produk">Yamaha YZF-R15, sering
                                         disebut juga
                                         sebagai

@@ -17,7 +17,8 @@
     box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.05);
 }
 
-.center h1 {
+.center h1,
+.center p {
     text-align: left;
     padding: 20px 40px;
 }

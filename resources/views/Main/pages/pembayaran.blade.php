@@ -1,4 +1,5 @@
 @extends('Main.layouts.master')
+{{-- @dd($ongkir) --}}
 @section('title', 'Lelang Saya')
 
 
@@ -78,7 +79,7 @@
                                 </div>
                                 <div class="d-flex">
                                     <p>Biaya Pengiriman</p>
-                                    <p class="ms-auto">Rp. 0</p>
+                                    <p class="ms-auto"> <span id="selected"></span></p>
                                 </div>
                                 <hr>
                                 <div class="dropdown">
@@ -133,20 +134,19 @@
                                         <option value="35" class="">Kota Tegal</option>
                                     </select> --}}
 
-                                    <select name="" id="selectKabupaten" class="form-select mt-3 py-1 px-2"
-                                        onchange="" aria-label="Default select example">
+                                    <select name="" id="selectKabupaten" onchange="SelectedOngkir(this)"
+                                        class="form-select mt-3 py-1 px-2" aria-label="Default select example">
                                         <option value="">Pilih Daerah Pengiriman</option>
                                         <option value="" disabled="disabled">----------------------</option>
                                         @foreach ($ongkir as $item)
-                                            {{-- <option value="{{ $item->ongkir_id }}">{{ $item->nama_daerah }}</option> --}}
+                                            <option value="{{ $item->ongkir }}">{{ $item->nama_daerah }}</option>
                                         @endforeach
                                     </select>
-
                                 </div>
                                 <hr>
                                 <div class="d-flex align-items-center">
                                     <h5>Total Tagihan</h5>
-                                    <h5 class="ms-auto">{{ currency_IDR($data->invoice + 0) }}</h5>
+                                    <h5 class="ms-auto" id="jumlah-tagihan">{{ currency_IDR($data->invoice) }}</h5>
                                 </div>
                                 <div class="my-3">
                                     <a href="#" class="btn btn-primer" data-bs-toggle="modal"
@@ -165,7 +165,9 @@
     @include('main.modal.modalPembayaran')
 @endisset
 
+
+
 @push('scripts')
     <script type="text/javascript" src="/assets/main/js/valueModal.js"></script>
-    {{-- <script type="text/javascript" src="/assets/main/js/pengiriman.js"></script> --}}
+    <script type="text/javascript" src="/assets/main/js/ongkir.js"></script>
 @endpush
