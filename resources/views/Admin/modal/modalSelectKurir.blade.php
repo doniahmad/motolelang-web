@@ -20,6 +20,7 @@
                     <input type="text" name="kode_pembayaran" id="kode-pembayaran-kirim" hidden>
                     <input type="text" name="status" value="dibayar" hidden>
                     <input type="number" name="id_invoice" id="modal-id-invoice" value="" hidden>
+                    <input type="text" name="auctioneer" id="modal-auctioneer" value="" hidden>
                 </div>
                 <button type="submit" class="btn btn-primary">
                     Terima Dan Kirim

@@ -39,7 +39,7 @@
                     Tagihan</a>
             </li>
         @endcan
-        @canany(['access owner', 'access admin'])
+        @canany(['access delivery', 'access owner', 'access admin'])
             <li>
                 <a class="nav-link {{ request()->is('/pengiriman') ? 'active' : '' }}"
                     href="{{ route('dashboard.pengiriman') }}">
@@ -59,7 +59,7 @@
                     Customer</a>
             </li>
         @endcan
-        @canany(['access kurir', 'access owner', 'access admin'])
+        @canany(['access owner', 'access admin'])
             <li>
                 <a class="nav-link {{ request()->is('/kurir') ? 'active' : '' }}" href="{{ route('dashboard.kurir') }}">
                     <span>
@@ -68,7 +68,7 @@
                     Kurir</a>
             </li>
         @endcan
-        {{-- @canany(['access owner', 'access admin'])
+        @canany(['access owner'])
             <li>
                 <a class="nav-link {{ request()->is('/admin') ? 'active' : '' }}" href="{{ route('dashboard.admin') }}">
                     <span>
@@ -76,7 +76,7 @@
                     </span>
                     Admin</a>
             </li>
-        @endcan --}}
+        @endcan
     </ul>
 </nav>
 

@@ -44,9 +44,16 @@
                                 <tr>
                                     <td>Nama</td>
                                     <td>:</td>
-                                    <td class=""><input type="text" class="form-control" id="inputNama"
+                                    <td class=""><input type="text" class="form-control pb-1" id="inputNama"
                                             aria-describedby="inputNama" placeholder="Masukkan Nama Anda"
-                                            value="{{ isset($user->name) ? $user->name : null }}" name="name"></td>
+                                            value="{{ isset($user->name) ? $user->name : null }}" name="name">
+                                        @error('nama')
+                                            <div class="text-danger"
+                                                style="font-size:12px; position:absolute;line-height:2;">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>No. Handphone</td>
@@ -55,6 +62,12 @@
                                             aria-describedby="inputNoHp" placeholder="Masukkan Nomor Handphone"
                                             value="{{ isset($user->handphone) ? $user->handphone : null }}"
                                             name="handphone">
+                                        @error('handphone')
+                                            <div class="text-danger"
+                                                style="font-size:12px; position:absolute;line-height:2;">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                     </td>
                                 </tr>
                                 <tr>
@@ -64,6 +77,12 @@
                                             aria-describedby="inputTempatLahir" placeholder="Masukkan Tempat Lahir"
                                             value="{{ isset($user->birth_place) ? $user->birth_place : null }}"
                                             name="birth_place">
+                                        @error('birth_place')
+                                            <div class="text-danger"
+                                                style="font-size:12px; position:absolute;line-height:2;">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                     </td>
                                 </tr>
                                 <tr>
@@ -73,6 +92,12 @@
                                             aria-describedby="inputTanggalLahir" placeholder="Masukkan Tanggal Lahir"
                                             value="{{ isset($user->birth_date) ? $user->birth_date : null }}"
                                             name="birth_date">
+                                        @error('birth_date')
+                                            <div class="text-danger"
+                                                style="font-size:12px; position:absolute;line-height:2;">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                     </td>
                                 </tr>
                                 <tr>
@@ -82,11 +107,18 @@
                                             aria-label="Default select example" name="gender">
                                             <option selected value="{{ null }}">Pilih Jenis Kelamin
                                             </option>
-                                            <option value="pria" {{ $user->gender === 'pria' ? 'selected' : '' }}>Pria
+                                            <option value="pria" {{ $user->gender === 'pria' ? 'selected' : '' }}>
+                                                Pria
                                             </option>
                                             <option value="wanita" {{ $user->gender === 'wanita' ? 'selected' : '' }}>
                                                 Wanita</option>
                                         </select>
+                                        @error('gender')
+                                            <div class="text-danger"
+                                                style="font-size:12px; position:absolute;line-height:2;">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                     </td>
                                 </tr>
                                 <tr>
@@ -95,6 +127,12 @@
                                     <td class=""><input type="text" class="form-control" id="inputAlamat"
                                             aria-describedby="inputTanggalLahir" placeholder="Masukkan Alamat"
                                             value="{{ isset($user->address) ? $user->address : null }}" name="address">
+                                        @error('address')
+                                            <div class="text-danger"
+                                                style="font-size:12px; position:absolute;line-height:2;">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                     </td>
                                 </tr>
                             </tbody>

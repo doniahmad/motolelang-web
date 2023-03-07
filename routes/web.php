@@ -4,7 +4,6 @@ use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\ViewController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Request;
-use \GuzzleHttp\Client;
 use Illuminate\Http\Request as HttpRequest;
 
 /*
@@ -81,14 +80,10 @@ Route::get('/send-email', [NotificationController::class, 'sendEmailEndAuctionNo
 Route::get('/logout', [ViewController::class, 'logoutAction'])->name('logout.action');
 
 Route::group(['prefix' => 'lelang'], function () {
-    Route::get('/', function () {
-        $data = ViewController::getAuctions();
-        return view(mainPages('lelang'), compact('data'));
-    })->name('lelang.index');
+    Route::get('/', [ViewController::class, 'showGalleryLelang'])->name('lelang.index');
     Route::get('/detail/{param}', function (HttpRequest $request) {
         $data = ViewController::getProduct($request);
-        $ongkir = ViewController::getOngkirs();
-        return view(mainPages('detail'), compact(['data', 'ongkir']));
+        return view(mainPages('detail'), compact('data'));
     })->name('lelang.detail');
     Route::get('/room/{token}', function (HttpRequest $request) {
         $data = ViewController::getAuction($request);
@@ -100,7 +95,7 @@ Route::group(['prefix' => 'lelang'], function () {
     Route::get('/pembayaran/{token}', function (HttpRequest $request) {
         $data = ViewController::getInvoice($request);
         $ongkir = ViewController::getOngkirs();
-        return view(mainPages('pembayaran'), compact(['data','ongkir']));
+        return view(mainPages('pembayaran'), compact(['data', 'ongkir']));
     })->name('lelang.pembayaran');
     Route::post('/invoice/bayar', [ViewController::class, 'payInvoice'])->name('invoice.bayar');
     Route::post('/auction/join', [ViewController::class, 'createAuctioneer'])->name('lelang.auctioneer');
@@ -118,12 +113,12 @@ function adminPages($value)
 Route::group(['prefix' => 'dashboard'], function () {
     Route::get('/login', function () {
         return view(adminPages('login'));
-    })->name('login');
+    })->name('login.dashboard');
     Route::post('/login-action', [ViewController::class, 'loginAdmin'])->name('login.admin');
-    Route::group(['middleware' => ['auth:sanctum', 'role:admin|owner|kurir']], function () {
+    Route::group(['middleware' => ['auth', 'role:admin|owner|kurir']], function () {
         Route::get('/', function () {
             return view(adminPages('dashboard'));
-        })->name('dashboard.index');
+        })->name('dashboard.index')->middleware('role:admin|owner');
         Route::get('/logout', [ViewController::class, 'adminLogoutAction'])->name('admin.logout');
         Route::get('/profile', function () {
             return view(adminPages('profileAdmin'));
@@ -132,7 +127,7 @@ Route::group(['prefix' => 'dashboard'], function () {
             return view(adminPages('editProfileAdmin'));
         })->name('dashboard.editProfil');
         Route::post('/profile/update', [ViewController::class, 'updateAdminProfile'])->name('update.profileAdmin');
-        Route::group(['prefix' => 'product'], function () {
+        Route::group(['prefix' => 'product', 'middleware' => 'role:admin|owner'], function () {
             Route::get('/', function () {
                 $data = ViewController::getProducts();
                 return view(adminPages('product'), compact('data'));
@@ -171,7 +166,19 @@ Route::group(['prefix' => 'dashboard'], function () {
             Route::post('/add', [ViewController::class, 'postProduct'])->name('dashboard.postProduct');
             Route::post('/edit/{param}', [ViewController::class, 'updateProduct'])->name('dashboard.updateProduct');
         });
-        Route::group(['prefix' => 'customer'], function () {
+        Route::group(['prefix' => 'admin', 'middleware' => 'role:owner'], function () {
+            Route::get('/delete/{id}', [ViewController::class, 'deleteAdmin'])->name('dashboard.deleteAdmin');
+            Route::get('/', function () {
+                $data = ViewController::getAdmins();
+                return view(adminPages('admin'), compact('data'));
+            })->name('dashboard.admin');
+            Route::get('/add', function () {
+                return view(adminPages('inputAdmin'));
+            })->name('dashboard.inputAdmin');
+            Route::post('/send-req', [ViewController::class, 'postAdmin'])->name('dashboard.postAdmin');
+            Route::get('/{id}', [ViewController::class, 'getAdmin'])->name('dashboard.getAdmin');
+        });
+        Route::group(['prefix' => 'customer', 'middleware' => 'role:admin|owner'], function () {
             Route::get('/', function () {
                 $data = ViewController::getCustomers();
                 return view(adminPages('customer'), compact('data'));
@@ -179,19 +186,7 @@ Route::group(['prefix' => 'dashboard'], function () {
             Route::get('/{id}', [ViewController::class, 'getCustomer'])->name('dashboard.getCustomer');
             Route::get('/ban/{id}', [ViewController::class, 'banCustomer'])->name('dashboard.banCustomer');
         });
-        // Route::group(['prefix' => 'admin'], function () {
-        //     Route::get('/delete/{id}', [ViewController::class, 'deleteAdmin'])->name('dashboard.deleteAdmin');
-        //     Route::get('/', function () {
-        //         $data = ViewController::getAdmins();
-        //         return view(adminPages('admin'), compact('data'));
-        //     })->name('dashboard.admin');
-        //     Route::get('/add', function () {
-        //         return view(adminPages('inputAdmin'));
-        //     })->name('dashboard.inputAdmin');
-        //     Route::post('/send-req', [ViewController::class, 'postAdmin'])->name('dashboard.postAdmin');
-        //     Route::get('/{id}', [ViewController::class, 'getAdmin'])->name('dashboard.getAdmin');
-        // });
-        Route::group(['prefix' => 'kurir'], function () {
+        Route::group(['prefix' => 'kurir', 'middleware' => 'role:admin|owner'], function () {
             Route::get('/', function () {
                 $data = ViewController::getKurirs();
                 return view(adminPages('kurir'), compact('data'));
@@ -203,7 +198,7 @@ Route::group(['prefix' => 'dashboard'], function () {
             Route::get('/delete/{id}', [ViewController::class, 'deleteKurir'])->name('dashboard.deleteKurir');
             Route::post('/send-req', [ViewController::class, 'postKurir'])->name('dashboard.postKurir');
         });
-        Route::group(['prefix' => 'pengiriman'], function () {
+        Route::group(['prefix' => 'pengiriman', 'middleware' => 'role:admin|kurir|owner'], function () {
             Route::get('/', function () {
                 $data = ViewController::getPengirimans();
 
@@ -212,7 +207,7 @@ Route::group(['prefix' => 'dashboard'], function () {
             Route::post('/delivered/{id}', [ViewController::class, 'setDelivered'])->name('dashboard.delivered');
             // Route::get('/{id}', [ViewController::class, 'getCustomer'])->name('dashboard.getCustomer');
         });
-        Route::group(['prefix' => 'pembayaran'], function () {
+        Route::group(['prefix' => 'pembayaran', 'middleware' => 'role:admin|owner'], function () {
             Route::get('/', function () {
                 $data = ViewController::getInvoices();
                 $pengirim = ViewController::getKurirs();

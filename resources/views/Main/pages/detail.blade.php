@@ -15,8 +15,6 @@
     $bestOffer = collect($data->auction->offer)
         ->sortByDesc('offer')
         ->first();
-    
-    dd($ongkir);
 @endphp
 
 <div id="detailLelang" class="konten-2">

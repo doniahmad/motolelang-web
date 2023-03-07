@@ -18,7 +18,6 @@ class UserController extends Controller
         $response->premission = $response->getPermissionsViaRoles()->pluck("name");
         $response->makeHidden('roles');
 
-
         return response($response, 200);
     }
 
@@ -33,7 +32,6 @@ class UserController extends Controller
             $role->where('name', 'admin');
             $role->where('name', 'customer');
         })->get();;
-
         return response()->json($users, 200);
     }
 
@@ -46,7 +44,7 @@ class UserController extends Controller
 
     public function customers()
     {
-        $customers = User::with(['auctioneer.auction', 'auctioneer.offer','auctioneer.invoice'])->whereHas('roles', function ($role) {
+        $customers = User::with(['auctioneer.auction', 'auctioneer.offer', 'auctioneer.invoice'])->whereHas('roles', function ($role) {
             $role->where('name', 'customer');
         })->get();
 
@@ -55,7 +53,7 @@ class UserController extends Controller
 
     public function customer(User $user)
     {
-        $customer = $user->load(['auctioneer.auction', 'auctioneer.offer','auctioneer.invoice']);
+        $customer = $user->load(['auctioneer.auction', 'auctioneer.offer', 'auctioneer.invoice']);
 
         return response()->json($customer, 200);
     }
@@ -109,11 +107,12 @@ class UserController extends Controller
 
             $user->update($validateData);
             return response()->json([
-                'success' => true,
+                'status' => 'success',
                 'data' => $validateData,
             ]);
         } catch (\Exception $e) {
             return response()->json([
+                'status' => 'error',
                 'message' => $e->getMessage()
             ]);
         }

@@ -11,7 +11,7 @@ Tagihan : {{ $auctioneer->offer }}
 @endcomponent
 
 Anda dapat melakukan pembarayan dengan menekan tombol dibawah ini.
-@component('mail::button', ['url' => 'http://127.0.0.1:8000/lelang/pembayaran'])
+@component('mail::button', ['url' => 'http://127.0.0.1:8000/lelang/lelang-saya'])
 Bayar
 @endcomponent
 @endcomponent

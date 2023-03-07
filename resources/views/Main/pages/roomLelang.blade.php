@@ -1,5 +1,5 @@
 @extends('Main.layouts.master')
-@section('title', $data->nama_product)
+@section('title', $data->product->nama_product)
 
 @php
     

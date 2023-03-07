@@ -2,25 +2,24 @@
 @section('title', 'Galeri Lelang')
 
 @php
-    $startedAuction = array_filter($data, fn($product) => $product->status === 1);
-    
+    // $startedAuction = array_filter($data, fn($product) => $product->status === 1);
 @endphp
-
+{{-- @dd($data) --}}
 <div id="lelang" class="konten-2">
     <div class="px-5">
         <div class="row">
-            <div class="col-2">
+            {{-- <div class="col-2">
                 @include('main.components.filterLelang')
-            </div>
+            </div> --}}
 
-            <div class="col-10">
+            <div class="">
                 <div class="container">
                     <h4>Galeri Lelang</h4>
                     <hr style="border: 1px solid black">
                 </div>
                 <div class="container">
                     <div class="row" style="border: none; height:auto;">
-                        @foreach ($startedAuction as $product)
+                        @foreach ($data as $product)
                             @php
                                 $bestOffer = collect($product->offer)
                                     ->sortByDesc('offer')
@@ -32,7 +31,7 @@
                                         href="{{ route('lelang.detail', $product->product->product_slug) }}">
                                         <div class="card-container">
                                             <div class="img-card-lelang">
-                                                <img src="{{ asset('storage/image/product/' . $product->product->images[0]->image_path) }}"
+                                                <img src="{{ count($product->product->images) ? asset('storage/image/product/' . $product->product->images[0]->image_path) : '' }}"
                                                     width="100%" srcset="">
                                             </div>
                                             <div class="card-lelang">
@@ -56,13 +55,12 @@
                         @endforeach
                     </div>
                 </div>
-
                 {{-- <div class="container mt-5">
                     <nav aria-label="Page navigation example">
                         <ul class="pagination justify-content-center">
                             @if ($data->prev_page_url != null)
                                 <li class="page-item">
-                                    <a class="page-link" href="" aria-label="Previous">
+                                    <a class="page-link" href="{{ $data->prev_page_url }}" aria-label="Previous">
                                         <span aria-hidden="true">&laquo;</span>
                                         <span class="sr-only">Previous</span>
                                     </a>
@@ -76,7 +74,7 @@
                                 </li>
                             @endif
                             @for ($i = 1; $i <= $data->last_page; $i++)
-                                <li class="page-item"><a class="page-link" href="#">{{ $i }}</a></li>
+                                <li class="page-item"><a class="page-link" href="">{{ $i }}</a></li>
                             @endfor
                             @if ($data->next_page_url != null)
                                 <li class="page-item">
@@ -97,11 +95,11 @@
                     </nav>
 
                 </div> --}}
-
+                <div class="d-flex justify-content-center mt-5">
+                    {!! $data->links() !!}
+                </div>
 
             </div>
         </div>
     </div>
-
-
 </div>

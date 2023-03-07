@@ -15,26 +15,32 @@ class AuthController extends Controller
 {
     public function register(Request $request)
     {
-        $fields = $request->validate([
-            'name' => 'required',
-            'email' => 'required|email|unique:users,email',
-            'handphone' => 'required|string|unique:users,handphone',
-            'password' => 'required|confirmed|min:8',
-        ]);
+        try {
+            $fields = $request->validate([
+                'name' => 'required',
+                'email' => 'required|email|unique:users,email',
+                'handphone' => 'required|string|unique:users,handphone',
+                'password' => 'required|confirmed|min:8',
+            ]);
 
-        $fields['role'] = 'customer';
+            $fields['role'] = 'customer';
 
-        $fields['password'] = Hash::make($fields['password']);
+            $fields['password'] = Hash::make($fields['password']);
 
-        $user = User::create($fields);
+            $user = User::create($fields);
 
-        $user->assignRole($fields['role']);
+            $user->assignRole($fields['role']);
 
-        $response = [
-            'user' => $user
-        ];
-
-        return $response;
+            return response()->json([
+                'status' => 'success',
+                'user' => $user
+            ]);
+        } catch (ValidationException $e) {
+            return response()->json([
+                'status' => 'error',
+                'message' => $e->errors(),
+            ], 400);
+        }
     }
 
     public function login(Request $request)
@@ -48,15 +54,16 @@ class AuthController extends Controller
                 $token = $user->createToken('apptoken')->plainTextToken;
 
                 return response([
-                    'message' => 'succes',
+                    'status' => 'success',
                     'token' => $token,
                     'user' => $user
                 ]);
             }
             return response([
+                'status' => 'error',
                 'message' => $error
             ], 401);
-        } catch (\Exception $exception) {
+        } catch (ValidationException $exception) {
             return response([
                 'message' => $exception->getMessage()
             ], 400);
@@ -76,20 +83,20 @@ class AuthController extends Controller
                     $token = $user->createToken('apptoken')->plainTextToken;
 
                     return response([
-                        'message' => 'succes',
+                        'status' => 'success',
                         'token' => $token,
-                        'user' => $user
+                        'user' => [$user, 'role' => $user->roles()->pluck('name')]
                     ]);
                 }
             }
             return response([
-                'message' => $error,
-                'target' => $role[0]
+                'status' => 'error',
+                'message' => $error
             ], 401);
         } catch (\Exception $exception) {
             return response([
-                'message' => $exception->getMessage(),
-                'target' => $target->getRoleNames()
+                'status' => 'error',
+                'message' => $exception->getMessage()
             ], 400);
         }
     }
@@ -99,7 +106,7 @@ class AuthController extends Controller
         try {
             $request->user()->currentAccessToken()->delete();
             return response([
-                'message' => 'succes'
+                'message' => 'success'
             ]);
         } catch (\Exception $exception) {
             return response([

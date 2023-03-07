@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\ValidationException;
 
 class KurirController extends Controller
 {
@@ -67,9 +68,15 @@ class KurirController extends Controller
 
             $kurir->assignRole($fields['role']);
 
-            return response()->json($kurir);
-        } catch (\Exception $e) {
-            return response()->json($e->getMessage());
+            return response()->json([
+                'status' => 'success',
+                'data' => $kurir,
+            ]);
+        } catch (ValidationException $e) {
+            return response()->json([
+                'status' => 'error',
+                'message' => $e->errors(),
+            ]);
         }
     }
 
@@ -118,11 +125,14 @@ class KurirController extends Controller
             $updateData = $user->update($fields);
 
             return response()->json([
-                'success' => true,
+                'status' => 'success',
                 'data' => $updateData,
             ]);
-        } catch (\Exception $e) {
-            return response()->json($e->getMessage());
+        } catch (ValidationException $e) {
+            return response()->json([
+                'status' => 'error',
+                'message' => $e->errors(),
+            ]);
         }
     }
 

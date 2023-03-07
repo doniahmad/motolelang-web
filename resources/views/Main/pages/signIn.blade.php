@@ -10,13 +10,22 @@
                         <h1 class="bold">Masuk</h1>
                         <form method="post" action="{{ route('login.action') }}">
                             @csrf
+                            @if ($errors->any())
+                                <div class="alert alert-warning py-2" role="alert">
+                                    <i class="fa-solid fa-circle-exclamation">
+                                    </i>
+                                    <span class="ps-2">
+                                        {{ $errors->first('message') }}
+                                    </span>
+                                </div>
+                            @endif
                             <div class="txt_field">
-                                <input type="text" name="email" required>
+                                <input type="email" name="email" required>
                                 <span></span>
                                 <label>Email</label>
                             </div>
                             <div class="txt_field">
-                                <input type="password" name="password" id="password" required>
+                                <input type="password" name="password" id="password" minlength="8" required>
                                 <i class="eye-icon fa fa-eye-slash" id="eye"></i>
                                 <span></span>
                                 <label>Kata Sandi</label>

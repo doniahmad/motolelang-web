@@ -26,7 +26,7 @@
                         <tbody>
                             @foreach ($data as $invoice)
                                 <tr>
-                                    <td>000001</td>
+                                    <td>00000{{ $invoice->invoice_id }}</td>
                                     <td class="text-center">{{ $invoice->auctioneer->auction->product->nama_product }}
                                     </td>
                                     <td class="text-center">{{ $invoice->auctioneer->user->name }}</td>
@@ -63,13 +63,14 @@
 
                                         @default
                                     @endswitch
-                                    <td class="d-flex">
+                                    <td class="text-center">
                                         @if ($invoice->status == 'menunggu_persetujuan')
                                             <div class="text-center">
                                                 <button type="button" class="btn btn-primary btn-modal-kirim"
                                                     data-bs-toggle="modal" data-bs-target="#modalKirim"
                                                     data-invoice="{{ $invoice->invoice_id }}"
-                                                    data-kode="{{ $invoice->kode_pembayaran }}">
+                                                    data-kode="{{ $invoice->kode_pembayaran }}"
+                                                    data-auctioneer="{{ json_encode($invoice->auctioneer) }}">
                                                     <i class="fa-solid fa-check"></i>
                                                 </button>
                                                 <button type="button" class="btn btn-danger btn-modal-alasan"
@@ -108,6 +109,7 @@
             $(".btn-modal-kirim").click(function() {
                 $("#modal-id-invoice").val($(this).attr("data-invoice"));
                 $("#kode-pembayaran-kirim").val($(this).attr("data-kode"));
+                $("#modal-auctioneer").val($(this).attr("data-auctioneer"));
             });
         });
     </script>

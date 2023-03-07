@@ -6,6 +6,7 @@ use App\Models\Pengiriman;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\ValidationException;
 
 class PengirimanController extends Controller
 {
@@ -37,9 +38,9 @@ class PengirimanController extends Controller
 
         try {
             $data = Pengiriman::create($validatedData);
-            return response()->json($data);
+            return response()->json(['status' => 'success', 'data' => $data]);
         } catch (\Exception $e) {
-            return response()->json($e->getMessage());
+            return response()->json(['status' => 'error', 'message' => $e->getMessage()]);
         }
     }
 
@@ -65,7 +66,7 @@ class PengirimanController extends Controller
     public function update(Request $request, Pengiriman $pengiriman)
     {
         $validateData = $request->validate([
-            'bukti_penerimaan' => 'image|mimes:png,jpg',
+            'bukti_penerimaan' => 'image|mimes:png,jpg'
         ]);
 
         $validateData['status'] = 'diterima';
@@ -81,9 +82,9 @@ class PengirimanController extends Controller
             }
 
             $updatedData = $pengiriman->update($validateData);
-            return response()->json($updatedData);
-        } catch (\Exception $e) {
-            return response()->json($e->getMessage());
+            return response()->json(['status' => 'success', 'data' => $updatedData]);
+        } catch (ValidationException $e) {
+            return response()->json(['status' => 'error', 'message' => $e->errors()]);
         }
     }
 

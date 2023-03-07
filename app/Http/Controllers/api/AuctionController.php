@@ -7,6 +7,7 @@ use App\Models\Auction;
 use Illuminate\Http\Request;
 use Illuminate\Notifications\Action;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\ValidationException;
 
 class AuctionController extends Controller
 {
@@ -21,6 +22,12 @@ class AuctionController extends Controller
         return response()->json($response, 200);
     }
 
+    public function paginateAction(Request $request)
+    {
+        $response = Auction::with(['product.images', 'auctioneer.user', 'auctioneer.offer', 'offer.auctioneer', 'auctioneer.invoice',])->paginate(12);
+        return response()->json($response, 200);
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -29,30 +36,30 @@ class AuctionController extends Controller
      */
     public function store(Request $request)
     {
-        $token = date('dmys') . $request->id_product;
-
-        $data = $request->validate(
-            [
-                'exp_date' => 'required', // Warning, ada dua pilihan date_format dan Date
-                'id_product' => 'required|integer',
-            ]
-        );
-
-        $data['status'] = true;
-
-        $data['token'] = $token;
-
         try {
+            $token = date('dmys') . $request->id_product;
+
+            $data = $request->validate(
+                [
+                    'exp_date' => 'required',
+                    'id_product' => 'required|integer',
+                ]
+            );
+
+            $data['status'] = true;
+
+            $data['token'] = $token;
+
             $response = Auction::create($data);
             return response()->json([
-                'succes' => true,
-                'message' => 'Success',
+
+                'status' => 'success',
                 'data' => $response,
             ]);
-        } catch (\Exception $e) {
+        } catch (ValidationException $e) {
             return response()->json([
-                'message' => 'Error',
-                'error' => $e->getMessage()
+                'status' => 'error',
+                'message' => $e->errors()
             ], 422);
         }
     }
@@ -78,25 +85,24 @@ class AuctionController extends Controller
      */
     public function update(Request $request, Auction $auction)
     {
-        $data = $request->validate(
-            [
-                'exp_data' => 'date', // Warning, ada dua pilihan date_format dan Date
-                'id_winner' => 'integer',
-                'status' => 'boolean'
-            ]
-        );
-
         try {
+            $data = $request->validate(
+                [
+                    'exp_data' => 'date', // Warning, ada dua pilihan date_format dan Date
+                    'id_winner' => 'integer',
+                    'status' => 'boolean'
+                ]
+            );
+
             $response = $auction->update($data);
             return response()->json([
-                'succes' => true,
-                'message' => 'Success',
+                'status' => 'success',
                 'data' => $response,
             ]);
-        } catch (\Exception $e) {
+        } catch (ValidationException $e) {
             return response()->json([
-                'message' => 'Error',
-                'error' => $e->getMessage()
+                'status' => 'error',
+                'message' => $e->errors()
             ], 422);
         }
     }

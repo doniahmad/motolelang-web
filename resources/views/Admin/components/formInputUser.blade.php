@@ -16,7 +16,7 @@
                     </div>
                 </label>
             </div>
-            <input type="file" id="input-file-user" name="photo" onchange="loadFile(event)" hidden>
+            <input type="file" id="input-file-user" name="photo" onchange="loadFile(event)" hidden required>
             {{-- <div class="caption">
                 <label id="btnUbahFoto" for="input-file-user" class="btn btn-outline-secondary text-light">Ganti
                     Foto
@@ -30,36 +30,71 @@
             <label for="nama-user" class="custom-label form-label">Nama {{ $value }}</label>
             <input name="name" type="text" class="custom-input form-control" id="nama-user"
                 placeholder="Masukkan Nama {{ $value }}" value="" required>
+            @error('name')
+                <div class="text-danger" style="font-size:12px;">
+                    {{ $message }}
+                </div>
+            @enderror
         </div>
         <div class="mb-4 col-6">
             <label for="" class="custom-label form-label">Email {{ $value }}</label>
             <input name="email" type="text" class="custom-input form-control" id="email-user"
                 placeholder="Masukkan Email {{ $value }}" value="" required>
+            @error('email')
+                <div class="text-danger" style="font-size:12px;">
+                    Email yang anda masukkan sudah terdaftar. Gunakan email lain!
+                </div>
+            @enderror
         </div>
         <div class="mb-4 col-6">
             <label for="pass-user" class="custom-label form-label">Password {{ $value }}</label>
             <input name="password" type="password" class="custom-input form-control" id="pass-user"
                 placeholder="Masukkan Password {{ $value }}" value="" required>
+            @error('password')
+                <div class="text-danger" style="font-size:12px;">
+                    {{ $message }}
+                </div>
+            @enderror
         </div>
         <div class="mb-4 col-6">
             <label for="hp-user" class="custom-label form-label">Handphone {{ $value }}</label>
             <input name="handphone" type="text" class="custom-input form-control" id="hp-user"
                 placeholder="Masukkan No.Handphone {{ $value }}" value="" required>
+            @error('handphone')
+                <div class="text-danger" style="font-size:12px;">
+                    Nomor yang anda masukkan sudah terdaftar. Gunakan nomor lain!
+                </div>
+            @enderror
         </div>
         <div class="mb-4 col-6">
             <label for="tempat-lahir-user" class="custom-label form-label">Tempat Lahir {{ $value }}</label>
             <input name="birth_place" type="text" class="custom-input form-control" id="tempat-lahir-user"
                 placeholder="Masukkan Tempat Lahir {{ $value }}" value="" required>
+            @error('birth_place')
+                <div class="text-danger" style="font-size:12px;">
+                    {{ $message }}
+                </div>
+            @enderror
         </div>
         <div class="mb-4 col-6">
             <label for="tanggal-lahir-user" class="custom-label form-label">Tanggal Lahir {{ $value }}</label>
             <input name="birth_date" type="date" class="custom-input form-control" id="tanggal-lahir-user"
                 placeholder="Masukkan Tanggal Lahir {{ $value }}" value="" required>
+            @error('birth_date')
+                <div class="text-danger" style="font-size:12px;">
+                    {{ $message }}
+                </div>
+            @enderror
         </div>
         <div class="mb-4 col-6">
             <label for="alamat-user" class="custom-label form-label">Alamat {{ $value }}</label>
             <input name="address" type="text" class="custom-input form-control" id="alamat-user"
                 placeholder="Masukkan Alamat {{ $value }}" value="" required>
+            @error('address')
+                <div class="text-danger" style="font-size:12px;">
+                    {{ $message }}
+                </div>
+            @enderror
         </div>
         <div class="mb-4 col-6">
             <label for="kelamin-user" class="custom-label form-label">Kelamin {{ $value }}</label>
@@ -68,6 +103,11 @@
                 <option value="pria" {{ isset($data->gender) == 'pria' ? 'selected' : '' }}>Pria</option>
                 <option value="wanita" {{ isset($data->gender) == 'wanita' ? 'selected' : '' }}>Wanita</option>
             </select>
+            @error('gender')
+                <div class="text-danger" style="font-size:12px;">
+                    {{ $message }}
+                </div>
+            @enderror
         </div>
     </div>
     <button type="submit" class="btn btn-primary w-100 h-2 mt-2 mb-4">

@@ -47,7 +47,7 @@ Route::post('/login-admin', [AuthController::class, 'loginAdmin']);
 Route::apiResource('auction', AuctionController::class)->parameters(['auction' => 'auction:token']);
 Route::apiResource('auctioneer', AuctioneerController::class);
 Route::apiResource('product', ProductController::class)->parameters(['product' => 'product:product_slug']);
-Route::get('/product-gallery', [ProductController::class, 'productPaginate8']);
+Route::get('/auction-gallery', [AuctionController::class, 'paginateAction']);
 Route::apiResource('category', CategoryController::class)->except('update');
 Route::apiResource('invoice', InvoiceController::class)->parameters(['invoice' => 'invoice:kode_pembayaran']);
 Route::apiResource('kurir', KurirController::class);
