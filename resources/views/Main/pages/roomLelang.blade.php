@@ -14,6 +14,10 @@
     $currentAuctioneer = current($checkIfMemberAuction);
     
     $i = 1;
+    
+    $countdownDate = Carbon\Carbon::parse($data->exp_date); // set countdown date
+    $now = Carbon\Carbon::now(); // get current date and time
+    $diff = $countdownDate->diff($now); // calculate the difference between countdown date and current date and time
 @endphp
 
 <div id="roomLelang" class="konten-2">
@@ -31,8 +35,8 @@
                 <h5 class="color-primer">
                     {{ isset($currentAuctioneer) ? $currentAuctioneer->nama_samaran : 'Null' }}
                 </h5>
-                <h6 class="ms-auto">Selesai Pada
-                    <span>{{ $data ? $data->exp_date : '' }}</span>
+                <h6 class="ms-auto"">
+                    <span id="countdown"></span>
                     <span><i class="fa-regular fa-clock"></i></span>
                 </h6>
             </div>
@@ -45,6 +49,12 @@
                     </div>
 
                     <div id="tableTopPenawar" class="px-4 py-2">
+                        @if (!count($bestOffer))
+                            <div class="text-center text-secondary text-uppercase"
+                                style="font-size:24px; font-weight: 500;">
+                                Kosong
+                            </div>
+                        @endif
                         <table class="table table-borderless">
                             <tbody class="">
                                 @foreach ($bestOffer as $index => $auctioneer)
@@ -82,3 +92,67 @@
 </div>
 
 @include('main.modal.modalInputPenawaran')
+
+<script>
+    // Set the date we're counting down to
+    // let countDownDate = new Date("{{ $diff->format('M d, Y H:i:s') }}").getTime();
+
+    // Update the count down every 1 second
+    // let x = setInterval(function() {
+
+    //     // Get today's date and time
+    //     let now = new Date().getTime();
+
+    //     // Find the distance between now and the count down date
+    //     let distance = countDownDate - now;
+
+    //     // Time calculations for days, hours, minutes and seconds
+    //     let days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    //     let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    //     let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    //     let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    //     // Display the result in the element with id="countdown"
+    //     document.getElementById("countdown").innerHTML = "Days: " + days + " Hours: " + hours + " Minutes: " +
+    //         minutes + " Seconds: " + seconds;
+
+    //     // If the count down is finished, write some text
+    //     if (distance < 0) {
+    //         clearInterval(x);
+    //         document.getElementById("countdown").innerHTML = "EXPIRED";
+    //     }
+    // }, 1000);
+    CountDownTimer("{{ $data->exp_date }}", 'countdown');
+
+    function CountDownTimer(dt, id) {
+        let end = new Date(dt);
+        let _second = 1000;
+        let _minute = _second * 60;
+        let _hour = _minute * 60;
+        let _day = _hour * 24;
+        let timer;
+
+        function showRemaining() {
+            let now = new Date();
+            let distance = end - now;
+            if (distance < 0) {
+
+                clearInterval(timer);
+                document.getElementById(id).innerHTML = 'Pelelangan Telah Berakhir';
+                return;
+            }
+            let days = Math.floor(distance / _day);
+            let hours = Math.floor((distance % _day) / _hour);
+            let minutes = Math.floor((distance % _hour) / _minute);
+            let seconds = Math.floor((distance % _minute) / _second);
+
+            document.getElementById(id).innerHTML = 'Selesai Dalam ';
+            document.getElementById(id).innerHTML += days + 'h ';
+            document.getElementById(id).innerHTML += hours + 'j ';
+            document.getElementById(id).innerHTML += minutes + 'm ';
+            document.getElementById(id).innerHTML += seconds + 'd ';
+            // document.getElementById(id).innerHTML += '<h2>TUGAS BELUM BERAKHIR</h2>';
+        }
+        timer = setInterval(showRemaining, 1000);
+    }
+</script>

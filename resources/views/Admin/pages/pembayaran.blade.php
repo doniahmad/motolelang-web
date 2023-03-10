@@ -11,12 +11,13 @@
         <div class="page-content pembayaran-content" id="page-content">
             <div class="table-data-product">
                 <div class="table-responsive">
-                    <table class="table">
+                    <table class="table table-bordered">
                         <thead>
                             <tr>
-                                <th class="text-center">No. LOT</th>
                                 <th class="text-center">Nama Barang</th>
                                 <th class="text-center">Nama Pemenang</th>
+                                <th class="text-center">Tujuan Pengiriman</th>
+                                <th class="text-center">Ongkir</th>
                                 <th class="text-center">Total Tagihan</th>
                                 <th class="text-center">Bukti Pembayaran</th>
                                 <th class="text-center">Status</th>
@@ -26,11 +27,18 @@
                         <tbody>
                             @foreach ($data as $invoice)
                                 <tr>
-                                    <td>00000{{ $invoice->invoice_id }}</td>
                                     <td class="text-center">{{ $invoice->auctioneer->auction->product->nama_product }}
                                     </td>
                                     <td class="text-center">{{ $invoice->auctioneer->user->name }}</td>
-                                    <td class="text-center">{{ currency_IDR($invoice->invoice) }}</td>
+                                    <td class="text-center {{ isset($invoice->ongkir) ? '' : 'text-secondary' }}">
+                                        {{ isset($invoice->ongkir) ? $invoice->ongkir->nama_daerah : 'Belum ditetapkan' }}
+                                    </td>
+                                    <td class="text-center">
+                                        {{ currency_IDR(isset($invoice->ongkir) ? $invoice->ongkir->ongkir : 0) }}
+                                    </td>
+                                    <td class="text-center">
+                                        {{ currency_IDR(isset($invoice->ongkir) ? $invoice->invoice + $invoice->ongkir->ongkir : $invoice->invoice) }}
+                                    </td>
                                     <td class="text-center">
                                         @if ($invoice->bukti_pembayaran !== null)
                                             <a

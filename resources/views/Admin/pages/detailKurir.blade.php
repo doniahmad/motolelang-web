@@ -14,7 +14,7 @@
                     <div class="d-flex justify-content-center">
                         <div id="imgProfil" class="image-section">
                             <img id="img1"
-                                src="{{ $data->photo !== null ? asset('storage/image/user/' . $data->photo) : '/assets/main/img/noimg.png' }}"
+                                src="{{ $data->photo !== null ? asset('storage/image/kurir/' . $data->photo) : '/assets/main/img/noimg.png' }}"
                                 alt="">
                         </div>
                     </div>

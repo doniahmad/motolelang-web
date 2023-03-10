@@ -1,6 +1,6 @@
 <form method="POST" action="{{ route('lelang.offer') }}">
     @csrf
-    <div id="modalInputPenawaran" class="modal" tabindex="-1">
+    <div id="modalInputPenawaran" class="modal" tabindex="-1" onsubmit="confirmOffer(this)">
         <div class="modal-dialog myModal modal-xl">
             <div class="modal-content p-5">
                 <h5>Masukkan Nominal Penawaran</h5>
@@ -16,7 +16,7 @@
                     @else
                         <input type="number" required class="form-control" name="offer" id="inputPenawaran"
                             aria-describedby="inputPenawaran" placeholder=""
-                            min="{{ $num1BestOffer !== null ? $num1BestOffer->offer : $data->product->harga_awal }}">
+                            min="{{ $num1BestOffer !== null ? $num1BestOffer->offer + 1 : $data->product->harga_awal + 1 }}">
                     @endif
                     <input type="text" name="id_auction" class="form-control" hidden
                         value="{{ $data->auction_id }}" />
@@ -31,3 +31,27 @@
         </div>
     </div>
 </form>
+
+@push('scripts')
+    <script>
+        function confirmOffer(val) {
+            if (validate() == true) {
+                const offer = document.getElementById('inputPenawaran');
+                Swal.fire({
+                    title: 'Ingin memasang penawaran ?',
+                    text: "Anda akan memasang pembayaran sebesar : " + offer,
+                    icon: 'danger',
+                    showCancelButton: true,
+                    confirmButtonColor: '#138611',
+                    cancelButtonColor: '#C72D00',
+                    confirmButtonText: 'Iya',
+                    cancelButtonText: 'Tidak',
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        val.submitButton.click();
+                    }
+                })
+            }
+        }
+    </script>
+@endpush

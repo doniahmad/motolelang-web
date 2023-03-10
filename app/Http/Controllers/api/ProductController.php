@@ -38,31 +38,31 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
-        $validateProduct = $request->validate([
-            'nama_product' => 'string|required',
-            'harga_awal' => 'integer|required',
-            'jenis' => 'string|required',
-            'merk' => 'string|required',
-            'kapasitas_cc' => 'integer|required',
-            'nomor_mesin' => 'string|required',
-            'bahan_bakar' => 'string|required',
-            'odometer' => 'integer|required',
-            'nomor_rangka' => 'string|required',
-            'category_id' => 'integer',
-            'warna' => 'string|required',
-            'deskripsi' => 'required|string',
-            'nomor_polisi' => 'required|string',
-            'stnk' => "required|boolean",
-            'bpkb' => "required|boolean",
-            'form_a' => "required|boolean",
-            'kwitansi_blanko' => "required|string",
-            'faktur' => "required|boolean",
-            'masa_stnk' => "required",
-        ]);
-
-        $slug = SlugService::createSlug(Product::class, 'product_slug', $request->nama_product);
-
         try {
+            $validateProduct = $request->validate([
+                'nama_product' => 'string|required',
+                'harga_awal' => 'integer|required',
+                'jenis' => 'string|required',
+                'merk' => 'string|required',
+                'kapasitas_cc' => 'integer|required',
+                'nomor_mesin' => 'string|required',
+                'bahan_bakar' => 'string|required',
+                'odometer' => 'integer|required',
+                'nomor_rangka' => 'string|required',
+                'category_id' => 'integer',
+                'warna' => 'string|required',
+                'deskripsi' => 'required|string',
+                'nomor_polisi' => 'required|string',
+                'stnk' => "required|boolean",
+                'bpkb' => "required|boolean",
+                'form_a' => "required|boolean",
+                'kwitansi_blanko' => "required|string",
+                'faktur' => "required|boolean",
+                'masa_stnk' => "required",
+            ]);
+
+            $slug = SlugService::createSlug(Product::class, 'product_slug', $request->nama_product);
+
 
             $validateProduct['product_slug'] = $slug;
             $product = Product::create($validateProduct);

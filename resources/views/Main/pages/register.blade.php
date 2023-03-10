@@ -10,7 +10,7 @@
                     <form method="POST" action="{{ route('login.daftarAction') }}">
                         @csrf
                         <div class="txt_field">
-                            <input type="text" name="name" required>
+                            <input type="text" name="name" value="{{ old('name') }}" required>
                             <span></span>
                             <label>Nama</label>
                         </div>
@@ -23,7 +23,7 @@
                             class="danger-valid txt_field @error('email')
                             mb-1 text-danger
                         @enderror">
-                            <input type="email" name="email" required>
+                            <input type="email" name="email" value="{{ old('email') }}" required>
                             <span></span>
                             <label>Email</label>
                         </div>
@@ -36,7 +36,7 @@
                             class="txt_field @error('handphone')
                         mb-1 text-danger
                     @enderror">
-                            <input type="text" name="handphone" required>
+                            <input type="text" name="handphone" value="{{ old('handphone') }}" required>
                             <span></span>
                             <label>No. handphone</label>
                         </div>

@@ -24,6 +24,16 @@
                                 $bestOffer = collect($product->offer)
                                     ->sortByDesc('offer')
                                     ->first();
+                                
+                                // Mengambil tanggal saat ini
+                                $currentDate = Carbon\Carbon::now();
+                                
+                                // Mengambil tanggal yang diinginkan
+                                $desiredDate = Carbon\Carbon::parse($product->exp_date);
+                                
+                                // Menghitung selisih hari antara tanggal saat ini dan tanggal yang diinginkan
+                                $daysDifference = $currentDate->diffInDays($desiredDate);
+                                
                             @endphp
                             <div class="col-3 mt-4" style="border:none;">
                                 <div class="col-lelang card">
@@ -44,7 +54,7 @@
                                                     </h6>
                                                     <div class="ms-auto ">
                                                         <i class="fa-regular fa-clock"></i>
-                                                        <span>1 Hari</span>
+                                                        <span>{{ $daysDifference }} Hari</span>
                                                     </div>
                                                 </div>
                                             </div>

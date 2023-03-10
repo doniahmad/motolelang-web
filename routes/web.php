@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\ViewController;
+use App\Models\Auction;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Http\Request as HttpRequest;
@@ -37,7 +38,8 @@ Route::group(['middleware' => 'auth'], function () {
 
 
 Route::get('/', function () {
-    return view(mainPages('home'));
+    $data = Auction::withCount('auctioneer')->with(['product.images', 'auctioneer.user', 'auctioneer.offer', 'offer.auctioneer', 'auctioneer.invoice',])->orderBy('auctioneer_count')->take(3)->get();
+    return view(mainPages('home'), compact('data'));
 })->name('home.index');
 
 
@@ -110,7 +112,7 @@ function adminPages($value)
 };
 
 
-Route::group(['prefix' => 'dashboard'], function () {
+Route::group(['prefix' => 'dashboard', 'middleware' => ['web']], function () {
     Route::get('/login', function () {
         return view(adminPages('login'));
     })->name('login.dashboard');
