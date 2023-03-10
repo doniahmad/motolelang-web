@@ -13,15 +13,17 @@ class EndWinnerNotification extends Notification
 
     protected $auction;
     protected $auctioneer;
+    protected $invoice;
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($auction, $auctioneer)
+    public function __construct($auction, $auctioneer, $invoice)
     {
         $this->auction = $auction;
         $this->auctioneer = $auctioneer;
+        $this->invoice = $invoice;
     }
 
     /**
@@ -45,7 +47,8 @@ class EndWinnerNotification extends Notification
     {
         $auction = $this->auction;
         $auctioneer = $this->auctioneer;
-        return (new MailMessage)->from('motolelang.noreply@gmail.com')->subject('Pelelangan Selesai')->markdown('emails.endWinnerNotification', ['auction' => $auction, 'auctioneer' => $auctioneer]);
+        $invoice = $this->invoice;
+        return (new MailMessage)->from('motolelang.noreply@gmail.com')->subject('Pelelangan Selesai')->markdown('emails.endWinnerNotification', ['auction' => $auction, 'auctioneer' => $auctioneer, 'invoice' => $invoice]);
     }
 
     /**
@@ -58,8 +61,8 @@ class EndWinnerNotification extends Notification
     {
         return [
             'nama_product' => $this->auction->product->nama_product,
-            'img_product' => $this->auction->product->img_url,
-            'token_auction' => $this->auction->token,
+            'img_product' => $this->auction->product->images[0]->image_path,
+            'kode_pembayaran' => $this->invoice,
             'id_auctioneer' => $this->auctioneer->auctioneer->auctioneer_id,
             'id_user' => $this->auctioneer->auctioneer->user->user_id
         ];

@@ -17,7 +17,7 @@ class InvoiceController extends Controller
      */
     public function index()
     {
-        $data = Invoice::with(['auctioneer.auction.product.images', 'auctioneer.user'])->get();
+        $data = Invoice::with(['auctioneer.auction.product.images', 'auctioneer.user', 'ongkir'])->get();
         return response()->json($data);
     }
 
@@ -80,11 +80,12 @@ class InvoiceController extends Controller
             'status' => 'string',
             'alasan_penolakan' => 'string|nullable',
             'bukti_pembayaran' => 'image|mimes:png,jpg',
+            'id_ongkir' => 'integer'
         ]);
 
         try {
             // image
-            if ($request->status == 'ditolak') {
+            if ($request->status === 'ditolak') {
                 Storage::delete('image/invoice/' . $invoice->bukti_pembayaran);
                 $validateData['bukti_pembayaran'] = null;
             } else {

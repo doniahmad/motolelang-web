@@ -38,34 +38,33 @@ class EndAuction extends Command
      */
     public function handle()
     {
-        $query = Auction::with(['auctioneer.user', 'offer','product'])->where('exp_date', '<=', Carbon::now())->where('status', 'LIKE', 1);
+        $query = Auction::with(['auctioneer.user', 'offer', 'product'])->where('exp_date', '<=', Carbon::now())->where('status', 'LIKE', 1);
         $data = $query->get();
 
+        Log::debug($data);
         foreach ($data as $auction) {
             if (count($auction->auctioneer) && count($auction->offer)) {
+                Log::debug('true');
                 // Jika Auction Memiliki Offer
 
                 // Cari Offer paling tinggi
                 $bestOffer = collect($auction->offer)->sortByDesc('offer')->first()->load('auctioneer.user');
 
+                // Update dan Create Invoice
+                Http::post(url('api/auction/' . $auction->token), ['status' => 0, 'id_winner' => $bestOffer->id_auctioneer, '_method' => 'PUT']);
+                $invoice = Http::post(url('api/invoice'), ['id_auctioneer' => $bestOffer->auctioneer->auctioneer_id, 'invoice' => $bestOffer->offer]);
+                $invoiceJson = $invoice->json();
                 foreach ($auction->auctioneer as $auctioneer) {
                     if ($auctioneer->auctioneer_id === $bestOffer->id_auctioneer) {
-                        Notification::send($auctioneer->user,new EndWinnerNotification($auction,$bestOffer));
-
+                        Notification::send($auctioneer->user, new EndWinnerNotification($auction, $bestOffer, $invoiceJson['data']['kode_pembayaran']));
                     } else {
-                        Notification::send($auctioneer->user,new EndLoserNotification($auction,$auctioneer));
-
+                        Notification::send($auctioneer->user, new EndLoserNotification($auction, $auctioneer));
                     }
                 }
-
-                // Update dan Create Invoice
-                Http::post('http://127.0.0.1:8000/api/auction/' . $auction->token, ['status' => 0, 'id_winner' => $bestOffer->id_auctioneer, '_method' => 'PUT']);
-                Http::post('http://127.0.0.1:8000/api/invoice', ['id_auctioneer' => $bestOffer->id_auctioneer, 'invoice' => $bestOffer->offer]);
-
-
             } else {
                 // Jika Tidak memiliki auctioneer
-                Http::post('http://127.0.0.1:8000/api/auction/' . $auction->token, ['status' => 0, '_method' => 'PUT']);
+                Http::post(url('api/auction/' . $auction->token), ['status' => 0, '_method' => 'PUT']);
+                Log::debug('false');
             }
         }
     }

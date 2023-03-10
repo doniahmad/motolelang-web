@@ -6,8 +6,3 @@
 //         document.getElementById("selectPengiriman").classList.add("d-none");
 //     }
 // }
-
-function SelectedOngkir(val) {
-    document.getElementById("selected").innerHTML = val.value;
-    // document.getElementById("jumlah-tagihan").innerHTML = val.value;
-}

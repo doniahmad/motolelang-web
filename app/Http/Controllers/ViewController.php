@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Auction;
+use App\Models\Image;
+use App\Models\Product;
 use App\Models\User;
 use App\Notifications\AcceptInvoiceNotification;
+use Cviebrock\EloquentSluggable\Services\SlugService;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Http\Request as HttpRequest;
 use Illuminate\Support\Facades\Redirect;
@@ -15,6 +18,9 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
 use Exception;
 use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Facades\View as FacadesView;
+use Illuminate\Validation\ValidationException;
+use Illuminate\View\View;
 
 class ViewController extends Controller
 {
@@ -82,7 +88,7 @@ class ViewController extends Controller
         if ($data->status === "success") {
             return Redirect::to(route('login.index'));
         } else {
-            return redirect()->back()->withErrors($data->message);
+            return redirect()->back()->withInput()->withErrors($data->message);
         }
     }
 
@@ -166,38 +172,85 @@ class ViewController extends Controller
         return $data;
     }
 
-    public function postProduct(HttpRequest $input)
+    public function postProduct(HttpRequest $request)
     {
         // input data for product
-        $reqProduct = [
-            'nama_product' => $input->nama_product,
-            'merk' => $input->merk,
-            'harga_awal' => $input->harga_awal,
-            'kapasitas_cc' => $input->kapasitas_cc,
-            'odometer' => $input->odometer,
-            'nomor_mesin' => $input->nomor_mesin,
-            'jenis' => $input->jenis,
-            'bahan_bakar' => $input->bahan_bakar,
-            'warna' => $input->warna,
-            'nomor_rangka' => $input->nomor_rangka,
-            'merk' => $input->merk,
-            'deskripsi' => $input->deskripsi,
-            'nomor_polisi' => $input->nomor_polisi,
-            'stnk' => $input->stnk,
-            'bpkb' => $input->bpkb,
-            'form_a' => $input->form_a,
-            'faktur' => $input->faktur,
-            'kwitansi_blanko' => $input->kwitansi_blanko,
-            'masa_stnk' => $input->masa_stnk,
-            'image[]' => $input->image,
-        ];
-        $data = self::postAction('/api/product/', $reqProduct);
-        if ($data->status === 'success') {
+        // $reqProduct = [
+        //     'nama_product' => $input->nama_product,
+        //     'merk' => $input->merk,
+        //     'harga_awal' => $input->harga_awal,
+        //     'kapasitas_cc' => $input->kapasitas_cc,
+        //     'odometer' => $input->odometer,
+        //     'nomor_mesin' => $input->nomor_mesin,
+        //     'jenis' => $input->jenis,
+        //     'bahan_bakar' => $input->bahan_bakar,
+        //     'warna' => $input->warna,
+        //     'nomor_rangka' => $input->nomor_rangka,
+        //     'merk' => $input->merk,
+        //     'deskripsi' => $input->deskripsi,
+        //     'nomor_polisi' => $input->nomor_polisi,
+        //     'stnk' => $input->stnk,
+        //     'bpkb' => $input->bpkb,
+        //     'form_a' => $input->form_a,
+        //     'faktur' => $input->faktur,
+        //     'kwitansi_blanko' => $input->kwitansi_blanko,
+        //     'masa_stnk' => $input->masa_stnk,
+        //     'image[]' => $input->image,
+        // ];
+        // $data = self::postAction('/api/product', $reqProduct);
+        // // dd($data);
+        // if ($data->status === 'success') {
+        //     Alert::toast('Product berhasil ditambahkan', 'success');
+        //     return Redirect::to(route('dashboard.product'));
+        // } else {
+        //     Alert::toast('Product gagal ditambahkan', 'error');
+        //     FacadesView::share('errors', $$data->message);
+        // }
+
+        try {
+            $validateProduct = $request->validate([
+                'nama_product' => 'string|required',
+                'harga_awal' => 'integer|required',
+                'jenis' => 'string|required',
+                'merk' => 'string|required',
+                'kapasitas_cc' => 'integer|required',
+                'nomor_mesin' => 'string|required',
+                'bahan_bakar' => 'string|required',
+                'odometer' => 'integer|required',
+                'nomor_rangka' => 'string|required',
+                'category_id' => 'integer',
+                'warna' => 'string|required',
+                'deskripsi' => 'required|string',
+                'nomor_polisi' => 'required|string',
+                'stnk' => "required|boolean",
+                'bpkb' => "required|boolean",
+                'form_a' => "required|boolean",
+                'kwitansi_blanko' => "required|string",
+                'faktur' => "required|boolean",
+                'masa_stnk' => "required",
+                'image' => 'required'
+            ]);
+
+            $slug = SlugService::createSlug(Product::class, 'product_slug', $request->nama_product);
+
+
+            $validateProduct['product_slug'] = $slug;
+            $product = Product::create($validateProduct);
+            if ($request->hasFile('image')) {
+                $imgList = array();
+                $image = $request->file('image');
+                foreach ($image as $imageFile) {
+                    $image_name = 'product-' . rand(1, 9999) .  '.' . $imageFile->extension();
+                    $imageFile->move(public_path('storage/image/product'), $image_name);
+                    $imgList[] = ['image_path' => $image_name, 'id_product' => $product->product_id];
+                }
+                Image::insert($imgList);
+            };
             Alert::toast('Product berhasil ditambahkan', 'success');
             return Redirect::to(route('dashboard.product'));
-        } else {
-            Alert::toast('Product gagal ditambahkan', 'Sayang sekali, Product gagal untuk ditambahkan.', 'error');
-            return redirect()->back()->withErrors($data);
+        } catch (ValidationException $e) {
+            Alert::toast('Product gagal ditambahkan', 'error');
+            return redirect()->back()->withInput($request->all())->withErrors($e->errors());
         }
     }
 
@@ -385,15 +438,16 @@ class ViewController extends Controller
 
         Notification::send($user, new AcceptInvoiceNotification($auctioneer));
 
-        // $pengiriman = $this->postAction('api/pengiriman', $reqPengiriman);
-        // $invoice = $this->postAction('api/invoice/' . $data->kode_pembayaran, $reqInvoice);
+        $pengiriman = $this->postAction('api/pengiriman', $reqPengiriman);
+        $invoice = $this->postAction('api/invoice/' . $data->kode_pembayaran, $reqInvoice);
 
-        // if ($invoice->status === 'success' && $pengiriman->status === 'success') {
-        //     Alert::toast('Pembayaran disetujui', 'success');
-        //     return redirect()->back();
-        // } else {
-        //     return redirect()->back();
-        // }
+        if ($invoice->status === 'success' && $pengiriman->status === 'success') {
+            Alert::toast('Pembayaran disetujui', 'success');
+            return redirect()->back();
+        } else {
+            Alert::toast('Gagal menyetujui', 'error');
+            return redirect()->back();
+        }
     }
 
     public static function getKurirs()
@@ -422,7 +476,7 @@ class ViewController extends Controller
             Alert::toast('Berhasil menambahkan kurir', 'success');
             return redirect(route('dashboard.kurir'));
         } else {
-            return redirect()->back()->withErrors($data);
+            return redirect()->back()->withInput()->withErrors($data->message);
         }
     }
 
@@ -456,13 +510,12 @@ class ViewController extends Controller
     public static function postAdmin(HttpRequest $input)
     {
         $data = self::postAction('/api/admin', $input->all());
-
-        if ($data === 'success') {
+        if ($data->status === 'success') {
             Alert::toast('Admin berhasil ditambahkan', 'success');
-            return redirect(route('dashboard.admin'))->withSuccess('Admin berhasil ditambahkan');
+            return redirect(route('dashboard.admin'));
         } else {
             Alert::error('Admin gagal ditambahkan', 'Anda gagal menambahkan admin baru!');
-            return redirect()->back()->withErrors($data);
+            return redirect()->back()->withInput()->withErrors($data->message);
         }
     }
 

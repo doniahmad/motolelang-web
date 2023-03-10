@@ -44,11 +44,11 @@
                                                 </button>
                                             </a>
                                             @can('access owner')
-                                                <a href="{{ route('dashboard.deleteAdmin', ['id' => $admin->user_id]) }}"
+                                                <button href="{{ route('dashboard.deleteAdmin', ['id' => $admin->user_id]) }}"
                                                     id="btn-delete-admin" type="button" class="btn btn-danger"
                                                     onclick="deleteAdmin(this)">
                                                     <i class="fa-solid fa-trash"></i>
-                                                </a>
+                                                </button>
                                             @endcan
 
                                         </td>

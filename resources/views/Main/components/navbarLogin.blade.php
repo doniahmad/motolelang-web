@@ -44,22 +44,22 @@
                                 <h6>Notifikasi</h6>
                                 <div class="konten-notif">
                                     @foreach (auth()->user()->notifications as $notif)
-                                        <a href="{{ 'http://127.0.0.1:8000/lelang/pembayaran/' . $notif->token_auction }}"
+                                        <a href="{{ url('lelang/pembayaran/' . $notif->data['kode_pembayaran']) }}"
                                             class="text-dark text-decoration-none">
                                             <div class="d-flex my-3">
-                                                <img src="{{ asset('storage/image/product/' . $notif->img_product) }}"
+                                                <img src="{{ asset('storage/image/product/' . $notif->data['img_product']) }}"
                                                     alt="">
                                                 <p class="ms-auto ps-3">Selamat, Anda berhasil memenangkan pelelangan
                                                     motor
-                                                    <strong>{{ $notif->nama_product }}</strong> . Mohon segera
+                                                    <strong>{{ $notif->data['nama_product'] }}</strong> . Mohon segera
                                                     lakukan pembayaran untuk dapat menerima barang anda.
                                                 </p>
                                             </div>
                                         </a>
+                                        @php
+                                            session()->forget('notifications');
+                                        @endphp
                                     @endforeach
-                                    @php
-                                        session()->forget('notifications');
-                                    @endphp
                                 </div>
                             </div>
 

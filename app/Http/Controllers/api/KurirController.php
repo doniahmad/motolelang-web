@@ -40,20 +40,20 @@ class KurirController extends Controller
      */
     public function store(Request $request)
     {
-        $fields = $request->validate([
-            'name' => 'required',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|min:8',
-            'role' => 'in:kurir',
-            'handphone' => 'required|string',
-            'birth_place' => 'required|string',
-            'birth_date' => 'required|string',
-            'gender' => 'required|in:wanita,pria',
-            'address' => 'required|string',
-            'photo' => 'required|image|mimes:jpg,png,jpeg'
-        ]);
-
         try {
+            $fields = $request->validate([
+                'name' => 'required',
+                'email' => 'required|email|unique:users,email',
+                'password' => 'required|min:8',
+                'role' => 'in:kurir',
+                'handphone' => 'required|string',
+                'birth_place' => 'required|string',
+                'birth_date' => 'required|string',
+                'gender' => 'required|in:wanita,pria',
+                'address' => 'required|string',
+                'photo' => 'required|image|mimes:jpg,png,jpeg'
+            ]);
+
             $fields['role'] = 'kurir';
             $fields['password'] = Hash::make($fields['password']);
 
@@ -101,18 +101,18 @@ class KurirController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        $fields = $request->validate([
-            'name' => 'string',
-            'handphone' => 'string',
-            'birth_place' => 'string',
-            'birth_date' => 'string',
-            'gender' => 'in:perempuan,laki-laki',
-            'address' => 'string',
-            'photo' => 'image|mimes:jpg,png'
-        ]);
-
-
         try {
+            $fields = $request->validate([
+                'name' => 'string',
+                'handphone' => 'string',
+                'birth_place' => 'string',
+                'birth_date' => 'string',
+                'gender' => 'in:perempuan,laki-laki',
+                'address' => 'string',
+                'photo' => 'image|mimes:jpg,png'
+            ]);
+
+
 
             if ($request->hasFile('photo')) {
                 $image = $request->file('photo');

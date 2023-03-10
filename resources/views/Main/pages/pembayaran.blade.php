@@ -79,7 +79,7 @@
                                 </div>
                                 <div class="d-flex">
                                     <p>Biaya Pengiriman</p>
-                                    <p class="ms-auto"> <span id="selected"></span></p>
+                                    <p class="ms-auto"> <span id="selected">Rp. 0</span></p>
                                 </div>
                                 <hr>
                                 <div class="dropdown">
@@ -136,21 +136,23 @@
 
                                     <select name="" id="selectKabupaten" onchange="SelectedOngkir(this)"
                                         class="form-select mt-3 py-1 px-2" aria-label="Default select example">
-                                        <option value="">Pilih Daerah Pengiriman</option>
+                                        <option value="" disabled selected>Pilih Daerah Pengiriman</option>
                                         <option value="" disabled="disabled">----------------------</option>
                                         @foreach ($ongkir as $item)
-                                            <option value="{{ $item->ongkir }}">{{ $item->nama_daerah }}</option>
+                                            <option value="{{ $item->ongkir }}" ongkir-id="{{ $item->ongkir_id }}">
+                                                {{ $item->nama_daerah }}</option>
                                         @endforeach
                                     </select>
                                 </div>
                                 <hr>
                                 <div class="d-flex align-items-center">
                                     <h5>Total Tagihan</h5>
-                                    <h5 class="ms-auto" id="jumlah-tagihan">{{ currency_IDR($data->invoice) }}</h5>
+                                    <h5 class="ms-auto" id="jumlah-tagihan" class="jumlah-tagihan">
+                                        {{ currency_IDR($data->invoice) }}</h5>
                                 </div>
                                 <div class="my-3">
-                                    <a href="#" class="btn btn-primer" data-bs-toggle="modal"
-                                        data-bs-target="#modalPembayaran">Bayar</a>
+                                    <button type="button" class="btn btn-primer" id="btn-bayar-tagihan"
+                                        data-bs-toggle="modal" data-bs-target="#modalPembayaran" disabled>Bayar</button>
                                 </div>
                             </div>
                         </div>
@@ -169,5 +171,42 @@
 
 @push('scripts')
     <script type="text/javascript" src="/assets/main/js/valueModal.js"></script>
-    <script type="text/javascript" src="/assets/main/js/ongkir.js"></script>
+    <script type="text/javascript">
+        function formatRupiah(angka, prefix) {
+            var number_string = angka.toString().replace(/[^,\d]/g, ""),
+                split = number_string.split(","),
+                sisa = split[0].length % 3,
+                rupiah = split[0].substr(0, sisa),
+                ribuan = split[0].substr(sisa).match(/\d{3}/gi);
+
+            // tambahkan titik jika yang di input sudah menjadi angka ribuan
+            if (ribuan) {
+                separator = sisa ? "." : "";
+                rupiah += separator + ribuan.join(".");
+            }
+
+            rupiah = split[1] != undefined ? rupiah + "," + split[1] : rupiah;
+            return prefix == undefined ? rupiah : rupiah ? "Rp. " + rupiah : "";
+        }
+
+        function SelectedOngkir(val) {
+            document.getElementById("selected").innerHTML = formatRupiah(
+                val.value,
+                "Rp. "
+            );
+
+            let ongkir = Number(val.value);
+            let sum = ongkir + {!! $data->invoice !!};
+            const jumlahTagihan = document.querySelectorAll("#jumlah-tagihan")
+            jumlahTagihan.forEach((element, index) => {
+                element.innerHTML = formatRupiah(sum,
+                    "Rp. "
+                );
+            });
+            document.getElementById('ongkir-value').value = val.options[val.selectedIndex]
+                .getAttribute("ongkir-id");
+
+            document.getElementById('btn-bayar-tagihan').removeAttribute('disabled');
+        }
+    </script>
 @endpush
