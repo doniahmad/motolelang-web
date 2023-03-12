@@ -33,6 +33,11 @@
                                                 </label>
                                             </div>
                                         </div>
+                                        @error('photo')
+                                            <div class="text-danger" style="font-size:14px;">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                     </div>
                                 </div>
                             </div>
@@ -47,14 +52,15 @@
                                     <td>:</td>
                                     <td class=""><input type="text" class="form-control" id="inputNama"
                                             aria-describedby="inputNama" placeholder="Masukkan Nama Anda"
-                                            value="{{ isset($user->name) ? $user->name : null }}" name="name"></td>
+                                            value="{{ old('name', isset($user->name)) ? $user->name : null }}"
+                                            name="name"></td>
                                 </tr>
                                 <tr>
                                     <td>No. Handphone</td>
                                     <td>:</td>
                                     <td class=""><input type="number" class="form-control" id="inputNoHp"
                                             aria-describedby="inputNoHp" placeholder="Masukkan Nomor Handphone"
-                                            value="{{ isset($user->handphone) ? $user->handphone : null }}"
+                                            value="{{ old('handphone', isset($user->handphone)) ? $user->handphone : null }}"
                                             name="handphone">
                                     </td>
                                 </tr>
@@ -63,8 +69,13 @@
                                     <td>:</td>
                                     <td class=""><input type="text" class="form-control" id="inputTempatLahir"
                                             aria-describedby="inputTempatLahir" placeholder="Masukkan Tempat Lahir"
-                                            value="{{ isset($user->birth_place) ? $user->birth_place : null }}"
+                                            value="{{ old('birth_place', isset($user->birth_place)) ? $user->birth_place : null }}"
                                             name="birth_place">
+                                        @error('birth_place')
+                                            <div class="text-danger" style="font-size:12px;">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                     </td>
                                 </tr>
                                 <tr>
@@ -72,8 +83,13 @@
                                     <td>:</td>
                                     <td class=""><input type="date" class="form-control" id="inputTanggalLahir"
                                             aria-describedby="inputTanggalLahir" placeholder="Masukkan Tanggal Lahir"
-                                            value="{{ isset($user->birth_date) ? $user->birth_date : null }}"
+                                            value="{{ old('birth_date', isset($user->birth_date)) ? $user->birth_date : null }}"
                                             name="birth_date">
+                                        @error('birth_date')
+                                            <div class="text-danger" style="font-size:12px;">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                     </td>
                                 </tr>
                                 <tr>
@@ -83,11 +99,19 @@
                                             aria-label="Default select example" name="gender">
                                             <option selected value="{{ null }}">Pilih Jenis Kelamin
                                             </option>
-                                            <option value="pria" {{ $user->gender === 'pria' ? 'selected' : '' }}>Pria
+                                            <option value="pria"
+                                                {{ old('gender', $user->gender) === 'pria' ? 'selected' : '' }}>
+                                                Pria
                                             </option>
-                                            <option value="wanita" {{ $user->gender === 'wanita' ? 'selected' : '' }}>
+                                            <option value="wanita"
+                                                {{ old('gender', $user->gender) === 'wanita' ? 'selected' : '' }}>
                                                 Wanita</option>
                                         </select>
+                                        @error('gender')
+                                            <div class="text-danger" style="font-size:12px;">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                     </td>
                                 </tr>
                                 <tr>
@@ -95,7 +119,13 @@
                                     <td>:</td>
                                     <td class=""><input type="text" class="form-control" id="inputAlamat"
                                             aria-describedby="inputTanggalLahir" placeholder="Masukkan Alamat"
-                                            value="{{ isset($user->address) ? $user->address : null }}" name="address">
+                                            value="{{ old('address', isset($user->address)) ? $user->address : null }}"
+                                            name="address">
+                                        @error('address')
+                                            <div class="text-danger" style="font-size:12px;">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                     </td>
                                 </tr>
                             </tbody>

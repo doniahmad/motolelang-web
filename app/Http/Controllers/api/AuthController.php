@@ -74,8 +74,8 @@ class AuthController extends Controller
     {
         $error = 'Email or password invalid';
         $target = User::with('roles')->where('email', $request->email)->first();
-        $role = $target->getRoleNames();
         try {
+            $role = $target->getRoleNames();
             if ($role[0] === 'admin' || $role[0] === 'kurir' || $role[0] === 'owner') {
                 if (Auth::attempt($request->only('email', 'password'))) {
                     /** @var User $user */
@@ -93,10 +93,11 @@ class AuthController extends Controller
                 'status' => 'error',
                 'message' => $error
             ], 401);
-        } catch (\Exception $exception) {
+        } catch (\Throwable $exception) {
             return response([
                 'status' => 'error',
-                'message' => $exception->getMessage()
+                'message' => $error,
+                'exception' => $exception->getMessage()
             ], 400);
         }
     }

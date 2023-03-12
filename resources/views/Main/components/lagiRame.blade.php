@@ -20,9 +20,9 @@
                     $daysDifference = $currentDate->diffInDays($desiredDate);
                     
                 @endphp
-                <div class="col-md-4 col-sm-6 d-flex align-items-stretch">
+                <div class="col-md-4 d-flex align-items-stretch">
                     <div class="card mt-5">
-                        <div class="card-body">
+                        <div class="d-flex flex-column card-body">
                             <div class="container">
                                 <div class="">
                                     <div class="d-flex">
@@ -41,16 +41,20 @@
                                             srcset="">
                                     </div>
 
+                                    <div class="pb-2">
+                                        <h5 class="semi-bold">{{ $product->product->nama_product }}</h5>
+                                    </div>
+
                                     <div class="">
                                         <h6 class="bold"></h6>
                                         <p id="desc" class="deskripsi-produk">{{ $product->product->deskripsi }}
                                         </p>
                                     </div>
-                                    <div class="d-flex pt-2 semi-bold">
-                                        <h6>Penawaran Tertinggi</h6>
-                                        <h6 class="ms-auto">
+                                    <div id="footPenawaranTertinggi" class="d-flex py-3 semi-bold mt-auto">
+                                        <p>Penawaran Tertinggi</p>
+                                        <p class="ms-auto">
                                             {{ currency_IDR(count($product->offer) ? $bestOffer->offer : $product->product->harga_awal) }}
-                                        </h6>
+                                        </p>
                                     </div>
                                 </div>
                             </div>

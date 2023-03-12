@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\ValidationException;
 use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
@@ -84,7 +85,8 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         $user = $request->user();
-
+        
+        try {
         $validateData = $request->validate([
             'nama' => 'string',
             'handphone' => 'string',
@@ -95,7 +97,6 @@ class UserController extends Controller
             'photo' => 'image|mimes:jpg,png'
         ]);
 
-        try {
 
             if ($request->hasFile('photo')) {
                 $image = $request->file('photo');
@@ -110,10 +111,10 @@ class UserController extends Controller
                 'status' => 'success',
                 'data' => $validateData,
             ]);
-        } catch (\Exception $e) {
+        } catch (ValidationException $e) {
             return response()->json([
                 'status' => 'error',
-                'message' => $e->getMessage()
+                'message' => $e->errors()
             ]);
         }
     }

@@ -9,6 +9,19 @@
     <div class="container border bg-white">
         <div class="p-5">
             <h4>Profile</h4>
+            @if (auth()->user()->address === null ||
+                auth()->user()->photo === null ||
+                auth()->user()->gender === null ||
+                auth()->user()->birth_place === null ||
+                auth()->user()->birth_date === null)
+                <div class="alert alert-danger py-2" role="alert">
+                    <i class="fa-solid fa-circle-exclamation">
+                    </i>
+                    <span class="ps-2">
+                        Anda perlu melengkapi data diri anda terlebih dahulu untuk dapat mengikuti pelelangan!
+                    </span>
+                </div>
+            @endif
             <div class="row pt-5">
                 <div class="col-5">
                     <div class="d-flex justify-content-center">

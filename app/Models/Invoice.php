@@ -21,4 +21,9 @@ class Invoice extends Model
     {
         return $this->belongsTo(Ongkir::class, 'id_ongkir');
     }
+
+    public function pengiriman()
+    {
+        return $this->hasOne(Pengiriman::class, 'id_invoice');
+    }
 }
