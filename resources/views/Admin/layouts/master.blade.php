@@ -51,8 +51,8 @@
 
 <body>
 
-    @include('Admin.components.navbar')
-    @include('Admin.components.sidebar')
+    @include('admin.components.navbar')
+    @include('admin.components.sidebar')
 
     @yield('content')
 

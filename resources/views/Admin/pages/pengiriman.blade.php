@@ -70,7 +70,7 @@
     </div>
 </div>
 
-@include('Admin.modal.modalBuktiPenerimaan')
+@include('admin.modal.modalBuktiPenerimaan')
 
 @push('scripts')
     <script type="text/javascript">

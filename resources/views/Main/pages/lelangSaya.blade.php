@@ -1,4 +1,4 @@
-@extends('Main.layouts.master')
+@extends('main.layouts.master')
 @section('title', 'Lelang Saya')
 
 

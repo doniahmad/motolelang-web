@@ -10,7 +10,7 @@
 
         </div>
         <div class="page-content">
-            @include('Admin.components.formInputUser', [
+            @include('admin.components.formInputUser', [
                 'method' => 'POST',
                 'path' => route('dashboard.postKurir'),
                 'data' => isset($data) ? $data : null,

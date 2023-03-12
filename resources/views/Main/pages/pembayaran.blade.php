@@ -1,5 +1,4 @@
-@extends('Main.layouts.master')
-{{-- @dd($ongkir) --}}
+@extends('main.layouts.master')
 @section('title', 'Pembayaran')
 
 

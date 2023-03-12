@@ -147,7 +147,7 @@
     </div>
 </div>
 
-@include('Admin.modal.modalPublish')
+@include('admin.modal.modalPublish')
 @push('scripts')
     <script>
         const loadFile = function(event) {

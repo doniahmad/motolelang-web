@@ -10,7 +10,7 @@
 
         </div>
         <div class="page-content">
-            @include('Admin.components.formInput', [
+            @include('admin.components.formInput', [
                 'method' => 'POST',
                 'path' => route('dashboard.updateProduct', [$data->product_slug]),
                 'product' => $data,

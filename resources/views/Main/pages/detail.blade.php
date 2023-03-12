@@ -1,4 +1,4 @@
-@extends('Main.layouts.master')
+@extends('main.layouts.master')
 @section('title', $data->nama_product)
 
 @php
@@ -86,10 +86,10 @@
                         @if (!count($checkIfMemberAuction))
                             @if (auth()->check())
                                 @if (auth()->user()->address === null ||
-                                        auth()->user()->photo === null ||
-                                        auth()->user()->gender === null ||
-                                        auth()->user()->birth_place === null ||
-                                        auth()->user()->birth_date === null)
+                                    auth()->user()->photo === null ||
+                                    auth()->user()->gender === null ||
+                                    auth()->user()->birth_place === null ||
+                                    auth()->user()->birth_date === null)
                                     <button type="button" onclick="alertProfileNotFull()"
                                         class="btn btn-pelelangan bg-color-primer text-light mt-3">Ikut Lelang</button>
                                 @else

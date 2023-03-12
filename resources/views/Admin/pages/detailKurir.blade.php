@@ -1,5 +1,5 @@
 @extends('admin.layouts.master')
-{{-- @section('title', $data->name) --}}
+@section('title', 'Detail Kurir')
 
 <div class="container" id="data-product">
     <div class="content" id="detail-customer">

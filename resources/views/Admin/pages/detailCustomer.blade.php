@@ -1,5 +1,5 @@
 @extends('admin.layouts.master')
-@section('title', $data->name)
+@section('title', 'Detail Customer')
 
 <div class="container" id="data-product">
     <div class="content" id="detail-customer">
@@ -67,6 +67,6 @@
     </div>
 </div>
 
-@include('Admin.modal.modalPublish')
+@include('admin.modal.modalPublish')
 @push('scripts')
 @endpush

@@ -99,7 +99,7 @@
     </div>
 </div>
 
-@include('Admin.modal.modalPublish')
+@include('admin.modal.modalPublish')
 @push('scripts')
     <script type="text/javascript">
         $(document).ready(function() {

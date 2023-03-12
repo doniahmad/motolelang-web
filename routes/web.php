@@ -21,7 +21,7 @@ use Illuminate\Http\Request as HttpRequest;
 
 function mainPages($value)
 {
-    return 'Main.pages.' . $value;
+    return 'main.pages.' . $value;
 };
 
 Route::group(['middleware' => 'auth'], function () {
@@ -108,7 +108,7 @@ Route::group(['prefix' => 'lelang'], function () {
 
 function adminPages($value)
 {
-    return 'Admin.pages.' . $value;
+    return 'admin.pages.' . $value;
 };
 
 

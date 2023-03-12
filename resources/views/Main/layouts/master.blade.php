@@ -119,14 +119,14 @@
     @endphp
 
     @if (!auth()->check())
-        @include('Main.components.navbar')
+        @include('main.components.navbar')
     @else
-        @include('Main.components.navbarLogin')
+        @include('main.components.navbarLogin')
     @endif
 
     @yield('content')
 
-    @include('Main.components.footer')
+    @include('main.components.footer')
 
     @stack('scripts')
 

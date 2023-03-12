@@ -76,6 +76,6 @@
     </div>
 </div>
 
-@include('Admin.modal.modalPublish')
+@include('admin.modal.modalPublish')
 @push('scripts')
 @endpush
