@@ -104,7 +104,11 @@
                 })
             })
         });
+
+        console.log('test');
     </script>
+
+
 
     <title>@yield('title')</title>
 </head>

@@ -85,11 +85,20 @@
                         </table>
                         @if (!count($checkIfMemberAuction))
                             @if (auth()->check())
-                                <button type="button" class="btn btn-pelelangan bg-color-primer text-light mt-3"
-                                    data-bs-toggle="modal" data-bs-target="#modalInputUsername">Ikut Lelang</button>
+                                @if (auth()->user()->address === null ||
+                                        auth()->user()->photo === null ||
+                                        auth()->user()->gender === null ||
+                                        auth()->user()->birth_place === null ||
+                                        auth()->user()->birth_date === null)
+                                    <button type="button" onclick="alertProfileNotFull()"
+                                        class="btn btn-pelelangan bg-color-primer text-light mt-3">Ikut Lelang</button>
+                                @else
+                                    <button type="button" class="btn btn-pelelangan bg-color-primer text-light mt-3"
+                                        data-bs-toggle="modal" data-bs-target="#modalInputUsername">Ikut Lelang</button>
+                                @endif
                             @else
-                                <button type="button" class="btn btn-pelelangan bg-color-primer text-light mt-3"
-                                    data-bs-toggle="modal" data-bs-target="#alertBeforeLogin">Ikut Lelang</button>
+                                <button type="button" onclick="alertBeforeLogin()"
+                                    class="btn btn-pelelangan bg-color-primer text-light mt-3">Ikut Lelang</button>
                             @endif
                         @else
                             <a href="{{ route('lelang.room', ['token' => $data->auction->token]) }}"
@@ -236,4 +245,7 @@
 </div>
 
 @include('main.modal.modalInputUsername')
-@include('main.modal.alertBeforeLogin')
+
+@push('scripts')
+    <script type="text/javascript" src="/assets/main/js/notLogin.js"></script>
+@endpush
