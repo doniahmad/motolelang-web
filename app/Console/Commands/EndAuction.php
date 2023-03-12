@@ -54,6 +54,7 @@ class EndAuction extends Command
                 Http::post(url('api/auction/' . $auction->token), ['status' => 0, 'id_winner' => $bestOffer->id_auctioneer, '_method' => 'PUT']);
                 $invoice = Http::post(url('api/invoice'), ['id_auctioneer' => $bestOffer->auctioneer->auctioneer_id, 'invoice' => $bestOffer->offer]);
                 $invoiceJson = $invoice->json();
+                Log::debug($invoice);
                 foreach ($auction->auctioneer as $auctioneer) {
                     if ($auctioneer->auctioneer_id === $bestOffer->id_auctioneer) {
                         Notification::send($auctioneer->user, new EndWinnerNotification($auction, $bestOffer, $invoiceJson['data']['kode_pembayaran']));

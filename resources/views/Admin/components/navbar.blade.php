@@ -6,7 +6,7 @@
             </button>
         </div>
         <a class="navbar-brand me-auto" href="{{ route('dashboard.index') }}">
-            Lelang Motor
+            MOTO Lelang
         </a>
         <div class="dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"

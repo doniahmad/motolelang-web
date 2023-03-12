@@ -77,7 +77,7 @@
                         <ul id="dropdown-profil" class="dropdown-menu text-center text-grey box-shadow-santuy">
                             <div class="">
                                 <li class="mb-3 mt-2"><img
-                                        src="{{ isset(auth()->user()->photo) ? asset('storage/image/user/' . auth()->user()->photo) : '/assets/main/img/avatarround.png' }}"
+                                        src="{{ isset(auth()->user()->photo) ? asset('storage/image/user/' . auth()->user()->photo) : '/assets/main/img/avatarroundgrey.svg' }}"
                                         class="img-in-dropdown mx-auto d-block" alt="" srcset=""><span
                                         class="text-center mt-2 mb-2">{{ auth()->user()->name }}</span></li>
                                 <li><a class="dropdown-item bt py-3" href="{{ route('profil.index') }}">Profil</a></li>

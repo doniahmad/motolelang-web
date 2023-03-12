@@ -35,33 +35,35 @@
                                 $daysDifference = $currentDate->diffInDays($desiredDate);
                                 
                             @endphp
-                            <div class="col-3 mt-4" style="border:none;">
-                                <div class="col-lelang card">
-                                    <a class="text-reset text-decoration-none"
-                                        href="{{ route('lelang.detail', $product->product->product_slug) }}">
-                                        <div class="card-container">
-                                            <div class="img-card-lelang">
-                                                <img src="{{ count($product->product->images) ? asset('storage/image/product/' . $product->product->images[0]->image_path) : '' }}"
-                                                    width="100%" srcset="">
-                                            </div>
-                                            <div class="card-lelang">
-                                                <div class="">
-                                                    <h6>{{ $product->product->nama_product }}</h6>
+                            @if ($product->status === 1)
+                                <div class="col-3 mt-4" style="border:none;">
+                                    <div class="col-lelang card">
+                                        <a class="text-reset text-decoration-none"
+                                            href="{{ route('lelang.detail', $product->product->product_slug) }}">
+                                            <div class="card-container">
+                                                <div class="img-card-lelang">
+                                                    <img src="{{ count($product->product->images) ? asset('storage/image/product/' . $product->product->images[0]->image_path) : '' }}"
+                                                        width="100%" srcset="">
                                                 </div>
-                                                <div class="card-lelang-bot d-flex ">
-                                                    <h6 class="my-auto">
-                                                        {{ currency_IDR(count($product->offer) ? $bestOffer->offer : $product->product->harga_awal) }}
-                                                    </h6>
-                                                    <div class="ms-auto ">
-                                                        <i class="fa-regular fa-clock"></i>
-                                                        <span>{{ $daysDifference }} Hari</span>
+                                                <div class="card-lelang d-flex flex-column align-items-stretch p-3">
+                                                    <div class="">
+                                                        <h6>{{ $product->product->nama_product }}</h6>
+                                                    </div>
+                                                    <div class="card-lelang-bot d-flex ">
+                                                        <h6 class="my-auto">
+                                                            {{ currency_IDR(count($product->offer) ? $bestOffer->offer : $product->product->harga_awal) }}
+                                                        </h6>
+                                                        <div class="ms-auto ">
+                                                            <i class="fa-regular fa-clock"></i>
+                                                            <span>{{ $daysDifference }} Hari</span>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </a>
+                                        </a>
+                                    </div>
                                 </div>
-                            </div>
+                            @endif
                         @endforeach
                     </div>
                 </div>

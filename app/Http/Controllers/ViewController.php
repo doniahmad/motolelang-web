@@ -98,12 +98,11 @@ class ViewController extends Controller
         $input['_method'] = 'PUT';
 
         $data = self::postAction('/api/user/' . $input->id, $input->all());
-
         if ($data->status === 'success') {
             Alert::toast('Profile Telah Diperbarui', 'success');
             return redirect(route('profil.index'));
         } else {
-            return redirect()->back()->withErrors($data);
+            return redirect()->back()->withInput()->withErrors($data->message);
         }
     }
 
