@@ -1,0 +1,37 @@
+#carouselDetailSlider {}
+
+#carouselDetailSlider .carousel-indicators button[data-bs-target] {
+    width: 100px;
+    background-color: transparent;
+}
+
+#carouselDetailSlider .carousel-indicators button[data-bs-target]:not(.active) {
+    opacity: 0.8;
+}
+
+#carouselDetailSlider .carousel-indicators {
+    position: static;
+}
+
+/* #carouselDetailSlider .carousel-indicators li {
+    width: 100px;
+    opacity: 0.8;
+} */
+
+#carouselDetailSlider .carousel-inner {
+    height: 480px;
+}
+
+#carouselDetailSlider .img-parent {
+    display: block;
+    width: 590px;
+    object-fit: cover;
+    margin: auto;
+}
+
+#carouselDetailSlider .img-child {
+    display: block;
+    width: 100px;
+    height: 80px;
+    object-fit: cover;
+}

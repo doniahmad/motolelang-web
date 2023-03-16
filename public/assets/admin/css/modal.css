@@ -1,0 +1,25 @@
+/* Modal Alasan */
+
+
+.custom-modal .myModal {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    display: table;
+}
+
+.custom-modal h5 {
+    font-weight: bold;
+}
+
+.custom-modal .custom-input {
+    width: 600;
+    box-shadow: none;
+    border: none;
+    border-radius: 0;
+    border-bottom: 2px solid black;
+    padding-left: 0;
+}

@@ -1,0 +1,609 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+* {
+    font-family: 'Poppins', sans-serif;
+}
+
+input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+/*
+.add-shadow {
+    box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.22);
+    transition: all ease-in-out 0.3s;
+} */
+
+.judul-banner {
+    font-weight: 600;
+}
+
+.bg-banner {
+    background: url('/assets/main/img/randomshape.svg');
+    width: 100%;
+    height: 500px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+
+.container-banner {
+    position: relative !important;
+}
+
+.banner-left {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#bannerSlider .w-100 {
+    width: 80vh;
+    height: 80vh;
+    object-fit: cover;
+    position: relative;
+}
+
+.btn-ikut {
+    border: 1px solid #5394F4;
+    border-radius: 5px;
+    background-color: white;
+    padding: 8px;
+    color: black;
+    cursor: pointer;
+}
+
+.btn-ikut>span {
+    padding-left: 20px;
+}
+
+.btn-ikut:hover {
+    color: #fff;
+    border: #5394F4 solid 1px;
+    background: #5394F4;
+    transition: ease-in-out, 0.3s;
+}
+
+.banner-price {
+    background-color: #fff;
+    margin-top: -60px;
+    padding: 10px;
+    border-radius: 7px;
+    transform: translate(-30px, 150%);
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+    float: right;
+}
+
+.banner-price h5 {
+    font-weight: semi-bold;
+    margin-top: -15px;
+}
+
+.carousel-indicators [data-bs-target] {
+    box-sizing: content-box;
+    flex: 0 1 auto;
+    width: 10px;
+    /* change width */
+    height: 10px;
+    /* change height */
+    padding: 1;
+    margin-right: 8px;
+    margin-left: 8px;
+    text-indent: -999px;
+    cursor: pointer;
+    background-color: #8B8989;
+    background-clip: padding-box;
+    border: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    opacity: .5;
+    transition: opacity .6s ease;
+    border-radius: 100%;
+    /* add border-radius */
+}
+
+.carousel-indicators button[data-bs-target]:not(.active) {
+    opacity: 1;
+}
+
+#caraIkutLelang img {
+    height: 210px;
+}
+
+#lagiRame .card {
+    width: 100%;
+}
+
+#lagiRame img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+#lagiRame p {
+    padding: 0;
+    margin: 0;
+}
+
+#lagiRame #footPenawaranTertinggi {
+    /* position: absolute;
+    bottom: 0; */
+}
+
+.titleBerlangsung {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    /* number of lines to show */
+    line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+
+#desc {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    /* number of lines to show */
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    height: 7vh;
+}
+
+.color-primer {
+    color: #2F5EA5;
+}
+
+.bg-color-primer {
+    background-color: #2F5EA5;
+}
+
+.konten {
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+
+.konten-2 {
+    background-color: #FBFBFB;
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+
+.bold {
+    font-weight: 700;
+}
+
+.semi-bold {
+    font-weight: 600;
+}
+
+.deskripsi-produk {
+    color: #747474;
+}
+
+.eye-icon {
+    float: right;
+    margin-top: -25px;
+    position: relative;
+}
+
+#detailLelang .share-icon {
+    margin-top: -25px;
+}
+
+.table-borderless {
+    border-top-style: none;
+    border-left-style: none;
+    border-right-style: none;
+    border-bottom-style: none;
+}
+
+.box-shadow-santuy {
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+}
+
+.img-pelelangan {
+    width: 100%;
+    height: 300px;
+    object-position: center;
+    object-fit: contain;
+}
+
+#kataPengguna img {
+    border-radius: 50%;
+    width: 100px;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+}
+
+#topPenawar {
+    width: 100%;
+    height: 500px;
+}
+
+#topPenawar #tableTopPenawar .table {
+    height: auto;
+}
+
+#topPenawar #tabkeTopPenawar tr td {
+    padding: 0;
+    margin: 0;
+}
+
+#formKirimPenawaran {
+    margin-top: 33px;
+}
+
+.btn-pelelangan {
+    width: 90% !important;
+    background-color: #5394F4;
+    color: #fff;
+    border-radius: 5px;
+}
+
+#detail-carousel .main-img {
+    width: 700px;
+    height: 480px;
+    object-position: top center;
+    object-fit: cover;
+}
+
+#lelangSaya hr {
+    border-top: 2px solid;
+    opacity: 1;
+}
+
+#toggleLelangSaya .btn-lelang {
+    width: 100%;
+}
+
+#toggleLelangSaya .col-6 {
+    padding: 0;
+}
+
+#togglelelangSaya .bg-primer {
+    background-color: #3B85F2;
+}
+
+#togglelelangSaya .border-lelangSaya {
+    border: 1px solid #3B85F2;
+}
+
+#togglelelangSaya .border-pembayaran {
+    border: 1px solid #3B85F2;
+}
+
+#togglelelangSaya .border-lelangSaya p {
+    margin-bottom: 0;
+}
+
+#togglelelangSaya .border-pembayaran p {
+    margin-bottom: 0;
+}
+
+/* pembayaran */
+
+#pembayaran hr {
+    border-top: 2px solid;
+    opacity: 1;
+}
+
+#btnPembayaran .btn-lelang {
+    width: 100%;
+}
+
+#btnPembayaran .col-6 {
+    padding: 0;
+}
+
+#btnPembayaran .bg-primer {
+    background-color: #3B85F2;
+}
+
+#btnPembayaran .border-lelangSaya {
+    border: 1px solid #3B85F2;
+}
+
+#btnPembayaran .border-pembayaran {
+    border: 1px solid #3B85F2;
+}
+
+#btnPembayaran .border-lelangSaya p {
+    margin-bottom: 0;
+}
+
+#btnPembayaran .border-pembayaran p {
+    margin-bottom: 0;
+}
+
+#kontenTitlePembayaran {
+    width: 100%;
+}
+
+#kontenLelangSaya img {
+    width: 200px;
+}
+
+#titleLelangSaya {
+    margin-right: 20px;
+    margin-left: 20px;
+    max-width: 220px;
+    min-width: 220px;
+}
+
+#titleLelangSaya p {
+    padding: 5px 50px 5px 50px;
+    text-align: center;
+}
+
+#infoLelangSaya {
+    margin-left: 20px;
+}
+
+#infoLelangSaya .table {
+    margin: 0;
+    padding: 0;
+}
+
+#btnLelangSaya .btn {
+    width: 250px;
+}
+
+#btnLelangSaya .detail {
+    border: 1px solid #3B85F2;
+}
+
+#btnLelangSaya .bayar {
+    background-color: #3B85F2;
+    border: 1px solid #3B85F2;
+}
+
+#kontenPembayaran img {
+    width: 200px;
+}
+
+#kontenPembayaran .col-7 {
+    padding: 0;
+}
+
+#kontenPembayaran .table {
+    margin: 0;
+    padding: 0;
+}
+
+#infoPembayaran {
+    padding-left: 25px;
+}
+
+#tagihan .btn {
+    width: 100%;
+}
+
+#tagihan select {
+    padding: 0;
+    margin: 0;
+    border: none;
+    border: 1px solid #3B85F2 !important;
+}
+
+#tagihan .btn-primer {
+    background-color: #3B85F2;
+    color: #fff;
+}
+
+#selectPengambilan .d-none {
+    display: none;
+}
+
+#cardLelang img {
+    width: 100%;
+    height: 220px;
+}
+
+#dropdown-profil {
+    border: none;
+    background-color: #fff;
+    width: 200px;
+    height: 400px;
+    margin-left: -80px;
+    position: absolute;
+    top: 0;
+}
+
+#iconUser #dropdown-profil img {
+    width: 6rem;
+    height: 6rem;
+    object-fit: cover;
+    border-radius: 100%;
+    background-position: center;
+    background-size: cover;
+}
+
+#iconUser #keluar {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+}
+
+#dropdown-profil .bt {
+    border-top: 1px solid #B7B7B7;
+}
+
+#dropdown-profil li a .dropdown-item {
+    color: #D9D9D9;
+}
+
+#dropdown-profil li i {
+    color: #D9D9D9;
+}
+
+#profil .border {
+    border-radius: 5px;
+}
+
+#profil .table {
+    margin: 0;
+    padding: 0;
+    width: auto;
+}
+
+#profil img {
+    width: 250px;
+    height: auto;
+}
+
+#dropdownNotif {
+    border: none;
+    background-color: #fff;
+    width: 400px;
+    margin-left: -400px;
+}
+
+#dropdownNotif .konten-notif {
+    border-top: 1px solid grey;
+    border-bottom: 1px solid grey;
+}
+
+#dropdownNotif p {
+    font-size: 12px;
+}
+
+#dropdownNotif img {
+    width: 100px;
+    height: auto;
+}
+
+#iconBell {
+    font-size: 20px;
+    padding: 0 10px 0 10px;
+}
+
+#iconBell #iconUnread {
+    width: 5px;
+    height: 5px;
+    border-radius: 100%;
+    background-color: red;
+    position: absolute;
+    margin-top: -20px;
+    margin-left: 10px;
+}
+
+#iconUser .img-btn-dropdown {
+    width: 2rem;
+    height: 2rem;
+    object-fit: cover;
+    border-radius: 100%;
+    background-position: center;
+    background-size: cover;
+}
+
+#btnAturProfil {
+    border: 1px solid #5394F4;
+    border-radius: 5px;
+    background-color: white;
+    padding: 8px 50px 8px 50px;
+    color: black;
+    cursor: pointer;
+}
+
+#btnAturProfil:hover {
+    color: #fff;
+    border: #5394F4 solid 1px;
+    background: #5394F4;
+}
+
+#editProfil img {
+    width: 300px;
+    height: 400px;
+    object-fit: cover;
+}
+
+#editProfil .image-upload>input {
+    display: none;
+}
+
+/* imgoverlayprofile */
+
+#editProfil .wrapper {}
+
+#editProfil .wrapper .container {}
+
+#editProfil .wrapper .container .hero-section {}
+
+#editProfil .wrapper .container .hero-section .gallery {
+    width: 100%;
+    position: relative;
+}
+
+#editProfil .wrapper .container .hero-section .gallery .image-section {
+    width: 100%;
+}
+
+#editProfil .wrapper .container .hero-section .gallery .image-section img {
+    width: 300px;
+    height: 400px;
+}
+
+#editProfil .wrapper .container .hero-section .gallery .caption {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    padding: 15px;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transition: opacity 0.30s;
+}
+
+#editProfil .wrapper .container .hero-section .gallery .caption .btn-outline-secondary {
+    border: 1px solid white;
+    position: relative;
+    cursor: pointer;
+}
+
+#btnUbahFoto input[type="file"] {
+    display: none;
+}
+
+#editProfil .wrapper .container .hero-section .gallery .caption:hover {
+    opacity: 1;
+}
+
+#lelang .col-lelang {
+    height: 100%;
+}
+
+#lelang .card-lelang {
+    /* height: 110px;
+    padding: 1rem; */
+}
+
+#lelang .card-lelang .card-lelang-bot {}
+
+#lelang .card-container .img-card-lelang img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+/* * {
+    border: #000 1px solid;
+} */

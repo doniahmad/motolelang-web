@@ -1,0 +1,130 @@
+#data-product {
+    background-color: #fff;
+    margin-top: 8rem;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
+
+}
+
+#data-product .data-product-title {
+    position: relative;
+    top: -50px;
+    background-color: #3985F6;
+    width: 70%;
+    height: fit-content;
+    padding: 2rem;
+    text-align: center;
+    font-weight: 700;
+    font-size: 24px;
+    color: #fff;
+    margin: auto;
+}
+
+/* data-product Table */
+
+#data-product .table-data-product {
+    padding: 20px;
+}
+
+/* #data-product .flex {
+    -webkit-box-flex: 1;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto
+} */
+
+@media (max-width:991.98px) {
+    #data-product .padding {
+        padding: 1.5rem
+    }
+}
+
+@media (max-width:767.98px) {
+    #data-product .padding {
+        padding: 1rem
+    }
+}
+
+/* #data-product .padding {
+    padding: 5rem
+} */
+
+/* #data-product .card {
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    -ms-box-shadow: none
+} */
+
+/* #data-product .pl-3,
+#data-product .px-3 {
+    padding-left: 1rem !important
+} */
+/*
+#data-product .card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid #d2d2dc;
+    border-radius: 0
+} */
+
+/* #data-product .card .card-title {
+    color: #000000;
+    margin-bottom: 0.625rem;
+    text-transform: capitalize;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+#data-product .card .card-description {
+    margin-bottom: .875rem;
+    font-weight: 400;
+    color: #76838f;
+} */
+
+#data-product p {
+    font-size: 0.875rem;
+    margin-bottom: .5rem;
+    line-height: 1.5rem;
+}
+
+#data-product .table-responsive {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+}
+
+#data-product .table,
+#data-product .jsgrid .jsgrid-table {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 1rem;
+    background-color: transparent;
+    vertical-align: middle;
+}
+
+#data-product .table tr {
+    line-height: 3rem;
+}
+
+#data-product .table thead th,
+#data-product .jsgrid .jsgrid-table thead th {
+    border-top: 0;
+    border-bottom-width: 1px;
+    font-weight: 500;
+    font-size: .875rem;
+    text-transform: uppercase;
+}
+
+#data-product .badge {
+    border-radius: 10px;
+    font-size: 12px;
+    padding: .375rem .5625rem;
+    font-weight: normal;
+    text-transform: uppercase;
+}

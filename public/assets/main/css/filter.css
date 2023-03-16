@@ -1,0 +1,40 @@
+#btnUrutkan h6 {
+    font-size: 16px;
+}
+
+#btnUrutkan h5 {
+    font-size: 18px;
+    font-weight: 600;
+    padding: 0;
+    margin: 0;
+}
+
+#urutkan {
+    border: 1px solid #C2C2C2;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+#btnFilter .terapkan {
+    background-color: #3B85F2;
+    border: 1px solid #3B85F2;
+}
+
+#btnFilter h5 {
+    font-size: 18px;
+    font-weight: 600;
+    padding: 0;
+    margin: 0;
+}
+
+#btnFilter h6 {
+    font-size: 16px;
+}
+
+#btnFilter .btn {
+    width: 100%;
+}
+
+#btnFilter #filterHarga .btn {
+    width: 100%;
+}
