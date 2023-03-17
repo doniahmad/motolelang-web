@@ -110,7 +110,7 @@ class AdminController extends Controller
 
             $updateData = $admin->update($fields);
 
-            return response()->json(['status' => 'success', 'data' => $updataData]);
+            return response()->json(['status' => 'success', 'data' => $updateData]);
         } catch (ValidationException $e) {
             return response()->json(['status' => 'error', 'message' => $e->errors()]);
         }
