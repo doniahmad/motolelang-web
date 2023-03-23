@@ -18,7 +18,7 @@
     
     $countdownDate = Carbon\Carbon::parse($data->auction->exp_date); // set countdown date
     $now = Carbon\Carbon::now(); // get current date and time
-
+    
 @endphp
 
 <div id="detailLelang" class="konten-2">
@@ -87,10 +87,10 @@
                         @if (!count($checkIfMemberAuction))
                             @if (auth()->check())
                                 @if (auth()->user()->address === null ||
-                                    auth()->user()->photo === null ||
-                                    auth()->user()->gender === null ||
-                                    auth()->user()->birth_place === null ||
-                                    auth()->user()->birth_date === null)
+                                        auth()->user()->photo === null ||
+                                        auth()->user()->gender === null ||
+                                        auth()->user()->birth_place === null ||
+                                        auth()->user()->birth_date === null)
                                     <button type="button" onclick="alertProfileNotFull()"
                                         class="btn btn-pelelangan bg-color-primer text-light mt-3">Ikut Lelang</button>
                                 @else
@@ -102,15 +102,14 @@
                                     class="btn btn-pelelangan bg-color-primer text-light mt-3">Ikut Lelang</button>
                             @endif
                         @else
-                            @if($now > $countdownDate)
-                            <button disabled
-                                class="btn btn-pelelangan bg-color-primer text-light mt-3">Masuk
-                                Lelang</button>
-                                @else
-                            <a href="{{ route('lelang.room', ['token' => $data->auction->token]) }}"
-                                class="btn btn-pelelangan bg-color-primer text-light mt-3">Masuk
-                                Lelang</a>
-                                @endif
+                            @if ($now > $countdownDate)
+                                <button disabled class="btn btn-pelelangan bg-color-primer text-light mt-3">Masuk
+                                    Lelang</button>
+                            @else
+                                <a href="{{ route('lelang.room', ['token' => $data->auction->token]) }}"
+                                    class="btn btn-pelelangan bg-color-primer text-light mt-3">Masuk
+                                    Lelang</a>
+                            @endif
                         @endif
                     </div>
                 </div>

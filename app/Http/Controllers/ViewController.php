@@ -98,7 +98,7 @@ class ViewController extends Controller
         $input['_method'] = 'PUT';
 
         $data = self::postAction('api/user/' . $input->id, $input->all());
-                
+
 
         if ($data->status === 'success') {
             Alert::toast('Profile Telah Diperbarui', 'success');
@@ -116,10 +116,10 @@ class ViewController extends Controller
 
         $data = self::postAction('/api/admin/' . $input->id, $input->all());
         // if ($data->status === 'success') {
-            Alert::toast('Profile Telah Diperbarui', 'success');
-            return redirect(route('admin.profile'));
+        Alert::toast('Profile Telah Diperbarui', 'success');
+        return redirect(route('admin.profile'));
         // } else {
-            // return redirect()->back()->withErrors($data);
+        // return redirect()->back()->withErrors($data);
         // }
     }
 
@@ -143,7 +143,7 @@ class ViewController extends Controller
 
     public function showGalleryLelang()
     {
-        $response = Auction::with(['product.images', 'auctioneer.user', 'auctioneer.offer', 'offer.auctioneer', 'auctioneer.invoice',])->where('status', 1)->paginate(12);
+        $response = Auction::with(['product.images', 'auctioneer.user', 'auctioneer.offer', 'offer.auctioneer', 'auctioneer.invoice',])->paginate(12);
         // dd($response);
         return view($this->mainPages('lelang'))->with('data', $response);
     }

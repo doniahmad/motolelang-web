@@ -42,8 +42,13 @@
                             </table>
                         </div>
                     </div>
-                    <div class="input-datetime">
-                        <label for="exp_date" class="custom-label form-label">Batas Waktu Pelelangan</label>
+                    <div class="input-kelipatan mt-2">
+                        <label for="kelipatan_bid" class="custom-label">Kelipatan Bid</label>
+                        <input name="kelipatan_bid" type="number" class="custom-input form-control" id="kelipatan_bid"
+                            placeholder="Masukkan Kelipatan Bid" required>
+                    </div>
+                    <div class="input-datetime mt-2">
+                        <label for="exp_date" class="custom-label">Batas Waktu Pelelangan</label>
                         <input name="exp_date" type="datetime-local" class="custom-input form-control" id="exp_date"
                             placeholder="Masukkan Batas Waktu Pelelangan" required>
                     </div>

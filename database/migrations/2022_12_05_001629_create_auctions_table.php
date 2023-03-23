@@ -20,6 +20,7 @@ return new class extends Migration
             $table->boolean('status');
             $table->dateTime('exp_date');
             $table->softDeletes();
+            $table->integer('kelipatan_bid');
             $table->unsignedBigInteger('id_product');
             $table->unsignedBigInteger('id_winner')->nullable();
             $table->foreign('id_product')->references('product_id')->on('products')->onUpdate('cascade')->onDelete('cascade');

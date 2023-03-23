@@ -1,10 +1,6 @@
 @extends('main.layouts.master')
 @section('title', 'Galeri Lelang')
 
-@php
-    // $startedAuction = array_filter($data, fn($product) => $product->status === 1);
-@endphp
-{{-- @dd($data) --}}
 <div id="lelang" class="konten-2">
     <div class="px-5">
         <div class="row">
@@ -35,7 +31,7 @@
                                 $daysDifference = $currentDate->diffInDays($desiredDate);
                                 
                             @endphp
-                            @if ($product->status === 1)
+                            @if ($product->status === 0)
                                 <div class="col-3 mt-4" style="border:none;">
                                     <div class="col-lelang card">
                                         <a class="text-reset text-decoration-none"
@@ -55,7 +51,37 @@
                                                         </h6>
                                                         <div class="ms-auto ">
                                                             <i class="fa-regular fa-clock"></i>
-                                                        <span>{{ $daysDifference > 0 ? $daysDifference . ' Hari' : 'Hari Ini' }} </span>
+                                                            <span>{{ $currentDate > $desiredDate ? 'Tutup' : '0 Hari' }}
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            @else
+                                <div class="col-3 mt-4" style="border:none;">
+                                    <div class="col-lelang card">
+                                        <a class="text-reset text-decoration-none"
+                                            href="{{ route('lelang.detail', $product->product->product_slug) }}">
+                                            <div class="card-container">
+                                                <div class="img-card-lelang">
+                                                    <img src="{{ count($product->product->images) ? asset('storage/image/product/' . $product->product->images[0]->image_path) : '' }}"
+                                                        width="100%" srcset="">
+                                                </div>
+                                                <div class="card-lelang d-flex flex-column align-items-stretch p-3">
+                                                    <div class="">
+                                                        <h6>{{ $product->product->nama_product }}</h6>
+                                                    </div>
+                                                    <div class="card-lelang-bot d-flex ">
+                                                        <h6 class="my-auto">
+                                                            {{ currency_IDR(count($product->offer) ? $bestOffer->offer : $product->product->harga_awal) }}
+                                                        </h6>
+                                                        <div class="ms-auto ">
+                                                            <i class="fa-regular fa-clock"></i>
+                                                            <span>{{ $daysDifference > 0 ? $daysDifference . ' Hari' : 'Hari Ini' }}
+                                                            </span>
                                                         </div>
                                                     </div>
                                                 </div>

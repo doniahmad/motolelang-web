@@ -4,8 +4,8 @@ use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\ViewController;
 use App\Models\Auction;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Request;
 use Illuminate\Http\Request as HttpRequest;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,6 +18,7 @@ use Illuminate\Http\Request as HttpRequest;
 |
 */
 
+Auth::routes(['verify' => true]);
 
 function mainPages($value)
 {

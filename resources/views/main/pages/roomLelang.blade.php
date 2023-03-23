@@ -1,4 +1,4 @@
-@extends('main.layouts.master')
+@extends('Main.layouts.master')
 @section('title', $data->product->nama_product)
 
 @php
@@ -20,10 +20,10 @@
     $diff = $countdownDate->diff($now); // calculate the difference between countdown date and current date and time
 @endphp
 
-@if($now > $countdownDate)
+@if ($now > $countdownDate)
     <script>
-    window.location.href = '/lelang';
-</script>
+        window.location.href = '/lelang';
+    </script>
 @endif
 
 <div id="roomLelang" class="konten-2">
@@ -88,9 +88,29 @@
                     <h3 class="">
                         {{ currency_IDR(isset($currentAuctioneer->offer) ? $currentAuctioneer->offer->offer : 0) }}
                     </h3>
-                    <button type="button" class="btn btn-pelelangan bg-color-primer text-light mt-3"
-                        data-bs-toggle="modal" data-bs-target="#modalInputPenawaran">Kirim
-                        Penawaran</button>
+                    <form method="POST" action="{{ route('lelang.offer') }}">
+                        @csrf
+                        @if (isset($currentAuctioneer->offer))
+                            <input type="number"
+                                value="{{ $data->kelipatan_bid + ($num1BestOffer !== null ? $num1BestOffer->offer : $data->product->harga_awal) }}"
+                                name="offer" id="inputPenawaran" hidden>
+                            <input type="text" hidden name="current_offer_id"
+                                value="{{ $currentAuctioneer->offer->offer_id }}">
+                            <input type="text" hidden name="new_offer" value="1">
+                        @else
+                            <input type="number"
+                                value="{{ $data->kelipatan_bid + ($num1BestOffer !== null ? $num1BestOffer->offer : $data->product->harga_awal) }}"
+                                name="offer" id="inputPenawaran" hidden>
+                        @endif
+                        <input type="text" name="id_auction" class="form-control" hidden
+                            value="{{ $data->auction_id }}" />
+                        <input type="text" name="id_auctioneer" class="form-control" hidden
+                            value="{{ $currentAuctioneer->auctioneer_id }}" />
+                        <input type="text" name="token_lelang" class="form-control" hidden
+                            value="{{ $data->token }}" />
+                        <button type="submit" class="btn btn-pelelangan bg-color-primer text-light mt-3">BID
+                            +{{ currency_IDR($data->kelipatan_bid) }}</button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -153,10 +173,19 @@
             let seconds = Math.floor((distance % _minute) / _second);
 
             document.getElementById(id).innerHTML = 'Selesai Dalam ';
-            document.getElementById(id).innerHTML += days + 'h ';
-            document.getElementById(id).innerHTML += hours + 'j ';
-            document.getElementById(id).innerHTML += minutes + 'm ';
-            document.getElementById(id).innerHTML += seconds + 'd ';
+            if (days !== 0) {
+                document.getElementById(id).innerHTML += days + 'h ';
+            };
+
+            if (hours !== 0) {
+                document.getElementById(id).innerHTML += hours + 'j ';
+            };
+
+            if (minutes !== 0) {
+                document.getElementById(id).innerHTML += minutes + 'm ';
+            };
+
+            document.getElementById(id).innerHTML += seconds + 'd';
             // document.getElementById(id).innerHTML += '<h2>TUGAS BELUM BERAKHIR</h2>';
         }
         timer = setInterval(showRemaining, 1000);

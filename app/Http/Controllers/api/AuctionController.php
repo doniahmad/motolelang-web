@@ -42,6 +42,7 @@ class AuctionController extends Controller
             $data = $request->validate(
                 [
                     'exp_date' => 'required',
+                    'kelipatan_bid' => 'required',
                     'id_product' => 'required|integer',
                 ]
             );
@@ -89,6 +90,7 @@ class AuctionController extends Controller
             $data = $request->validate(
                 [
                     'exp_data' => 'date', // Warning, ada dua pilihan date_format dan Date
+                    'kelipatan_bid' => 'integer',
                     'id_winner' => 'integer',
                     'status' => 'boolean'
                 ]
