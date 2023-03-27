@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\api\AuthController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\ViewController;
 use App\Models\Auction;
@@ -17,8 +18,6 @@ use Illuminate\Support\Facades\Auth;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Auth::routes(['verify' => true]);
 
 function mainPages($value)
 {
@@ -77,6 +76,8 @@ Route::group(['prefix' => 'login'], function () {
     Route::post('/send/forgotPassword', [ViewController::class, 'sendPasswordResetEmail'])->name('forgot.sendEmail');
     Route::post('/send/resetPassword', [ViewController::class, 'resetPassword'])->name('forgot.resetPassword');
 });
+
+Route::get('/verifikasi-akun', [AuthController::class, 'verifikasiAkun'])->name('verifikasi.akun');
 
 Route::get('/send-email', [NotificationController::class, 'sendEmailEndAuctionNotification'])->name('notif.endAuction');
 
