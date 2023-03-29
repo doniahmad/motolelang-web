@@ -30,14 +30,15 @@
                                     <td class="text-center">{{ $invoice->auctioneer->auction->product->nama_product }}
                                     </td>
                                     <td class="text-center">{{ $invoice->auctioneer->user->name }}</td>
-                                    <td class="text-center {{ isset($invoice->ongkir) ? '' : 'text-secondary' }}">
-                                        {{ isset($invoice->ongkir) ? $invoice->ongkir->nama_daerah : 'Belum ditetapkan' }}
+                                    <td
+                                        class="text-center {{ isset($invoice->alamat_pengiriman) ? '' : 'text-secondary' }}">
+                                        {{ isset($invoice->alamat_pengiriman) ? $invoice->alamat_pengiriman : 'Belum ditetapkan' }}
                                     </td>
                                     <td class="text-center">
-                                        {{ currency_IDR(isset($invoice->ongkir) ? $invoice->ongkir->ongkir : 0) }}
+                                        {{ currency_IDR(isset($invoice->ongkir) ? $invoice->ongkir : 0) }}
                                     </td>
                                     <td class="text-center">
-                                        {{ currency_IDR(isset($invoice->ongkir) ? $invoice->invoice + $invoice->ongkir->ongkir : $invoice->invoice) }}
+                                        {{ currency_IDR($invoice->invoice + ($invoice->ongkir ?? 0)) }}
                                     </td>
                                     <td class="text-center">
                                         @if ($invoice->bukti_pembayaran !== null)

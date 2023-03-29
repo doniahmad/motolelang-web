@@ -36,12 +36,12 @@
                             <label>File</label>
                             <input id="kode_pembayaran_container" type="text" name="kode_pembayaran"
                                 value="{{ $data->kode_pembayaran }}" hidden>
+                            <input type="integer" name="ongkir" id="ongkir-value" hidden>
                             <input type="text" name="status" value="menunggu_persetujuan" hidden>
-                            <input type="number" name="id_ongkir" id="ongkir-value" hidden>
+                            <input type="text" name="alamat_pengiriman" id="alamat-pengiriman" hidden>
                             <div class="input-group">
                                 <i class="input-group-btn">
-                                    <input type="file" class="btn btn-primary-outlined" name="bukti_pembayaran"
-                                        >
+                                    <input type="file" class="btn btn-primary-outlined" name="bukti_pembayaran">
                                 </i>
                             </div>
                         </div>

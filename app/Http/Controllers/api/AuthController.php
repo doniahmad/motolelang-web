@@ -49,11 +49,10 @@ class AuthController extends Controller
 
             $this->kirimEmailVerifikasi($user);
 
-            return response()->json($user);
-            // return response()->json([
-            //     'status' => 'success',
-            //     'user' => $user
-            // ]);
+            return response()->json([
+                'status' => 'success',
+                'user' => $user
+            ]);
         } catch (ValidationException $e) {
             return response()->json([
                 'status' => 'error',
@@ -67,16 +66,24 @@ class AuthController extends Controller
         $error = 'Email or password invalid';
 
         try {
+
             if (Auth::attempt($request->only('email', 'password'))) {
                 /** @var User $user */
                 $user = Auth::user();
                 $token = $user->createToken('apptoken')->plainTextToken;
-
-                return response([
-                    'status' => 'success',
-                    'token' => $token,
-                    'user' => $user
-                ]);
+                if (!$user->email_verified_at === null) {
+                    Auth::logout();
+                    return response([
+                        'status' => 'error',
+                        'message' => 'Akun anda belum terverifikasi.'
+                    ]);
+                } else {
+                    return response([
+                        'status' => 'success',
+                        'token' => $token,
+                        'user' => $user
+                    ]);
+                }
             }
             return response([
                 'status' => 'error',

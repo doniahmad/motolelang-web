@@ -12,15 +12,12 @@ use Cviebrock\EloquentSluggable\Services\SlugService;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Http\Request as HttpRequest;
 use Illuminate\Support\Facades\Redirect;
-use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
-use Exception;
 use Illuminate\Support\Facades\Notification;
-use Illuminate\Support\Facades\View as FacadesView;
 use Illuminate\Validation\ValidationException;
-use Illuminate\View\View;
+use RajaOngkir;
 
 class ViewController extends Controller
 {
@@ -594,5 +591,12 @@ class ViewController extends Controller
         $data = json_decode($response->getContent());
 
         return $data;
+    }
+
+    public static function pembayaranView(HttpRequest $request)
+    {
+        $data = self::getInvoice($request);
+        $dataProvince = RajaOngkir::province()->get();
+        return view(mainPages('pembayaran'), compact(['data', 'dataProvince']));
     }
 }

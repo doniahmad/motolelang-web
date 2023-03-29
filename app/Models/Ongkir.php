@@ -11,9 +11,4 @@ class Ongkir extends Model
 
     protected $primaryKey = "ongkir_id";
     protected $guarded = ["ongkir_id"];
-
-    public function invoices()
-    {
-        return $this->hasMany(Invoice::class, 'id_ongkir');
-    }
 }

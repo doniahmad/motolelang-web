@@ -51,7 +51,7 @@ class EndAuction extends Command
                 $bestOffer = collect($auction->offer)->sortByDesc('offer')->first()->load('auctioneer.user');
 
                 // Update dan Create Invoice
-                Http::post(url('api/auction/' . $auction->token), ['status' => 0, 'id_winner' => $bestOffer->id_auctioneer, '_method' => 'PUT']);
+                Http::post(url('api/auction/' . $auction->token), ['status' => 0, 'id_winner' => $bestOffer->auctioneer->user->user_id, '_method' => 'PUT']);
                 $invoice = Http::post(url('api/invoice'), ['id_auctioneer' => $bestOffer->auctioneer->auctioneer_id, 'invoice' => $bestOffer->offer]);
                 $invoiceJson = $invoice->json();
                 Log::debug($invoice);

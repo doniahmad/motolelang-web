@@ -6,9 +6,28 @@ use App\Models\Ongkir;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
+use RajaOngkir;
 
 class OngkirController extends Controller
 {
+
+    public function retrieveCostByCourier(Request $request)
+    {
+        $params = [
+            'origin' => 209, 'destination' => $request->destination, 'weight' => 11000, 'courier' => 'jne'
+        ];
+        $cost = RajaOngkir::find($params)->costDetails()->get();
+        $collection = collect($cost);
+
+        return response()->json($collection->last());
+    }
+
+    public function selectCityByProvince(Request $request)
+    {
+        $city = RajaOngkir::find(['province_id' => $request->province])->city()->get();
+        return response()->json($city);
+    }
+
     /**
      * Display a listing of the resource.
      *
