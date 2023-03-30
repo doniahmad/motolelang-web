@@ -17,7 +17,7 @@ class InvoiceController extends Controller
      */
     public function index()
     {
-        $data = Invoice::with(['auctioneer.auction.product.images', 'auctioneer.user', 'ongkir'])->get();
+        $data = Invoice::with(['auctioneer.auction.product.images', 'auctioneer.user'])->get();
         return response()->json($data);
     }
 
@@ -44,7 +44,7 @@ class InvoiceController extends Controller
         ]);
 
         // kode pembayaran
-        $kodePembayaran = date('dmys') . rand(1,1000);
+        $kodePembayaran = date('dmys') . rand(1, 1000);
         $validateData['kode_pembayaran'] = $kodePembayaran;
 
         try {
@@ -80,7 +80,8 @@ class InvoiceController extends Controller
             'status' => 'string',
             'alasan_penolakan' => 'string|nullable',
             'bukti_pembayaran' => 'image|mimes:png,jpg',
-            'id_ongkir' => 'integer'
+            'alamat_pengiriman' => 'string',
+            'ongkir' => 'integer'
         ]);
 
         try {

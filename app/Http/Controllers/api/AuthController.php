@@ -4,15 +4,31 @@ namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Notifications\VerifyAccount;
+use Carbon\Carbon;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Str;
 
 class AuthController extends Controller
 {
+
+    public function kirimEmailVerifikasi($user)
+    {
+        $token = Str::random(60);
+        $user->verification_token = $token;
+        $user->save();
+        Notification::send($user, new VerifyAccount(($token)));
+    }
+
     public function register(Request $request)
     {
         try {
@@ -31,6 +47,8 @@ class AuthController extends Controller
 
             $user->assignRole($fields['role']);
 
+            $this->kirimEmailVerifikasi($user);
+
             return response()->json([
                 'status' => 'success',
                 'user' => $user
@@ -48,16 +66,24 @@ class AuthController extends Controller
         $error = 'Email or password invalid';
 
         try {
+
             if (Auth::attempt($request->only('email', 'password'))) {
                 /** @var User $user */
                 $user = Auth::user();
                 $token = $user->createToken('apptoken')->plainTextToken;
-
-                return response([
-                    'status' => 'success',
-                    'token' => $token,
-                    'user' => $user
-                ]);
+                if (!$user->email_verified_at === null) {
+                    Auth::logout();
+                    return response([
+                        'status' => 'error',
+                        'message' => 'Akun anda belum terverifikasi.'
+                    ]);
+                } else {
+                    return response([
+                        'status' => 'success',
+                        'token' => $token,
+                        'user' => $user
+                    ]);
+                }
             }
             return response([
                 'status' => 'error',
@@ -156,5 +182,16 @@ class AuthController extends Controller
                 'email' => __($status)
             ]);
         }
+    }
+
+    public function verifikasiAkun(Request $request)
+    {
+        $token = $request->token;
+        $user = User::where('verification_token', $token)->firstOrFail();
+        $user->verification_token = null;
+        $user->email_verified_at = Carbon::now();
+        $user->save();
+
+        return Redirect::to(route('login.index'));
     }
 }

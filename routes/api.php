@@ -54,3 +54,6 @@ Route::apiResource('kurir', KurirController::class);
 Route::get('kurirs', [KurirController::class, 'dataKurir']);
 Route::apiResource('pengiriman', PengirimanController::class);
 Route::apiResource('ongkir', OngkirController::class);
+
+Route::get('/city', [OngkirController::class, 'selectCityByProvince']);
+Route::get('/cost', [OngkirController::class, 'retrieveCostByCourier']);

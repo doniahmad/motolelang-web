@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string('photo')->nullable();
             $table->string('photo_ktp')->nullable();
             $table->timestamp('email_verified_at')->nullable();
+            $table->string('verification_token')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

@@ -199,6 +199,7 @@ return [
 
         RealRashid\SweetAlert\SweetAlertServiceProvider::class,
 
+        Irfa\RajaOngkir\RajaOngkirServiceProvider::class,
     ],
 
     /*
@@ -214,6 +215,7 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
+        'RajaOngkir' => Irfa\RajaOngkir\Facades\Ongkir::class,
         // 'ExampleClass' => App\Example\ExampleClass::class,
     ])->toArray(),
 

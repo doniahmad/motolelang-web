@@ -67,18 +67,29 @@
                                 </div>
                                 <div class="d-flex">
                                     <p>Biaya Pengiriman</p>
-                                    <p class="ms-auto"> <span id="selected">Rp. 0</span></p>
+                                    <p class="ms-auto" id="tagihan-ongkir">Rp. 0</p>
                                 </div>
                                 <hr>
-                                <div class="dropdown">
-                                    <select name="" id="selectKabupaten" onchange="SelectedOngkir(this)"
-                                        class="form-select mt-3 py-1 px-2" aria-label="Default select example">
-                                        <option value="" disabled selected>Pilih Daerah Pengiriman</option>
+                                <div class="dropdown province-dropdown mt-3">
+                                    <span>
+                                        Pilih Provinsi
+                                    </span>
+                                    <select name="" id="selectProvinsi" onchange="SelectedProvinsi(this)"
+                                        class="form-select mt-1 py-1 px-2" aria-label="Default select example">
+                                        <option value="" disabled selected>Pilih Provinsi Pengiriman</option>
                                         <option value="" disabled="disabled">----------------------</option>
-                                        @foreach ($ongkir as $item)
-                                            <option value="{{ $item->ongkir }}" ongkir-id="{{ $item->ongkir_id }}">
-                                                {{ $item->nama_daerah }}</option>
+                                        @foreach ($dataProvince as $province)
+                                            <option value="{{ $province->province_id }}">
+                                                {{ $province->province }}</option>
                                         @endforeach
+                                    </select>
+                                </div>
+                                <div class="dropdown city-dropdown mt-3" style="display: none">
+                                    <span>
+                                        Pilih Kota
+                                    </span>
+                                    <select name="" id="selectKota" onchange="SelectedKota(this)"
+                                        class="form-select mt-1 py-1 px-2" aria-label="Default select example">
                                     </select>
                                 </div>
                                 <hr>
@@ -103,8 +114,6 @@
 @isset($data)
     @include('main.modal.modalPembayaran')
 @endisset
-
-
 
 @push('scripts')
     <script type="text/javascript" src="/assets/main/js/valueModal.js"></script>
@@ -144,6 +153,53 @@
                 .getAttribute("ongkir-id");
 
             document.getElementById('btn-bayar-tagihan').removeAttribute('disabled');
+        }
+
+        function SelectedProvinsi(val) {
+            const citySelect = document.getElementById('selectKota');
+            citySelect.parentElement.style.display = 'block';
+            fetch('/api/city?province=' + val.value)
+                .then(response => response.json())
+                .then(data => {
+                    // Kosongkan dropdown city dan tambahkan daftar kota yang tersedia
+                    citySelect.innerHTML = '<option value="">Pilih Kota Pengiriman</option>';
+                    // citySelect.innerHTML = '<option value="" disabled="disabled">----------------------</option>';
+                    data.forEach(city => {
+                        citySelect.innerHTML += '<option value="' + city.city_id + '">' + city.city_name +
+                            '</option>';
+                    });
+
+                });
+        }
+
+        function SelectedKota(val) {
+            const province = document.getElementById('selectProvinsi');
+            fetch('/api/cost?destination=' + val.value)
+                .then(response => response.json())
+                .then(data => {
+                    // Penjumlahan Tagihan
+                    let sum = data.cost[0].value + {!! $data->invoice !!};
+
+                    // View Tagihan Ongkir
+                    document.getElementById('tagihan-ongkir').innerHTML = formatRupiah(data.cost[0].value, 'Rp. ');
+
+                    // Input Ongkir di Modal
+                    document.getElementById('ongkir-value').value = data.cost[0].value;
+                    document.getElementById('alamat-pengiriman').value = val.options[val.selectedIndex].innerHTML +
+                        ',' + province.options[province.selectedIndex]
+                        .innerHTML;
+
+                    // Tagihan Semua
+                    const jumlahTagihan = document.querySelectorAll("#jumlah-tagihan")
+                    jumlahTagihan.forEach((element, index) => {
+                        element.innerHTML = formatRupiah(sum,
+                            "Rp. "
+                        );
+                    });
+
+                    document.getElementById('btn-bayar-tagihan').removeAttribute('disabled');
+
+                });
         }
     </script>
 @endpush
