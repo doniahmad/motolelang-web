@@ -152,6 +152,17 @@ body {
     -webkit-box-orient: vertical;
 }
 
+.titleLelang {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    /* number of lines to show */
+    line-clamp: 1;
+    -webkit-box-orient: vertical;
+    margin-bottom: 10px;
+}
+
 #desc {
     overflow: hidden;
     text-overflow: ellipsis;
@@ -219,6 +230,15 @@ body {
     width: 100%;
     height: 300px;
     object-position: center;
+    object-fit: contain;
+}
+
+#auctionClosedOverlay .auction-closed-overlay {}
+
+#auctionClosedOverlay img {
+    margin-top: -11rem;
+    width: 80% !important;
+    height: 50% !important;
     object-fit: contain;
 }
 

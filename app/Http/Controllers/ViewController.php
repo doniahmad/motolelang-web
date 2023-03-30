@@ -143,7 +143,7 @@ class ViewController extends Controller
 
     public function showGalleryLelang()
     {
-        $response = Auction::with(['product.images', 'auctioneer.user', 'auctioneer.offer', 'offer.auctioneer', 'auctioneer.invoice',])->paginate(12);
+        $response = Auction::with(['product.images', 'auctioneer.user', 'auctioneer.offer', 'offer.auctioneer', 'auctioneer.invoice',])->orderBy('created_at','desc')->paginate(12);
         // dd($response);
         return view($this->mainPages('lelang'))->with('data', $response);
     }
