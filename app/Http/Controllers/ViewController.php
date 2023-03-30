@@ -389,17 +389,43 @@ class ViewController extends Controller
 
     public static function payInvoice(HttpRequest $param)
     {
-        $param['_method'] = 'PUT';
+        // $param['_method'] = 'PUT';
 
-        $data = self::postAction('/api/invoice/' . $param->kode_pembayaran, $param->all());
+        // $data = self::postAction('/api/invoice/' . $param->kode_pembayaran, ['ongkir' => $param->ongkir, 'alamat_pengiriman' => $param->alamat_pengiriman, '_method' => 'PUT']);
 
-        if ($data->status === 'success') {
-            Alert::success('Pembayaran berhasil dikirimkan');
-            return Redirect::to(route('lelang.lelangSaya'));
-        } else {
-            Alert::error('Gagal melakukan pembayaran');
-            return redirect()->back()->withErrors($data);
-        }
+        $user = json_decode($param->user);
+        // Set your Merchant Server Key
+        \Midtrans\Config::$serverKey = base64_encode(config('midtrans.server_key'));
+        // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
+        \Midtrans\Config::$isProduction = false;
+        // Set sanitization on (default)
+        \Midtrans\Config::$isSanitized = true;
+        // Set 3DS transaction for credit card to true
+        \Midtrans\Config::$is3ds = true;
+
+        $params = array(
+            'transaction_details' => array(
+                'order_id' => $param->kode_pembayaran,
+                'gross_amount' => $param->gross_amount,
+            ),
+            'customer_details' => array(
+                'first_name' => $user->name,
+                'last_name' => '',
+                'email' => $user->email,
+                'phone' => $user->handphone,
+            ),
+        );
+
+        dd(base64_encode(config('midtrans.server_key')));
+        // $snapToken = \Midtrans\Snap::getSnapToken($params);
+
+        // if ($data->status === 'success') {
+        //     Alert::success('Pembayaran berhasil dikirimkan');
+        //     return Redirect::to(route('lelang.lelangSaya'));
+        // } else {
+        //     Alert::error('Gagal melakukan pembayaran');
+        //     return redirect()->back()->withErrors($data);
+        // }
     }
 
     public function rejectInvoice(HttpRequest $param)

@@ -98,10 +98,21 @@
                                     <h5 class="ms-auto" id="jumlah-tagihan" class="jumlah-tagihan">
                                         {{ currency_IDR($data->invoice) }}</h5>
                                 </div>
-                                <div class="my-3">
-                                    <button type="button" class="btn btn-primer" id="btn-bayar-tagihan"
-                                        data-bs-toggle="modal" data-bs-target="#modalPembayaran" disabled>Bayar</button>
-                                </div>
+                                <form method="POST" action="{{ route('invoice.bayar') }}">
+                                    @csrf
+                                    <input id="kode_pembayaran_container" type="text" name="kode_pembayaran"
+                                        value="{{ $data->kode_pembayaran }}" hidden>
+                                    <input type="integer" name="ongkir" id="ongkir-value" hidden>
+                                    <input type="text" name="status" value="menunggu_persetujuan" hidden>
+                                    <input type="text" name="alamat_pengiriman" id="alamat-pengiriman" hidden>
+                                    <input type="integer" name="gross_amount" id="gross_amount" hidden>
+                                    <input type="text" name="user" value="{{ json_encode($data->auctioneer->user) }}"
+                                        hidden>
+                                    <div class="my-3">
+                                        <button type="submit" class="btn btn-primer" id="btn-bayar-tagihan"
+                                            data-bs-toggle="modal" data-bs-target="#modalPembayaran" disabled>Bayar</button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -111,9 +122,6 @@
     </div>
 </div>
 </div>
-@isset($data)
-    @include('main.modal.modalPembayaran')
-@endisset
 
 @push('scripts')
     <script type="text/javascript" src="/assets/main/js/valueModal.js"></script>
@@ -185,6 +193,7 @@
 
                     // Input Ongkir di Modal
                     document.getElementById('ongkir-value').value = data.cost[0].value;
+                    document.getElementById('gross_amount').value = sum;
                     document.getElementById('alamat-pengiriman').value = val.options[val.selectedIndex].innerHTML +
                         ',' + province.options[province.selectedIndex]
                         .innerHTML;
