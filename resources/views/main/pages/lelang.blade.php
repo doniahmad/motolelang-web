@@ -40,18 +40,29 @@
                                                 <div class="img-card-lelang">
                                                     <img src="{{ count($product->product->images) ? asset('storage/image/product/' . $product->product->images[0]->image_path) : '' }}"
                                                         width="100%" srcset="">
+                                                    @if ($currentDate > $desiredDate)
+                                                        <div id="auctionClosedOverlay"
+                                                            class="auction-closed-overlay text-center">
+                                                            <img src="/assets/main/img/terjual.png" alt=""
+                                                                srcset="">
+                                                        </div>
+                                                    @endif
                                                 </div>
                                                 <div class="card-lelang d-flex flex-column align-items-stretch p-3">
                                                     <div class="">
-                                                        <h6>{{ $product->product->nama_product }}</h6>
+                                                        <div class="titleLelang">
+                                                            <h6 class="">{{ $product->product->nama_product }}
+                                                            </h6>
+                                                        </div>
                                                     </div>
+
                                                     <div class="card-lelang-bot d-flex ">
-                                                        <h6 class="my-auto">
+                                                        <h6 id="" class="my-auto">
                                                             {{ currency_IDR(count($product->offer) ? $bestOffer->offer : $product->product->harga_awal) }}
                                                         </h6>
                                                         <div class="ms-auto ">
                                                             <i class="fa-regular fa-clock"></i>
-                                                            <span>{{ $currentDate > $desiredDate ? 'Tutup' : '0 Hari' }}
+                                                            <span>{{ $currentDate > $desiredDate ? 'Selesai' : '0 Hari' }}
                                                             </span>
                                                         </div>
                                                     </div>
@@ -72,7 +83,9 @@
                                                 </div>
                                                 <div class="card-lelang d-flex flex-column align-items-stretch p-3">
                                                     <div class="">
-                                                        <h6>{{ $product->product->nama_product }}</h6>
+                                                        <h6 class="titleLelang">
+                                                            {{ $product->product->nama_product }}
+                                                        </h6>
                                                     </div>
                                                     <div class="card-lelang-bot d-flex ">
                                                         <h6 class="my-auto">

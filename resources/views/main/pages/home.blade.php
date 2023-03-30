@@ -1,6 +1,7 @@
 @extends('main.layouts.master')
 @section('title', 'Home')
 
+
 <div id="" class="container konten">
     <div class="row mb-5">
         @include('main.components.bannerHome')
