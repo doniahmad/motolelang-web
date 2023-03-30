@@ -42,7 +42,8 @@
                                     </div>
 
                                     <div class="pb-2">
-                                        <h5 class="semi-bold titleBerlangsung">{{ $product->product->nama_product }}</h5>
+                                        <h5 class="semi-bold titleBerlangsung">{{ $product->product->nama_product }}
+                                        </h5>
                                     </div>
 
                                     <div class="">

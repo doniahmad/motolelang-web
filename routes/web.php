@@ -39,7 +39,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 
 Route::get('/', function () {
-    $data = Auction::withCount('auctioneer')->with(['product.images', 'auctioneer.user', 'auctioneer.offer', 'offer.auctioneer', 'auctioneer.invoice',])->orderBy('auctioneer_count')->take(3)->get();
+    $data = Auction::withCount('auctioneer')->with(['product.images', 'auctioneer.user', 'auctioneer.offer', 'offer.auctioneer', 'auctioneer.invoice',])->where('status',1)->orderBy('auctioneer_count')->take(3)->get();
     return view(mainPages('home'), compact('data'));
 })->name('home.index');
 
