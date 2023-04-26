@@ -7,7 +7,7 @@
             <div class="center">
                 <div class="my-5">
                     <h1 class="bold">Lupa Kata Sandi</h1>
-                    <form method="post" action="{{ route('forgot.sendEmail') }}">
+                    <form method="post" action="{{ route('forgot.sendEmail') }}" onsubmit="loading()">
                         @csrf
                         <div class="txt_field">
                             <input type="email" name="email" required>
@@ -28,3 +28,18 @@
         </div>
     </div>
 </div>
+
+<script>
+    function loading() {
+        Swal.fire({
+            title: 'Tunggu Sebentar !',
+            allowOutsideClick: false,
+            allowEscapeKey: false,
+            allowEnterKey: false,
+            showConfirmButton: false,
+            willOpen: () => {
+                swal.showLoading();
+            },
+        });
+    }
+</script>

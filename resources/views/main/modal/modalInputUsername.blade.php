@@ -1,4 +1,4 @@
-<form method="POST" action="{{ route('lelang.auctioneer') }}">
+<form method="POST" action="{{ route('lelang.auctioneer') }}" onsubmit="loading()">
     @csrf
     <div id="modalInputUsername" class="modal" tabindex="-1">
         <div class="modal-dialog myModal modal-xl">
@@ -22,3 +22,18 @@
 </form>
 
 @include('main.modal.alertPenawaranBerhasil')
+
+<script>
+    function loading() {
+        Swal.fire({
+            title: 'Tunggu Sebentar !',
+            allowOutsideClick: false,
+            allowEscapeKey: false,
+            allowEnterKey: false,
+            showConfirmButton: false,
+            willOpen: () => {
+                swal.showLoading();
+            },
+        });
+    }
+</script>

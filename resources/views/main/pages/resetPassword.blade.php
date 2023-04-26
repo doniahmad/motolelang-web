@@ -7,7 +7,7 @@
             <div class="center">
                 <div class="my-5">
                     <h1 class="bold">Lupa Kata Sandi</h1>
-                    <form method="post" action="{{ route('forgot.resetPassword') }}">
+                    <form method="post" action="{{ route('forgot.resetPassword') }}" onsubmit="loading()">
                         @csrf
                         <input type="text" name="email" value="{{ request()->input('email') }}" required hidden>
                         <input type="text" name="token" value="{{ request()->input('token') }}" required hidden>
@@ -50,6 +50,19 @@
             iconElement.classList.toggle("fa-eye");
             inputElement.setAttribute("type", type);
 
+        }
+
+        function loading() {
+            Swal.fire({
+                title: 'Tunggu Sebentar !',
+                allowOutsideClick: false,
+                allowEscapeKey: false,
+                allowEnterKey: false,
+                showConfirmButton: false,
+                willOpen: () => {
+                    swal.showLoading();
+                },
+            });
         }
     </script>
 @endpush

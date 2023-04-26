@@ -42,6 +42,7 @@ class ViewController extends Controller
         ];
 
         $data = $this->postAction('/api/login', $inputData);
+
         if ($data->status === "success") {
             Session::put('token', $data->token);
             return Redirect::to(route('home.index'));
@@ -140,7 +141,7 @@ class ViewController extends Controller
 
     public function showGalleryLelang()
     {
-        $response = Auction::with(['product.images', 'auctioneer.user', 'auctioneer.offer', 'offer.auctioneer', 'auctioneer.invoice',])->orderBy('created_at','desc')->paginate(12);
+        $response = Auction::with(['product.images', 'auctioneer.user', 'auctioneer.offer', 'offer.auctioneer', 'auctioneer.invoice',])->orderBy('created_at', 'desc')->paginate(12);
         // dd($response);
         return view($this->mainPages('lelang'))->with('data', $response);
     }
@@ -592,10 +593,10 @@ class ViewController extends Controller
 
         return $data;
     }
-public static function pembayaranView(HttpRequest $request)
-    {
-        $data = self::getInvoice($request);
-        $dataProvince = RajaOngkir::province()->get();
-        return view(mainPages('pembayaran'), compact(['data', 'dataProvince']));
-    }
+    // public static function pembayaranView(HttpRequest $request)
+    //     {
+    //         $data = self::getInvoice($request);
+    //         $dataProvince = RajaOngkir::province()->get();
+    //         return view(mainPages('pembayaran'), compact(['data', 'dataProvince']));
+    //     }
 }

@@ -1,4 +1,4 @@
-<form method="POST" action="{{ route('lelang.offer') }}">
+<form method="POST" action="{{ route('lelang.offer') }}" onsubmit="loading()">
     @csrf
     <div id="modalInputPenawaran" class="modal" tabindex="-1" onsubmit="confirmOffer(this)">
         <div class="modal-dialog myModal modal-xl">
@@ -52,6 +52,19 @@
                     }
                 })
             }
+        }
+
+        function loading() {
+            Swal.fire({
+                title: 'Tunggu Sebentar !',
+                allowOutsideClick: false,
+                allowEscapeKey: false,
+                allowEnterKey: false,
+                showConfirmButton: false,
+                willOpen: () => {
+                    swal.showLoading();
+                },
+            });
         }
     </script>
 @endpush
