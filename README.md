@@ -20,7 +20,7 @@ Tata cara penginstalan web:
 8. Tambahkan code dibawah kedalam file .ENV :
     ```
     RAJAONGKIR_ACCOUNT_TYPE=starter
-    RAJAONGKIR_API_KEY=d91bc1385556dda3a4ad9af8f7c945c2
+    RAJAONGKIR_API_KEY=isiapikeyanda
     RAJAONGKIR_PROV_TABLE=ro_province
     RAJAONGKIR_CITY_TABLE=ro_city
     RAJAONGKIR_CACHE=database
