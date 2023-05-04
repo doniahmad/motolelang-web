@@ -25,6 +25,7 @@ Tata cara penginstalan web:
     RAJAONGKIR_CITY_TABLE=ro_city
     RAJAONGKIR_CACHE=database
     ```
+11. Anda bisa mendapatkan Api Key RajaOngkir dengan membuat akun di https://rajaongkir.com/ 
 11. Masuk Terminal dan jalankan ```php artisan storage:link```
 12. Selanjutnya jalankan "php artisan migrate"
 13. Lalu jalankan ```php artisan db:seed --class=PermissionSeeder```
