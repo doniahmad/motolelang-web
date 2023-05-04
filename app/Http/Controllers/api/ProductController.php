@@ -71,7 +71,7 @@ class ProductController extends Controller
                 $image = $request->file('image');
                 foreach ($image as $imageFile) {
                     $image_name = 'product-' . rand(1, 9999) .  '.' . $imageFile->extension();
-                    $imageFile->move(public_path('storage/image/product'), $image_name);
+                    $imageFile->storeAs('image/product', $image_name);
                     $imgList[] = ['image_path' => $image_name, 'id_product' => $product->product_id];
                 }
                 $reqImage = Image::insert($imgList);
@@ -109,34 +109,34 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        $validateData = $request->validate([
-            'nama_product' => 'string',
-            'harga_awal' => 'integer',
-            'jenis' => 'string',
-            'merk' => 'string',
-            'kapasitas_cc' => 'integer',
-            'nomor_mesin' => 'string',
-            'bahan_bakar' => 'string',
-            'warna_tnkb' => 'string',
-            'odometer' => 'integer',
-            'nomor_rangka' => 'string',
-            'category_id' => 'integer',
-            'warna' => 'string',
-            'img_url' => 'image',
-            'img_url.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'deskripsi' => 'string',
-            'nomor_polisi' => 'string',
-            'stnk' => "boolean",
-            'bpkb' => "boolean",
-            'form_a' => "boolean",
-            'faktur' => "boolean",
-            'kwitansi_blanko' => "string",
-            'masa_stnk' => "date",
-        ]);
-
-        $productWithImage = $product->load('images');
-
         try {
+            $validateData = $request->validate([
+                'nama_product' => 'string',
+                'harga_awal' => 'integer',
+                'jenis' => 'string',
+                'merk' => 'string',
+                'kapasitas_cc' => 'integer',
+                'nomor_mesin' => 'string',
+                'bahan_bakar' => 'string',
+                'warna_tnkb' => 'string',
+                'odometer' => 'integer',
+                'nomor_rangka' => 'string',
+                'category_id' => 'integer',
+                'warna' => 'string',
+                'img_url' => 'image',
+                'img_url.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                'deskripsi' => 'string',
+                'nomor_polisi' => 'string',
+                'stnk' => "boolean",
+                'bpkb' => "boolean",
+                'form_a' => "boolean",
+                'faktur' => "boolean",
+                'kwitansi_blanko' => "string",
+                'masa_stnk' => "date",
+            ]);
+
+            $productWithImage = $product->load('images');
+
             if ($request->hasFile('image')) {
                 foreach ($productWithImage->images as $img) {
                     Storage::delete('image/product/' . $img->image_path);
@@ -147,7 +147,7 @@ class ProductController extends Controller
                 $image = $request->file('image');
                 foreach ($image as $imageFile) {
                     $image_name = 'product-' . rand(1, 9999) .  '.' . $imageFile->extension();
-                    $imageFile->move(public_path('storage/image/product'), $image_name);
+                    $imageFile->storeAs('image/product', $image_name);
                     $imgList[] = ['image_path' => $image_name, 'id_product' => $product->product_id];
                 }
                 $reqImage = Image::insert($imgList);

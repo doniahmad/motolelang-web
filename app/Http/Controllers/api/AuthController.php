@@ -71,7 +71,7 @@ class AuthController extends Controller
                 /** @var User $user */
                 $user = Auth::user();
                 $token = $user->createToken('apptoken')->plainTextToken;
-                if (!$user->email_verified_at === null) {
+                if ($user->email_verified_at === null) {
                     Auth::logout();
                     return response([
                         'status' => 'error',

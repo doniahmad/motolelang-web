@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\ValidationException;
 use RajaOngkir;
 
@@ -140,7 +141,7 @@ class ViewController extends Controller
 
     public function showGalleryLelang()
     {
-        $response = Auction::with(['product.images', 'auctioneer.user', 'auctioneer.offer', 'offer.auctioneer', 'auctioneer.invoice',])->orderBy('created_at','desc')->paginate(12);
+        $response = Auction::with(['product.images', 'auctioneer.user', 'auctioneer.offer', 'offer.auctioneer', 'auctioneer.invoice',])->orderBy('created_at', 'desc')->paginate(12);
         // dd($response);
         return view($this->mainPages('lelang'))->with('data', $response);
     }
@@ -238,7 +239,7 @@ class ViewController extends Controller
                 $image = $request->file('image');
                 foreach ($image as $imageFile) {
                     $image_name = 'product-' . rand(1, 9999) .  '.' . $imageFile->extension();
-                    $imageFile->move(public_path('storage/image/product'), $image_name);
+                    $imageFile->storeAs('image/product', $image_name);
                     $imgList[] = ['image_path' => $image_name, 'id_product' => $product->product_id];
                 }
                 Image::insert($imgList);
@@ -251,19 +252,62 @@ class ViewController extends Controller
         }
     }
 
-    public function updateProduct(HttpRequest $input)
+    public function updateProduct(HttpRequest $request, Product $product)
     {
 
-        $input['_method'] = 'PUT';
+        // $input['_method'] = 'PUT';
 
-        $data = $this->postAction('/api/product/' . $input->param, $input->all());
+        // $data = $this->postAction('/api/product/' . $input->param, $input->all());
 
-        if ($data->status === 'success') {
+        try {
+            $validateData = $request->validate([
+                'nama_product' => 'string',
+                'harga_awal' => 'integer',
+                'jenis' => 'string',
+                'merk' => 'string',
+                'kapasitas_cc' => 'integer',
+                'nomor_mesin' => 'string',
+                'bahan_bakar' => 'string',
+                'warna_tnkb' => 'string',
+                'odometer' => 'integer',
+                'nomor_rangka' => 'string',
+                'category_id' => 'integer',
+                'warna' => 'string',
+                'img_url' => 'image',
+                'img_url.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                'deskripsi' => 'string',
+                'nomor_polisi' => 'string',
+                'stnk' => "boolean",
+                'bpkb' => "boolean",
+                'form_a' => "boolean",
+                'faktur' => "boolean",
+                'kwitansi_blanko' => "string",
+                'masa_stnk' => "date",
+            ]);
+
+            $productWithImage = $product->load('images');
+
+            if ($request->hasFile('image')) {
+                foreach ($productWithImage->images as $img) {
+                    Storage::delete('image/product/' . $img->image_path);
+                    Image::find($img->image_id)->delete();
+                };
+
+                $imgList = array();
+                $image = $request->file('image');
+                foreach ($image as $imageFile) {
+                    $image_name = 'product-' . rand(1, 9999) .  '.' . $imageFile->extension();
+                    $imageFile->storeAs('image/product', $image_name);
+                    $imgList[] = ['image_path' => $image_name, 'id_product' => $product->product_id];
+                }
+                Image::insert($imgList);
+            };
+            $product->update($validateData);
             Alert::toast('Product berhasil diperbarui', 'success');
             return Redirect::to(route('dashboard.product'));
-        } else {
+        } catch (ValidationException $e) {
             Alert::toast('Product gagal diperbarui', 'error');
-            return redirect()->back()->withErrors($data);
+            return redirect()->back()->withErrors($e->errors());
         }
     }
 
@@ -387,11 +431,11 @@ class ViewController extends Controller
         return $data;
     }
 
-    public static function payInvoice(HttpRequest $param)
+    public function payInvoice(HttpRequest $param)
     {
         $param['_method'] = 'PUT';
 
-        $data = self::postAction('/api/invoice/' . $param->kode_pembayaran, $param->all());
+        $data = $this->postAction('/api/invoice/' . $param->kode_pembayaran, $param->all());
 
         if ($data->status === 'success') {
             Alert::success('Pembayaran berhasil dikirimkan');
@@ -592,7 +636,7 @@ class ViewController extends Controller
 
         return $data;
     }
-public static function pembayaranView(HttpRequest $request)
+    public static function pembayaranView(HttpRequest $request)
     {
         $data = self::getInvoice($request);
         $dataProvince = RajaOngkir::province()->get();
