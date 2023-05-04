@@ -17,9 +17,17 @@ Tata cara penginstalan web:
     DB_USERNAME=root
     DB_PASSWORD=
     ```
-7. Masuk Terminal dan jalankan ```php artisan storage:link```
-8. Selanjutnya jalankan "php artisan migrate"
-9. Lalu jalankan ```php artisan db:seed --class=PermissionSeeder```
-10. Lalu jalankan ```php artisan db:seed --class=UserSeeder```
-11. Setelah semuanya dilakukan. Jalankan Website dengan. ```php artisan serve```
-12. Masuk kedalam website melalui [htttp://127.0.0.1:8000](http://127.0.0.1:8000/)
+8. Tambahkan code dibawah kedalam file .ENV :
+    ```
+    RAJAONGKIR_ACCOUNT_TYPE=starter
+    RAJAONGKIR_API_KEY=d91bc1385556dda3a4ad9af8f7c945c2
+    RAJAONGKIR_PROV_TABLE=ro_province
+    RAJAONGKIR_CITY_TABLE=ro_city
+    RAJAONGKIR_CACHE=database
+    ```
+11. Masuk Terminal dan jalankan ```php artisan storage:link```
+12. Selanjutnya jalankan "php artisan migrate"
+13. Lalu jalankan ```php artisan db:seed --class=PermissionSeeder```
+14. Lalu jalankan ```php artisan db:seed --class=UserSeeder```
+15. Setelah semuanya dilakukan. Jalankan Website dengan. ```php artisan serve```
+16. Masuk kedalam website melalui [htttp://127.0.0.1:8000](http://127.0.0.1:8000/)
