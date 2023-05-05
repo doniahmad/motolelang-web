@@ -30,5 +30,6 @@ Tata cara penginstalan web:
 12. Selanjutnya jalankan ```php artisan migrate```
 13. Lalu jalankan ```php artisan db:seed --class=PermissionSeeder```
 14. Lalu jalankan ```php artisan db:seed --class=UserSeeder```
-15. Setelah semuanya dilakukan. Jalankan Website dengan. ```php artisan serve```
-16. Masuk kedalam website melalui [htttp://127.0.0.1:8000](http://127.0.0.1:8000/)
+15. Selanjutnya jelankan ```php artisan key:generate```
+16. Setelah semuanya dilakukan. Jalankan Website dengan. ```php artisan serve```
+17. Masuk kedalam website melalui [htttp://127.0.0.1:8000](http://127.0.0.1:8000/)
