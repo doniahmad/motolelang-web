@@ -88,7 +88,7 @@
                     <h3 class="">
                         {{ currency_IDR(isset($currentAuctioneer->offer) ? $currentAuctioneer->offer->offer : 0) }}
                     </h3>
-                    <form method="POST" action="{{ route('lelang.offer') }}">
+                    <form method="POST" action="{{ route('lelang.offer') }}" onsubmit="loading()">
                         @csrf
                         @if (isset($currentAuctioneer->offer))
                             <input type="number"
@@ -120,6 +120,19 @@
 @include('main.modal.modalInputPenawaran')
 
 <script>
+    function loading() {
+        Swal.fire({
+            title: 'Tunggu Sebentar !',
+            allowOutsideClick: false,
+            allowEscapeKey: false,
+            allowEnterKey: false,
+            showConfirmButton: false,
+            willOpen: () => {
+                swal.showLoading();
+            },
+        });
+    }
+
     // Set the date we're counting down to
     // let countDownDate = new Date("{{ $diff->format('M d, Y H:i:s') }}").getTime();
 

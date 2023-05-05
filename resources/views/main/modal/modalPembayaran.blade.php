@@ -1,4 +1,4 @@
-<form method="POST" action="{{ route('invoice.bayar') }}" enctype="multipart/form-data">
+<form method="POST" action="{{ route('invoice.bayar') }}" enctype="multipart/form-data" onsubmit="loading()">
     @csrf
     <div id="modalPembayaran" class="modal custom-modal">
         <div class="modal-dialog myModal modal-lg ">
@@ -60,5 +60,18 @@
     var loadFile = function(event) {
         var output = document.getElementById('output');
         output.src = URL.createObjectURL(event.target.files[0]);
+    }
+
+    function loading() {
+        Swal.fire({
+            title: 'Tunggu Sebentar !',
+            allowOutsideClick: false,
+            allowEscapeKey: false,
+            allowEnterKey: false,
+            showConfirmButton: false,
+            willOpen: () => {
+                swal.showLoading();
+            },
+        });
     }
 </script>

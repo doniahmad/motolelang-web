@@ -8,7 +8,7 @@
                 <div class="center">
                     <div class="my-5">
                         <h1 class="bold">Masuk</h1>
-                        <form method="post" action="{{ route('login.action') }}">
+                        <form method="post" action="{{ route('login.action') }}" onsubmit="loading()">
                             @csrf
                             @if ($errors->any())
                                 <div class="alert alert-warning py-2" role="alert">
@@ -31,7 +31,7 @@
                                 <label>Kata Sandi</label>
                             </div>
                             <div class="pass"><a href="{{ route('login.forgot') }}">Lupa Kata Sandi</a></div>
-                            <input type="submit" value="Masuk">
+                            <input type="submit" value="Masuk" onsubmit="loading()">
                             <p class="text-center my-3">OR</p>
                             <div class="signup_link">
                                 Belum punya akun? <a href="{{ route('login.daftar') }}"> Daftar</a>
@@ -62,5 +62,20 @@
             const type = passwordInput.getAttribute("type") === "password" ? "text" : "password"
             passwordInput.setAttribute("type", type)
         })
+
+
+
+        function loading() {
+            Swal.fire({
+                title: 'Tunggu Sebentar !',
+                allowOutsideClick: false,
+                allowEscapeKey: false,
+                allowEnterKey: false,
+                showConfirmButton: false,
+                willOpen: () => {
+                    swal.showLoading();
+                },
+            });
+        }
     </script>
 @endpush

@@ -43,6 +43,7 @@ class ViewController extends Controller
         ];
 
         $data = $this->postAction('/api/login', $inputData);
+
         if ($data->status === "success") {
             Session::put('token', $data->token);
             return Redirect::to(route('home.index'));

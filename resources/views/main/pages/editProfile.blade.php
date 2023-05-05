@@ -6,7 +6,7 @@
 @endphp
 
 <div id="editProfil" class="konten-2">
-    <form method="POST" action="{{ route('profil.update') }}" enctype="multipart/form-data">
+    <form method="POST" action="{{ route('profil.update') }}" enctype="multipart/form-data" onsubmit="loading()">
         @csrf
         <input type="text" name="id" value="{{ $user->user_id }}" hidden>
         <div class="container border bg-white">
@@ -145,4 +145,17 @@
         var image = document.getElementById("img1");
         image.src = URL.createObjectURL(event.target.files[0]);
     };
+
+    function loading() {
+        Swal.fire({
+            title: 'Tunggu Sebentar !',
+            allowOutsideClick: false,
+            allowEscapeKey: false,
+            allowEnterKey: false,
+            showConfirmButton: false,
+            willOpen: () => {
+                swal.showLoading();
+            },
+        });
+    }
 </script>

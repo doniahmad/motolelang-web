@@ -7,7 +7,7 @@
             <div class="center">
                 <div class="my-5">
                     <h1 class="bold">Daftar</h1>
-                    <form method="POST" action="{{ route('login.daftarAction') }}">
+                    <form method="POST" action="{{ route('login.daftarAction') }}" onsubmit="loading()">
                         @csrf
                         <div class="txt_field">
                             <input type="text" name="name" value="{{ old('name') }}" required>
@@ -108,6 +108,19 @@
         } else {
             confirm_password.setCustomValidity('');
         }
+    }
+
+    function loading() {
+        Swal.fire({
+            title: 'Tunggu Sebentar !',
+            allowOutsideClick: false,
+            allowEscapeKey: false,
+            allowEnterKey: false,
+            showConfirmButton: false,
+            willOpen: () => {
+                swal.showLoading();
+            },
+        });
     }
 
     password.onchange = validatePassword;
