@@ -27,7 +27,7 @@ Tata cara penginstalan web:
     ```
 9. Anda bisa mendapatkan Api Key RajaOngkir dengan membuat akun di https://rajaongkir.com/ 
 11. Masuk Terminal dan jalankan ```php artisan storage:link```
-12. Selanjutnya jalankan "php artisan migrate"
+12. Selanjutnya jalankan ```php artisan migrate```
 13. Lalu jalankan ```php artisan db:seed --class=PermissionSeeder```
 14. Lalu jalankan ```php artisan db:seed --class=UserSeeder```
 15. Setelah semuanya dilakukan. Jalankan Website dengan. ```php artisan serve```
