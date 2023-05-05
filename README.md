@@ -26,7 +26,7 @@ Tata cara penginstalan web:
     RAJAONGKIR_CACHE=database
     ```
 9. Anda bisa mendapatkan Api Key RajaOngkir dengan membuat akun di https://rajaongkir.com/ 
-10. Setelah mengintegrasi RajaOngkir. Jalankan command ```php artisan raja-ongkir:cache all``
+10. Setelah mengintegrasi RajaOngkir. Jalankan command ```php artisan raja-ongkir:cache all```
 11. Tambahkan atau ubah file .ENV seperti dibawah :
 ```
 MAIL_MAILER=smtp
