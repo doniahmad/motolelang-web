@@ -42,5 +42,6 @@ MAIL_ENCRYPTION=tls
 15. Lalu jalankan ```php artisan db:seed --class=PermissionSeeder```
 16. Lalu jalankan ```php artisan db:seed --class=UserSeeder```
 17. Selanjutnya jelankan ```php artisan key:generate```
-18. Setelah semuanya dilakukan. Jalankan Website dengan. ```php artisan serve```
-19. Masuk kedalam website melalui [htttp://127.0.0.1:8000](http://127.0.0.1:8000/)
+18. Selalu jalankan ```php artisan schedule:work``` sebelum menjalankan website.
+19. Setelah semuanya dilakukan. Jalankan Website dengan. ```php artisan serve```
+20. Masuk kedalam website melalui [htttp://127.0.0.1:8000](http://127.0.0.1:8000/)
