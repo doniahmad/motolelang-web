@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Notifications\VerifyAccount;
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -32,31 +33,38 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         try {
-            $fields = $request->validate([
-                'name' => 'required',
-                'email' => 'required|email|unique:users,email',
-                'handphone' => 'required|string|unique:users,handphone',
-                'password' => 'required|confirmed|min:8',
-            ]);
+            try {
+                $fields = $request->validate([
+                    'name' => 'required',
+                    'email' => 'required|email|unique:users,email',
+                    'handphone' => 'required|string|unique:users,handphone',
+                    'password' => 'required|confirmed|min:8',
+                ]);
 
-            $fields['role'] = 'customer';
+                $fields['role'] = 'customer';
 
-            $fields['password'] = Hash::make($fields['password']);
+                $fields['password'] = Hash::make($fields['password']);
 
-            $user = User::create($fields);
+                $user = User::create($fields);
 
-            $user->assignRole($fields['role']);
+                $user->assignRole($fields['role']);
 
-            $this->kirimEmailVerifikasi($user);
+                $this->kirimEmailVerifikasi($user);
 
-            return response()->json([
-                'status' => 'success',
-                'user' => $user
-            ]);
-        } catch (ValidationException $e) {
+                return response()->json([
+                    'status' => 'success',
+                    'user' => $user
+                ]);
+            } catch (ValidationException $e) {
+                return response()->json([
+                    'status' => 'error',
+                    'message' => $e->errors(),
+                ], 400);
+            }
+        } catch (Exception $e) {
             return response()->json([
                 'status' => 'error',
-                'message' => $e->errors(),
+                'message' => $e->getMessage(),
             ], 400);
         }
     }
