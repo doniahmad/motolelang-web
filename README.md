@@ -26,10 +26,20 @@ Tata cara penginstalan web:
     RAJAONGKIR_CACHE=database
     ```
 9. Anda bisa mendapatkan Api Key RajaOngkir dengan membuat akun di https://rajaongkir.com/ 
-11. Masuk Terminal dan jalankan ```php artisan storage:link```
-12. Selanjutnya jalankan ```php artisan migrate```
-13. Lalu jalankan ```php artisan db:seed --class=PermissionSeeder```
-14. Lalu jalankan ```php artisan db:seed --class=UserSeeder```
-15. Selanjutnya jelankan ```php artisan key:generate```
-16. Setelah semuanya dilakukan. Jalankan Website dengan. ```php artisan serve```
-17. Masuk kedalam website melalui [htttp://127.0.0.1:8000](http://127.0.0.1:8000/)
+10. Tambahkan atau ubah file .ENV seperti dibawah :
+```
+MAIL_MAILER=smtp
+MAIL_HOST=sandbox.smtp.mailtrap.io
+MAIL_PORT=2525
+MAIL_USERNAME=mailtrapusername
+MAIL_PASSWORD=mailtrappass
+MAIL_ENCRYPTION=tls
+```
+11. Untuk mendapatkan isi username dan password. buat akun di https://mailtrap.io/
+13. Masuk Terminal dan jalankan ```php artisan storage:link```
+14. Selanjutnya jalankan ```php artisan migrate```
+15. Lalu jalankan ```php artisan db:seed --class=PermissionSeeder```
+16. Lalu jalankan ```php artisan db:seed --class=UserSeeder```
+17. Selanjutnya jelankan ```php artisan key:generate```
+18. Setelah semuanya dilakukan. Jalankan Website dengan. ```php artisan serve```
+19. Masuk kedalam website melalui [htttp://127.0.0.1:8000](http://127.0.0.1:8000/)
