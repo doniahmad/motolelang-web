@@ -17,6 +17,7 @@ Tata cara penginstalan web:
     DB_USERNAME=root
     DB_PASSWORD=
     ```
+13. Masuk Terminal dan jalankan ```php artisan storage:link```
 8. Tambahkan code dibawah kedalam file .ENV :
     ```
     RAJAONGKIR_ACCOUNT_TYPE=starter
@@ -37,7 +38,6 @@ MAIL_PASSWORD=mailtrappass
 MAIL_ENCRYPTION=tls
 ```
 11. Untuk mendapatkan isi username dan password. buat akun di https://mailtrap.io/
-13. Masuk Terminal dan jalankan ```php artisan storage:link```
 14. Selanjutnya jalankan ```php artisan migrate```
 15. Lalu jalankan ```php artisan db:seed --class=PermissionSeeder```
 16. Lalu jalankan ```php artisan db:seed --class=UserSeeder```
